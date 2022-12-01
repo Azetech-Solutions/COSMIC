@@ -1,0 +1,54 @@
+﻿.usedmodule SubSystem
+.Imports Microsoft.VisualBasic
+.Imports System
+.Imports System.Collections.Generic
+.Imports System.Xml.Serialization
+.Imports System.IO
+.
+.
+.Public Class Process
+.    Public Property Name As String = ""
+.	 Public Property Index As UInteger = 0
+.	 Public Property ProcessGroupRef As String = ""
+.    Public Property Enabled As String = "false"
+.End Class
+.
+.Public Class tSubSystemConfig
+.    Public Property Name As String = ""
+.    Public Property Processes As New List(Of Process)
+.End Class
+.
+.<Serializable>
+.Public Class ExcludeFile
+.    <XmlText>Public Property ExcludeFile As String = ""
+.End Class
+.
+.Public Class tSubSystemGeneral
+.    Public Property HeaderGeneration As String = "True"
+.    Public Property ExcludeFileList As New List(Of ExcludeFile)
+.End Class
+.
+.Public Class SubSystem
+.    Public Property Config As New tSubSystemConfig
+.    Public Property General As New tSubSystemGeneral
+.    Public Property ModulePath As String = ""
+.End Class
+.
+.Public Module SubSystem_Global
+.
+.    Public SubSystems As New List(Of SubSystem)
+.
+.    Public Sub AddSubSystemModule(ByVal FilePath As String)
+.        Try
+.            Dim serializer As New XmlSerializer(GetType(SubSystem))
+.            Dim fs As New FileStream(FilePath, FileMode.Open)
+.            Dim pSubSystem As SubSystem = CType(serializer.Deserialize(fs), SubSystem)
+.            pSubSystem.ModulePath = Path.GetDirectoryName(FilePath)
+.            SubSystems.Add(pSubSystem)
+.        Catch ex As Exception
+.            Console.WriteLine("ERROR: Exception while accessing " + FilePath)
+.            Console.WriteLine(ex.Message)
+.        End Try
+.    End Sub
+.
+.End Module

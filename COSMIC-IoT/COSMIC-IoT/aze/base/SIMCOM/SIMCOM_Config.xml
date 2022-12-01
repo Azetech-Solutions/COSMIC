@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SIMCOM type="paramconfig" ref="SIMCOM">
+  <Config>
+    <Name>SIMCOM_Config</Name>
+    <Functions>
+      <Name>SIMCOM_Functions</Name>
+      <ErrorCallback>COSMIC_SIMCOM_Error_Callback</ErrorCallback>
+      <GenericRxCallback>COSMIC_Generic_SIMCOM_Callback</GenericRxCallback>
+      <CustomSendByteFunction>SIM_Send_Data</CustomSendByteFunction>
+    </Functions>
+    <Calls>
+      <Name>Calls and Dialing</Name>
+      <Enabled>False</Enabled>
+    </Calls>
+    <Network>
+      <Name>SIMCOM Network Control</Name>
+      <NetworkClockSyncCount>10</NetworkClockSyncCount>
+    </Network>
+    <HTTP>
+      <Name>SIMCOM HTTP</Name>
+      <Enabled>False</Enabled>
+      <URL>FFU_SERVER_URL</URL>
+      <HTTPMethod>POST</HTTPMethod>
+    </HTTP>
+  </Config>
+  <General>
+    <Name>SIMCOM_General</Name>
+    <IncompleteResponseRetryCount>10</IncompleteResponseRetryCount>
+    <FailureRetryCount>10</FailureRetryCount>
+    <MainFunctionRef>SIMCOM_MainFunction</MainFunctionRef>
+    <AlivenessErrorTime>60000</AlivenessErrorTime>
+    <DefaultTimeoutTime>2000</DefaultTimeoutTime>
+    <BufferRef>SIMCOM</BufferRef>
+    <HeaderList />
+  </General>
+</SIMCOM>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SubSystem type="paramconfig" ref="SubSystem">
+  <Config>
+    <Name>Config</Name>
+    <Processes>
+      <Process>
+        <Name>Avr_Init</Name>
+        <Index>10</Index>
+        <ProcessGroupRef>Avr_Init</ProcessGroupRef>
+        <Enabled>True</Enabled>
+      </Process>
+      <Process>
+        <Name>Avr_Main_x10</Name>
+        <Index>10</Index>
+        <ProcessGroupRef>Avr_Main_x10</ProcessGroupRef>
+        <Enabled>True</Enabled>
+      </Process>
+      <Process>
+        <Name>TIM1_Init</Name>
+        <Index>1</Index>
+        <ProcessGroupRef>Avr_Init</ProcessGroupRef>
+        <Enabled>True</Enabled>
+      </Process>
+      <Process>
+        <Name>UART_init</Name>
+        <Index>11</Index>
+        <ProcessGroupRef>Avr_Init</ProcessGroupRef>
+        <Enabled>True</Enabled>
+      </Process>
+    </Processes>
+  </Config>
+  <General>
+    <Name>General</Name>
+    <HeaderGeneration>True</HeaderGeneration>
+    <ExcludeFileList />
+  </General>
+</SubSystem>

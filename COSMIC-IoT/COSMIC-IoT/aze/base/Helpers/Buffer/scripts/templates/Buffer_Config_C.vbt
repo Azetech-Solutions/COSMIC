@@ -1,0 +1,28 @@
+.imports system
+.imports system.io
+.Imports System.Collections.Generic
+.public module Buffer_Config_C_VBT
+
+.output Buffer_Config.c
+.sw.writeline(CopyRightsComments())
+
+#include <Includes.h>
+#include BUFFER_CONFIG_H
+
+/******************************************************/
+/*           Global Variable Definitions              */
+/******************************************************/
+
+.For Each myBuffer as RingBuffer in pBuffer.Config.RingBuffers
+. If CBool(myBuffer.Enabled) = True Then
+UBYTE BufferArray_$(myBuffer.Name)[P_BUFFER_LENGTH_$(myBuffer.Name)];
+. End If
+.next
+
+/******************************************************/
+/*        Configuration Function Definitions          */
+/******************************************************/
+
+
+.endoutput
+.end module

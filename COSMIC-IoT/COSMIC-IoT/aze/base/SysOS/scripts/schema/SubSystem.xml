@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<paramdef>
+  <name>SubSystem</name>
+  <paramobject type="paramcontainer">
+    <name>Config</name>
+    <description>Sub System Description</description>
+    <lowermultiplicity>1</lowermultiplicity>
+    <uppermultiplicity>1</uppermultiplicity>
+    <paramobject type="listcontainer">
+      <name>Processes</name>
+      <description>List of Processes under the Sub System</description>
+      <paramobject type="paramcontainer">
+        <name>Process</name>
+        <description>A Process Function under this subsystem. The Value should be the name of the Process Function being defined in the software.</description>
+        <lowermultiplicity>1</lowermultiplicity>
+        <uppermultiplicity>65535</uppermultiplicity>
+        <paramobject type="dataobject" data="integer">
+          <name>Index</name>
+          <description>Index of the Process</description>
+          <lowermultiplicity>1</lowermultiplicity>
+          <uppermultiplicity>1</uppermultiplicity>
+          <default>255</default>
+          <min>0</min>
+          <max>65535</max>
+        </paramobject>
+        <paramobject type="referenceobject">
+          <name>ProcessGroupRef</name>
+          <description>Process Group Reference</description>
+          <lowermultiplicity>1</lowermultiplicity>
+          <uppermultiplicity>1</uppermultiplicity>
+          <refpath>ProcessGroupDef.ProcessGroups.ProcessGroup</refpath>
+        </paramobject>
+        <paramobject type="dataobject" data="boolean">
+          <name>Enabled</name>
+          <description>Enables or Disables the Process in the current SubSystem</description>
+          <lowermultiplicity>1</lowermultiplicity>
+          <uppermultiplicity>1</uppermultiplicity>
+          <default>true</default>
+        </paramobject>
+      </paramobject>
+    </paramobject>
+  </paramobject>
+  <paramobject type="paramcontainer">
+    <name>General</name>
+    <description>General Settings for the Sub System</description>
+    <lowermultiplicity>1</lowermultiplicity>
+    <uppermultiplicity>1</uppermultiplicity>
+    <paramobject type="dataobject" data="boolean">
+      <name>HeaderGeneration</name>
+      <description>Enables or Disables Header Generation for this Sub System</description>
+      <lowermultiplicity>1</lowermultiplicity>
+      <uppermultiplicity>1</uppermultiplicity>
+      <default>True</default>
+    </paramobject>
+    <paramobject type="listcontainer">
+      <name>ExcludeFileList</name>
+      <paramobject type="dataobject" data="text">
+        <name>ExcludeFile</name>
+        <description>Name of the File to be excluded for the Header Generation</description>
+      </paramobject>
+    </paramobject>
+  </paramobject>
+</paramdef>
