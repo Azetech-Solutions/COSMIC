@@ -27,6 +27,18 @@
         <ProcessGroupRef>Avr_Init</ProcessGroupRef>
         <Enabled>True</Enabled>
       </Process>
+      <Process>
+        <Name>LCD_Init</Name>
+        <Index>12</Index>
+        <ProcessGroupRef>Avr_Init</ProcessGroupRef>
+        <Enabled>True</Enabled>
+      </Process>
+      <Process>
+        <Name>LCD_Mainfunction</Name>
+        <Index>12</Index>
+        <ProcessGroupRef>Avr_Main_x10</ProcessGroupRef>
+        <Enabled>True</Enabled>
+      </Process>
     </Processes>
   </Config>
   <General>

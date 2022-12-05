@@ -12,6 +12,8 @@ aze\base\Helpers\String\src\StringHelper.c
 
 aze\base\LCD_16X2\LCD.c
 
+aze\base\LCD_16X2\LCD_Jobs.c
+
 aze\base\SIMCOM\src\SIMCOM.c
 
 aze\base\SIMCOM\src\SIMCOM_Clock.c

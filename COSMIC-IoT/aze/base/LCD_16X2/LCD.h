@@ -5,22 +5,31 @@
  *  Author: Admin
  */ 
 
-
 #ifndef LCD_H_
 #define LCD_H_
 
-
+/**********************************************************/
+/* Header Inclusions                                      */
+/**********************************************************/
 #include "Includes.h" // Will have all definitions of the Project Headers
 
 #include <stdint.h>
 
 #include PLATFORM_TYPES_H // For Data Types
-
+#define F_CPU 8000000UL
 #include <string.h>
+#include <util/delay.h>
+#include <avr/io.h>
+/**********************************************************/
+/* Macro Definitions                                      */
+/**********************************************************/
 
+#define LCD_AreJobsAvailable()           (g_LCDJobs_Length > 0)
 
-#define RS(x) (PORTB|=(x<<PB3))
-#define EN(x) (PORTB|=(x<<PB4))
+#define LCD_GetNextJobInQueue()          (&LCDJobs[g_LCDJobs_HeadIndex])
+
+#define rs_hi (PORTB|=(1<<PB3))
+#define en_hi (PORTB|=(1<<PB4))
 
 #define d4_hi (PORTD|=(1<<PD4))
 #define d5_hi (PORTD|=(1<<PD5))
@@ -35,70 +44,74 @@
 #define d6_lo (PORTD&=~(1<<PD6))
 #define d7_lo (PORTD&=~(1<<PD7))
 
+#define LCD_CFG_MAX_SCHEDULABLE_JOBS 20
 
+/**********************************************************/
+/* Type Definitions                                       */
+/**********************************************************/
 
-/* LCD Job Result State Type */
 typedef enum
 {
-	LCD_Job_Idle = 0,    // Default State
-	LCD_Job_Scheduled,   // ---> This will be updated by the Client who schedules the Job.
-	LCD_Job_InProgress,  // When the Job is In-Progress
-	LCD_Job_Timeout,     // Response Timed out
-	LCD_Job_Incomplete,  // Half of the Response received, but timed out later
-	LCD_Job_Completed,   // Job completed successfully, Response is available in the Buffer
-	LCD_Job_Aborted      // Job aborted because of multiple failure attempts
-
-}LCD_Job_Result_EN;
-
-
-/* LCD Job Callback type */
-typedef void (*LCD_Callback_Type)(LCD_Job_Result_EN);
-
-
-typedef enum  
-{
-	LCD_Idle_EN,
-	LCD_Init_EN,
-	LCD_1stWrite_EN,
-	LCD_1stEnable_Off_EN,
-	LCD_2ndWrite_EN,
-	LCD_2ndEnable_Off_EN
+	C_LCD_Idle,
+	C_LCD_Init,
+	C_LCD_1stWrite,
+	C_LCD_1stEnable_Off,
+	C_LCD_2ndWrite_EN,
+	C_LCD_2ndEnable_Off_EN
 	
 }LCD_State_EN;
 
 /* LCD Job Status */
 typedef enum __LCDJobStatusType
 {
-	C_LCD_COM_Status_Idle = 0,
-	C_LCD_COM_Status_Scheduled,
-	C_LCD_COM_Status_WriteInProgress,
-	C_LCD_COM_Status_Completed
+	C_LCD_Job_Status_Idle = 0,
+	C_LCD_Job_Status_Scheduled,
+	C_LCD_Job_Status_WriteInProgress,
+	C_LCD_Job_Status_Completed
 	
 }LCDJobStatusType;
 
 
-typedef union
-{
-	typedef struct
-	{
-		UBYTE CM_Data;
-	}Cmd_D;	
-	
-	typedef struct
-	{
-		const char *message_D;	
-	}Msg_D;
-	
-}LCDInputData;
-
-/* LCD Job Scheduler Type */
+/* LCD Job Config Type */
 typedef struct
 {
-	UBYTE JobCount;
-	LCDInputData Input_Data;
+	UBYTE CmdData;
+	const char* Message;
 	UBYTE InDataType;
-}LCD_Jobs;
+	LCDJobStatusType Status;
+	
+}LCD_JobConfig;
+
+/**********************************************************/
+/* Global Variable Declarations                           */
+/**********************************************************/
+UBYTE g_LCDJobs_Length;
+
+extern LCD_JobConfig LCDJobs[];
+
+extern UBYTE g_LCDJobs_HeadIndex;
+extern UBYTE g_LCDJobs_TailIndex;
+extern UBYTE g_LCDJobs_Length;
+
+extern ULONG LCD_JobTimeoutTimer;
+
+/**********************************************************/
+/* Inline Function Definitions                            */
+/**********************************************************/
+
+/**********************************************************/
+/* Function Declaration                                   */
+/**********************************************************/
+
+extern void LCD_Init(void);
+extern void LCD_MainFunction(void);
 
 
+/* Jobs related Function */
+extern void LCD_ClearJobs(void);
+extern BOOL LCD_CompleteJob(void);
+extern BOOL LCD_ScheduleJob(const char * Command,UBYTE Cmd,BOOL InputDataType);
+
+extern LCD_State_EN LCD_State;
 
 #endif /* LCD_H_ */

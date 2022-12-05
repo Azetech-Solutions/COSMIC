@@ -36,6 +36,8 @@ extern void Avr_Init(void);
 extern void Avr_Main_x10(void);
 extern void TIM1_Init(void);
 extern void UART_init(void);
+extern void LCD_Init(void);
+extern void LCD_Mainfunction(void);
 
 /* Define the Process calls for the Tasks */
 
@@ -46,6 +48,7 @@ void PRC_SYSOS_TASK_INIT(void)
 		SIMCOM_Init();
 		Avr_Init();
 		UART_init();
+		LCD_Init();
 }
 
 /* Definition for the task x10 */
@@ -53,6 +56,7 @@ void PRC_SYSOS_TASK_X10(void)
 {
 		SIMCOM_MainFunction();
 		Avr_Main_x10();
+		LCD_Mainfunction();
 }
 
 /* Definition for the task x100 */
