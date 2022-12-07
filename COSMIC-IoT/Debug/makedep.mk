@@ -18,6 +18,8 @@ aze\base\SIMCOM\src\SIMCOM.c
 
 aze\base\SIMCOM\src\SIMCOM_Clock.c
 
+aze\base\SIMCOM\src\SIMCOM_SSL_Configuration.c
+
 aze\base\SIMCOM\src\SIMCOM_State.c
 
 aze\base\SysOS\src\SysOS.c

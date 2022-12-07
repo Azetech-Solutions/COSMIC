@@ -260,6 +260,7 @@ void SIMCOM_MainFunction(void)
 
 	SIMCOM_StateMachine();
 	SIMCOM_Clock_MainFunction();
+	SIMCOM_SSL_CONFIG_MainFunction();
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

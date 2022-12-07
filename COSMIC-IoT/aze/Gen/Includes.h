@@ -17,6 +17,7 @@
 #define LCD_H   "base\LCD_16X2\LCD.h"
 #define SIMCOM_H   "base\SIMCOM\api\SIMCOM.h"
 #define SIMCOM_CLOCK_H   "base\SIMCOM\api\SIMCOM_Clock.h"
+#define SIMCOM_SSL_CONFIG_H   "base\SIMCOM\api\SIMCOM_SSL_Configuration.h"
 #define PLATFORM_TYPES_H   "base\SysOS\api\Platform_Types.h"
 #define SYSOS_H   "base\SysOS\api\SysOS.h"
 #define SYSOS_CONFIG_ELEMENTS_H   "base\SysOS\api\SysOS_Config_Elements.h"
