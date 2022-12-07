@@ -182,10 +182,16 @@
     <Compile Include="aze\base\LCD_16X2\LCD.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="aze\base\SIMCOM\api\SIMCOM_SSL_Configuration.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="aze\base\SIMCOM\api\SIMCOM.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\base\SIMCOM\api\SIMCOM_Clock.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\base\SIMCOM\src\SIMCOM_SSL_Configuration.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\base\SIMCOM\src\SIMCOM.c">
@@ -228,9 +234,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\Gen\SysOs_Processes.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

@@ -12,6 +12,8 @@ aze\base\Helpers\String\src\StringHelper.c
 
 aze\base\LCD_16X2\LCD.c
 
+aze\base\SIMCOM\src\SIMCOM_SSL_Configuration.c
+
 aze\base\SIMCOM\src\SIMCOM.c
 
 aze\base\SIMCOM\src\SIMCOM_Clock.c
@@ -22,9 +24,9 @@ aze\base\SysOS\src\SysOS.c
 
 aze\Cosmic_App\CS_IOT.c
 
+aze\Cosmic_App\main.c
+
 aze\Gen\Buffer_Config.c
 
 aze\Gen\SysOs_Processes.c
-
-main.c
 

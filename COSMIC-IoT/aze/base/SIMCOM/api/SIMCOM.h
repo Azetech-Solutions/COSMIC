@@ -52,6 +52,7 @@ typedef enum
 	SIMCOM_SM_SIM_Check,
 	SIMCOM_SM_NW_Registration_Check,
 	SIMCOM_SM_Clock_Configuration_Check,
+	SIMCOM_SM_LTE_Check,
 
 	// Below states will not request any AT commands to the module, Will be used for SIMCOM Sub Modules
 	SIMCOM_SM_Ready,                 // This state will reach with all the state has been covered
