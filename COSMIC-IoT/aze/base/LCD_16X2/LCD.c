@@ -9,12 +9,11 @@
 
 
 LCD_State_EN LCD_State = C_LCD_Idle;
-UBYTE i=0;
 
 /**
  * LCD_Job_Callback
  *
- * Function to get a callback once the scheduled lower layer job is done
+ * Function to get a callback once the scheduled job is done
  **/
 void LCD_Job_Callback(void)
 {
@@ -28,14 +27,6 @@ void LCD_Job_Callback(void)
 	{
 		/* ERROR Condition: Either the Jobs were cleared or a data inconsistency issue */	
 	}
-}
-
-void LCD_data(UBYTE a)
-{
-	if(a&0x10) {d4_hi;} else {d4_lo;}
-	if(a&0x20) {d5_hi;} else {d5_lo;}
-	if(a&0x40) {d6_hi;} else {d6_lo;}
-	if(a&0x80) {d7_hi;} else {d7_lo;}
 }
 
 void lcd_data(unsigned char a)
@@ -61,22 +52,8 @@ void lcd_cmd(unsigned char a)
 	en_lo;
 }
 
-void lcd_dat(unsigned char a)
-{
-	lcd_data(a&0xf0);
-	rs_hi;
-	en_hi;
-	_delay_ms(5);
-	en_lo;
-	
-	lcd_data((a<<4)&0xf0);
-	rs_hi;
-	en_hi;
-	_delay_ms(5);
-	en_lo;
-}
 
-void lcd_init()
+static void lcd_init()
 {
 	lcd_cmd(0x02);
 	lcd_cmd(0x28);
@@ -87,7 +64,27 @@ void lcd_init()
 	lcd_cmd(0x80);
 }
 
+void Display_String(const char * data)
+{
+	LCD_ScheduleJob(data,0,1);
+}
 
+void LCD_command(UBYTE cmd)
+{
+	LCD_ScheduleJob(NULL,cmd,0);
+}
+
+void DebugStringRow1(const char *data)
+{
+	LCD_command(0x80);
+	Display_String(data);
+}
+
+void DebugStringRow2(const char *data2)
+{
+	LCD_command(0xC0);
+	Display_String(data2);
+}
 
 void LCD_Init()
 {

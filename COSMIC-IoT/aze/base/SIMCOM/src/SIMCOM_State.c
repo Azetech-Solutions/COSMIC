@@ -10,7 +10,6 @@
 #include STRINGHELPER_H
 #include <avr/io.h>
 
-
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
@@ -51,9 +50,10 @@ void SIMCOM_StateMachine(void)
 			// First Ensure the SIMCOM Module is Connected
 			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 			{
+
 				// Send AT Command and wait for response
 				if(SIMCOM_Schedule_Job("AT", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
-				{
+				{	
 					// Set it to Scheduled only when the SIMCOM Module Accepted it
 					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
 				}
@@ -65,7 +65,7 @@ void SIMCOM_StateMachine(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
 					// Job has been completed
-
+					
 					// Check if the response is OK or not.
 					if(SIMCOM_IsResponseOK())
 					{
@@ -294,7 +294,7 @@ void SIMCOM_StateMachine(void)
 		/* Send Appropriate Error Code to Application */
 		{
 			SIMCOM_Error_State_EN ErrorState = SIMCOM_Error_Unknown;
-
+			
 			switch(SIMCOM_State)
 			{
 				case SIMCOM_SM_Init                      : ErrorState = SIMCOM_Error_GSM_Not_Connected; break;

@@ -17,7 +17,7 @@
 /**********************************************************/
 /* Macro Definitions                                      */
 /**********************************************************/
-#define F_CPU 8000000UL			/* Define frequency here its 8MHz */
+#define F_CPU 4000000UL			/* Define frequency here its 8MHz */
 #define USART_BAUDRATE 9600
 #define BAUD_PRESCALE (((F_CPU / (USART_BAUDRATE * 16UL))) - 1)
 /**********************************************************/
@@ -44,13 +44,6 @@ void UART_init()
 	UBRRH = (BAUD_PRESCALE >> 8);	/* Load upper 8-bits */
 }
 
-
-void uart_tx(unsigned char a)
-{
-	while ( !( UCSRA & (1<<UDRE)) );
-	UDR = a;
-}
-
 /*
  *This Function Is used to Send the Commands to GSM module.
  *This Function is Called in SIMCOM Schedule JOB.
@@ -71,13 +64,6 @@ unsigned char uart_rx()
 }
 
 
-void uart_string(unsigned char *str)
-{
-	while(*str!='\0')
-	{
-		uart_tx(*str++);
-	}
-}
 
 ISR(USART_RXC_vect)
 {

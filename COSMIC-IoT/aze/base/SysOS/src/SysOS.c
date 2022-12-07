@@ -206,15 +206,15 @@ void SysOs_Main(void)
 
 	/* Initialization function should be called first */
 	PRC_SYS_INIT();
-//	while(!g_Fatal_Error_B)
-//	{
+	while(!g_Fatal_Error_B)
+	{
 #if (S_SYS_OS_METHOD == S_SYS_OS_POLLING_METHOD)
 		/* If it is a polling method, Execute the task cyclically.
 		 * And wait for the Interrupt function to set the flag.
 		 */
 		FUN_SYS_Execute_Tasks();
 #endif
-//	}
+	}
 		
 }
 #endif
@@ -231,15 +231,15 @@ void SysOs_Setup(void)
 
 void SysOs_Main(void)
 {
-//	while(!g_Fatal_Error_B)
-//	{
+	while(!g_Fatal_Error_B)
+	{
 #if (S_SYS_OS_METHOD == S_SYS_OS_POLLING_METHOD)
 		/* If it is a polling method, Execute the task cyclically.
 		 * And wait for the Interrupt function to set the flag.
 		 */
 		FUN_SYS_Execute_Tasks();
 #endif
-//	}
+	}
 }
 
 #endif

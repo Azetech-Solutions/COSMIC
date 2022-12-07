@@ -16,7 +16,7 @@
 #include <stdint.h>
 
 #include PLATFORM_TYPES_H // For Data Types
-#define F_CPU 8000000UL
+#define F_CPU 4000000UL
 #include <string.h>
 #include <util/delay.h>
 #include <avr/io.h>
@@ -112,6 +112,17 @@ extern void LCD_ClearJobs(void);
 extern BOOL LCD_CompleteJob(void);
 extern BOOL LCD_ScheduleJob(const char * Command,UBYTE Cmd,BOOL InputDataType);
 
-extern LCD_State_EN LCD_State;
+/*	To display the strings in LCD use Display string Function
+ *	Example : Display_String("Example_string");
+ */
+extern void Display_String(const char * data);
+
+/*	LCD Control Commands are given by Below Function 
+ *	Example : LCD_command(0x80);
+ */
+extern void LCD_command(UBYTE cmd);
+
+extern void DebugStringRow1(const char *data);
+extern void DebugStringRow2(const char *data);
 
 #endif /* LCD_H_ */

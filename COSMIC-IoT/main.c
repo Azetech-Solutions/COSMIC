@@ -14,5 +14,4 @@
 int main(void)
 {
 	SysOs_Main();
-	while(1);
 }
