@@ -12,7 +12,11 @@ aze\base\Helpers\String\src\StringHelper.c
 
 aze\base\LCD_16X2\LCD.c
 
+<<<<<<< HEAD
 aze\base\SIMCOM\src\SIMCOM_SSL_Configuration.c
+=======
+aze\base\LCD_16X2\LCD_Jobs.c
+>>>>>>> 31008c476ec0d34fca56476b605b06ad4aba2566
 
 aze\base\SIMCOM\src\SIMCOM.c
 

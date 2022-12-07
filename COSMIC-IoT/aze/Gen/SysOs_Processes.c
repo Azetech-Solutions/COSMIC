@@ -18,7 +18,7 @@
 
 #include "Includes.h"
 #include SYSOS_H
-
+#include <avr/io.h>
 /**********************************
  * Global Variables Declarations
  **********************************/
@@ -36,6 +36,8 @@ extern void Avr_Init(void);
 extern void Avr_Main_x10(void);
 extern void TIM1_Init(void);
 extern void UART_init(void);
+extern void LCD_Init(void);
+extern void LCD_Mainfunction(void);
 
 /* Define the Process calls for the Tasks */
 
@@ -46,6 +48,7 @@ void PRC_SYSOS_TASK_INIT(void)
 		SIMCOM_Init();
 		Avr_Init();
 		UART_init();
+		LCD_Init();
 }
 
 /* Definition for the task x10 */
@@ -58,6 +61,13 @@ void PRC_SYSOS_TASK_X10(void)
 /* Definition for the task x100 */
 void PRC_SYSOS_TASK_X100(void)
 {
+	
+}
+
+/* Definition for the task x1 */
+void PRC_SYSOS_TASK_X1(void)
+{	
+		LCD_Mainfunction();
 }
 
 
@@ -68,6 +78,8 @@ void FUN_SYS_Internal_Init(void)
 	PRC_SYSOS_TASK_INIT();
 
 
+
+	SysOS_Ctrl.Isx1 = TRUE;
 }
 
 void FUN_SYS_Internal_Evaluate_Tasks_x1(void)
@@ -81,6 +93,7 @@ void FUN_SYS_Internal_Evaluate_Tasks_x1(void)
 	/* Task Init Ignored as the factor was 0 */
 	SysOS_Ctrl.Isx10 = (g_SysOS_Counter % 10) ? FALSE : TRUE;
 	SysOS_Ctrl.Isx100 = (g_SysOS_Counter % 100) ? FALSE : TRUE;
+	/* Task x1 Ignored as the factor was 1 */
 #if (P_SYS_OS_TASK_FACTOR_MAX > 2)
 
 	/* Increment the counter for next run */
@@ -96,6 +109,9 @@ void FUN_SYS_Internal_Evaluate_Tasks_x1(void)
 
 void FUN_SYS_Internal_Execute_Tasks(void)
 {
+
+	PRC_SYSOS_TASK_X1();
+
 
 	if(SysOS_Ctrl.Isx10 == TRUE){ PRC_SYSOS_TASK_X10();}
 

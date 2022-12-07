@@ -27,6 +27,14 @@
         <StackSize>1024</StackSize>
         <Priority>10</Priority>
       </Task>
+      <Task>
+        <Name>x1</Name>
+        <Factor>1</Factor>
+        <Enabled>True</Enabled>
+        <Core>0</Core>
+        <StackSize>1024</StackSize>
+        <Priority>10</Priority>
+      </Task>
     </Tasks>
   </Config>
   <General>

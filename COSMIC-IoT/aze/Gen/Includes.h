@@ -14,6 +14,7 @@
 #define UART_H   "base\Atmega_Drivers\API\uart.h"
 #define BUFFER_H   "base\Helpers\Buffer\api\Buffer.h"
 #define STRINGHELPER_H   "base\Helpers\String\api\StringHelper.h"
+#define LCD_H   "base\LCD_16X2\LCD.h"
 #define SIMCOM_H   "base\SIMCOM\api\SIMCOM.h"
 #define SIMCOM_CLOCK_H   "base\SIMCOM\api\SIMCOM_Clock.h"
 #define SIMCOM_SSL_CONFIG_H   "base\SIMCOM\api\SIMCOM_SSL_Configuration.h"

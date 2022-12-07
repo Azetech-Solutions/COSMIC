@@ -44,6 +44,9 @@
 #define S_SYS_OS_TASK_x100     ON
 #define P_SYS_OS_TASK_FACTOR_x100     100
 
+#define S_SYS_OS_TASK_x1     ON
+#define P_SYS_OS_TASK_FACTOR_x1     1
+
 
 #define S_SYS_OS_DUAL_CORE_ENABLED       FALSE
 
@@ -62,6 +65,7 @@ typedef struct __SysOS_Ctrl_ST
     UBYTE IsInit   : 1;
     UBYTE Isx10   : 1;
     UBYTE Isx100   : 1;
+    UBYTE Isx1   : 1;
 }SysOS_Ctrl_ST;
 
 extern SysOS_Ctrl_ST SysOS_Ctrl;
@@ -75,6 +79,7 @@ extern UWORD g_SysOS_Counter_0;
 extern void PRC_SYSOS_TASK_INIT(void);
 extern void PRC_SYSOS_TASK_X10(void);
 extern void PRC_SYSOS_TASK_X100(void);
+extern void PRC_SYSOS_TASK_X1(void);
 
 extern void FUN_SYS_Internal_Init(void);
 

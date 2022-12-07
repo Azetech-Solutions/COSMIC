@@ -19,5 +19,11 @@
       <TaskRef>x100</TaskRef>
       <Enabled>True</Enabled>
     </ProcessSection>
+    <ProcessSection>
+      <Name>1ms</Name>
+      <Index>1</Index>
+      <TaskRef>x1</TaskRef>
+      <Enabled>True</Enabled>
+    </ProcessSection>
   </ProcessSections>
 </ProcessSectionDef>
