@@ -79,7 +79,7 @@ C_SRCS +=  \
 ../aze/base/SIMCOM/src/SIMCOM_Clock.c \
 ../aze/base/SIMCOM/src/SIMCOM_State.c \
 ../aze/base/SysOS/src/SysOS.c \
-../aze/Cosmic_App/CS_IOT.c \
+../aze/Cosmic_App/CS_Iot.c \
 ../aze/Gen/Buffer_Config.c \
 ../aze/Gen/SysOs_Processes.c \
 ../main.c
@@ -102,7 +102,7 @@ aze/base/SIMCOM/src/SIMCOM.o \
 aze/base/SIMCOM/src/SIMCOM_Clock.o \
 aze/base/SIMCOM/src/SIMCOM_State.o \
 aze/base/SysOS/src/SysOS.o \
-aze/Cosmic_App/CS_IOT.o \
+aze/Cosmic_App/CS_Iot.o \
 aze/Gen/Buffer_Config.o \
 aze/Gen/SysOs_Processes.o \
 main.o
@@ -118,7 +118,7 @@ aze/base/SIMCOM/src/SIMCOM.o \
 aze/base/SIMCOM/src/SIMCOM_Clock.o \
 aze/base/SIMCOM/src/SIMCOM_State.o \
 aze/base/SysOS/src/SysOS.o \
-aze/Cosmic_App/CS_IOT.o \
+aze/Cosmic_App/CS_Iot.o \
 aze/Gen/Buffer_Config.o \
 aze/Gen/SysOs_Processes.o \
 main.o
@@ -134,7 +134,7 @@ aze/base/SIMCOM/src/SIMCOM.d \
 aze/base/SIMCOM/src/SIMCOM_Clock.d \
 aze/base/SIMCOM/src/SIMCOM_State.d \
 aze/base/SysOS/src/SysOS.d \
-aze/Cosmic_App/CS_IOT.d \
+aze/Cosmic_App/CS_Iot.d \
 aze/Gen/Buffer_Config.d \
 aze/Gen/SysOs_Processes.d \
 main.d
@@ -150,7 +150,7 @@ aze/base/SIMCOM/src/SIMCOM.d \
 aze/base/SIMCOM/src/SIMCOM_Clock.d \
 aze/base/SIMCOM/src/SIMCOM_State.d \
 aze/base/SysOS/src/SysOS.d \
-aze/Cosmic_App/CS_IOT.d \
+aze/Cosmic_App/CS_Iot.d \
 aze/Gen/Buffer_Config.d \
 aze/Gen/SysOs_Processes.d \
 main.d
@@ -239,7 +239,7 @@ aze/base/SysOS/src/SysOS.o: ../aze/base/SysOS/src/SysOS.c
 	@echo Finished building: $<
 	
 
-aze/Cosmic_App/CS_IOT.o: ../aze/Cosmic_App/CS_IOT.c
+aze/Cosmic_App/CS_Iot.o: ../aze/Cosmic_App/CS_Iot.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

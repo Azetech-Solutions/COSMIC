@@ -22,7 +22,7 @@ aze\base\SIMCOM\src\SIMCOM_State.c
 
 aze\base\SysOS\src\SysOS.c
 
-aze\Cosmic_App\CS_IOT.c
+aze\Cosmic_App\CS_Iot.c
 
 aze\Gen\Buffer_Config.c
 
