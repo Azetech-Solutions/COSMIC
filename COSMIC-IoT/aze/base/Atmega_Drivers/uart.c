@@ -18,8 +18,7 @@
 /* Macro Definitions                                      */
 /**********************************************************/
 #define F_CPU 4000000UL			/* Define frequency here its 8MHz */
-#define USART_BAUDRATE 9600
-#define BAUD_PRESCALE (((F_CPU / (USART_BAUDRATE * 16UL))) - 1)
+
 /**********************************************************/
 /* Type Definitions                                       */
 /**********************************************************/
@@ -37,11 +36,15 @@
 
 void UART_init()
 {
+	UCSRC = (0<<URSEL);
+	UCSRA = (0<<U2X);
+	UBRRH = 50>>8;
+	UBRRL = 52<<0;
 	UCSRB |= (1 << RXEN) | (1 << RXCIE) | (1<<TXEN);/* Turn on the transmission and reception */
 	UCSRC |= (1 << URSEL) | (1 << UCSZ0) | (1 << UCSZ1);/* Use 8-bit character sizes */
-
-	UBRRL = BAUD_PRESCALE;		/* Load lower 8-bits of the baud rate */
-	UBRRH = (BAUD_PRESCALE >> 8);	/* Load upper 8-bits */
+ 
+		/* Load lower 8-bits of the baud rate */
+//	UBRRH = (BAUD_PRESCALE >> 8);	/* Load upper 8-bits */
 }
 
 /*

@@ -41,6 +41,8 @@
 
 #define IsSIMCOM_ReadyForApplication() (SIMCOM_IsClockRunning() && SIMCOM_IsBT_CheckedAtleastOnce())
 
+#define IsSIMCOM_SSL_Configuration_Completed()		 (SIMCOM_SSL_State == SIMCOM_SSL_Configured)
+
 /*************************/
 /* Data Type Definitions */
 /*************************/
@@ -141,6 +143,21 @@ static inline BOOL SIMCOM_IsResponseOK()
 	return retval;
 }
 
+static inline BOOL SIMCOM_IsResponseError()
+{
+	BOOL retval = FALSE;
+
+	if(SIMCOM_GetResponseLength() == 5)
+	{
+		if(strcmp(SIMCOM_ResponseBuffer, "ERROR") == 0)
+		{
+			retval = TRUE;
+		}
+	}
+
+	return retval;
+}
+
 /*************************/
 /* Function Declarations */
 /*************************/
@@ -150,6 +167,8 @@ extern void SIMCOM_Init(void);
 extern void SIMCOM_MainFunction(void);
 
 extern void SIMCOM_StateMachine(void);
+
+extern void SIMCOM_SSL_CONFIG_MainFunction(void);
 
 extern BOOL SIMCOM_Data_Read(UBYTE Data); // MUST ONLY USED BY UART ISR
 
@@ -162,5 +181,7 @@ extern ULONG SIMCOM_GetCSV_Number_fromBuffer(const char * ResponseHead, UBYTE Po
 extern ULONG SIMCOM_Number_fromBuffer(const char * ResponseHead);
 
 extern void SIMCOM_IgnoreCRLFs(UBYTE Count);
+
+
 
 #endif /* _SIMCOM_H_ */

@@ -10,6 +10,7 @@
 #include STRINGHELPER_H
 #include <avr/io.h>
 #include SIMCOM_SSL_CONFIG_H
+#include LCD_H
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
@@ -69,7 +70,6 @@ void SIMCOM_StateMachine(void)
 					// Check if the response is OK or not.
 					if(SIMCOM_IsResponseOK())
 					{
-							
 						SIMCOM_State = SIMCOM_SM_SIM_Check;
 					}
 					else
@@ -96,45 +96,57 @@ void SIMCOM_StateMachine(void)
 		
 		case SIMCOM_SM_SIM_Check:
 		{
+			// First Ensure the SIMCOM Module is Connected
 			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 			{
+
 				// Send AT Command and wait for response
-				if(SIMCOM_Schedule_Job("AT+CSMINS?", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
+				if(SIMCOM_Schedule_Job("AT+CPIN?", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
 				{
 					// Set it to Scheduled only when the SIMCOM Module Accepted it
 					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+
 				}
 			}
 			else
 			{
+				
 				// Cyclic part for the response
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
 					// Job has been completed
-
-					// The positive response would be -> +CSMINS: <n>,<SIM inserted>
-
-					ULONG InsertionStatus = SIMCOM_GetCSV_Number_fromBuffer("+CSMINS: ", 2);
-
-					if(InsertionStatus == 1)
-					{
-						SIMCOM_State = SIMCOM_SM_NW_Registration_Check; // Proceed checking for the Network Registration Check
+					char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN: ");
+					
+					if(strcmp(RxString, "READY") == 0)
+					{		
+						char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN:READY");
+						
+						// Check if the response is OK or not.
+						if(strcmp(RxString,"OK"))
+						{
+							SIMCOM_State = SIMCOM_SM_NW_Registration_Check;
+						}
+						else
+						{
+							// If the returned value is ERROR or something else, then act accordingly
+							// TODO: Later
+							RetryInNextCycle = TRUE;
+						}
 					}
-					else
-					{
-						RetryInNextCycle = TRUE;
-					}
+					
+			
 				}
 				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
 				{
 					// If there is a problem in reception, retry sending the command
 					RetryInNextCycle = TRUE;
 
-					// TODO: Log Timeout Error.
+					// TODO: Log Error. Possibly the GSM Module is not powered or connected
 				}
 				else
 				{
 					// Do Nothing. Wait
+
 				}
 			}
 		}
@@ -150,6 +162,7 @@ void SIMCOM_StateMachine(void)
 				{
 					// Set it to Scheduled only when the SIMCOM Module Accepted it
 					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					
 				}
 			}
 			else
@@ -174,7 +187,9 @@ void SIMCOM_StateMachine(void)
 					/* Accept both Roaming and Local Registration */
 					if((NetworkRegistrationStatus == 1) || (NetworkRegistrationStatus == 5))
 					{
-						SIMCOM_State = SIMCOM_SM_Clock_Configuration_Check; // Move to next state
+						
+						SIMCOM_State = SIMCOM_SM_LTE_Check; // Move to next state
+				
 					}
 					else
 					{
@@ -214,6 +229,7 @@ void SIMCOM_StateMachine(void)
 				{
 					// Set it to Scheduled only when the SIMCOM Module Accepted it
 					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+		
 				}
 			}
 			else
@@ -232,8 +248,9 @@ void SIMCOM_StateMachine(void)
 					{
 						// Transition to Ready only when the Automatic Network Time is Enabled.
 						// This is because, the time is used to sync between the app, both in BT and GPRS mode.
-
+						
 						SIMCOM_State = SIMCOM_SM_LTE_Check;
+			
 					}
 					else
 					{
@@ -266,6 +283,7 @@ void SIMCOM_StateMachine(void)
 				{
 					// Set it to Scheduled only when the SIMCOM Module Accepted it
 					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+				
 				}
 			}
 			else
@@ -274,12 +292,16 @@ void SIMCOM_StateMachine(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
 					// Job has been completed
-					if(IsSIMCOM_ResponseStartsWith("+CPSI: LTE,Online"))
+					char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN: ");
+				
+					if (memcmp("LTE,Online",RxString,10))
 					{
+						LCD_command(0XC0);
+						Display_String("SIMReady");
 						//do next job
 						RetryInNextCycle = FALSE;
 						SIMCOM_State = SIMCOM_SM_Ready;
-						
+						PORTA = 0X00;	
 					}
 					else
 					{
