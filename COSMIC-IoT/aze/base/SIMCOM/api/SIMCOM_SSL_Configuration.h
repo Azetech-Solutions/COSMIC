@@ -15,8 +15,6 @@
 //#define SIMCOM_HTTP_EstablishConnection()     SIMCOM_HTTP_Connect(TRUE)
 //#define SIMCOM_HTTP_Disconnect()              SIMCOM_HTTP_Connect(FALSE)
 
-#define SIMCOM_SSL_Configured()             (SIMCOM_SSL_State == SIMCOM_SSL_Configured)
-
 //#define SIMCOM_IsHTTP_Error()                 (SIMCOM_HTTP_State == SIMCOM_HTTP_Error)
 
 /*************************/
@@ -25,7 +23,8 @@
 
 typedef enum
 {
-	SIMCOM_SSL_Init=0,
+	SIMCOM_SSL_Configuration_Idle=0,
+	SIMCOM_SSL_Init,
 	SIMCOM_SSL_Authentication,
 	SIMCOM_SSL_CaCert_Configuration,
 	SIMCOM_SSL_Clientcert_Configuration,
@@ -53,6 +52,5 @@ extern SIMCOM_SSL_Configuration_State_EN SIMCOM_SSL_Config_State;
 /* Function Declarations */
 /*************************/
 
-extern void SIMCOM_SSL_CONFIG_MainFunction(void);
 
 #endif /* _SIMCOM_SSLCONFIG_H_ */

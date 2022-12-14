@@ -19,7 +19,7 @@ void COSMIC_SIMCOM_Error_Callback(SIMCOM_Error_State_EN Error)
 {
 	if(Error == SIMCOM_Error_GSM_Not_Connected)
 	{
-		DebugStringRow2("GSM_Not_Connected");
+		//DebugStringRow2("GSM_Not_Connected");
 	}
 	
 }

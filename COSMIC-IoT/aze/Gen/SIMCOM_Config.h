@@ -27,11 +27,11 @@
 /* Functional Switches and Parameter Definitions */
 /*************************************************/
 
-#define P_SIMCOM_INCOMPLETE_RESPONSE_TIMEOUT         10
+#define P_SIMCOM_INCOMPLETE_RESPONSE_TIMEOUT         30
 
-#define P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT         10
+#define P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT         30
 
-#define P_SIMCOM_TASK_CYCLE_FACTOR                   10
+#define P_SIMCOM_TASK_CYCLE_FACTOR                   100
 
 #define P_SIMCOM_ALIVENESS_ERROR_TIME                60000
 
@@ -112,14 +112,8 @@ typedef enum
 	SIMCOM_Error_SIM_Card_NotInserted,
 	SIMCOM_Error_NetworkNotRegistered,
 	SIMCOM_Error_ClockConfigurationDisabled,
-	SIMCOM_Error_LTE_Not_Connected,
 	SIMCOM_Error_Clock,
 	SIMCOM_Error_GPRS,
-	SIMCOM_Error_SSL_Init,
-	SIMCOM_Error_SSL_Authentication,
-	SIMCOM_Error_SSL_CaCert_Configuration,
-	SIMCOM_Error_SSL_Clientcert_Configuration,
-	SIMCOM_Error__SSL_Clientkey_Configuration,
 	SIMCOM_Error_HTTP,
 	SIMCOM_Error_POST,
 	SIMCOM_Error_Buffer_Empty,

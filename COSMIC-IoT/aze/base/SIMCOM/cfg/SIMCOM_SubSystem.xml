@@ -12,7 +12,7 @@
       <Process>
         <Name>SIMCOM_MainFunction</Name>
         <Index>9</Index>
-        <ProcessGroupRef>Avr_Main_x10</ProcessGroupRef>
+        <ProcessGroupRef>PRC_X100</ProcessGroupRef>
         <Enabled>True</Enabled>
       </Process>
     </Processes>

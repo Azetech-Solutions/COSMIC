@@ -190,7 +190,6 @@ void SIMCOM_Clock_MainFunction(void)
 					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 					{
 						// Parse the Time from the response string
-PORTA = 0X00;
 						UBYTE SwSecond = SIMCOM_DateTime.Second;
 
 						SIMCOM_Clock_ParseDateTime_InResponse();

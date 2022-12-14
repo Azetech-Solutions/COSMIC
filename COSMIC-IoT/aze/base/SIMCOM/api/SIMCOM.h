@@ -41,7 +41,7 @@
 
 #define IsSIMCOM_ReadyForApplication() (SIMCOM_IsClockRunning() && SIMCOM_IsBT_CheckedAtleastOnce())
 
-#define IsSIMCOM_SSL_Configuration_Completed()		 (SIMCOM_SSL_State == SIMCOM_SSL_Configured)
+#define IsSIMCOM_SSL_Configuration_Completed()		 (SIMCOM_SSL_Config_State == SIMCOM_SSL_Configured)
 
 /*************************/
 /* Data Type Definitions */
@@ -52,8 +52,9 @@ typedef enum
 {
 	SIMCOM_SM_Init = 0,
 	SIMCOM_SM_SIM_Check,
+	SIMCOM_SM_Check_signal_strength,
 	SIMCOM_SM_NW_Registration_Check,
-	SIMCOM_SM_Clock_Configuration_Check,
+	SIMCOM_PDP_context,
 	SIMCOM_SM_LTE_Check,
 
 	// Below states will not request any AT commands to the module, Will be used for SIMCOM Sub Modules
@@ -181,6 +182,9 @@ extern ULONG SIMCOM_GetCSV_Number_fromBuffer(const char * ResponseHead, UBYTE Po
 extern ULONG SIMCOM_Number_fromBuffer(const char * ResponseHead);
 
 extern void SIMCOM_IgnoreCRLFs(UBYTE Count);
+
+extern void MQTT_StateMachine(void);
+
 
 
 

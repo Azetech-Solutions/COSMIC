@@ -18,7 +18,7 @@
 
 #include "Includes.h"
 #include SYSOS_H
-#include <avr/io.h>
+
 /**********************************
  * Global Variables Declarations
  **********************************/
@@ -54,19 +54,18 @@ void PRC_SYSOS_TASK_INIT(void)
 /* Definition for the task x10 */
 void PRC_SYSOS_TASK_X10(void)
 {
-		SIMCOM_MainFunction();
 		Avr_Main_x10();
 }
 
 /* Definition for the task x100 */
 void PRC_SYSOS_TASK_X100(void)
 {
-	
+		SIMCOM_MainFunction();
 }
 
 /* Definition for the task x1 */
 void PRC_SYSOS_TASK_X1(void)
-{	
+{
 		LCD_Mainfunction();
 }
 
