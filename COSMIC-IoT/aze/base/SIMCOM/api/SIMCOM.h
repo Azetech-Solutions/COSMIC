@@ -17,7 +17,7 @@
 /*************************/
 /* Macro Definitions     */
 /*************************/
-
+#define ENTER_MESSAGE                     ">"
 #define CARRIAGE_RETURN               0x0D
 #define LINE_FEED                     0x0A
 
@@ -42,6 +42,7 @@
 #define IsSIMCOM_ReadyForApplication() (SIMCOM_IsClockRunning() && SIMCOM_IsBT_CheckedAtleastOnce())
 
 #define IsSIMCOM_SSL_Configuration_Completed()		 (SIMCOM_SSL_Config_State == SIMCOM_SSL_Configured)
+
 
 /*************************/
 /* Data Type Definitions */
@@ -159,6 +160,21 @@ static inline BOOL SIMCOM_IsResponseError()
 	return retval;
 }
 
+
+static inline BOOL SIMCOM_IsResponse_Entermessage()
+{
+	BOOL retval = FALSE;
+
+	if(SIMCOM_GetResponseLength() == 1)
+	{
+		if(strcmp(SIMCOM_ResponseBuffer,ENTER_MESSAGE) == 0)
+		{
+			retval = TRUE;
+		}
+	}
+
+	return retval;
+}
 /*************************/
 /* Function Declarations */
 /*************************/

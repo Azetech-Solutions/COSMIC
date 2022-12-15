@@ -27,8 +27,9 @@ void COSMIC_SIMCOM_Error_Callback(SIMCOM_Error_State_EN Error)
 
 void Avr_Init()
 {
-		DDRA = 0XFF;
-		PORTA=0XFF;
+		DDRA  = 0XFF;
+		DDRB  = 0xFF;
+		PORTA = 0XFF;
 }
 
 void Avr_Main_x10()

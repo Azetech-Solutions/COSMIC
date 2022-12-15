@@ -10,7 +10,7 @@
 #define MQTT_HEADER_H_
 
 
-#define ENTER_MESSAGE                     ">"
+
 #define IsMQTT_Ready()	(MQTT_State==MQTT_Ready)
 
 typedef enum
@@ -18,11 +18,13 @@ typedef enum
 	MQTTSTART=0,
 	MQTT_Accquire,
 	MQTT_SSL_Configure,
+	MQTT_Connect,
+	MQTT_WaitForConnectResponce,
 	MQTT_SubscribeTopic_Config,
 	MQTT_SubTopic_Name_Config,
 	MQTT_SubTopicNameUpdate,
 	MQTT_WaitForSubResponce,
-	MQTT_Connect,
+	
 
 	MQTT_Ready,
 	SIMCOM_MQTT_Connection_Error
@@ -30,20 +32,7 @@ typedef enum
 }MQTT_State_EN;
 
 
-static inline BOOL SIMCOM_IsResponse_Entermessage()
-{
-	BOOL retval = FALSE;
 
-	if(SIMCOM_GetResponseLength() == 1)
-	{
-		if(strcmp(SIMCOM_ResponseBuffer,ENTER_MESSAGE) == 0)
-		{
-			retval = TRUE;
-		}
-	}
-
-	return retval;
-}
 
 
 extern MQTT_State_EN MQTT_State;

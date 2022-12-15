@@ -8,8 +8,9 @@
 
 #include "Includes.h" // Will have all definitions of the Project Headers
 
+#include MQTT_HEADER_H
 #include <stdint.h>
-
+#include <avr/io.h>
 #include PLATFORM_TYPES_H // For Data Types
 
 #include SIMCOM_H
@@ -58,20 +59,6 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 	}
 	else
 	{
-		/* See if Any SIMCOM Module needs to check for the response */
-
-		/*
-		 * Upon Booting, SIM800 might take some time to register to network.
-		 *
-		 * Once the network is registered, the SIM800C Module will receive the below commands
-		 *
-		 * Call Ready
-		 * SMS Ready
-		 * +CIEV: 10,"40443","Vi India","Vi India", 0, 0
-		 * +CTZV: +22,0
-		 *
-		 * So, look for this command and if the SIMCOM is not ready, re-trigger Initialization
-		 */
 		if(IsSIMCOM_ResponseStartsWith("+CTZV:"))
 		{
 			/* If there are any problem with the SIMCOM or it's sub modules, and received a feedback from GSM, then possibly the Network might have disconnected */
@@ -79,6 +66,17 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 			{
 				// So retry evaluating
 				SIMCOM_ReEvaluate_State();
+			}
+		}
+		else if(IsSIMCOM_ResponseStartsWith("+CMQTTCONNECT:"))
+		{
+			PORTB ^= 0xff;
+			ULONG ConnectResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTCONNECT:", 1);
+			ULONG ConnectResponse2 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTCONNECT:", 2);
+			// Check if the response is OK or not.
+			if((ConnectResponse1==0)&&(ConnectResponse2==0))
+			{
+				MQTT_State = MQTT_SubscribeTopic_Config;// Move to next state
 			}
 		}
 		else if(IsSIMCOM_ResponseStartsWith("+BT"))

@@ -30,7 +30,7 @@ static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE MQTT_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT;
 
-
+UBYTE MQTTConnectWaittime = 30;
 
 /*****************************************/
 /* Static Function Definitions           */
@@ -184,8 +184,6 @@ void MQTT_StateMachine(void)
 						if(SIMCOM_IsResponseOK())
 						{
 							MQTT_State = MQTT_Connect; // Move to next state
-		
-							
 						}
 						else
 						{
@@ -230,7 +228,7 @@ void MQTT_StateMachine(void)
 						// Check if the response is OK or not.
 						if(SIMCOM_IsResponseOK())
 						{
-							MQTT_State = MQTT_SubscribeTopic_Config; // Move to next state
+							MQTT_State = MQTT_WaitForConnectResponce; // Move to next state
 						}
 						else
 						{
@@ -253,7 +251,19 @@ void MQTT_StateMachine(void)
 				}
 			}
 			break;
+			case MQTT_WaitForConnectResponce:
+			{
 
+
+				MQTTConnectWaittime--;
+				
+				if(MQTTConnectWaittime <= 0)
+				{
+				
+				}
+				
+			}
+			break;
 			case MQTT_SubscribeTopic_Config:
 			{
 				// First Ensure the SIMCOM Module is Connected
@@ -353,6 +363,7 @@ void MQTT_StateMachine(void)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					//	MQTT_State = MQTT_WaitForSubResponce;
 					}
 				}
 				else
@@ -381,7 +392,7 @@ void MQTT_StateMachine(void)
 				ULONG SubscribeResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTSUB: ", 1);
 				ULONG SubscribeResponse2 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTSUB: ", 2);
 				// Check if the response is OK or not.
-				if((SubscribeResponse2==0)&&(SubscribeResponse2==0))
+				if((SubscribeResponse1==0)&&(SubscribeResponse2==0))
 				{
 					MQTT_State = MQTT_Ready; // Move to next state
 					
