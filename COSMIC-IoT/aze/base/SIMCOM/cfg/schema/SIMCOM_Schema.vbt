@@ -1,5 +1,7 @@
 ﻿.usedmodule SIMCOM
-.Imports System
+.Im
+
+s System
 .Imports System.Collections.Generic
 .Imports System.Xml.Serialization
 .Imports System.IO

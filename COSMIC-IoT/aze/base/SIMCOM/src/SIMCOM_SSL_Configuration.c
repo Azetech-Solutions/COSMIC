@@ -330,7 +330,7 @@ void SIMCOM_SSL_CONFIG_MainFunction(void)
 // 						case SIMCOM_SSL_Clientcert_Configuration     : ErrorState = SIMCOM_Error_SSL_Clientcert_Configuration; break;
 // 						case SIMCOM_SSL_Clientkey_Configuration      : ErrorState = //SIMCOM_Error__SSL_Clientkey_Configuration; break;
 						default:
-						// Do Nothing, SIMCOM Module will timeout and report error
+						// Do Nothing, SIMCOM Module will timeout and reerror
 						break;
 					}
 

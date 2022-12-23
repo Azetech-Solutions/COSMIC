@@ -270,7 +270,7 @@ void MQTT_StateMachine(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
 					// Send AT Command and wait for response
-					if(SIMCOM_Schedule_Job("AT+CMQTTSUBTOPIC=0,17,1", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
+					if(SIMCOM_Schedule_Job("AT+CMQTTSUBTOPIC=0,18,1", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
@@ -314,7 +314,7 @@ void MQTT_StateMachine(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
 					// Send AT Command and wait for response
-					if(SIMCOM_Schedule_Job("aws/things/COSSUB", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
+					if(SIMCOM_Schedule_Job("aws/things/COSSUB1", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
@@ -386,31 +386,20 @@ void MQTT_StateMachine(void)
 				}
 			}
 			break;
+			
 			case MQTT_WaitForSubResponce:
 			{
-				// Job has been completed
-				ULONG SubscribeResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTSUB: ", 1);
-				ULONG SubscribeResponse2 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTSUB: ", 2);
-				// Check if the response is OK or not.
-				if((SubscribeResponse1==0)&&(SubscribeResponse2==0))
+				if(SubscribeStatus == 1)
 				{
-					MQTT_State = MQTT_Ready; // Move to next state
-					
-				}
-				else if(SIMCOM_IsResponseOK())
-				{
-					MQTT_State = MQTT_Ready; // Move to next state
-				}
-				else
-				{
-					//do nothing
+					MQTT_State =  MQTT_Ready;
 				}
 			}
 			break;
+			
 			default:
 			case MQTT_Ready:
 			{
-				DebugStringRow1("MQtt_Ready");
+				
 			}
 			case SIMCOM_MQTT_Connection_Error:
 			{

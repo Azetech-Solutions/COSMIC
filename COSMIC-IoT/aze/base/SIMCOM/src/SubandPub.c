@@ -23,13 +23,15 @@ static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE MQTT_SubandPub_Retry_Count = 50;
 
-static UBYTE Machine_status = 1;
+//static UBYTE Machine_status = 1;
 
 char PublishData[50];
 
 char Payloadcmd[50];
 
 ULONG PublishTimoutCounter = 30;
+
+UBYTE PrevData=0;
 
 /*****************************************/
 /* Static Function Definitions           */
@@ -52,7 +54,7 @@ UBYTE UpdatePublishdata()
 {
 	UBYTE IO_status=0;
 	
-	if(Machine_status<10)
+/*	if(Machine_status<10)
 	{
 		Machine_status++;
 	} 
@@ -60,8 +62,9 @@ UBYTE UpdatePublishdata()
 	{
 		Machine_status = 1;
 	}
+*/	
 	
-	if(PORTA0 & 0x1)
+	if(PORTA & 0xFF)
 	{
 		IO_status = 0;
 	}
@@ -69,8 +72,11 @@ UBYTE UpdatePublishdata()
 	{
 		IO_status = 1;
 	}
-	
-	sprintf (PublishData, "{\"IO_status\":\"%d\",\"MachineStatus\":\"%d\"}",IO_status, Machine_status);
+	if(PrevData != IO_status)
+	{
+		
+	}
+	sprintf (PublishData, "{\"IO_status\":\"%d\"}",IO_status);
 		
 	UBYTE len  = strlen(PublishData);
 	
@@ -87,36 +93,29 @@ void MQTT_SubPub_StateMachine(void)
 
 	if(IsMQTT_Ready())
 	{
+		PORTB = 0X00;
 		switch(SubandPub_State)
 		{
 			
 			case MQTT_SubPub_Idle:
 			{
-				
-				if(IsSIMCOM_ResponseStartsWith("+CMQTTRXPAYLOAD: "))
+				if(PORTA & 0XFF)
 				{
-					SubandPub_State = MQTT_Sub_Msg;
-				}
-				
-				if(PublishTimoutCounter > 0)
-				{
-					PublishTimoutCounter--;
+					
 				}
 				else
 				{
-					PublishTimoutCounter = 30;
-					SubandPub_State = MQTT_PublishTopic_Config;
+					SubandPub_State = MQTT_PublishTopic1_Config;
 				}
-				
 			}
 			break;
-			case MQTT_PublishTopic_Config:
+			case MQTT_PublishTopic1_Config:
 			{
 				// First Ensure the SIMCOM Module is Connected
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
 					// Send AT Command and wait for response
-					if(SIMCOM_Schedule_Job("AT+CMQTTTOPIC=0,17", SIMCOM_DEFAULT_TIMEOUT, MQTT_SubPub_CallBack) == TRUE)
+					if(SIMCOM_Schedule_Job("AT+CMQTTTOPIC=0,18", SIMCOM_DEFAULT_TIMEOUT, MQTT_SubPub_CallBack) == TRUE)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
@@ -132,7 +131,7 @@ void MQTT_SubPub_StateMachine(void)
 						// Check if the response is OK or not.
 						if(SIMCOM_IsResponse_Entermessage())
 						{
-							SubandPub_State = MQTT_PubTopic_Name_Config; // Move to next state
+							SubandPub_State = MQTT_PubTopic1_Name_Config; // Move to next state
 						}
 						else
 						{
@@ -156,13 +155,13 @@ void MQTT_SubPub_StateMachine(void)
 			}
 			break;
 
-			case MQTT_PubTopic_Name_Config:
+			case MQTT_PubTopic1_Name_Config:
 			{
 				// First Ensure the SIMCOM Module is Connected
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
 					// Send AT Command and wait for response
-					if(SIMCOM_Schedule_Job("aws/things/COSPUB", SIMCOM_DEFAULT_TIMEOUT, MQTT_SubPub_CallBack) == TRUE)
+					if(SIMCOM_Schedule_Job("aws/things/COSPUB1", SIMCOM_DEFAULT_TIMEOUT, MQTT_SubPub_CallBack) == TRUE)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
@@ -178,7 +177,7 @@ void MQTT_SubPub_StateMachine(void)
 						// Check if the response is OK or not.
 						if(SIMCOM_IsResponseOK())
 						{
-							SubandPub_State = MQTT_SetPayload; // Move to next state
+							SubandPub_State = MQTT_SetPayloadforTopic1; // Move to next state
 						}
 						else
 						{
@@ -201,13 +200,12 @@ void MQTT_SubPub_StateMachine(void)
 				}
 			}
 			break;
-			case MQTT_SetPayload:
+			case MQTT_SetPayloadforTopic1:
 			{
 				// First Ensure the SIMCOM Module is Connected
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{	
 					UBYTE Len = UpdatePublishdata();
-						
 					sprintf(Payloadcmd,"AT+CMQTTPAYLOAD=0,%d",Len);
 						
 					// Send AT Command and wait for response
@@ -226,7 +224,7 @@ void MQTT_SubPub_StateMachine(void)
 						// Check if the response is OK or not.
 						if(SIMCOM_IsResponse_Entermessage())
 						{
-							SubandPub_State = MQTT_Update_PubData; // Move to next state
+							SubandPub_State = MQTT_Update_PubDataforTopic1; // Move to next state
 						}
 						else
 						{
@@ -239,7 +237,7 @@ void MQTT_SubPub_StateMachine(void)
 			}
 			break;
 			
-			case MQTT_Update_PubData:
+			case MQTT_Update_PubDataforTopic1:
 			{
 				// First Ensure the SIMCOM Module is Connected
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
@@ -257,10 +255,9 @@ void MQTT_SubPub_StateMachine(void)
 					// Cyclic part for the response
 					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 					{
-						
 						if (SIMCOM_IsResponseOK())
 						{
-							SubandPub_State = MQTT_Publish_Msg; // Move to next state
+							SubandPub_State = MQTT_Publish_Msg1; // Move to next state
 						}
 						else
 						{
@@ -272,12 +269,7 @@ void MQTT_SubPub_StateMachine(void)
 				}
 			}
 			break;
-			case MQTT_WaitForResponse:
-			{	
-				
-			}
-			break;
-			case MQTT_Publish_Msg:
+			case MQTT_Publish_Msg1:
 			{
 				// First Ensure the SIMCOM Module is Connected
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
@@ -294,25 +286,7 @@ void MQTT_SubPub_StateMachine(void)
 					// Cyclic part for the response
 					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 					{
-						// Job has been completed
-						ULONG PublishResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTPUB: ", 1);
-						ULONG PublishResponse2 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTPUB: ", 2);
-						PORTA ^= 0xFF;
-						// Check if the response is OK or not.
-						if((PublishResponse1==0)&&(PublishResponse2==0))
-						{
-							SubandPub_State = MQTT_SubPub_Idle; // Move to next state
-							PublishTimoutCounter = 30;
-						}
-						else if(SIMCOM_IsResponseOK())
-						{
-							SubandPub_State = MQTT_SubPub_Idle; // Move to next state
-							PublishTimoutCounter = 30;
-						}
-						else
-						{
-							//do nothing
-						}
+						SubandPub_State = MQTTWaitforPublishResponse1;
 					}
 					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
 					{
@@ -328,12 +302,220 @@ void MQTT_SubPub_StateMachine(void)
 				}
 			}
 			break;
-
-			case MQTT_Sub_Msg:
+			
+			case MQTTWaitforPublishResponse1 :
 			{
-				
+				if(PublishStatus == 1)
+				{
+					SubandPub_State = MQTT_PublishTopic2_Config;
+				}
 			}
 			break;
+			
+					case MQTT_PublishTopic2_Config:
+					{
+						// First Ensure the SIMCOM Module is Connected
+						if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+						{
+							// Send AT Command and wait for response
+							if(SIMCOM_Schedule_Job("AT+CMQTTTOPIC=0,18", SIMCOM_DEFAULT_TIMEOUT, MQTT_SubPub_CallBack) == TRUE)
+							{
+								// Set it to Scheduled only when the SIMCOM Module Accepted it
+								SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+							}
+						}
+						else
+						{
+							// Cyclic part for the response
+							if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+							{
+								// Job has been completed
+
+								// Check if the response is OK or not.
+								if(SIMCOM_IsResponse_Entermessage())
+								{
+									SubandPub_State = MQTT_PubTopic2_Name_Config; // Move to next state
+								}
+								else
+								{
+									// If the returned value is ERROR or something else, then act accordingly
+									// TODO: Later
+									RetryInNextCycle = TRUE;
+								}
+							}
+							else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+							{
+								// If there is a problem in reception, retry sending the command
+								RetryInNextCycle = TRUE;
+
+								// TODO: Log Error. Possibly the GSM Module is not powered or connected
+							}
+							else
+							{
+								// Do Nothing. Wait
+							}
+						}
+					}
+					break;
+
+					case MQTT_PubTopic2_Name_Config:
+					{
+						// First Ensure the SIMCOM Module is Connected
+						if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+						{
+							// Send AT Command and wait for response
+							if(SIMCOM_Schedule_Job("aws/things/COSPUB2", SIMCOM_DEFAULT_TIMEOUT, MQTT_SubPub_CallBack) == TRUE)
+							{
+								// Set it to Scheduled only when the SIMCOM Module Accepted it
+								SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+							}
+						}
+						else
+						{
+							// Cyclic part for the response
+							if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+							{
+								// Job has been completed
+
+								// Check if the response is OK or not.
+								if(SIMCOM_IsResponseOK())
+								{
+									SubandPub_State = MQTT_SetPayloadforTopic2; // Move to next state
+								}
+								else
+								{
+									// If the returned value is ERROR or something else, then act accordingly
+									// TODO: Later
+									RetryInNextCycle = TRUE;
+								}
+							}
+							else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+							{
+								// If there is a problem in reception, retry sending the command
+								RetryInNextCycle = TRUE;
+
+								// TODO: Log Error. Possibly the GSM Module is not powered or connected
+							}
+							else
+							{
+								// Do Nothing. Wait
+							}
+						}
+					}
+					break;
+					case MQTT_SetPayloadforTopic2:
+					{
+						// First Ensure the SIMCOM Module is Connected
+						if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+						{
+							UBYTE Len = UpdatePublishdata();
+							sprintf(Payloadcmd,"AT+CMQTTPAYLOAD=0,%d",Len);
+								
+							// Send AT Command and wait for response
+							if(SIMCOM_Schedule_Job(Payloadcmd, SIMCOM_DEFAULT_TIMEOUT, MQTT_SubPub_CallBack) == TRUE)
+							{
+								// Set it to Scheduled only when the SIMCOM Module Accepted it
+								SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+							}
+						}
+						else
+						{
+							// Cyclic part for the response
+							if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+							{
+								// Job has been completed
+								// Check if the response is OK or not.
+								if(SIMCOM_IsResponse_Entermessage())
+								{
+									SubandPub_State = MQTT_Update_PubDataforTopic2; // Move to next state
+								}
+								else
+								{
+									// If the returned value is ERROR or something else, then act accordingly
+									// TODO: Later
+									RetryInNextCycle = TRUE;
+								}
+							}
+						}
+					}
+					break;
+
+					case MQTT_Update_PubDataforTopic2:
+					{
+						// First Ensure the SIMCOM Module is Connected
+						if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+						{
+							// Send AT Command and wait for response
+							if(SIMCOM_Schedule_Job(PublishData, SIMCOM_DEFAULT_TIMEOUT, MQTT_SubPub_CallBack) == TRUE)
+							{
+								// Set it to Scheduled only when the SIMCOM Module Accepted it
+								SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+							}
+						}
+						else
+						{
+								
+							// Cyclic part for the response
+							if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+							{
+								if (SIMCOM_IsResponseOK())
+								{
+									SubandPub_State = MQTT_Publish_Msg2; // Move to next state
+								}
+								else
+								{
+										
+								}
+								// Job has been completed
+								// Check if the response is OK or not.
+							}
+						}
+					}
+					break;
+			
+			case MQTT_Publish_Msg2:
+			{
+				// First Ensure the SIMCOM Module is Connected
+				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+				{
+					// Send AT Command and wait for response
+					if(SIMCOM_Schedule_Job("AT+CMQTTPUB=0,1,60", SIMCOM_DEFAULT_TIMEOUT, MQTT_SubPub_CallBack) == TRUE)
+					{
+						// Set it to Scheduled only when the SIMCOM Module Accepted it
+						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					}
+				}
+				else
+				{
+					// Cyclic part for the response
+					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+					{
+						SubandPub_State = MQTTWaitforPublishResponse2;
+					}
+					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+					{
+						// If there is a problem in reception, retry sending the command
+						RetryInNextCycle = TRUE;
+
+						// TODO: Log Error. Possibly the GSM Module is not powered or connected
+					}
+					else
+					{
+						// Do Nothing. Wait
+					}
+				}
+			}
+			break;
+			
+			case MQTTWaitforPublishResponse2:
+			{
+				if(PublishStatus == 1)
+				{
+					SubandPub_State = MQTT_SubPub_Idle;
+				}
+			}
+			break;
+			
 			default:
 			{
 				// Do Nothing, The state machine has been completed

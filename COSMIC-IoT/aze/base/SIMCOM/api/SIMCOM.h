@@ -119,6 +119,10 @@ extern BufferLengthType SIMCOM_ResponseLength;
 
 extern UBYTE SIMCOM_ReceptionIgnoreCommandCount;
 
+extern UBYTE PublishStatus;
+
+extern UBYTE SubscribeStatus;
+
 /*************************/
 /* Function Declarations */
 /*************************/
@@ -201,6 +205,7 @@ extern void SIMCOM_IgnoreCRLFs(UBYTE Count);
 
 extern void MQTT_StateMachine(void);
 
+extern void MQTT_SubPub_StateMachine(void);
 
 
 

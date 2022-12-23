@@ -27,9 +27,9 @@
 /* Functional Switches and Parameter Definitions */
 /*************************************************/
 
-#define P_SIMCOM_INCOMPLETE_RESPONSE_TIMEOUT         30
+#define P_SIMCOM_INCOMPLETE_RESPONSE_TIMEOUT         10
 
-#define P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT         30
+#define P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT         10
 
 #define P_SIMCOM_TASK_CYCLE_FACTOR                   100
 

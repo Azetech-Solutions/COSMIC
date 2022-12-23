@@ -10,7 +10,7 @@
 #include STRINGHELPER_H
 #include <avr/io.h>
 #include SIMCOM_SSL_CONFIGURATION_H
-
+#include "LCD.h"
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
@@ -57,6 +57,7 @@ void SIMCOM_StateMachine(void)
 				// Send AT Command and wait for response
 				if(SIMCOM_Schedule_Job("AT", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
 				{	
+					//Display_String("AT");
 					// Set it to Scheduled only when the SIMCOM Module Accepted it
 					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
 				}

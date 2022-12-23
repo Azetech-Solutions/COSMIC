@@ -111,7 +111,8 @@
     </paramobject>
     <paramobject type="dataobject" data="integer">
       <name>FailureRetryCount</name>
-      <description>Defines the maximum number of Retries upon a reported error</description>
+      <description>Defines the maximum number of Retries upon a re
+	  ed error</description>
       <lowermultiplicity>1</lowermultiplicity>
       <uppermultiplicity>1</uppermultiplicity>
       <default>10</default>

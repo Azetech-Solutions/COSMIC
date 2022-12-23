@@ -32,7 +32,12 @@
 
 /*********************************************************************************
  * RTOS method of execution uses the RTOS Tick callback function for the SYS_Timer to
- * execute the tasks. This is used for the RTOSes that doesn't support time slicing.
+ * execute the tasks. This is used for the RTOSes that doesn't sup
+ 
+ 
+ 
+ 
+  time slicing.
  * This method or the SysOs itself shall be integrated alongside RTOS only when
  * the deterministic time slicing scheduling algorithm is needed and not supported
  * in the underlying RTOS framework.

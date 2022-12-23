@@ -92,6 +92,7 @@ void LCD_Init()
 	DDRD = 0xFF;
 	DDRB = 0xFF;
 	lcd_init();
+	Display_String("Init");
 }
 
 void LCD_Mainfunction()
