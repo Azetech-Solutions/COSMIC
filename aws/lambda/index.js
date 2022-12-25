@@ -114,7 +114,72 @@ exports.handler = async (event, context, callback) => {
     /*********************************************/
     else
     {
-       
+        // If the Lambda function is invoked by the API Gateway by the tool, app or web portal
+        
+        var RequestType = event.httpMethod;
+
+        if(RequestType == "GET") {
+            
+            
+            // Get the REST API paths
+            // path will be like: "/<prj>/<device>" so, second element will be the parent path
+
+            if(event.pathParameters == null)
+            {
+                // If there are no REST API Path, then the user might be requesting for all projects.
+                // Scan all the items and send it.
+                
+                NodeData = await Globals.ScanDatabase(null);
+                
+                sendCallbackResponse(JSON.stringify(NodeData), callback);
+            }
+            else
+            {
+                var projectName = event.pathParameters["prj"];
+                
+                if(projectName != null)
+                {
+                    // Check if Device is also passed
+                    var deviceName = event.pathParameters["device"];
+                    
+                    if(deviceName == null)
+                    {
+                        // If Device is not passed, then list all the devices in the project
+                        NodeData = await Globals.ScanDatabase(projectName);
+                
+                        sendCallbackResponse(JSON.stringify(NodeData), callback);
+                    }
+                    else
+                    {
+                        // If a single device data is requested, then perform operations in such a way
+                        NodeData = await Globals.GetNodeData(projectName, deviceName);
+                        
+                        sendCallbackResponse(JSON.stringify(NodeData), callback);
+                    }
+                }
+                else
+                {
+                    callback(new Error("Unsuported API Path!"));
+                }
+            }
+            
+            
+        }
+        else if(RequestType == "POST") {
+            
+            // Do not do anything for now! Since it is un-authenticated access, there could be a security breach
+            
+            // Parse the Request Body and update the DB
+            if(event.body != null) {
+            
+            }
+            
+            callback(new Error("POST API is not supported!"));
+        }
+        else
+        {
+            callback(new Error("Unsuported API!"));
+        }
     }
 };
 
@@ -133,4 +198,22 @@ function sendMqttResponse(topicName, data) {
         .on('error', () => console.log("Unable to Publish Mqtt Data"))
     
     return new Promise(() => request.send());
+}
+
+function sendCallbackResponse(data, callback) {
+    
+    var response = {};
+    
+    response = {
+        "statusCode": 200,
+        "isBase64Encoded": false,
+        "headers" : {
+                        "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
+                        "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS 
+                    }
+    };
+    
+    response.body = data; // This data must be a string
+    
+    callback(null, response);
 }

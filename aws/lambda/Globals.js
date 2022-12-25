@@ -8,6 +8,7 @@ module.exports = {
     GetNodeData        : getDBContents,
     GetMultiNodeData   : getDBContentsInBatch,
     SetNodeData        : updateDBContents,
+    ScanDatabase       : scanTable
 };
 
 async function getDBContents(projectName, deviceID) {
@@ -226,4 +227,79 @@ function updateItemDDB(params) {
         });
         
     });
+}
+
+async function scanTable(projectName)
+{
+    // If projectName is null, then scan all items in the table
+    
+    let retval = [];
+    
+    // Create the DynamoDB service object
+    const docClient = new AWS.DynamoDB.DocumentClient({
+        apiVersion: '2012-10-08',
+        sslEnabled: false,
+        paramValidation: false,
+        convertResponseTypes: false
+    });
+
+    var params;
+
+    if(projectName != null) {
+        params = {
+            TableName: "iotData",
+            FilterExpression: "#prj = :prj_val",
+            ExpressionAttributeNames: {
+                "#prj": "prj",
+            },
+            ExpressionAttributeValues: { ":prj_val": projectName }
+        };
+    }
+    else {
+        params = {
+          TableName: 'iotData' // Table name is enough for scanning the entire table
+        };
+    }
+
+    try {
+        
+        var rawData;
+        
+        do
+        {
+            rawData = await docClient.scan(params).promise();
+            
+            if(rawData.Items != null)
+            {
+                rawData.Items.forEach(item => {
+                    
+                    var data = {};
+                    
+                    for (var key in item) {
+
+                        data[key] = item[key];
+                        
+                        if(key == "iotdata") {
+                            // JSON Parse the string
+                            if(typeof data[key] === "string") // data is Json string
+                            {
+                                data[key] = JSON.parse(data[key]);
+                            }
+                        }
+                    }
+                    
+                    retval.push(data);
+                });
+            }
+            
+            params.ExclusiveStartKey  = rawData.LastEvaluatedKey;
+        }
+        while(typeof rawData.LastEvaluatedKey !== "undefined");
+        
+    } catch (e) {
+        console.log(e);
+        retval = null;
+    }
+    
+    return retval;
 }
