@@ -186,22 +186,10 @@
     <Compile Include="aze\base\LCD_16X2\LCD_Jobs.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="aze\base\SIMCOM\api\MQTT_Header.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="aze\base\SIMCOM\api\SIMCOM.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\base\SIMCOM\api\SIMCOM_Clock.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="aze\base\SIMCOM\api\SIMCOM_SSL_Configuration.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="aze\base\SIMCOM\api\SubandPub.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="aze\base\SIMCOM\src\MQTT_Connection_Establishment.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\base\SIMCOM\src\SIMCOM.c">
@@ -210,13 +198,7 @@
     <Compile Include="aze\base\SIMCOM\src\SIMCOM_Clock.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="aze\base\SIMCOM\src\SIMCOM_SSL_Configuration.c">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="aze\base\SIMCOM\src\SIMCOM_State.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="aze\base\SIMCOM\src\SubandPub.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\base\SysOS\api\Platform_Types.h">
@@ -235,6 +217,30 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\Cosmic_App\CS_Iot.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\Cosmic_App\MQTT\api\MQTT.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\Cosmic_App\MQTT\api\MQTT_Publish.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\Cosmic_App\MQTT\api\MQTT_SSL.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\Cosmic_App\MQTT\src\MQTT.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\Cosmic_App\MQTT\src\MQTT_Publish.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\Cosmic_App\MQTT\src\MQTT_SSL.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\Cosmic_App\MQTT_Apllication.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\Cosmic_App\MQTT_Apllication.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\Gen\Buffer_Config.c">
@@ -290,6 +296,9 @@
     <Folder Include="aze\base\SysOS\scripts\schema\" />
     <Folder Include="aze\base\SysOS\scripts\templates\" />
     <Folder Include="aze\base\SysOS\src\" />
+    <Folder Include="aze\Cosmic_App\MQTT" />
+    <Folder Include="aze\Cosmic_App\MQTT\api" />
+    <Folder Include="aze\Cosmic_App\MQTT\src" />
     <Folder Include="aze\Gen\" />
     <Folder Include="aze\Cosmic_App" />
   </ItemGroup>

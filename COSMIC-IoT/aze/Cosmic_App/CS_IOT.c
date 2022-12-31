@@ -22,7 +22,6 @@ void COSMIC_SIMCOM_Error_Callback(SIMCOM_Error_State_EN Error)
 	{
 		DebugStringRow2("GSM_Not_Connected");
 	}
-	
 }
 
 

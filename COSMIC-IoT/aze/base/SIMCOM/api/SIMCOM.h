@@ -41,8 +41,6 @@
 
 #define IsSIMCOM_ReadyForApplication() (SIMCOM_IsClockRunning() && SIMCOM_IsBT_CheckedAtleastOnce())
 
-#define IsSIMCOM_SSL_Configuration_Completed()		 (SIMCOM_SSL_Config_State == SIMCOM_SSL_Configured)
-
 
 /*************************/
 /* Data Type Definitions */
@@ -53,10 +51,14 @@ typedef enum
 {
 	SIMCOM_SM_Init = 0,
 	SIMCOM_SM_SIM_Check,
+	SIMCOMUnsollidatedErrorHandling,
 	SIMCOM_SM_Check_signal_strength,
 	SIMCOM_SM_NW_Registration_Check,
 	SIMCOM_PDP_context,
 	SIMCOM_SM_LTE_Check,
+	SIMCOM_SM_Reset,
+	SIMCOM_SM_CheckNetwork,
+	SIMCOM_SM_SelectNetwork,
 
 	// Below states will not request any AT commands to the module, Will be used for SIMCOM Sub Modules
 	SIMCOM_SM_Ready,                 // This state will reach with all the state has been covered
@@ -120,8 +122,6 @@ extern BufferLengthType SIMCOM_ResponseLength;
 extern UBYTE SIMCOM_ReceptionIgnoreCommandCount;
 
 extern UBYTE PublishStatus;
-
-extern UBYTE SubscribeStatus;
 
 /*************************/
 /* Function Declarations */

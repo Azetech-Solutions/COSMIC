@@ -128,7 +128,8 @@
     </paramobject>
     <paramobject type="dataobject" data="integer">
       <name>AlivenessErrorTime</name>
-      <description>SIMCOM Aliveness Error time (in milli-seconds). After this time of Inactivity, SIMCOM will report Error to the Application Layer</description>
+      <description>SIMCOM Aliveness Error time (in milli-seconds). After this time of Inactivity, SIMCOM will re
+	  Error to the Application Layer</description>
       <lowermultiplicity>1</lowermultiplicity>
       <uppermultiplicity>1</uppermultiplicity>
       <default>60000</default>

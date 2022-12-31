@@ -4,8 +4,6 @@
  *  Created on: 08-Mar-2021
  *      Author: Hari
  */
-
-
 #include "Includes.h" // Will have all definitions of the Project Headers
 
 #include MQTT_HEADER_H
@@ -16,10 +14,14 @@
 #include SIMCOM_H
 #include <string.h>
 #include "LCD.h"
-//#include "SubandPub.h"
+#include MQTTPUB_H
+#include MQTT_APLLICATION_H
+
+
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
+UBYTE Count=0;
 
 SIMCOM_ComState_EN SIMCOM_ComState = SIMCOM_Idle;
 
@@ -37,7 +39,7 @@ UBYTE SIMCOM_ReceptionIgnoreCommandCount = 0;
 
 UBYTE PublishStatus = 0;
 
-UBYTE SubscribeStatus = 0;
+//UBYTE SubscribeResponseBuffer[40];
 
 /*****************************************/
 /* Static Function Definitions           */
@@ -75,25 +77,19 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 			}
 		}
 
-		else if(IsSIMCOM_ResponseStartsWith("{\"ctrl\":"))
+		else if(IsSIMCOM_ResponseStartsWith("{\"cmd\":"))
 		{
-			
-			UBYTE Rxdata = SIMCOM_GetCSV_Number_fromBuffer("{\"ctrl\":[",1);
-			char data[2];
-			data[0] = Rxdata+48;
-			data[1]= '\0';
-			DebugStringRow2(data);
-			if(Rxdata == 1)
+ 			UBYTE len,i;
+ 			len = SIMCOM_GetResponseLength();
+			 
+			for(i = 0;i<=len;i++)
 			{
-				PORTA = 0X00;
-				SubscribeStatus = 1;
+				SubscribeDataBuff[i] = SIMCOM_ResponseBuffer[i];
 			}
-			else
-			{
-				PORTA = 0XFF;
-				SubscribeStatus = 0;
+			
+			MQTTApp_State = MQTTApp_SubMessageHandling;			
+			IsSubscribeMsgRecieved = TRUE;
 		}
-	}
 		else if(IsSIMCOM_ResponseStartsWith("+CMQTTCONNECT:"))
 		{
 			ULONG ConnectResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTCONNECT:", 1);
@@ -115,6 +111,7 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 			if((PublishResponse1==0)&&(PublishResponse2==0))
 			{
 				PublishStatus = 1;
+				Publish_State = MQTT_Publish_Idle;
 			}
 			else
 			{
@@ -122,17 +119,17 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 			}
 		}
 		
-		else if(IsSIMCOM_ResponseStartsWith("+CMQTTRXSTART:"))
+		else if(IsSIMCOM_ResponseStartsWith("+CMQTTSUB:"))
 		{
-			DebugStringRow1((const char *)SIMCOM_Buffer_Get());
-			PORTB = 0X00;
+			ULONG SubscribeResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTSUB:", 1);
+			ULONG SubscribeResponse2 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTSUB:", 2);
+			// Check if the response is OK or not.
+			if((SubscribeResponse1 ==0)&&(SubscribeResponse2 ==0))
+			{
+				MQTT_State = MQTT_Ready;
+			}
 		}
 		
-		
-		else if(IsSIMCOM_ResponseStartsWith("+SAPBR 1: DEACT"))
-		{
-			// If the GPRS is de-activated by the module, then move SIMCOM GPRS Sub Module to Idle state
-		}
 		else
 		{
 			// If something else is received, then give a call to the Application layer to handle
@@ -143,12 +140,10 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 
 static void SIMCOM_UpdateCurrentJobResponse()
 {
-	int i = 0;
-
 	SIMCOM_ClearResponseBuffer();
 
 	SIMCOM_ResponseLength = SIMCOM_GET_BUFFER_LENGTH();
-
+	UBYTE i;
 	for(i = 0; i < SIMCOM_ResponseLength; i++)
 	{
 		SIMCOM_ResponseBuffer[i] = SIMCOM_BUFFER_GET_BYTE();
@@ -303,10 +298,10 @@ void SIMCOM_MainFunction(void)
 	/* Call the Main Functions of the SIMCOM Sub Modules */
 
 	SIMCOM_StateMachine();
-//	SIMCOM_Clock_MainFunction();
 	SIMCOM_SSL_CONFIG_MainFunction();
 	MQTT_StateMachine();
-	MQTT_SubPub_StateMachine();
+	MQTT_Publish_StateMachine();
+	MQTT_AppMain();
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

@@ -14,21 +14,23 @@ aze\base\LCD_16X2\LCD.c
 
 aze\base\LCD_16X2\LCD_Jobs.c
 
-aze\base\SIMCOM\src\MQTT_Connection_Establishment.c
-
 aze\base\SIMCOM\src\SIMCOM.c
 
 aze\base\SIMCOM\src\SIMCOM_Clock.c
 
-aze\base\SIMCOM\src\SIMCOM_SSL_Configuration.c
-
 aze\base\SIMCOM\src\SIMCOM_State.c
-
-aze\base\SIMCOM\src\SubandPub.c
 
 aze\base\SysOS\src\SysOS.c
 
 aze\Cosmic_App\CS_Iot.c
+
+aze\Cosmic_App\MQTT\src\MQTT.c
+
+aze\Cosmic_App\MQTT\src\MQTT_Publish.c
+
+aze\Cosmic_App\MQTT\src\MQTT_SSL.c
+
+aze\Cosmic_App\MQTT_Apllication.c
 
 aze\Gen\Buffer_Config.c
 

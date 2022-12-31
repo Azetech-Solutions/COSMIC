@@ -63,6 +63,9 @@ SUBDIRS :=  \
 ../aze/base/SysOS/scripts/schema/ \
 ../aze/base/SysOS/scripts/templates/ \
 ../aze/base/SysOS/src/ \
+../aze/Cosmic_App/MQTT \
+../aze/Cosmic_App/MQTT/api \
+../aze/Cosmic_App/MQTT/src \
 ../aze/Gen/ \
 ../aze/Cosmic_App
 
@@ -75,14 +78,15 @@ C_SRCS +=  \
 ../aze/base/Helpers/String/src/StringHelper.c \
 ../aze/base/LCD_16X2/LCD.c \
 ../aze/base/LCD_16X2/LCD_Jobs.c \
-../aze/base/SIMCOM/src/MQTT_Connection_Establishment.c \
 ../aze/base/SIMCOM/src/SIMCOM.c \
 ../aze/base/SIMCOM/src/SIMCOM_Clock.c \
-../aze/base/SIMCOM/src/SIMCOM_SSL_Configuration.c \
 ../aze/base/SIMCOM/src/SIMCOM_State.c \
-../aze/base/SIMCOM/src/SubandPub.c \
 ../aze/base/SysOS/src/SysOS.c \
 ../aze/Cosmic_App/CS_Iot.c \
+../aze/Cosmic_App/MQTT/src/MQTT.c \
+../aze/Cosmic_App/MQTT/src/MQTT_Publish.c \
+../aze/Cosmic_App/MQTT/src/MQTT_SSL.c \
+../aze/Cosmic_App/MQTT_Apllication.c \
 ../aze/Gen/Buffer_Config.c \
 ../aze/Gen/SysOs_Processes.c \
 ../main.c
@@ -101,14 +105,15 @@ aze/base/Helpers/Buffer/src/Buffer.o \
 aze/base/Helpers/String/src/StringHelper.o \
 aze/base/LCD_16X2/LCD.o \
 aze/base/LCD_16X2/LCD_Jobs.o \
-aze/base/SIMCOM/src/MQTT_Connection_Establishment.o \
 aze/base/SIMCOM/src/SIMCOM.o \
 aze/base/SIMCOM/src/SIMCOM_Clock.o \
-aze/base/SIMCOM/src/SIMCOM_SSL_Configuration.o \
 aze/base/SIMCOM/src/SIMCOM_State.o \
-aze/base/SIMCOM/src/SubandPub.o \
 aze/base/SysOS/src/SysOS.o \
 aze/Cosmic_App/CS_Iot.o \
+aze/Cosmic_App/MQTT/src/MQTT.o \
+aze/Cosmic_App/MQTT/src/MQTT_Publish.o \
+aze/Cosmic_App/MQTT/src/MQTT_SSL.o \
+aze/Cosmic_App/MQTT_Apllication.o \
 aze/Gen/Buffer_Config.o \
 aze/Gen/SysOs_Processes.o \
 main.o
@@ -120,14 +125,15 @@ aze/base/Helpers/Buffer/src/Buffer.o \
 aze/base/Helpers/String/src/StringHelper.o \
 aze/base/LCD_16X2/LCD.o \
 aze/base/LCD_16X2/LCD_Jobs.o \
-aze/base/SIMCOM/src/MQTT_Connection_Establishment.o \
 aze/base/SIMCOM/src/SIMCOM.o \
 aze/base/SIMCOM/src/SIMCOM_Clock.o \
-aze/base/SIMCOM/src/SIMCOM_SSL_Configuration.o \
 aze/base/SIMCOM/src/SIMCOM_State.o \
-aze/base/SIMCOM/src/SubandPub.o \
 aze/base/SysOS/src/SysOS.o \
 aze/Cosmic_App/CS_Iot.o \
+aze/Cosmic_App/MQTT/src/MQTT.o \
+aze/Cosmic_App/MQTT/src/MQTT_Publish.o \
+aze/Cosmic_App/MQTT/src/MQTT_SSL.o \
+aze/Cosmic_App/MQTT_Apllication.o \
 aze/Gen/Buffer_Config.o \
 aze/Gen/SysOs_Processes.o \
 main.o
@@ -139,14 +145,15 @@ aze/base/Helpers/Buffer/src/Buffer.d \
 aze/base/Helpers/String/src/StringHelper.d \
 aze/base/LCD_16X2/LCD.d \
 aze/base/LCD_16X2/LCD_Jobs.d \
-aze/base/SIMCOM/src/MQTT_Connection_Establishment.d \
 aze/base/SIMCOM/src/SIMCOM.d \
 aze/base/SIMCOM/src/SIMCOM_Clock.d \
-aze/base/SIMCOM/src/SIMCOM_SSL_Configuration.d \
 aze/base/SIMCOM/src/SIMCOM_State.d \
-aze/base/SIMCOM/src/SubandPub.d \
 aze/base/SysOS/src/SysOS.d \
 aze/Cosmic_App/CS_Iot.d \
+aze/Cosmic_App/MQTT/src/MQTT.d \
+aze/Cosmic_App/MQTT/src/MQTT_Publish.d \
+aze/Cosmic_App/MQTT/src/MQTT_SSL.d \
+aze/Cosmic_App/MQTT_Apllication.d \
 aze/Gen/Buffer_Config.d \
 aze/Gen/SysOs_Processes.d \
 main.d
@@ -158,14 +165,15 @@ aze/base/Helpers/Buffer/src/Buffer.d \
 aze/base/Helpers/String/src/StringHelper.d \
 aze/base/LCD_16X2/LCD.d \
 aze/base/LCD_16X2/LCD_Jobs.d \
-aze/base/SIMCOM/src/MQTT_Connection_Establishment.d \
 aze/base/SIMCOM/src/SIMCOM.d \
 aze/base/SIMCOM/src/SIMCOM_Clock.d \
-aze/base/SIMCOM/src/SIMCOM_SSL_Configuration.d \
 aze/base/SIMCOM/src/SIMCOM_State.d \
-aze/base/SIMCOM/src/SubandPub.d \
 aze/base/SysOS/src/SysOS.d \
 aze/Cosmic_App/CS_Iot.d \
+aze/Cosmic_App/MQTT/src/MQTT.d \
+aze/Cosmic_App/MQTT/src/MQTT_Publish.d \
+aze/Cosmic_App/MQTT/src/MQTT_SSL.d \
+aze/Cosmic_App/MQTT_Apllication.d \
 aze/Gen/Buffer_Config.d \
 aze/Gen/SysOs_Processes.d \
 main.d
@@ -226,13 +234,6 @@ aze/base/LCD_16X2/LCD_Jobs.o: ../aze/base/LCD_16X2/LCD_Jobs.c
 	@echo Finished building: $<
 	
 
-aze/base/SIMCOM/src/MQTT_Connection_Establishment.o: ../aze/base/SIMCOM/src/MQTT_Connection_Establishment.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
 aze/base/SIMCOM/src/SIMCOM.o: ../aze/base/SIMCOM/src/SIMCOM.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -247,21 +248,7 @@ aze/base/SIMCOM/src/SIMCOM_Clock.o: ../aze/base/SIMCOM/src/SIMCOM_Clock.c
 	@echo Finished building: $<
 	
 
-aze/base/SIMCOM/src/SIMCOM_SSL_Configuration.o: ../aze/base/SIMCOM/src/SIMCOM_SSL_Configuration.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
 aze/base/SIMCOM/src/SIMCOM_State.o: ../aze/base/SIMCOM/src/SIMCOM_State.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-aze/base/SIMCOM/src/SubandPub.o: ../aze/base/SIMCOM/src/SubandPub.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -276,6 +263,34 @@ aze/base/SysOS/src/SysOS.o: ../aze/base/SysOS/src/SysOS.c
 	
 
 aze/Cosmic_App/CS_Iot.o: ../aze/Cosmic_App/CS_Iot.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+aze/Cosmic_App/MQTT/src/MQTT.o: ../aze/Cosmic_App/MQTT/src/MQTT.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+aze/Cosmic_App/MQTT/src/MQTT_Publish.o: ../aze/Cosmic_App/MQTT/src/MQTT_Publish.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+aze/Cosmic_App/MQTT/src/MQTT_SSL.o: ../aze/Cosmic_App/MQTT/src/MQTT_SSL.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+aze/Cosmic_App/MQTT_Apllication.o: ../aze/Cosmic_App/MQTT_Apllication.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
