@@ -36,15 +36,14 @@
 
 void UART_init()
 {
-	UCSRC = (0<<URSEL);
-	UCSRA = (0<<U2X);
-	UBRRH = 50>>8;
-	UBRRL = 52<<0;
-	UCSRB |= (1 << RXEN) | (1 << RXCIE) | (1<<TXEN);/* Turn on the transmission and reception */
-	UCSRC |= (1 << URSEL) | (1 << UCSZ0) | (1 << UCSZ1);/* Use 8-bit character sizes */
- 
-		/* Load lower 8-bits of the baud rate */
-//	UBRRH = (BAUD_PRESCALE >> 8);	/* Load upper 8-bits */
+	UBRRH = 0;//(BAUD_PRESCALE >> 8); // Load upper 8-bits of the baud rate value into the high byte of the UBRR register
+	UBRRL = 12;//BAUD_PRESCALE; // Load lower 8-bits of the baud rate value into the low byte of the UBRR register
+
+	UCSRB = (1 << RXEN) | (1 << TXEN);   // Turn on the transmission and reception circuitry
+	UCSRC = (1 << URSEL) | (1 << UCSZ0) | (1<<USBS) | (1 << UCSZ1); // Use 8-bit character sizes
+	UCSRB |= (1 << RXCIE); // Enable the USART Recieve Complete interrupt (USART_RXC)
+	UCSRA |= (1<<U2X);
+	sei(); // Enable the Global Interrupt Enable flag so that interrupts can be processed
 }
 
 /*
@@ -57,6 +56,21 @@ void SIM_Send_Data(unsigned char Data)
 	while ( !( UCSRA & (1<<UDRE)) );
 	UDR = Data;
 
+}
+
+void UART_Tx(unsigned char Data)
+{
+	while ( !( UCSRA & (1<<UDRE)) );
+	UDR = Data;
+
+}
+
+void UART_String(char *data)
+{
+	while(*data)
+	{
+		UART_Tx(*(data++));
+	}
 }
 
 unsigned char uart_rx()

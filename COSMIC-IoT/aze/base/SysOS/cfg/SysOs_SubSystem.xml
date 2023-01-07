@@ -5,7 +5,7 @@
     <Processes>
       <Process>
         <Name>Avr_Init</Name>
-        <Index>10</Index>
+        <Index>11</Index>
         <ProcessGroupRef>Avr_Init</ProcessGroupRef>
         <Enabled>True</Enabled>
       </Process>
@@ -17,13 +17,13 @@
       </Process>
       <Process>
         <Name>TIM1_Init</Name>
-        <Index>1</Index>
+        <Index>255</Index>
         <ProcessGroupRef>Avr_Init</ProcessGroupRef>
         <Enabled>True</Enabled>
       </Process>
       <Process>
         <Name>UART_init</Name>
-        <Index>11</Index>
+        <Index>10</Index>
         <ProcessGroupRef>Avr_Init</ProcessGroupRef>
         <Enabled>True</Enabled>
       </Process>
@@ -35,7 +35,7 @@
       </Process>
       <Process>
         <Name>LCD_Mainfunction</Name>
-        <Index>1</Index>
+        <Index>255</Index>
         <ProcessGroupRef>1ms</ProcessGroupRef>
         <Enabled>True</Enabled>
       </Process>

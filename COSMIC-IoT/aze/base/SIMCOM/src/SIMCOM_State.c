@@ -9,7 +9,7 @@
 #include SIMCOM_H
 #include STRINGHELPER_H
 #include <avr/io.h>
-#include MQTT_SSL_CONFIGURATION_H
+#include MQTT_SSL_H
 #include "LCD.h"
 
 /*****************************************/
@@ -93,7 +93,6 @@ void SIMCOM_StateMachine(void)
 			}
 		}
 		break;
-		
 		case SIMCOM_SM_SIM_Check:
 		{
 			// First Ensure the SIMCOM Module is Connected
@@ -101,7 +100,7 @@ void SIMCOM_StateMachine(void)
 			{
 
 				// Send AT Command and wait for response
-				if(SIMCOM_Schedule_Job("AT+CNMI=1,0,0,0,0", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
+				if(SIMCOM_Schedule_Job("AT+CPIN?", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
 				{
 					// Set it to Scheduled only when the SIMCOM Module Accepted it
 					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
@@ -110,23 +109,32 @@ void SIMCOM_StateMachine(void)
 			}
 			else
 			{
-				
+						
 				// Cyclic part for the response
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
 					// Job has been completed
-					
-					// Check if the response is OK or not.
-					if(SIMCOM_IsResponseOK())
+					char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN: ");
+							
+
+					if(strcmp(RxString, "READY") == 0)
 					{
-						SIMCOM_State = SIMCOMUnsollidatedErrorHandling;
+						char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN:READY");
+								
+						// Check if the response is OK or not.
+						if(strcmp(RxString,"OK"))
+						{
+							SIMCOM_State = SIMCOM_SM_Check_signal_strength;
+						}
+						else
+						{
+							// If the returned value is ERROR or something else, then act accordingly
+							// TODO: Later
+							RetryInNextCycle = TRUE;
+						}
 					}
-					else
-					{
-						// If the returned value is ERROR or something else, then act accordingly
-						// TODO: Later
-						RetryInNextCycle = TRUE;
-					}
+							
+							
 				}
 				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
 				{
@@ -138,70 +146,11 @@ void SIMCOM_StateMachine(void)
 				else
 				{
 					// Do Nothing. Wait
+
 				}
 			}
 		}
 		break;
-		
-				case SIMCOMUnsollidatedErrorHandling:
-				{
-					// First Ensure the SIMCOM Module is Connected
-					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
-					{
-
-						// Send AT Command and wait for response
-						if(SIMCOM_Schedule_Job("AT+CPIN?", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
-						{
-							// Set it to Scheduled only when the SIMCOM Module Accepted it
-							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
-
-						}
-					}
-					else
-					{
-						
-						// Cyclic part for the response
-						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
-						{
-							// Job has been completed
-							char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN: ");
-							
-
-							if(strcmp(RxString, "READY") == 0)
-							{
-								char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN:READY");
-								
-								// Check if the response is OK or not.
-								if(strcmp(RxString,"OK"))
-								{
-									SIMCOM_State = SIMCOM_SM_Check_signal_strength;
-								}
-								else
-								{
-									// If the returned value is ERROR or something else, then act accordingly
-									// TODO: Later
-									RetryInNextCycle = TRUE;
-								}
-							}
-							
-							
-						}
-						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
-						{
-							// If there is a problem in reception, retry sending the command
-							RetryInNextCycle = TRUE;
-
-							// TODO: Log Error. Possibly the GSM Module is not powered or connected
-						}
-						else
-						{
-							// Do Nothing. Wait
-
-						}
-					}
-				}
-				break;
-		
 		case SIMCOM_SM_Check_signal_strength:
 		{
 				// First Ensure the SIMCOM Module is Connected

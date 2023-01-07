@@ -5,7 +5,12 @@
     <RingBuffers>
       <RingBuffer>
         <Name>SIMCOM</Name>
-        <Length>100</Length>
+        <Length>50</Length>
+        <Enabled>True</Enabled>
+      </RingBuffer>
+      <RingBuffer>
+        <Name>BackupBuffer</Name>
+        <Length>50</Length>
         <Enabled>True</Enabled>
       </RingBuffer>
     </RingBuffers>

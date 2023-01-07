@@ -21,4 +21,8 @@ extern unsigned char uart_rx(void);
 
 extern void SIM_Send_Data(unsigned char Data);
 
+extern void UART_String(char *data);
+
+extern void UART_Tx(unsigned char Data);
+
 #endif /* UART_H_ */

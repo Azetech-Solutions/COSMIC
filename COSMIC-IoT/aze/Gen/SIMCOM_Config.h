@@ -22,6 +22,7 @@
 #include <Includes.h>
 #include PLATFORM_TYPES_H
 #include BUFFER_H
+#include SIMCOM_H
 
 /*************************************************/
 /* Functional Switches and Parameter Definitions */
@@ -154,6 +155,7 @@ static inline UBYTE SIMCOM_GetResponseByte()
 		// This is a development Error. So report Error to the application
 		SIMCOM_ERROR_CALLBACK(SIMCOM_Error_Buffer_Empty);
 	}
+
 	return Data;
 }
 

@@ -222,6 +222,9 @@
     <Compile Include="aze\Cosmic_App\MQTT\api\MQTT.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="aze\Cosmic_App\MQTT\api\MQTT_Certificates.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="aze\Cosmic_App\MQTT\api\MQTT_Publish.h">
       <SubType>compile</SubType>
     </Compile>
@@ -237,10 +240,10 @@
     <Compile Include="aze\Cosmic_App\MQTT\src\MQTT_SSL.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="aze\Cosmic_App\MQTT_Apllication.c">
+    <Compile Include="aze\Cosmic_App\MQTT_Application.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="aze\Cosmic_App\MQTT_Apllication.h">
+    <Compile Include="aze\Cosmic_App\MQTT_Application.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\Gen\Buffer_Config.c">

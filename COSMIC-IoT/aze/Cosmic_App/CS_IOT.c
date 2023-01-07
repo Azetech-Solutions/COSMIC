@@ -7,23 +7,17 @@
 #include "Includes.h"
 #include SIMCOM_H
 #include <avr/io.h>
-#include "LCD.h"
-#include "stdio.h"
-void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
-{
+#define F_CPU 4000000
+#include <avr/delay.h>
+#include MQTT_SSL_H
 
-	/* This function will be called for an un-scheduled job. So check for the response and clear the buffer */
-	SIMCOM_ClearResponseBuffer();
-}
 
-void COSMIC_SIMCOM_Error_Callback(SIMCOM_Error_State_EN Error)
-{
-	if(Error == SIMCOM_Error_GSM_Not_Connected)
-	{
-		DebugStringRow2("GSM_Not_Connected");
-	}
-}
+/*****************************************/
+/* Global Variables                      */
+/*****************************************/
 
+
+static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 void Avr_Init()
 {
@@ -31,6 +25,14 @@ void Avr_Init()
 		DDRB  = 0xFF;
 		PORTA = 0XFF;
 		PORTB = 0xFF;
+		
+		while(IsSSLCertConfigured == FALSE)
+		{
+					
+			SIMCOM_MainFunction();
+			_delay_ms(100);
+		}
+
 }
 
 void Avr_Main_x10()
