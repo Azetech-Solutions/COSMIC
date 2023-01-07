@@ -7,11 +7,28 @@
 #include "Includes.h"
 #include SIMCOM_H
 #include STRINGHELPER_H
-#include MQTT_HEADER_H
-#include MQTT_APLLICATION_H
+#include MQTT_H
+#include MQTT_APPLICATION_H
 #include <stdio.h>
 #include <avr/io.h>
 #include "LCD.h"
+
+
+void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
+{
+
+	/* This function will be called for an un-scheduled job. So check for the response and clear the buffer */
+	SIMCOM_ClearResponseBuffer();
+}
+
+void COSMIC_SIMCOM_Error_Callback(SIMCOM_Error_State_EN Error)
+{
+	if(Error == SIMCOM_Error_GSM_Not_Connected)
+	{
+		DebugStringRow2("GSM_Not_Connected");
+	}
+}
+
 
 MQTTApp_States MQTTApp_State = MQTTApp_Init;
 
@@ -74,6 +91,8 @@ UBYTE MQTT_StringSeperate(char *str,char endpoint)
 	
 	return 0;
 }
+
+
 void MQTT_AppMain()
 {
 	switch(MQTTApp_State)

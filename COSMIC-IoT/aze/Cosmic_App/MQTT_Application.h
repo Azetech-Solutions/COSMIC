@@ -10,7 +10,9 @@
 #define MQTT_APLLICATION_H_
 
 #include "Includes.h"
-#include MQTTPUB_H
+
+#include MQTT_PUBLISH_H
+#include PLATFORM_TYPES_H
 
 #define PublishString "{\"cmd\":%d\"data\"{\"m1\":%d}}"
 
