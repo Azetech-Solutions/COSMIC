@@ -9,7 +9,7 @@ aze/Cosmic_App/MQTT_Apllication.d aze/Cosmic_App/MQTT_Apllication.o: \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
- ../aze/base\SIMCOM\api\SIMCOM_Clock.h ../aze/Cosmic_App\MQTT\api\\MQTT.h \
+ ../aze/base\SIMCOM\api\SIMCOM_Clock.h ../aze/Cosmic_App\MQTT\api\MQTT.h \
  ../aze/Cosmic_App\MQTT_Apllication.h \
  ../aze/Cosmic_App\MQTT\api\MQTT_Publish.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdio.h \
@@ -54,7 +54,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../aze/base\SIMCOM\api\SIMCOM_Clock.h:
 
-../aze/Cosmic_App\MQTT\api\\MQTT.h:
+../aze/Cosmic_App\MQTT\api\MQTT.h:
 
 ../aze/Cosmic_App\MQTT_Apllication.h:
 

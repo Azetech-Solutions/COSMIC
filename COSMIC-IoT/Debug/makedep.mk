@@ -30,7 +30,7 @@ aze\Cosmic_App\MQTT\src\MQTT_Publish.c
 
 aze\Cosmic_App\MQTT\src\MQTT_SSL.c
 
-aze\Cosmic_App\MQTT_Apllication.c
+aze\Cosmic_App\MQTT_Application.c
 
 aze\Gen\Buffer_Config.c
 
