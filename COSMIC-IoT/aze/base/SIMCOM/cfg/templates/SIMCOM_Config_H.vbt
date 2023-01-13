@@ -160,11 +160,12 @@ static inline UBYTE SIMCOM_GetResponseByte()
 	{
 		// Buffer is Empty. When the Buffer is empty, the SIMCOM Module should've not called.
 		// This is a development Error. So report Error to the application
-		SIMCOM_ERROR_CALLBACK(SIMCOM_Error_Buffer_Empty);
+		SIMCOM_ERROR_CALLBACK();
 	}
 
 	return Data;
 }
+
 
 
 #endif /* __SIMCOM_CONFIG_H__ */

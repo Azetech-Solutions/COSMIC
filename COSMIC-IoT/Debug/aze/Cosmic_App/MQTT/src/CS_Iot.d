@@ -1,5 +1,5 @@
-aze/Cosmic_App/CS_Iot.d aze/Cosmic_App/CS_Iot.o: \
- ../aze/Cosmic_App/CS_Iot.c ../aze/Gen/Includes.h \
+aze/Cosmic_App/MQTT/src/CS_Iot.d aze/Cosmic_App/MQTT/src/CS_Iot.o: \
+ ../aze/Cosmic_App/MQTT/src/CS_Iot.c ../aze/Gen/Includes.h \
  ../aze/base\SIMCOM\api\SIMCOM.h ../aze/Gen\SIMCOM_Config.h \
  ../aze/base\SysOS\api\Platform_Types.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdint.h \
@@ -10,6 +10,9 @@ aze/Cosmic_App/CS_Iot.d aze/Cosmic_App/CS_Iot.o: \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  ../aze/base\SIMCOM\api\SIMCOM_Clock.h \
+ ../aze/Cosmic_App\MQTT\api\MQTT_SSL.h \
+ ../aze/Cosmic_App\MQTT\api\MQTT_Publish.h \
+ ../aze/Cosmic_App\MQTT\api\MQTT.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -19,10 +22,6 @@ aze/Cosmic_App/CS_Iot.d aze/Cosmic_App/CS_Iot.o: \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- ../aze/base/LCD_16X2/LCD.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdio.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdarg.h
 
@@ -52,6 +51,12 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../aze/base\SIMCOM\api\SIMCOM_Clock.h:
 
+../aze/Cosmic_App\MQTT\api\MQTT_SSL.h:
+
+../aze/Cosmic_App\MQTT\api\MQTT_Publish.h:
+
+../aze/Cosmic_App\MQTT\api\MQTT.h:
+
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h:
@@ -69,14 +74,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
-
-../aze/base/LCD_16X2/LCD.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdio.h:
 

@@ -37,6 +37,13 @@ SUBDIRS :=  \
 ../aze/base/ \
 ../aze/base/Atmega_Drivers/ \
 ../aze/base/Atmega_Drivers/API/ \
+../aze/base/ComIf/ \
+../aze/base/ComIf/api/ \
+../aze/base/ComIf/cfg/ \
+../aze/base/ComIf/scripts/ \
+../aze/base/ComIf/scripts/schema/ \
+../aze/base/ComIf/scripts/templates/ \
+../aze/base/ComIf/src/ \
 ../aze/base/Helpers/ \
 ../aze/base/Helpers/Buffer/ \
 ../aze/base/Helpers/Buffer/api/ \
@@ -74,20 +81,26 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../aze/base/Atmega_Drivers/TIM1_Interupt.c \
 ../aze/base/Atmega_Drivers/uart.c \
+../aze/base/ComIf/src/ComIf.c \
+../aze/base/ComIf/src/ComIf_CalcChecksum.c \
+../aze/base/ComIf/src/ComIf_RxIndication.c \
+../aze/base/ComIf/src/ComIf_RxRequest.c \
+../aze/base/ComIf/src/ComIf_Transmit.c \
+../aze/base/ComIf/src/ComIf_TxShadowBuffer.c \
 ../aze/base/Helpers/Buffer/src/Buffer.c \
 ../aze/base/Helpers/String/src/StringHelper.c \
-../aze/base/LCD_16X2/LCD.c \
-../aze/base/LCD_16X2/LCD_Jobs.c \
+../aze/base/LCD_16X2/lcd.c \
 ../aze/base/SIMCOM/src/SIMCOM.c \
 ../aze/base/SIMCOM/src/SIMCOM_Clock.c \
 ../aze/base/SIMCOM/src/SIMCOM_State.c \
 ../aze/base/SysOS/src/SysOS.c \
-../aze/Cosmic_App/CS_Iot.c \
+../aze/Cosmic_App/MQTT/src/CS_Iot.c \
 ../aze/Cosmic_App/MQTT/src/MQTT.c \
 ../aze/Cosmic_App/MQTT/src/MQTT_Publish.c \
 ../aze/Cosmic_App/MQTT/src/MQTT_SSL.c \
-../aze/Cosmic_App/MQTT_Apllication.c \
+../aze/Cosmic_App/MQTT_Application.c \
 ../aze/Gen/Buffer_Config.c \
+../aze/Gen/ComIf_Config.c \
 ../aze/Gen/SysOs_Processes.c \
 ../main.c
 
@@ -101,80 +114,104 @@ ASM_SRCS +=
 OBJS +=  \
 aze/base/Atmega_Drivers/TIM1_Interupt.o \
 aze/base/Atmega_Drivers/uart.o \
+aze/base/ComIf/src/ComIf.o \
+aze/base/ComIf/src/ComIf_CalcChecksum.o \
+aze/base/ComIf/src/ComIf_RxIndication.o \
+aze/base/ComIf/src/ComIf_RxRequest.o \
+aze/base/ComIf/src/ComIf_Transmit.o \
+aze/base/ComIf/src/ComIf_TxShadowBuffer.o \
 aze/base/Helpers/Buffer/src/Buffer.o \
 aze/base/Helpers/String/src/StringHelper.o \
-aze/base/LCD_16X2/LCD.o \
-aze/base/LCD_16X2/LCD_Jobs.o \
+aze/base/LCD_16X2/lcd.o \
 aze/base/SIMCOM/src/SIMCOM.o \
 aze/base/SIMCOM/src/SIMCOM_Clock.o \
 aze/base/SIMCOM/src/SIMCOM_State.o \
 aze/base/SysOS/src/SysOS.o \
-aze/Cosmic_App/CS_Iot.o \
+aze/Cosmic_App/MQTT/src/CS_Iot.o \
 aze/Cosmic_App/MQTT/src/MQTT.o \
 aze/Cosmic_App/MQTT/src/MQTT_Publish.o \
 aze/Cosmic_App/MQTT/src/MQTT_SSL.o \
-aze/Cosmic_App/MQTT_Apllication.o \
+aze/Cosmic_App/MQTT_Application.o \
 aze/Gen/Buffer_Config.o \
+aze/Gen/ComIf_Config.o \
 aze/Gen/SysOs_Processes.o \
 main.o
 
 OBJS_AS_ARGS +=  \
 aze/base/Atmega_Drivers/TIM1_Interupt.o \
 aze/base/Atmega_Drivers/uart.o \
+aze/base/ComIf/src/ComIf.o \
+aze/base/ComIf/src/ComIf_CalcChecksum.o \
+aze/base/ComIf/src/ComIf_RxIndication.o \
+aze/base/ComIf/src/ComIf_RxRequest.o \
+aze/base/ComIf/src/ComIf_Transmit.o \
+aze/base/ComIf/src/ComIf_TxShadowBuffer.o \
 aze/base/Helpers/Buffer/src/Buffer.o \
 aze/base/Helpers/String/src/StringHelper.o \
-aze/base/LCD_16X2/LCD.o \
-aze/base/LCD_16X2/LCD_Jobs.o \
+aze/base/LCD_16X2/lcd.o \
 aze/base/SIMCOM/src/SIMCOM.o \
 aze/base/SIMCOM/src/SIMCOM_Clock.o \
 aze/base/SIMCOM/src/SIMCOM_State.o \
 aze/base/SysOS/src/SysOS.o \
-aze/Cosmic_App/CS_Iot.o \
+aze/Cosmic_App/MQTT/src/CS_Iot.o \
 aze/Cosmic_App/MQTT/src/MQTT.o \
 aze/Cosmic_App/MQTT/src/MQTT_Publish.o \
 aze/Cosmic_App/MQTT/src/MQTT_SSL.o \
-aze/Cosmic_App/MQTT_Apllication.o \
+aze/Cosmic_App/MQTT_Application.o \
 aze/Gen/Buffer_Config.o \
+aze/Gen/ComIf_Config.o \
 aze/Gen/SysOs_Processes.o \
 main.o
 
 C_DEPS +=  \
 aze/base/Atmega_Drivers/TIM1_Interupt.d \
 aze/base/Atmega_Drivers/uart.d \
+aze/base/ComIf/src/ComIf.d \
+aze/base/ComIf/src/ComIf_CalcChecksum.d \
+aze/base/ComIf/src/ComIf_RxIndication.d \
+aze/base/ComIf/src/ComIf_RxRequest.d \
+aze/base/ComIf/src/ComIf_Transmit.d \
+aze/base/ComIf/src/ComIf_TxShadowBuffer.d \
 aze/base/Helpers/Buffer/src/Buffer.d \
 aze/base/Helpers/String/src/StringHelper.d \
-aze/base/LCD_16X2/LCD.d \
-aze/base/LCD_16X2/LCD_Jobs.d \
+aze/base/LCD_16X2/lcd.d \
 aze/base/SIMCOM/src/SIMCOM.d \
 aze/base/SIMCOM/src/SIMCOM_Clock.d \
 aze/base/SIMCOM/src/SIMCOM_State.d \
 aze/base/SysOS/src/SysOS.d \
-aze/Cosmic_App/CS_Iot.d \
+aze/Cosmic_App/MQTT/src/CS_Iot.d \
 aze/Cosmic_App/MQTT/src/MQTT.d \
 aze/Cosmic_App/MQTT/src/MQTT_Publish.d \
 aze/Cosmic_App/MQTT/src/MQTT_SSL.d \
-aze/Cosmic_App/MQTT_Apllication.d \
+aze/Cosmic_App/MQTT_Application.d \
 aze/Gen/Buffer_Config.d \
+aze/Gen/ComIf_Config.d \
 aze/Gen/SysOs_Processes.d \
 main.d
 
 C_DEPS_AS_ARGS +=  \
 aze/base/Atmega_Drivers/TIM1_Interupt.d \
 aze/base/Atmega_Drivers/uart.d \
+aze/base/ComIf/src/ComIf.d \
+aze/base/ComIf/src/ComIf_CalcChecksum.d \
+aze/base/ComIf/src/ComIf_RxIndication.d \
+aze/base/ComIf/src/ComIf_RxRequest.d \
+aze/base/ComIf/src/ComIf_Transmit.d \
+aze/base/ComIf/src/ComIf_TxShadowBuffer.d \
 aze/base/Helpers/Buffer/src/Buffer.d \
 aze/base/Helpers/String/src/StringHelper.d \
-aze/base/LCD_16X2/LCD.d \
-aze/base/LCD_16X2/LCD_Jobs.d \
+aze/base/LCD_16X2/lcd.d \
 aze/base/SIMCOM/src/SIMCOM.d \
 aze/base/SIMCOM/src/SIMCOM_Clock.d \
 aze/base/SIMCOM/src/SIMCOM_State.d \
 aze/base/SysOS/src/SysOS.d \
-aze/Cosmic_App/CS_Iot.d \
+aze/Cosmic_App/MQTT/src/CS_Iot.d \
 aze/Cosmic_App/MQTT/src/MQTT.d \
 aze/Cosmic_App/MQTT/src/MQTT_Publish.d \
 aze/Cosmic_App/MQTT/src/MQTT_SSL.d \
-aze/Cosmic_App/MQTT_Apllication.d \
+aze/Cosmic_App/MQTT_Application.d \
 aze/Gen/Buffer_Config.d \
+aze/Gen/ComIf_Config.d \
 aze/Gen/SysOs_Processes.d \
 main.d
 
@@ -195,126 +232,168 @@ LINKER_SCRIPT_DEP+=
 aze/base/Atmega_Drivers/TIM1_Interupt.o: ../aze/base/Atmega_Drivers/TIM1_Interupt.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 aze/base/Atmega_Drivers/uart.o: ../aze/base/Atmega_Drivers/uart.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+aze/base/ComIf/src/ComIf.o: ../aze/base/ComIf/src/ComIf.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+aze/base/ComIf/src/ComIf_CalcChecksum.o: ../aze/base/ComIf/src/ComIf_CalcChecksum.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+aze/base/ComIf/src/ComIf_RxIndication.o: ../aze/base/ComIf/src/ComIf_RxIndication.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+aze/base/ComIf/src/ComIf_RxRequest.o: ../aze/base/ComIf/src/ComIf_RxRequest.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+aze/base/ComIf/src/ComIf_Transmit.o: ../aze/base/ComIf/src/ComIf_Transmit.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+aze/base/ComIf/src/ComIf_TxShadowBuffer.o: ../aze/base/ComIf/src/ComIf_TxShadowBuffer.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 aze/base/Helpers/Buffer/src/Buffer.o: ../aze/base/Helpers/Buffer/src/Buffer.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 aze/base/Helpers/String/src/StringHelper.o: ../aze/base/Helpers/String/src/StringHelper.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-aze/base/LCD_16X2/LCD.o: ../aze/base/LCD_16X2/LCD.c
+aze/base/LCD_16X2/lcd.o: ../aze/base/LCD_16X2/lcd.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-aze/base/LCD_16X2/LCD_Jobs.o: ../aze/base/LCD_16X2/LCD_Jobs.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 aze/base/SIMCOM/src/SIMCOM.o: ../aze/base/SIMCOM/src/SIMCOM.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 aze/base/SIMCOM/src/SIMCOM_Clock.o: ../aze/base/SIMCOM/src/SIMCOM_Clock.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 aze/base/SIMCOM/src/SIMCOM_State.o: ../aze/base/SIMCOM/src/SIMCOM_State.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 aze/base/SysOS/src/SysOS.o: ../aze/base/SysOS/src/SysOS.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-aze/Cosmic_App/CS_Iot.o: ../aze/Cosmic_App/CS_Iot.c
+aze/Cosmic_App/MQTT/src/CS_Iot.o: ../aze/Cosmic_App/MQTT/src/CS_Iot.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 aze/Cosmic_App/MQTT/src/MQTT.o: ../aze/Cosmic_App/MQTT/src/MQTT.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 aze/Cosmic_App/MQTT/src/MQTT_Publish.o: ../aze/Cosmic_App/MQTT/src/MQTT_Publish.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 aze/Cosmic_App/MQTT/src/MQTT_SSL.o: ../aze/Cosmic_App/MQTT/src/MQTT_SSL.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-aze/Cosmic_App/MQTT_Apllication.o: ../aze/Cosmic_App/MQTT_Apllication.c
+aze/Cosmic_App/MQTT_Application.o: ../aze/Cosmic_App/MQTT_Application.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 aze/Gen/Buffer_Config.o: ../aze/Gen/Buffer_Config.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+aze/Gen/ComIf_Config.o: ../aze/Gen/ComIf_Config.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 aze/Gen/SysOs_Processes.o: ../aze/Gen/SysOs_Processes.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./main.o: .././main.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/LCD_16X2"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../aze" -I"../aze/Gen" -I"../aze/base/Atmega_Drivers" -I"../aze/base/Atmega_Drivers/API" -I"../aze/base/ComIf/api" -I"../aze/base/ComIf/src" -I"../aze/base/SysOS/api"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 

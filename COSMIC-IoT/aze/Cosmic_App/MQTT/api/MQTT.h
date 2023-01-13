@@ -13,15 +13,19 @@
 
 typedef enum
 {
-	MQTTSTART=0,
+	MQTTIdle = 0,
+	MQTTSTART,
 	MQTT_Accquire,
+	MQTT_ClientRelease,
 	MQTT_SSL_Configure,
 	MQTT_Connect,
+	MQTTCONNECTIONCHECK,
 	MQTT_WaitForConnectResponce,
 	MQTT_SubscribeTopic_Config,
 	MQTT_SubTopic_Name_Config,
 	MQTT_SubTopicNameUpdate,
 	MQTT_WaitForSubResponce,
+	MQTTSTOP,
 	
 
 	MQTT_Ready,

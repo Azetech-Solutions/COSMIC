@@ -31,6 +31,11 @@
     <AlivenessErrorTime>60000</AlivenessErrorTime>
     <DefaultTimeoutTime>2000</DefaultTimeoutTime>
     <BufferRef>SIMCOM</BufferRef>
-    <HeaderList />
+    <HeaderList>
+      <Header>
+        <Name>SIMCOM_H</Name>
+        <Enabled>True</Enabled>
+      </Header>
+    </HeaderList>
   </General>
 </SIMCOM>

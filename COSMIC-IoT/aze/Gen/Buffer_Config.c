@@ -30,4 +30,8 @@ UBYTE BufferArray_SIMCOM[P_BUFFER_LENGTH_SIMCOM];
 /*        Configuration Function Definitions          */
 /******************************************************/
 
+void Buffer_Init(void)
+{
+	SIMCOM_Buffer_Create();
+}
 

@@ -6,23 +6,25 @@
  */
 #include "Includes.h" // Will have all definitions of the Project Headers
 
-#include MQTT_HEADER_H
 #include <stdint.h>
 #include <avr/io.h>
+#include MQTT_PUBLISH_H
+#include MQTT_H
+#include MQTT_APPLICATION_H
+#include MQTT_H
 #include PLATFORM_TYPES_H // For Data Types
-#include "stdio.h"
 #include SIMCOM_H
-#include <string.h>
-#include "LCD.h"
-#include MQTTPUB_H
-#include MQTT_APLLICATION_H
+#include <avr/pgmspace.h>
+#include BUFFER_H
+
+#include "stdio.h"
+#include LCD_H
+
 
 
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
-UBYTE Count=0;
-
 SIMCOM_ComState_EN SIMCOM_ComState = SIMCOM_Idle;
 
 SIMCOM_JobType SIMCOM_CurrentJob;
@@ -39,7 +41,6 @@ UBYTE SIMCOM_ReceptionIgnoreCommandCount = 0;
 
 UBYTE PublishStatus = 0;
 
-//UBYTE SubscribeResponseBuffer[40];
 
 /*****************************************/
 /* Static Function Definitions           */
@@ -76,19 +77,10 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				SIMCOM_ReEvaluate_State();
 			}
 		}
-
-		else if(IsSIMCOM_ResponseStartsWith("{\"cmd\":"))
+		else if(IsSIMCOM_ResponseStartsWith("+CMQTTRXSTART:"))
 		{
- 			UBYTE len,i;
- 			len = SIMCOM_GetResponseLength();
-			 
-			for(i = 0;i<=len;i++)
-			{
-				SubscribeDataBuff[i] = SIMCOM_ResponseBuffer[i];
-			}
-			
-			MQTTApp_State = MQTTApp_SubMessageHandling;			
-			IsSubscribeMsgRecieved = TRUE;
+			//PORTA ^= 0xFF;
+
 		}
 		else if(IsSIMCOM_ResponseStartsWith("+CMQTTCONNECT:"))
 		{
@@ -100,7 +92,10 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				MQTT_State = MQTT_SubscribeTopic_Config;// Move to next state
 			}
 		}
-		
+		else if(IsSIMCOM_ResponseStartsWith("+CMQTTDISCONNLOST:"))
+		{
+			SIMCOM_ERROR_CALLBACK();
+		}
 		
 		else if(IsSIMCOM_ResponseStartsWith("+CMQTTPUB:"))
 		{
@@ -123,6 +118,7 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 		{
 			ULONG SubscribeResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTSUB:", 1);
 			ULONG SubscribeResponse2 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTSUB:", 2);
+			DebugStringRow2("SUB");
 			// Check if the response is OK or not.
 			if((SubscribeResponse1 ==0)&&(SubscribeResponse2 ==0))
 			{
@@ -141,12 +137,22 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 static void SIMCOM_UpdateCurrentJobResponse()
 {
 	SIMCOM_ClearResponseBuffer();
+	
+	BufferType_ST *buff = SIMCOM_Buffer_Get();
+	DebugStringRow2(strstr(buff->BufferPtr,"cmd:"));
 
 	SIMCOM_ResponseLength = SIMCOM_GET_BUFFER_LENGTH();
 	UBYTE i;
 	for(i = 0; i < SIMCOM_ResponseLength; i++)
 	{
 		SIMCOM_ResponseBuffer[i] = SIMCOM_BUFFER_GET_BYTE();
+	}
+	
+	if (IsSIMCOM_ResponseStartsWith("+CMQTTRXSTART:"))
+	{
+		PORTB ^=  0xFF;		
+		DebugStringRow1(&SIMCOM_ResponseBuffer[10]);
+
 	}
 }
 
@@ -205,7 +211,7 @@ void SIMCOM_Init(void)
 /*                      SIMCOM Main Function                      */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 void SIMCOM_MainFunction(void)
-{
+{ 
 	switch(SIMCOM_ComState)
 	{
 		default:
@@ -220,7 +226,7 @@ void SIMCOM_MainFunction(void)
 			}
 			else
 			{
-				SIMCOM_ERROR_CALLBACK(SIMCOM_Error_Inactivity); // Report Error
+				SIMCOM_ERROR_CALLBACK(); // Report Error
 				SIMCOM_Aliveness_Counter = P_SIMCOM_ALIVENESS_ERROR_TIME; // Reload Timer
 			}
 		}
@@ -302,6 +308,7 @@ void SIMCOM_MainFunction(void)
 	MQTT_StateMachine();
 	MQTT_Publish_StateMachine();
 	MQTT_AppMain();
+	
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -409,8 +416,9 @@ BOOL SIMCOM_Data_Read(UBYTE Data)
 
 	/* If Okay to store in buffer */
 	if(proceedStoring == TRUE)
-	{
+	{	
 		retval = SIMCOM_BUFFER_PUT_BYTE(Data);
+
 	}
 
 	prevData = Data; // Store for later processing

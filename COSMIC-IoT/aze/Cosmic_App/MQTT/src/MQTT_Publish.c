@@ -6,15 +6,14 @@
  */ 
 #include "Includes.h"
 #include SIMCOM_H
-#include MQTT_SSL_CONFIGURATION_H
+#include MQTT_SSL_H
 #include STRINGHELPER_H
-#include MQTT_HEADER_H
+#include MQTT_H
 #include <avr/io.h>
-#include "LCD.h"
-#include MQTTPUB_H
+#include LCD_H
+#include MQTT_PUBLISH_H
+#include MQTT_APPLICATION_H
 #include "stdio.h"
-#include MQTT_APLLICATION_H
-
 
 /*****************************************/
 /* Global Variables                      */
@@ -26,8 +25,7 @@ static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE MQTT_Publish_Retry_Count = 50;
 
-
-char PublishPayload[25];
+char PublishPayload[64];
 
 
 /*****************************************/
@@ -166,9 +164,13 @@ void MQTT_Publish_StateMachine(void)
 				// First Ensure the SIMCOM Module is Connected
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
+					char SetPayloadLength[20];
+										
+					sprintf(SetPayloadLength,"AT+CMQTTPAYLOAD=0,%d",strlen(PublishPayload));
+					
 					/*Set Payload length For The Publish Msg, Now its sets statically if we need dynamic change in Payload we have to update the Length*/ 
 					// Send AT Command and wait for response
-					if(SIMCOM_Schedule_Job("AT+CMQTTPAYLOAD=0,25", SIMCOM_DEFAULT_TIMEOUT, MQTT_Publish_CallBack) == TRUE)
+					if(SIMCOM_Schedule_Job(SetPayloadLength, SIMCOM_DEFAULT_TIMEOUT, MQTT_Publish_CallBack) == TRUE)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
@@ -261,6 +263,16 @@ void MQTT_Publish_StateMachine(void)
 				}
 			}
 			break;
+			
+			case MQTTWaitforPublishResponse:
+			{
+				RetryInNextCycle = TRUE;
+				if(MQTT_Publish_Retry_Count == 10)
+				{
+					MQTT_Publish_Retry_Count = 50;
+				}
+			}
+			
 			default:
 			{
 				// Do Nothing, The state machine has been completed
@@ -286,10 +298,7 @@ void MQTT_Publish_StateMachine(void)
 		if(SIMCOM_Job_Result == SIMCOM_Job_Aborted)
 		{
 			// If in any of the state, the Job is aborted, then move to the error state
-
-				
-
-			//SIMCOM_ERROR_CALLBACK(SIMCOM_Error_GPRS);
+			SIMCOM_ERROR_CALLBACK();
 		}
 
 		/* Check if the state changed after execution */
@@ -298,7 +307,7 @@ void MQTT_Publish_StateMachine(void)
 			// If changed, the Set the New Job Result as Idle for the next state to proceed further
 			SIMCOM_Job_Result = SIMCOM_Job_Idle; // Reset the Job state so that next command will be sent
 
-			MQTT_Publish_Retry_Count = 50; // Reset the Retry Count
+			MQTT_Publish_Retry_Count = 10; // Reset the Retry Count
 		}
 	}
 	

@@ -8,21 +8,9 @@
       <Enabled>true</Enabled>
     </ProcessGroup>
     <ProcessGroup>
-      <Name>Avr_Main_x10</Name>
-      <Index>2</Index>
-      <ProcessSectionRef>Avr_Main_x10</ProcessSectionRef>
-      <Enabled>True</Enabled>
-    </ProcessGroup>
-    <ProcessGroup>
       <Name>PRC_X100</Name>
       <Index>3</Index>
       <ProcessSectionRef>PRC_X100</ProcessSectionRef>
-      <Enabled>True</Enabled>
-    </ProcessGroup>
-    <ProcessGroup>
-      <Name>1ms</Name>
-      <Index>1</Index>
-      <ProcessSectionRef>1ms</ProcessSectionRef>
       <Enabled>True</Enabled>
     </ProcessGroup>
   </ProcessGroups>

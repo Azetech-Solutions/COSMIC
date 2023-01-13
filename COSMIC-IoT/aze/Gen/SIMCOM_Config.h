@@ -22,6 +22,7 @@
 #include <Includes.h>
 #include PLATFORM_TYPES_H
 #include BUFFER_H
+#include SIMCOM_H
 
 /*************************************************/
 /* Functional Switches and Parameter Definitions */
@@ -31,7 +32,7 @@
 
 #define P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT         10
 
-#define P_SIMCOM_TASK_CYCLE_FACTOR                   100
+#define P_SIMCOM_TASK_CYCLE_FACTOR                   1
 
 #define P_SIMCOM_ALIVENESS_ERROR_TIME                60000
 
@@ -133,7 +134,7 @@ extern void SIM_Send_Data(UBYTE Data);
 
 extern void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState);
 
-extern void COSMIC_SIMCOM_Error_Callback(SIMCOM_Error_State_EN Error);
+extern void COSMIC_SIMCOM_Error_Callback();
 
 //extern UBYTE (char * Message);
 
@@ -152,8 +153,9 @@ static inline UBYTE SIMCOM_GetResponseByte()
 	{
 		// Buffer is Empty. When the Buffer is empty, the SIMCOM Module should've not called.
 		// This is a development Error. So report Error to the application
-		SIMCOM_ERROR_CALLBACK(SIMCOM_Error_Buffer_Empty);
+		SIMCOM_ERROR_CALLBACK();
 	}
+
 	return Data;
 }
 
