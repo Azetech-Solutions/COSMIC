@@ -22,6 +22,7 @@ void LCD_Init()
 	lcd_clrscr();
 	lcd_cmd(0x80);
 	lcd_cur_pos(1,1);
+	lcd_string("AZETECH");
 }
 
 void lcd_cursor()

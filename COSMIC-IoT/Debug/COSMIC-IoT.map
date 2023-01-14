@@ -7,11 +7,9 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
                               aze/base/SIMCOM/src/SIMCOM_State.o (__tablejump2__)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
-                              aze/base/LCD_16X2/lcd.o (__do_copy_data)
+                              aze/base/SIMCOM/src/SIMCOM.o (__do_copy_data)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
                               aze/base/Helpers/Buffer/src/Buffer.o (__do_clear_bss)
-c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                              aze/base/LCD_16X2/lcd.o (__umulhisi3)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(atoi.o)
                               aze/base/Helpers/String/src/StringHelper.o (atoi)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memcmp.o)
@@ -171,12 +169,9 @@ Discarded input sections
  .text          0x00000000        0x0 aze/base/LCD_16X2/lcd.o
  .data          0x00000000        0x0 aze/base/LCD_16X2/lcd.o
  .bss           0x00000000        0x0 aze/base/LCD_16X2/lcd.o
- .text.lcd_num_2dig
-                0x00000000       0x60 aze/base/LCD_16X2/lcd.o
- .text.lcd_num_3dig
-                0x00000000       0xba aze/base/LCD_16X2/lcd.o
- .text.lcd_num_point
-                0x00000000       0xc2 aze/base/LCD_16X2/lcd.o
+ .debug_line    0x00000000        0x0 aze/base/LCD_16X2/lcd.o
+ .debug_str     0x00000000       0xf4 aze/base/LCD_16X2/lcd.o
+ .comment       0x00000000       0x31 aze/base/LCD_16X2/lcd.o
  .text          0x00000000        0x0 aze/base/SIMCOM/src/SIMCOM.o
  .data          0x00000000        0x0 aze/base/SIMCOM/src/SIMCOM.o
  .bss           0x00000000        0x0 aze/base/SIMCOM/src/SIMCOM.o
@@ -331,22 +326,6 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
- .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc.mul
-                0x00000000       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc.div
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
- .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(atoi.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(atoi.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(atoi.o)
@@ -563,7 +542,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x2e5e
+.text           0x00000000     0x2c1e
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32a/avr5/crtatmega32a.o
                 0x00000000                __vector_default
@@ -701,195 +680,167 @@ END GROUP
  .text.StringHelper_startsWith
                 0x00000ae8       0x60 aze/base/Helpers/String/src/StringHelper.o
                 0x00000ae8                StringHelper_startsWith
- .text.lcd_data
-                0x00000b48       0x4a aze/base/LCD_16X2/lcd.o
-                0x00000b48                lcd_data
- .text.lcd_cursor
-                0x00000b92       0x4a aze/base/LCD_16X2/lcd.o
-                0x00000b92                lcd_cursor
- .text.lcd_clrscr
-                0x00000bdc       0x4a aze/base/LCD_16X2/lcd.o
-                0x00000bdc                lcd_clrscr
- .text.lcd_cmd  0x00000c26       0x4c aze/base/LCD_16X2/lcd.o
-                0x00000c26                lcd_cmd
- .text.lcd_dat  0x00000c72       0x4c aze/base/LCD_16X2/lcd.o
-                0x00000c72                lcd_dat
- .text.lcd_cur_pos
-                0x00000cbe       0x3e aze/base/LCD_16X2/lcd.o
-                0x00000cbe                lcd_cur_pos
- .text.lcd_string
-                0x00000cfc       0x1a aze/base/LCD_16X2/lcd.o
-                0x00000cfc                lcd_string
- .text.LCD_Init
-                0x00000d16       0x42 aze/base/LCD_16X2/lcd.o
-                0x00000d16                LCD_Init
- .text.DebugStringRow1
-                0x00000d58       0x18 aze/base/LCD_16X2/lcd.o
-                0x00000d58                DebugStringRow1
- .text.DebugStringRow2
-                0x00000d70       0x18 aze/base/LCD_16X2/lcd.o
-                0x00000d70                DebugStringRow2
  .text.SIMCOM_ResetJob
-                0x00000d88       0x24 aze/base/SIMCOM/src/SIMCOM.o
+                0x00000b48       0x24 aze/base/SIMCOM/src/SIMCOM.o
  .text.SIMCOM_UpdateCurrentJobResponse
-                0x00000dac       0xa2 aze/base/SIMCOM/src/SIMCOM.o
+                0x00000b6c       0xa2 aze/base/SIMCOM/src/SIMCOM.o
  .text.SIMCOM_Send_Command
-                0x00000e4e       0x2a aze/base/SIMCOM/src/SIMCOM.o
+                0x00000c0e       0x2a aze/base/SIMCOM/src/SIMCOM.o
  .text.SIMCOM_GetResponseWithoutHead_fromBuffer
-                0x00000e78        0xc aze/base/SIMCOM/src/SIMCOM.o
+                0x00000c38        0xc aze/base/SIMCOM/src/SIMCOM.o
  .text.SIMCOM_GetSeparated_String_fromBuffer
-                0x00000e84       0x1c aze/base/SIMCOM/src/SIMCOM.o
+                0x00000c44       0x1c aze/base/SIMCOM/src/SIMCOM.o
  .text.SIMCOM_Init
-                0x00000ea0       0x24 aze/base/SIMCOM/src/SIMCOM.o
-                0x00000ea0                SIMCOM_Init
+                0x00000c60       0x24 aze/base/SIMCOM/src/SIMCOM.o
+                0x00000c60                SIMCOM_Init
  .text.SIMCOM_Schedule_Job
-                0x00000ec4       0x7c aze/base/SIMCOM/src/SIMCOM.o
-                0x00000ec4                SIMCOM_Schedule_Job
+                0x00000c84       0x7c aze/base/SIMCOM/src/SIMCOM.o
+                0x00000c84                SIMCOM_Schedule_Job
  .text.SIMCOM_Data_Read
-                0x00000f40       0xa0 aze/base/SIMCOM/src/SIMCOM.o
-                0x00000f40                SIMCOM_Data_Read
+                0x00000d00       0xa0 aze/base/SIMCOM/src/SIMCOM.o
+                0x00000d00                SIMCOM_Data_Read
  .text.SIMCOM_GetCSV_Number_fromBuffer
-                0x00000fe0       0x64 aze/base/SIMCOM/src/SIMCOM.o
-                0x00000fe0                SIMCOM_GetCSV_Number_fromBuffer
+                0x00000da0       0x64 aze/base/SIMCOM/src/SIMCOM.o
+                0x00000da0                SIMCOM_GetCSV_Number_fromBuffer
  .text.SIMCOM_Callback
-                0x00001044      0x162 aze/base/SIMCOM/src/SIMCOM.o
+                0x00000e04      0x162 aze/base/SIMCOM/src/SIMCOM.o
  .text.SIMCOM_MainFunction
-                0x000011a6      0x142 aze/base/SIMCOM/src/SIMCOM.o
-                0x000011a6                SIMCOM_MainFunction
+                0x00000f66      0x142 aze/base/SIMCOM/src/SIMCOM.o
+                0x00000f66                SIMCOM_MainFunction
  .text.SIMCOM_StateMachine_Callback
-                0x000012e8        0x6 aze/base/SIMCOM/src/SIMCOM_State.o
+                0x000010a8        0x6 aze/base/SIMCOM/src/SIMCOM_State.o
  .text.APN_Selection
-                0x000012ee       0xc6 aze/base/SIMCOM/src/SIMCOM_State.o
-                0x000012ee                APN_Selection
+                0x000010ae       0xc6 aze/base/SIMCOM/src/SIMCOM_State.o
+                0x000010ae                APN_Selection
  .text.SIMCOM_StateMachine
-                0x000013b4      0x570 aze/base/SIMCOM/src/SIMCOM_State.o
-                0x000013b4                SIMCOM_StateMachine
+                0x00001174      0x570 aze/base/SIMCOM/src/SIMCOM_State.o
+                0x00001174                SIMCOM_StateMachine
  .text.PRC_SYS_INIT
-                0x00001924        0x6 aze/base/SysOS/src/SysOS.o
-                0x00001924                PRC_SYS_INIT
+                0x000016e4        0x6 aze/base/SysOS/src/SysOS.o
+                0x000016e4                PRC_SYS_INIT
  .text.FUN_SYS_Evaluate_Tasks_x1
-                0x0000192a       0x18 aze/base/SysOS/src/SysOS.o
-                0x0000192a                FUN_SYS_Evaluate_Tasks_x1
+                0x000016ea       0x18 aze/base/SysOS/src/SysOS.o
+                0x000016ea                FUN_SYS_Evaluate_Tasks_x1
  .text.FUN_SYS_Execute_Tasks
-                0x00001942       0x18 aze/base/SysOS/src/SysOS.o
-                0x00001942                FUN_SYS_Execute_Tasks
+                0x00001702       0x18 aze/base/SysOS/src/SysOS.o
+                0x00001702                FUN_SYS_Execute_Tasks
  .text.FUN_SYS_Timer_x1
-                0x0000195a        0x6 aze/base/SysOS/src/SysOS.o
-                0x0000195a                FUN_SYS_Timer_x1
+                0x0000171a        0x6 aze/base/SysOS/src/SysOS.o
+                0x0000171a                FUN_SYS_Timer_x1
  .text.SysOs_Main
-                0x00001960       0x14 aze/base/SysOS/src/SysOS.o
-                0x00001960                SysOs_Main
+                0x00001720       0x14 aze/base/SysOS/src/SysOS.o
+                0x00001720                SysOs_Main
  .text.Avr_Init
-                0x00001974        0xc aze/Cosmic_App/MQTT/src/CS_Iot.o
-                0x00001974                Avr_Init
+                0x00001734        0xc aze/Cosmic_App/MQTT/src/CS_Iot.o
+                0x00001734                Avr_Init
  .text.COSMIC_SIMCOM_Error_Callback
-                0x00001980       0x14 aze/Cosmic_App/MQTT/src/CS_Iot.o
-                0x00001980                COSMIC_SIMCOM_Error_Callback
+                0x00001740       0x14 aze/Cosmic_App/MQTT/src/CS_Iot.o
+                0x00001740                COSMIC_SIMCOM_Error_Callback
  .text.MQTT_CALLBACK
-                0x00001994        0x6 aze/Cosmic_App/MQTT/src/MQTT.o
+                0x00001754        0x6 aze/Cosmic_App/MQTT/src/MQTT.o
  .text.MQTT_StateMachine
-                0x0000199a      0x5aa aze/Cosmic_App/MQTT/src/MQTT.o
-                0x0000199a                MQTT_StateMachine
+                0x0000175a      0x5aa aze/Cosmic_App/MQTT/src/MQTT.o
+                0x0000175a                MQTT_StateMachine
  .text.MQTT_Publish_CallBack
-                0x00001f44        0x6 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+                0x00001d04        0x6 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
  .text.MQTT_Publish_StateMachine
-                0x00001f4a      0x31c aze/Cosmic_App/MQTT/src/MQTT_Publish.o
-                0x00001f4a                MQTT_Publish_StateMachine
+                0x00001d0a      0x31c aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+                0x00001d0a                MQTT_Publish_StateMachine
  .text.SIMCOM_SSL_Configration_Callback
-                0x00002266        0x6 aze/Cosmic_App/MQTT/src/MQTT_SSL.o
+                0x00002026        0x6 aze/Cosmic_App/MQTT/src/MQTT_SSL.o
  .text.SIMCOM_SSL_CONFIG_MainFunction
-                0x0000226c      0x2ca aze/Cosmic_App/MQTT/src/MQTT_SSL.o
-                0x0000226c                SIMCOM_SSL_CONFIG_MainFunction
+                0x0000202c      0x2ca aze/Cosmic_App/MQTT/src/MQTT_SSL.o
+                0x0000202c                SIMCOM_SSL_CONFIG_MainFunction
  .text.COSMIC_Generic_SIMCOM_Callback
-                0x00002536       0x14 aze/Cosmic_App/MQTT_Application.o
-                0x00002536                COSMIC_Generic_SIMCOM_Callback
+                0x000022f6       0x14 aze/Cosmic_App/MQTT_Application.o
+                0x000022f6                COSMIC_Generic_SIMCOM_Callback
  .text.CloudRxCommandDataRxCbk
-                0x0000254a        0x2 aze/Cosmic_App/MQTT_Application.o
-                0x0000254a                CloudRxCommandDataRxCbk
+                0x0000230a        0x2 aze/Cosmic_App/MQTT_Application.o
+                0x0000230a                CloudRxCommandDataRxCbk
  .text.Cloud_ComIf_ErrorNotification
-                0x0000254c        0x2 aze/Cosmic_App/MQTT_Application.o
-                0x0000254c                Cloud_ComIf_ErrorNotification
+                0x0000230c        0x2 aze/Cosmic_App/MQTT_Application.o
+                0x0000230c                Cloud_ComIf_ErrorNotification
  .text.Cloud_Transmit
-                0x0000254e        0xe aze/Cosmic_App/MQTT_Application.o
-                0x0000254e                Cloud_Transmit
+                0x0000230e        0xe aze/Cosmic_App/MQTT_Application.o
+                0x0000230e                Cloud_Transmit
  .text.UpdatePublishdata
-                0x0000255c       0x36 aze/Cosmic_App/MQTT_Application.o
-                0x0000255c                UpdatePublishdata
+                0x0000231c       0x36 aze/Cosmic_App/MQTT_Application.o
+                0x0000231c                UpdatePublishdata
  .text.MQTT_StringSeperate
-                0x00002592       0xd0 aze/Cosmic_App/MQTT_Application.o
-                0x00002592                MQTT_StringSeperate
+                0x00002352       0xd0 aze/Cosmic_App/MQTT_Application.o
+                0x00002352                MQTT_StringSeperate
  .text.MQTT_AppMain
-                0x00002662      0x10e aze/Cosmic_App/MQTT_Application.o
-                0x00002662                MQTT_AppMain
+                0x00002422      0x10e aze/Cosmic_App/MQTT_Application.o
+                0x00002422                MQTT_AppMain
  .text.PRC_SYSOS_TASK_INIT
-                0x00002770       0x16 aze/Gen/SysOs_Processes.o
-                0x00002770                PRC_SYSOS_TASK_INIT
+                0x00002530       0x16 aze/Gen/SysOs_Processes.o
+                0x00002530                PRC_SYSOS_TASK_INIT
  .text.PRC_SYSOS_TASK_X100
-                0x00002786        0x6 aze/Gen/SysOs_Processes.o
-                0x00002786                PRC_SYSOS_TASK_X100
+                0x00002546        0x6 aze/Gen/SysOs_Processes.o
+                0x00002546                PRC_SYSOS_TASK_X100
  .text.FUN_SYS_Internal_Init
-                0x0000278c       0x10 aze/Gen/SysOs_Processes.o
-                0x0000278c                FUN_SYS_Internal_Init
+                0x0000254c       0x10 aze/Gen/SysOs_Processes.o
+                0x0000254c                FUN_SYS_Internal_Init
  .text.FUN_SYS_Internal_Evaluate_Tasks_x1
-                0x0000279c        0x2 aze/Gen/SysOs_Processes.o
-                0x0000279c                FUN_SYS_Internal_Evaluate_Tasks_x1
+                0x0000255c        0x2 aze/Gen/SysOs_Processes.o
+                0x0000255c                FUN_SYS_Internal_Evaluate_Tasks_x1
  .text.FUN_SYS_Internal_Execute_Tasks
-                0x0000279e        0x6 aze/Gen/SysOs_Processes.o
-                0x0000279e                FUN_SYS_Internal_Execute_Tasks
- .text.main     0x000027a4        0xa main.o
-                0x000027a4                main
- .text.libgcc   0x000027ae        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x000027ae                __tablejump2__
+                0x0000255e        0x6 aze/Gen/SysOs_Processes.o
+                0x0000255e                FUN_SYS_Internal_Execute_Tasks
+ .text.main     0x00002564        0xa main.o
+                0x00002564                main
+ .text.libgcc   0x0000256e        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x0000256e                __tablejump2__
  .text.avr-libc
-                0x000027ba       0x3c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(atoi.o)
-                0x000027ba                atoi
+                0x0000257a       0x3c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(atoi.o)
+                0x0000257a                atoi
  .text.avr-libc
-                0x000027f6       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memcmp.o)
-                0x000027f6                memcmp
+                0x000025b6       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memcmp.o)
+                0x000025b6                memcmp
  .text.avr-libc
-                0x00002810       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memcpy.o)
-                0x00002810                memcpy
+                0x000025d0       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memcpy.o)
+                0x000025d0                memcpy
  .text.avr-libc
-                0x00002822       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strcmp.o)
-                0x00002822                strcmp
+                0x000025e2       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strcmp.o)
+                0x000025e2                strcmp
  .text.avr-libc
-                0x00002834        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strcpy.o)
-                0x00002834                strcpy
+                0x000025f4        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strcpy.o)
+                0x000025f4                strcpy
  .text.avr-libc
-                0x00002842       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strstr.o)
-                0x00002842                strstr
+                0x00002602       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strstr.o)
+                0x00002602                strstr
  .text.avr-libc
-                0x00002876       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(mul10.o)
-                0x00002876                __mulhi_const_10
+                0x00002636       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(mul10.o)
+                0x00002636                __mulhi_const_10
  .text.avr-libc
-                0x00002886       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(sprintf.o)
-                0x00002886                sprintf
+                0x00002646       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(sprintf.o)
+                0x00002646                sprintf
  .text.avr-libc
-                0x000028ca      0x3c2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
-                0x000028ca                vfprintf
+                0x0000268a      0x3c2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                0x0000268a                vfprintf
  .text.avr-libc
-                0x00002c8c       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
-                0x00002c8c                strnlen_P
+                0x00002a4c       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                0x00002a4c                strnlen_P
  .text.avr-libc
-                0x00002ca2       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
-                0x00002ca2                strnlen
+                0x00002a62       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                0x00002a62                strnlen
  .text.avr-libc
-                0x00002cb8       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
-                0x00002cb8                fputc
+                0x00002a78       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
+                0x00002a78                fputc
  .text.avr-libc
-                0x00002d30       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
-                0x00002d30                __ultoa_invert
+                0x00002af0       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+                0x00002af0                __ultoa_invert
  .text.libgcc.prologue
-                0x00002dec       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
-                0x00002dec                __prologue_saves__
+                0x00002bac       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
+                0x00002bac                __prologue_saves__
  .text.libgcc.prologue
-                0x00002e24       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
-                0x00002e24                __epilogue_restores__
-                0x00002e5a                . = ALIGN (0x2)
+                0x00002be4       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
+                0x00002be4                __epilogue_restores__
+                0x00002c1a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00002e5a        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00002e5a                _exit
-                0x00002e5a                exit
+ .fini9         0x00002c1a        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00002c1a                _exit
+                0x00002c1a                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -908,11 +859,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00002e5a        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00002c1a        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00002e5e                _etext = .
+                0x00002c1e                _etext = .
 
-.data           0x00800060      0x3a8 load address 0x00002e5e
+.data           0x00800060      0x39e load address 0x00002c1e
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -950,106 +901,104 @@ END GROUP
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x00800096        0xa aze/base/LCD_16X2/lcd.o
- .rodata.str1.1
-                0x008000a0       0x57 aze/base/SIMCOM/src/SIMCOM.o
+                0x00800096       0x57 aze/base/SIMCOM/src/SIMCOM.o
                                  0x58 (size before relaxing)
  .rodata.str1.1
-                0x008000f7       0xe3 aze/base/SIMCOM/src/SIMCOM_State.o
+                0x008000ed       0xe3 aze/base/SIMCOM/src/SIMCOM_State.o
                                  0xe9 (size before relaxing)
  .rodata.str1.1
-                0x008001da      0x127 aze/Cosmic_App/MQTT/src/MQTT.o
+                0x008001d0      0x127 aze/Cosmic_App/MQTT/src/MQTT.o
                                 0x12a (size before relaxing)
  .rodata.str1.1
-                0x00800301       0x4c aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+                0x008002f7       0x4c aze/Cosmic_App/MQTT/src/MQTT_Publish.o
                                  0x51 (size before relaxing)
  .rodata.str1.1
-                0x0080034d       0xad aze/Cosmic_App/MQTT/src/MQTT_SSL.o
+                0x00800343       0xad aze/Cosmic_App/MQTT/src/MQTT_SSL.o
                                  0xb0 (size before relaxing)
  .rodata.str1.1
-                0x008003fa        0xd aze/Cosmic_App/MQTT_Application.o
+                0x008003f0        0xd aze/Cosmic_App/MQTT_Application.o
                                  0x10 (size before relaxing)
  *(.gnu.linkonce.r*)
-                0x00800408                . = ALIGN (0x2)
- *fill*         0x00800407        0x1 
-                0x00800408                _edata = .
-                0x00800408                PROVIDE (__data_end, .)
+                0x008003fe                . = ALIGN (0x2)
+ *fill*         0x008003fd        0x1 
+                0x008003fe                _edata = .
+                0x008003fe                PROVIDE (__data_end, .)
 
-.bss            0x00800408      0x39d
-                0x00800408                PROVIDE (__bss_start, .)
+.bss            0x008003fe      0x39d
+                0x008003fe                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.prevData.2597
-                0x00800408        0x1 aze/base/SIMCOM/src/SIMCOM.o
+                0x008003fe        0x1 aze/base/SIMCOM/src/SIMCOM.o
  .bss.PublishStatus
-                0x00800409        0x1 aze/base/SIMCOM/src/SIMCOM.o
-                0x00800409                PublishStatus
+                0x008003ff        0x1 aze/base/SIMCOM/src/SIMCOM.o
+                0x008003ff                PublishStatus
  .bss.SIMCOM_ReceptionIgnoreCommandCount
-                0x0080040a        0x1 aze/base/SIMCOM/src/SIMCOM.o
-                0x0080040a                SIMCOM_ReceptionIgnoreCommandCount
+                0x00800400        0x1 aze/base/SIMCOM/src/SIMCOM.o
+                0x00800400                SIMCOM_ReceptionIgnoreCommandCount
  .bss.SIMCOM_ResponseLength
-                0x0080040b        0x1 aze/base/SIMCOM/src/SIMCOM.o
-                0x0080040b                SIMCOM_ResponseLength
+                0x00800401        0x1 aze/base/SIMCOM/src/SIMCOM.o
+                0x00800401                SIMCOM_ResponseLength
  .bss.SIMCOM_ComState
-                0x0080040c        0x1 aze/base/SIMCOM/src/SIMCOM.o
-                0x0080040c                SIMCOM_ComState
+                0x00800402        0x1 aze/base/SIMCOM/src/SIMCOM.o
+                0x00800402                SIMCOM_ComState
  .bss.SIMCOM_Job_Result
-                0x0080040d        0x1 aze/base/SIMCOM/src/SIMCOM_State.o
+                0x00800403        0x1 aze/base/SIMCOM/src/SIMCOM_State.o
  .bss.SIMCOM_State
-                0x0080040e        0x1 aze/base/SIMCOM/src/SIMCOM_State.o
-                0x0080040e                SIMCOM_State
+                0x00800404        0x1 aze/base/SIMCOM/src/SIMCOM_State.o
+                0x00800404                SIMCOM_State
  .bss.g_Fatal_Error_B
-                0x0080040f        0x1 aze/base/SysOS/src/SysOS.o
-                0x0080040f                g_Fatal_Error_B
+                0x00800405        0x1 aze/base/SysOS/src/SysOS.o
+                0x00800405                g_Fatal_Error_B
  .bss.SIMCOM_Job_Result
-                0x00800410        0x1 aze/Cosmic_App/MQTT/src/MQTT.o
+                0x00800406        0x1 aze/Cosmic_App/MQTT/src/MQTT.o
  .bss.SIMCOM_Job_Result
-                0x00800411        0x1 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+                0x00800407        0x1 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
  .bss.Publish_State
-                0x00800412        0x1 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
-                0x00800412                Publish_State
+                0x00800408        0x1 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+                0x00800408                Publish_State
  .bss.SIMCOM_Job_Result
-                0x00800413        0x1 aze/Cosmic_App/MQTT/src/MQTT_SSL.o
- .bss.arr.2506  0x00800414        0x5 aze/Cosmic_App/MQTT_Application.o
+                0x00800409        0x1 aze/Cosmic_App/MQTT/src/MQTT_SSL.o
+ .bss.arr.2506  0x0080040a        0x5 aze/Cosmic_App/MQTT_Application.o
  .bss.IsSubscribeMsgRecieved
-                0x00800419        0x1 aze/Cosmic_App/MQTT_Application.o
-                0x00800419                IsSubscribeMsgRecieved
+                0x0080040f        0x1 aze/Cosmic_App/MQTT_Application.o
+                0x0080040f                IsSubscribeMsgRecieved
  .bss.MQTTApp_State
-                0x0080041a        0x1 aze/Cosmic_App/MQTT_Application.o
-                0x0080041a                MQTTApp_State
+                0x00800410        0x1 aze/Cosmic_App/MQTT_Application.o
+                0x00800410                MQTTApp_State
  *(COMMON)
- COMMON         0x0080041b        0x6 aze/base/Helpers/Buffer/src/Buffer.o
-                0x0080041b                Buffers
- COMMON         0x00800421      0x10b aze/base/Helpers/String/src/StringHelper.o
-                0x00800421                StringHelper_Buffer
-                0x00800520                StringHelper_NumberString_Buffer
- COMMON         0x0080052c       0xd1 aze/base/SIMCOM/src/SIMCOM.o
-                0x0080052c                SIMCOM_ResponseBuffer
-                0x008005f4                SIMCOM_CurrentJob
- COMMON         0x008005fd       0x28 aze/base/SIMCOM/src/SIMCOM_State.o
-                0x008005fd                APN_name
- COMMON         0x00800625       0x40 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
-                0x00800625                PublishPayload
- COMMON         0x00800665       0x26 aze/Cosmic_App/MQTT_Application.o
-                0x00800665                CommandData
-                0x0080066d                SubscribeDataBuff
- COMMON         0x0080068b       0xc8 aze/Gen/Buffer_Config.o
-                0x0080068b                BufferArray_SIMCOM
- COMMON         0x00800753       0x51 aze/Gen/ComIf_Config.o
-                0x00800753                ComIf_ShadowBuffer_Cloud_CommandDataStatus
-                0x0080075b                ComIf_RxMessageBuffer_Cloud_RxCommandData
-                0x00800764                ComIfChannelTxBuffer_Cloud
- COMMON         0x008007a4        0x1 aze/Gen/SysOs_Processes.o
-                0x008007a4                SysOS_Ctrl
-                0x008007a5                PROVIDE (__bss_end, .)
-                0x00002e5e                __data_load_start = LOADADDR (.data)
-                0x00003206                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800411        0x6 aze/base/Helpers/Buffer/src/Buffer.o
+                0x00800411                Buffers
+ COMMON         0x00800417      0x10b aze/base/Helpers/String/src/StringHelper.o
+                0x00800417                StringHelper_Buffer
+                0x00800516                StringHelper_NumberString_Buffer
+ COMMON         0x00800522       0xd1 aze/base/SIMCOM/src/SIMCOM.o
+                0x00800522                SIMCOM_ResponseBuffer
+                0x008005ea                SIMCOM_CurrentJob
+ COMMON         0x008005f3       0x28 aze/base/SIMCOM/src/SIMCOM_State.o
+                0x008005f3                APN_name
+ COMMON         0x0080061b       0x40 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+                0x0080061b                PublishPayload
+ COMMON         0x0080065b       0x26 aze/Cosmic_App/MQTT_Application.o
+                0x0080065b                CommandData
+                0x00800663                SubscribeDataBuff
+ COMMON         0x00800681       0xc8 aze/Gen/Buffer_Config.o
+                0x00800681                BufferArray_SIMCOM
+ COMMON         0x00800749       0x51 aze/Gen/ComIf_Config.o
+                0x00800749                ComIf_ShadowBuffer_Cloud_CommandDataStatus
+                0x00800751                ComIf_RxMessageBuffer_Cloud_RxCommandData
+                0x0080075a                ComIfChannelTxBuffer_Cloud
+ COMMON         0x0080079a        0x1 aze/Gen/SysOs_Processes.o
+                0x0080079a                SysOS_Ctrl
+                0x0080079b                PROVIDE (__bss_end, .)
+                0x00002c1e                __data_load_start = LOADADDR (.data)
+                0x00002fbc                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008007a5        0x0
+.noinit         0x0080079b        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008007a5                _end = .
+                0x0080079b                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -1100,7 +1049,6 @@ END GROUP
  .comment       0x00000030       0x31 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
  .comment       0x00000030       0x31 aze/base/Helpers/Buffer/src/Buffer.o
  .comment       0x00000030       0x31 aze/base/Helpers/String/src/StringHelper.o
- .comment       0x00000030       0x31 aze/base/LCD_16X2/lcd.o
  .comment       0x00000030       0x31 aze/base/SIMCOM/src/SIMCOM.o
  .comment       0x00000030       0x31 aze/base/SIMCOM/src/SIMCOM_State.o
  .comment       0x00000030       0x31 aze/base/SysOS/src/SysOS.o
@@ -1138,7 +1086,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x4d0
+.debug_aranges  0x00000000      0x450
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x28 aze/base/Atmega_Drivers/TIM1_Interupt.o
@@ -1157,36 +1105,34 @@ END GROUP
  .debug_aranges
                 0x00000180       0x50 aze/base/Helpers/String/src/StringHelper.o
  .debug_aranges
-                0x000001d0       0x80 aze/base/LCD_16X2/lcd.o
+                0x000001d0       0x80 aze/base/SIMCOM/src/SIMCOM.o
  .debug_aranges
-                0x00000250       0x80 aze/base/SIMCOM/src/SIMCOM.o
+                0x00000250       0x30 aze/base/SIMCOM/src/SIMCOM_State.o
  .debug_aranges
-                0x000002d0       0x30 aze/base/SIMCOM/src/SIMCOM_State.o
+                0x00000280       0x40 aze/base/SysOS/src/SysOS.o
  .debug_aranges
-                0x00000300       0x40 aze/base/SysOS/src/SysOS.o
+                0x000002c0       0x28 aze/Cosmic_App/MQTT/src/CS_Iot.o
  .debug_aranges
-                0x00000340       0x28 aze/Cosmic_App/MQTT/src/CS_Iot.o
+                0x000002e8       0x28 aze/Cosmic_App/MQTT/src/MQTT.o
  .debug_aranges
-                0x00000368       0x28 aze/Cosmic_App/MQTT/src/MQTT.o
+                0x00000310       0x28 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
  .debug_aranges
-                0x00000390       0x28 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+                0x00000338       0x28 aze/Cosmic_App/MQTT/src/MQTT_SSL.o
  .debug_aranges
-                0x000003b8       0x28 aze/Cosmic_App/MQTT/src/MQTT_SSL.o
+                0x00000360       0x50 aze/Cosmic_App/MQTT_Application.o
  .debug_aranges
-                0x000003e0       0x50 aze/Cosmic_App/MQTT_Application.o
+                0x000003b0       0x20 aze/Gen/Buffer_Config.o
  .debug_aranges
-                0x00000430       0x20 aze/Gen/Buffer_Config.o
+                0x000003d0       0x20 aze/Gen/ComIf_Config.o
  .debug_aranges
-                0x00000450       0x20 aze/Gen/ComIf_Config.o
+                0x000003f0       0x40 aze/Gen/SysOs_Processes.o
  .debug_aranges
-                0x00000470       0x40 aze/Gen/SysOs_Processes.o
- .debug_aranges
-                0x000004b0       0x20 main.o
+                0x00000430       0x20 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x72db
+.debug_info     0x00000000     0x6b30
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_info    0x000004e6       0xcd aze/base/Atmega_Drivers/TIM1_Interupt.o
@@ -1197,21 +1143,20 @@ END GROUP
  .debug_info    0x00001c21      0x672 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
  .debug_info    0x00002293      0x376 aze/base/Helpers/Buffer/src/Buffer.o
  .debug_info    0x00002609      0x4a0 aze/base/Helpers/String/src/StringHelper.o
- .debug_info    0x00002aa9      0x7ab aze/base/LCD_16X2/lcd.o
- .debug_info    0x00003254      0xe54 aze/base/SIMCOM/src/SIMCOM.o
- .debug_info    0x000040a8      0x9b4 aze/base/SIMCOM/src/SIMCOM_State.o
- .debug_info    0x00004a5c      0x1d4 aze/base/SysOS/src/SysOS.o
- .debug_info    0x00004c30      0x290 aze/Cosmic_App/MQTT/src/CS_Iot.o
- .debug_info    0x00004ec0      0x89d aze/Cosmic_App/MQTT/src/MQTT.o
- .debug_info    0x0000575d      0x575 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
- .debug_info    0x00005cd2      0x594 aze/Cosmic_App/MQTT/src/MQTT_SSL.o
- .debug_info    0x00006266      0x708 aze/Cosmic_App/MQTT_Application.o
- .debug_info    0x0000696e      0x10c aze/Gen/Buffer_Config.o
- .debug_info    0x00006a7a      0x5cc aze/Gen/ComIf_Config.o
- .debug_info    0x00007046      0x1f0 aze/Gen/SysOs_Processes.o
- .debug_info    0x00007236       0xa5 main.o
+ .debug_info    0x00002aa9      0xe54 aze/base/SIMCOM/src/SIMCOM.o
+ .debug_info    0x000038fd      0x9b4 aze/base/SIMCOM/src/SIMCOM_State.o
+ .debug_info    0x000042b1      0x1d4 aze/base/SysOS/src/SysOS.o
+ .debug_info    0x00004485      0x290 aze/Cosmic_App/MQTT/src/CS_Iot.o
+ .debug_info    0x00004715      0x89d aze/Cosmic_App/MQTT/src/MQTT.o
+ .debug_info    0x00004fb2      0x575 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+ .debug_info    0x00005527      0x594 aze/Cosmic_App/MQTT/src/MQTT_SSL.o
+ .debug_info    0x00005abb      0x708 aze/Cosmic_App/MQTT_Application.o
+ .debug_info    0x000061c3      0x10c aze/Gen/Buffer_Config.o
+ .debug_info    0x000062cf      0x5cc aze/Gen/ComIf_Config.o
+ .debug_info    0x0000689b      0x1f0 aze/Gen/SysOs_Processes.o
+ .debug_info    0x00006a8b       0xa5 main.o
 
-.debug_abbrev   0x00000000     0x221f
+.debug_abbrev   0x00000000     0x207f
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_abbrev  0x000004a3       0x88 aze/base/Atmega_Drivers/TIM1_Interupt.o
@@ -1222,21 +1167,20 @@ END GROUP
  .debug_abbrev  0x00000b7c      0x1b6 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
  .debug_abbrev  0x00000d32      0x108 aze/base/Helpers/Buffer/src/Buffer.o
  .debug_abbrev  0x00000e3a      0x18e aze/base/Helpers/String/src/StringHelper.o
- .debug_abbrev  0x00000fc8      0x1a0 aze/base/LCD_16X2/lcd.o
- .debug_abbrev  0x00001168      0x354 aze/base/SIMCOM/src/SIMCOM.o
- .debug_abbrev  0x000014bc      0x1d8 aze/base/SIMCOM/src/SIMCOM_State.o
- .debug_abbrev  0x00001694       0xb6 aze/base/SysOS/src/SysOS.o
- .debug_abbrev  0x0000174a       0x86 aze/Cosmic_App/MQTT/src/CS_Iot.o
- .debug_abbrev  0x000017d0      0x18e aze/Cosmic_App/MQTT/src/MQTT.o
- .debug_abbrev  0x0000195e      0x188 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
- .debug_abbrev  0x00001ae6      0x19f aze/Cosmic_App/MQTT/src/MQTT_SSL.o
- .debug_abbrev  0x00001c85      0x283 aze/Cosmic_App/MQTT_Application.o
- .debug_abbrev  0x00001f08       0xb7 aze/Gen/Buffer_Config.o
- .debug_abbrev  0x00001fbf      0x13e aze/Gen/ComIf_Config.o
- .debug_abbrev  0x000020fd       0xbd aze/Gen/SysOs_Processes.o
- .debug_abbrev  0x000021ba       0x65 main.o
+ .debug_abbrev  0x00000fc8      0x354 aze/base/SIMCOM/src/SIMCOM.o
+ .debug_abbrev  0x0000131c      0x1d8 aze/base/SIMCOM/src/SIMCOM_State.o
+ .debug_abbrev  0x000014f4       0xb6 aze/base/SysOS/src/SysOS.o
+ .debug_abbrev  0x000015aa       0x86 aze/Cosmic_App/MQTT/src/CS_Iot.o
+ .debug_abbrev  0x00001630      0x18e aze/Cosmic_App/MQTT/src/MQTT.o
+ .debug_abbrev  0x000017be      0x188 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+ .debug_abbrev  0x00001946      0x19f aze/Cosmic_App/MQTT/src/MQTT_SSL.o
+ .debug_abbrev  0x00001ae5      0x283 aze/Cosmic_App/MQTT_Application.o
+ .debug_abbrev  0x00001d68       0xb7 aze/Gen/Buffer_Config.o
+ .debug_abbrev  0x00001e1f      0x13e aze/Gen/ComIf_Config.o
+ .debug_abbrev  0x00001f5d       0xbd aze/Gen/SysOs_Processes.o
+ .debug_abbrev  0x0000201a       0x65 main.o
 
-.debug_line     0x00000000     0x3ef3
+.debug_line     0x00000000     0x3a23
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_line    0x00000116      0x113 aze/base/Atmega_Drivers/TIM1_Interupt.o
@@ -1247,21 +1191,20 @@ END GROUP
  .debug_line    0x00000bd6      0x1bb aze/base/ComIf/src/ComIf_TxShadowBuffer.o
  .debug_line    0x00000d91      0x2c2 aze/base/Helpers/Buffer/src/Buffer.o
  .debug_line    0x00001053      0x373 aze/base/Helpers/String/src/StringHelper.o
- .debug_line    0x000013c6      0x4d0 aze/base/LCD_16X2/lcd.o
- .debug_line    0x00001896      0x710 aze/base/SIMCOM/src/SIMCOM.o
- .debug_line    0x00001fa6      0x6e9 aze/base/SIMCOM/src/SIMCOM_State.o
- .debug_line    0x0000268f      0x125 aze/base/SysOS/src/SysOS.o
- .debug_line    0x000027b4      0x1d4 aze/Cosmic_App/MQTT/src/CS_Iot.o
- .debug_line    0x00002988      0x708 aze/Cosmic_App/MQTT/src/MQTT.o
- .debug_line    0x00003090      0x411 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
- .debug_line    0x000034a1      0x42c aze/Cosmic_App/MQTT/src/MQTT_SSL.o
- .debug_line    0x000038cd      0x399 aze/Cosmic_App/MQTT_Application.o
- .debug_line    0x00003c66       0x78 aze/Gen/Buffer_Config.o
- .debug_line    0x00003cde       0xb1 aze/Gen/ComIf_Config.o
- .debug_line    0x00003d8f       0xfe aze/Gen/SysOs_Processes.o
- .debug_line    0x00003e8d       0x66 main.o
+ .debug_line    0x000013c6      0x710 aze/base/SIMCOM/src/SIMCOM.o
+ .debug_line    0x00001ad6      0x6e9 aze/base/SIMCOM/src/SIMCOM_State.o
+ .debug_line    0x000021bf      0x125 aze/base/SysOS/src/SysOS.o
+ .debug_line    0x000022e4      0x1d4 aze/Cosmic_App/MQTT/src/CS_Iot.o
+ .debug_line    0x000024b8      0x708 aze/Cosmic_App/MQTT/src/MQTT.o
+ .debug_line    0x00002bc0      0x411 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+ .debug_line    0x00002fd1      0x42c aze/Cosmic_App/MQTT/src/MQTT_SSL.o
+ .debug_line    0x000033fd      0x399 aze/Cosmic_App/MQTT_Application.o
+ .debug_line    0x00003796       0x78 aze/Gen/Buffer_Config.o
+ .debug_line    0x0000380e       0xb1 aze/Gen/ComIf_Config.o
+ .debug_line    0x000038bf       0xfe aze/Gen/SysOs_Processes.o
+ .debug_line    0x000039bd       0x66 main.o
 
-.debug_frame    0x00000000      0xb0c
+.debug_frame    0x00000000      0x9b4
  *(.debug_frame)
  .debug_frame   0x00000000       0x7c aze/base/Atmega_Drivers/TIM1_Interupt.o
  .debug_frame   0x0000007c       0xc8 aze/base/Atmega_Drivers/uart.o
@@ -1271,21 +1214,20 @@ END GROUP
  .debug_frame   0x00000304       0x78 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
  .debug_frame   0x0000037c       0x98 aze/base/Helpers/Buffer/src/Buffer.o
  .debug_frame   0x00000414       0xec aze/base/Helpers/String/src/StringHelper.o
- .debug_frame   0x00000500      0x158 aze/base/LCD_16X2/lcd.o
- .debug_frame   0x00000658      0x158 aze/base/SIMCOM/src/SIMCOM.o
- .debug_frame   0x000007b0       0x68 aze/base/SIMCOM/src/SIMCOM_State.o
- .debug_frame   0x00000818       0x64 aze/base/SysOS/src/SysOS.o
- .debug_frame   0x0000087c       0x34 aze/Cosmic_App/MQTT/src/CS_Iot.o
- .debug_frame   0x000008b0       0x40 aze/Cosmic_App/MQTT/src/MQTT.o
- .debug_frame   0x000008f0       0x54 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
- .debug_frame   0x00000944       0x3c aze/Cosmic_App/MQTT/src/MQTT_SSL.o
- .debug_frame   0x00000980       0xbc aze/Cosmic_App/MQTT_Application.o
- .debug_frame   0x00000a3c       0x24 aze/Gen/Buffer_Config.o
- .debug_frame   0x00000a60       0x24 aze/Gen/ComIf_Config.o
- .debug_frame   0x00000a84       0x64 aze/Gen/SysOs_Processes.o
- .debug_frame   0x00000ae8       0x24 main.o
+ .debug_frame   0x00000500      0x158 aze/base/SIMCOM/src/SIMCOM.o
+ .debug_frame   0x00000658       0x68 aze/base/SIMCOM/src/SIMCOM_State.o
+ .debug_frame   0x000006c0       0x64 aze/base/SysOS/src/SysOS.o
+ .debug_frame   0x00000724       0x34 aze/Cosmic_App/MQTT/src/CS_Iot.o
+ .debug_frame   0x00000758       0x40 aze/Cosmic_App/MQTT/src/MQTT.o
+ .debug_frame   0x00000798       0x54 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+ .debug_frame   0x000007ec       0x3c aze/Cosmic_App/MQTT/src/MQTT_SSL.o
+ .debug_frame   0x00000828       0xbc aze/Cosmic_App/MQTT_Application.o
+ .debug_frame   0x000008e4       0x24 aze/Gen/Buffer_Config.o
+ .debug_frame   0x00000908       0x24 aze/Gen/ComIf_Config.o
+ .debug_frame   0x0000092c       0x64 aze/Gen/SysOs_Processes.o
+ .debug_frame   0x00000990       0x24 main.o
 
-.debug_str      0x00000000     0x1f7e
+.debug_str      0x00000000     0x1ec9
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_str     0x00000196      0x186 aze/base/Atmega_Drivers/TIM1_Interupt.o
@@ -1304,34 +1246,32 @@ END GROUP
                                 0x268 (size before relaxing)
  .debug_str     0x00000ae9      0x1a3 aze/base/Helpers/String/src/StringHelper.o
                                 0x336 (size before relaxing)
- .debug_str     0x00000c8c      0x10c aze/base/LCD_16X2/lcd.o
-                                0x259 (size before relaxing)
- .debug_str     0x00000d98      0x818 aze/base/SIMCOM/src/SIMCOM.o
-                                0xb6d (size before relaxing)
- .debug_str     0x000015b0      0x267 aze/base/SIMCOM/src/SIMCOM_State.o
-                                0x6c6 (size before relaxing)
- .debug_str     0x00001817      0x103 aze/base/SysOS/src/SysOS.o
+ .debug_str     0x00000c8c      0x866 aze/base/SIMCOM/src/SIMCOM.o
+                                0xb72 (size before relaxing)
+ .debug_str     0x000014f2      0x267 aze/base/SIMCOM/src/SIMCOM_State.o
+                                0x6cb (size before relaxing)
+ .debug_str     0x00001759      0x103 aze/base/SysOS/src/SysOS.o
                                 0x285 (size before relaxing)
- .debug_str     0x0000191a      0x143 aze/Cosmic_App/MQTT/src/CS_Iot.o
+ .debug_str     0x0000185c      0x143 aze/Cosmic_App/MQTT/src/CS_Iot.o
                                 0x65b (size before relaxing)
- .debug_str     0x00001a5d       0xb1 aze/Cosmic_App/MQTT/src/MQTT.o
-                                0x6f4 (size before relaxing)
- .debug_str     0x00001b0e       0xac aze/Cosmic_App/MQTT/src/MQTT_Publish.o
-                                0x5ca (size before relaxing)
- .debug_str     0x00001bba       0x95 aze/Cosmic_App/MQTT/src/MQTT_SSL.o
-                                0x71f (size before relaxing)
- .debug_str     0x00001c4f      0x1e8 aze/Cosmic_App/MQTT_Application.o
-                                0x73e (size before relaxing)
- .debug_str     0x00001e37       0x27 aze/Gen/Buffer_Config.o
+ .debug_str     0x0000199f       0xb1 aze/Cosmic_App/MQTT/src/MQTT.o
+                                0x6f9 (size before relaxing)
+ .debug_str     0x00001a50       0xac aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+                                0x5cf (size before relaxing)
+ .debug_str     0x00001afc       0x95 aze/Cosmic_App/MQTT/src/MQTT_SSL.o
+                                0x724 (size before relaxing)
+ .debug_str     0x00001b91      0x1e8 aze/Cosmic_App/MQTT_Application.o
+                                0x743 (size before relaxing)
+ .debug_str     0x00001d79       0x27 aze/Gen/Buffer_Config.o
                                 0x1af (size before relaxing)
- .debug_str     0x00001e5e       0xca aze/Gen/ComIf_Config.o
+ .debug_str     0x00001da0       0xca aze/Gen/ComIf_Config.o
                                 0x61e (size before relaxing)
- .debug_str     0x00001f28       0x45 aze/Gen/SysOs_Processes.o
+ .debug_str     0x00001e6a       0x4e aze/Gen/SysOs_Processes.o
                                 0x284 (size before relaxing)
- .debug_str     0x00001f6d       0x11 main.o
+ .debug_str     0x00001eb8       0x11 main.o
                                 0x174 (size before relaxing)
 
-.debug_loc      0x00000000     0x3d7b
+.debug_loc      0x00000000     0x3628
  *(.debug_loc)
  .debug_loc     0x00000000       0xcb aze/base/Atmega_Drivers/TIM1_Interupt.o
  .debug_loc     0x000000cb      0x135 aze/base/Atmega_Drivers/uart.o
@@ -1341,14 +1281,13 @@ END GROUP
  .debug_loc     0x00001395      0x497 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
  .debug_loc     0x0000182c      0x4b2 aze/base/Helpers/Buffer/src/Buffer.o
  .debug_loc     0x00001cde      0x6d7 aze/base/Helpers/String/src/StringHelper.o
- .debug_loc     0x000023b5      0x753 aze/base/LCD_16X2/lcd.o
- .debug_loc     0x00002b08      0x6eb aze/base/SIMCOM/src/SIMCOM.o
- .debug_loc     0x000031f3      0x3e5 aze/base/SIMCOM/src/SIMCOM_State.o
- .debug_loc     0x000035d8      0x1bd aze/Cosmic_App/MQTT/src/MQTT.o
- .debug_loc     0x00003795      0x114 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
- .debug_loc     0x000038a9       0xcc aze/Cosmic_App/MQTT/src/MQTT_SSL.o
- .debug_loc     0x00003975      0x39a aze/Cosmic_App/MQTT_Application.o
- .debug_loc     0x00003d0f       0x6c aze/Gen/ComIf_Config.o
+ .debug_loc     0x000023b5      0x6eb aze/base/SIMCOM/src/SIMCOM.o
+ .debug_loc     0x00002aa0      0x3e5 aze/base/SIMCOM/src/SIMCOM_State.o
+ .debug_loc     0x00002e85      0x1bd aze/Cosmic_App/MQTT/src/MQTT.o
+ .debug_loc     0x00003042      0x114 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+ .debug_loc     0x00003156       0xcc aze/Cosmic_App/MQTT/src/MQTT_SSL.o
+ .debug_loc     0x00003222      0x39a aze/Cosmic_App/MQTT_Application.o
+ .debug_loc     0x000035bc       0x6c aze/Gen/ComIf_Config.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1368,7 +1307,7 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x588
+.debug_ranges   0x00000000      0x518
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x18 aze/base/Atmega_Drivers/TIM1_Interupt.o
  .debug_ranges  0x00000018       0x38 aze/base/Atmega_Drivers/uart.o
@@ -1378,19 +1317,18 @@ END GROUP
  .debug_ranges  0x00000178       0x50 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
  .debug_ranges  0x000001c8       0x50 aze/base/Helpers/Buffer/src/Buffer.o
  .debug_ranges  0x00000218       0x70 aze/base/Helpers/String/src/StringHelper.o
- .debug_ranges  0x00000288       0x70 aze/base/LCD_16X2/lcd.o
- .debug_ranges  0x000002f8       0x70 aze/base/SIMCOM/src/SIMCOM.o
- .debug_ranges  0x00000368       0xd8 aze/base/SIMCOM/src/SIMCOM_State.o
- .debug_ranges  0x00000440       0x30 aze/base/SysOS/src/SysOS.o
- .debug_ranges  0x00000470       0x18 aze/Cosmic_App/MQTT/src/CS_Iot.o
- .debug_ranges  0x00000488       0x30 aze/Cosmic_App/MQTT/src/MQTT.o
- .debug_ranges  0x000004b8       0x18 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
- .debug_ranges  0x000004d0       0x18 aze/Cosmic_App/MQTT/src/MQTT_SSL.o
- .debug_ranges  0x000004e8       0x40 aze/Cosmic_App/MQTT_Application.o
- .debug_ranges  0x00000528       0x10 aze/Gen/Buffer_Config.o
- .debug_ranges  0x00000538       0x10 aze/Gen/ComIf_Config.o
- .debug_ranges  0x00000548       0x30 aze/Gen/SysOs_Processes.o
- .debug_ranges  0x00000578       0x10 main.o
+ .debug_ranges  0x00000288       0x70 aze/base/SIMCOM/src/SIMCOM.o
+ .debug_ranges  0x000002f8       0xd8 aze/base/SIMCOM/src/SIMCOM_State.o
+ .debug_ranges  0x000003d0       0x30 aze/base/SysOS/src/SysOS.o
+ .debug_ranges  0x00000400       0x18 aze/Cosmic_App/MQTT/src/CS_Iot.o
+ .debug_ranges  0x00000418       0x30 aze/Cosmic_App/MQTT/src/MQTT.o
+ .debug_ranges  0x00000448       0x18 aze/Cosmic_App/MQTT/src/MQTT_Publish.o
+ .debug_ranges  0x00000460       0x18 aze/Cosmic_App/MQTT/src/MQTT_SSL.o
+ .debug_ranges  0x00000478       0x40 aze/Cosmic_App/MQTT_Application.o
+ .debug_ranges  0x000004b8       0x10 aze/Gen/Buffer_Config.o
+ .debug_ranges  0x000004c8       0x10 aze/Gen/ComIf_Config.o
+ .debug_ranges  0x000004d8       0x30 aze/Gen/SysOs_Processes.o
+ .debug_ranges  0x00000508       0x10 main.o
 
 .debug_macro
  *(.debug_macro)
