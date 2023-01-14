@@ -1,5 +1,5 @@
-#ifndef LCD_H
-#define LCD_H
+#ifndef _LCD_H
+#define _LCD_H
 
 
 #define rs_hi (PORTB|=(1<<PB3))
