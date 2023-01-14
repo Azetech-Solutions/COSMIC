@@ -8,12 +8,8 @@
 
 void LCD_Init()
 {
-	DDRB=0XFF;
-	PORTB=0x00;
-	
 	DDRD=0XFF;
 	PORTD=0x00;
-	
 	lcd_cursor();
 	lcd_cmd(0x28);
 	lcd_cmd(0x0e);

@@ -25,6 +25,8 @@ static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE MQTT_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT;
 
+UBYTE MQTTConnectWaittime = 30;
+
 /*****************************************/
 /* Static Function Definitions           */
 /*****************************************/
@@ -36,8 +38,8 @@ static void MQTT_CALLBACK(SIMCOM_Job_Result_EN result)
 	// This will be read in the Main function, so simply set the value
 	SIMCOM_Job_Result = result;
 }
-UBYTE MQTTReconnectCount = 600;
 
+UBYTE MQTTRecoonectCount = 600;
 /*****************************************/
 /* Function Definitions                  */
 /*****************************************/
@@ -46,14 +48,10 @@ void MQTT_StateMachine(void)
 {
 	MQTT_State_EN MQTT_State_Before_Execution = MQTT_State;
 
-	if(MQTTReconnectCount == 0)
+	if(MQTTRecoonectCount == 0)
 	{
 		MQTT_State = MQTTCONNECTIONCHECK;
-		MQTTReconnectCount = 600;
-	}
-	else
-	{
-		MQTTReconnectCount--;
+		MQTTRecoonectCount = 60;
 	}
 
 	BOOL RetryInNextCycle = FALSE;
@@ -100,6 +98,8 @@ void MQTT_StateMachine(void)
 					{
 						// If there is a problem in reception, retry sending the command
 						RetryInNextCycle = TRUE;
+
+
 						// TODO: Log Error.
 					}
 					else
@@ -190,17 +190,14 @@ void MQTT_StateMachine(void)
 
 							// Move to next state
 						}
-						else  if(SIMCOM_IsResponseError())
+						else if(SIMCOM_IsResponse_Entermessage())
 						{
-							MQTT_State = MQTTSTOP;
+							MQTT_State = MQTTDISCONNEECT;
 						}
 						else
 						{
-							// If the returned value is ERROR or something else, then act accordingly
-							// TODO: Later
-							RetryInNextCycle = TRUE;
-						}
-						
+							MQTT_State = MQTTDISCONNEECT;
+						}						
 					}
 					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
 					{
@@ -308,6 +305,54 @@ void MQTT_StateMachine(void)
 			}
 			break;
 			
+			case MQTTDISCONNEECT:
+			{
+				// First Ensure the SIMCOM Module is Connected
+				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+				{
+					// Send AT Command and wait for response
+					if(SIMCOM_Schedule_Job("AT+CMQTTDISC=0,60", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
+					{
+						// Set it to Scheduled only when the SIMCOM Module Accepted it
+						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+						
+					}
+				}
+				else
+				{
+					// Cyclic part for the response
+					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+					{
+						// Job has been completed
+						// Positive Response would be -> +CLTS: <mode>
+						// <mode> : 0 Disable   1 Enable
+						
+						if(SIMCOM_IsResponseOK())
+						{
+							MQTT_State = MQTTSTART;
+							
+						}
+						else
+						{
+							RetryInNextCycle = TRUE;
+						}
+					}
+					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+					{
+						// If there is a problem in reception, retry sending the command
+						RetryInNextCycle = TRUE;
+
+
+						// TODO: Log Error.
+					}
+					else
+					{
+						// Do Nothing. Wait
+					}
+				}
+			}
+			break;
+			
 			case MQTTCONNECTIONCHECK:
 			{
 				// First Ensure the SIMCOM Module is Connected
@@ -357,17 +402,15 @@ void MQTT_StateMachine(void)
 			break;
 			
 			case MQTT_WaitForConnectResponce:
-			{	
-				RetryInNextCycle = TRUE;
-				if(MQTT_Retry_Count == 10)
+			{
+				MQTTConnectWaittime--;
+				
+				if(MQTTConnectWaittime <= 0)
 				{
-					MQTT_Retry_Count = 30;
+					
 				}
 			}
 			break;
-			
-			
-			
 			case MQTT_SubscribeTopic_Config:
 			{
 				// First Ensure the SIMCOM Module is Connected

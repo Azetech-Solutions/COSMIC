@@ -19,7 +19,7 @@ typedef enum
 {
 	MQTTApp_Init=0,
 	MQTTApp_Idle,
-	MQTTApp_StoreSubMessage,
+	MQTTApp_ComifRxindication,
 	MQTTApp_SubMessageHandling,
 	MQTTApp_ReplyMsg,
 	MQTTApp_UpdateBeforeIdle
@@ -50,7 +50,7 @@ extern MQTTApp_States MQTTApp_State;
 
 extern BOOL IsSubscribeMsgRecieved;
 
-extern char SubscribeDataBuff[30];
+extern char TOPIC1_SubscribeMsg[30];
 
 UBYTE MQTT_StringSeperate(char *str,char endpoint);
 

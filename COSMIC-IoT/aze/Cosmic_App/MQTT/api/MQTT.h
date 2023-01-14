@@ -19,6 +19,7 @@ typedef enum
 	MQTT_ClientRelease,
 	MQTT_SSL_Configure,
 	MQTT_Connect,
+	MQTTDISCONNEECT,
 	MQTTCONNECTIONCHECK,
 	MQTT_WaitForConnectResponce,
 	MQTT_SubscribeTopic_Config,

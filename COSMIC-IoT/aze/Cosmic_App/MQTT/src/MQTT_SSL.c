@@ -321,6 +321,18 @@ void SIMCOM_SSL_CONFIG_MainFunction(void)
 			{
 				SIMCOM_Error_State_EN ErrorState = SIMCOM_Error_Unknown;
 
+				switch(C_MQTT_SSL_Config_State)
+				{
+					// 						case SIMCOM_SSL_Init                         : ErrorState = SIMCOM_Error_SSL_Init; break;
+					// 						case SIMCOM_SSL_Authentication               : ErrorState = SIMCOM_Error_SSL_Authentication; break;
+					// 						case SIMCOM_SSL_CaCert_Configuration         : ErrorState = SIMCOM_Error_SSL_CaCert_Configuration; break;
+					// 						case SIMCOM_SSL_Clientcert_Configuration     : ErrorState = SIMCOM_Error_SSL_Clientcert_Configuration; break;
+					// 						case SIMCOM_SSL_Clientkey_Configuration      : ErrorState = //SIMCOM_Error__SSL_Clientkey_Configuration; break;
+					default:
+					// Do Nothing, SIMCOM Module will timeout and reerror
+					break;
+				}
+
 				SIMCOM_ERROR_CALLBACK();
 			}
 		}

@@ -19,10 +19,3 @@ void Avr_Init()
 	PORTA = 0X00;
 	PORTB = 0xFF;
 }
-void COSMIC_SIMCOM_Error_Callback()
-{
-	SIMCOM_State = SIMCOM_SM_Init;
-	C_MQTT_SSL_Config_State = C_MQTT_SSL_Init;
-	MQTT_State = MQTTSTART;
-	Publish_State = MQTT_Publish_Idle;
-}

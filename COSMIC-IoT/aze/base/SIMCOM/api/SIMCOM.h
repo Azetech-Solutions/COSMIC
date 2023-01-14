@@ -82,6 +82,17 @@ typedef enum
 
 }SIMCOM_ComState_EN;
 
+typedef enum
+{	
+	I_MQTT_Rx_Response_Idle,
+	I_MQTT_Rx_OK,
+	I_MQTT_Rx_ERROR,
+	I_MQTT_Rx_msg,
+	I_MQTT_Rx_Storedata,
+	I_MQTT_Rx_CMQTTSUB,
+	I_MQTT_Rx_CMQTTPUB
+	
+}Rx_Response_EN;
 
 /* SIMCOM Job Callback type */
 typedef void (*SIMCOM_Callback_Type)(SIMCOM_Job_Result_EN);
@@ -137,6 +148,15 @@ static inline void SIMCOM_ClearResponseBuffer()
 	memset(SIMCOM_ResponseBuffer, 0, BUFFER_MAX_SIZE);
 
 	SIMCOM_ResponseLength = 0;
+}
+
+static inline void SIMCOMCurrentBufferClear(BufferType_ST *Buff)
+{
+	memset(Buff->BufferPtr,0,Buff->Length);
+				
+	Buff->HeadIndex = 0;
+	Buff->TailIndex = 0;
+	Buff->Length = 0;
 }
 
 static inline BOOL SIMCOM_IsResponseOK()

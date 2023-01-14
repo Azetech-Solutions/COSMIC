@@ -29,7 +29,8 @@ extern void lcd_clrscr(void);
 extern void lcd_num_2dig(unsigned int aa);
 extern void lcd_num_3dig(unsigned int aa);
 extern void lcd_num_point(unsigned int aa);
-
+extern void lcd_cursor();
+extern void lcd_clrscr();
 extern void DebugStringRow1(char *data);
 extern void DebugStringRow2(char *data);
 

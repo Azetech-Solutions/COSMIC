@@ -25,6 +25,7 @@ static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE MQTT_Publish_Retry_Count = 50;
 
+
 char PublishPayload[64];
 
 
@@ -59,7 +60,7 @@ void MQTT_Publish_StateMachine(void)
 
 			case MQTT_Publish_Idle:
 			{
-
+				Publish_State = MQTT_PublishTopic_Config;
 			}
 			break;
 			case MQTT_PublishTopic_Config:

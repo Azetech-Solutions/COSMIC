@@ -16,7 +16,9 @@
 #include SIMCOM_H
 #include STRINGHELPER_H
 #include MQTT_H
+#include MQTT_SSL_H
 #include MQTT_APPLICATION_H
+#include MQTT_PUBLISH_H
 #include <stdio.h>
 #include <avr/io.h>
 #include LCD_H
@@ -29,7 +31,7 @@ CommandData_ST CommandData;
 
 MQTTApp_States MQTTApp_State = MQTTApp_Init;
 
-char SubscribeDataBuff[30];
+char TOPIC1_SubscribeMsg[30];
 
 UBYTE MQTT_StringSeperate(char *str,char endpoint);
 
@@ -48,9 +50,32 @@ void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 	SIMCOM_ClearResponseBuffer();
 }
 
+void COSMIC_SIMCOM_Error_Callback()
+{
+	SIMCOM_State = SIMCOM_SM_Init;
+	C_MQTT_SSL_Config_State = C_MQTT_SSL_Init;
+	MQTT_State = MQTTSTART;
+	Publish_State = MQTT_Publish_Idle;
+}
+
 void CloudRxCommandDataRxCbk(UBYTE Length, UBYTE *Data)
 {
-	
+			
+		if (Data[0] == 255)
+		{
+			DebugStringRow2("255");
+		}
+		
+		if (Data[1] == 1)
+		{
+			lcd_cmd(0xc8);
+			lcd_string("Trun On");
+		}
+		else
+		{
+			lcd_cmd(0xc8);
+			lcd_string("Trun Off");
+		}
 }
 
 void Cloud_ComIf_ErrorNotification(ULONG Debug0, ULONG Debug1)
@@ -79,6 +104,7 @@ void UpdatePublishdata(UBYTE Cmd)
 	{
 		CD->IO_Ctrl = TRUE;
 	}
+	
 	UBYTE *PubMsg = ComIf_GetShadowBuffer_Cloud_CommandDataStatus();
 	
 	memcpy(PubMsg,CD->Data_Bytes,8);
@@ -86,46 +112,6 @@ void UpdatePublishdata(UBYTE Cmd)
 	ComIf_TransmitFromBuffer_Cloud_CommandDataStatus();
 	
 }
-
-UBYTE MQTT_StringSeperate(char *str,char endpoint)
-{
-	static char arr[5];
-	int i,j,findlen,count = 0,temp;
-	findlen = strlen(str);
-	for(i = 0;i<SIMCOM_ResponseLength-findlen;i++)
-	{
-		j = 0;
-		if(SubscribeDataBuff[i] == str[0] && SubscribeDataBuff[i+1] == str[1])
-		{
-			temp = i;
-			while(j<findlen)
-			{
-				if(str[j] == SubscribeDataBuff[temp])
-				{
-					count++;
-					if(count == findlen)
-					{
-						temp = temp+1;
-						count = 0;
-						for(i = temp;SubscribeDataBuff[i]!=endpoint;i++)
-						{
-							arr[count] = SubscribeDataBuff[i];
-							count++;
-						}
-						return atoi(arr);
-						break;
-					}
-					j++;
-					temp++;
-				}
-			}
-		}
-		count=0;
-	}
-	
-	return 0;
-}
-
 
 void MQTT_AppMain()
 {
@@ -146,53 +132,20 @@ void MQTT_AppMain()
 			}
 		}
 		break;
+		case MQTTApp_ComifRxindication:
+		{
+			DebugStringRow1(TOPIC1_SubscribeMsg);
+			
+			ComIf_RxIndication_Cloud(TOPIC1_SubscribeMsg,strlen(TOPIC1_SubscribeMsg));
+			
+			memset(TOPIC1_SubscribeMsg,0,strlen(TOPIC1_SubscribeMsg));
+			
+			MQTTApp_State = MQTTApp_SubMessageHandling;
+		}
+		break;
 		case MQTTApp_SubMessageHandling:
 		{
-			if(IsSubscribeMsgRecieved == TRUE)
-			{
-				IsSubscribeMsgRecieved = FALSE;
-				UBYTE cmd = MQTT_StringSeperate("\"cmd\":",'\"');
-				char temp[5];
-				sprintf(temp,"%d",cmd);
-				temp[4] = '\0';
-				//DebugStringRow2(temp);
-				if (cmd == 255)
-				{
-					MQTTApp_State = MQTTApp_UpdateBeforeIdle;
-				}
-				else if (cmd == 1)
-				{
-					MQTTApp_State = MQTTApp_ReplyMsg;
-				}
-				else
-				{
-					//Invalid data received Error
-				//	PORTA = 0X00;
-				//	DebugStringRow1("error");
-				}
-				UBYTE IO_Control = MQTT_StringSeperate("\"m1\":",'}');
-				
-				char temp2[5];
-				sprintf(temp2,"%d",IO_Control);
-				temp2[4] = '\0';
-
-				if (IO_Control == 1)				
-				{
-				//	DebugStringRow1("on");
-				//	PORTA = 0x00;
-				//	PORTB = 0xFF;
-				}
-				else
-				{
-					//DebugStringRow1("off");
-				//	PORTA = 0xFF;
-				}
-				
-			}
-			else
-			{
-				//Rx_timout Have to implement
-			}
+			
 		}
 		break;
 		case MQTTApp_UpdateBeforeIdle:
@@ -215,5 +168,6 @@ void MQTT_AppMain()
 			break;
 		}
 	}
+	
 }
 
