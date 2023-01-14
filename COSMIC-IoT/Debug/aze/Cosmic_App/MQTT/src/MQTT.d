@@ -21,15 +21,7 @@ aze/Cosmic_App/MQTT/src/MQTT.d aze/Cosmic_App/MQTT/src/MQTT.o: \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
-<<<<<<< HEAD
  ../aze/base\LCD_16X2\lcd.h ../aze/Cosmic_App\MQTT_Application.h
-=======
- ../aze/base/LCD_16X2/LCD.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- ../aze/Cosmic_App\MQTT_Application.h
->>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 
 ../aze/Gen/Includes.h:
 
@@ -83,13 +75,4 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../aze/base\LCD_16X2\lcd.h:
 
-<<<<<<< HEAD
-=======
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
-
->>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 ../aze/Cosmic_App\MQTT_Application.h:

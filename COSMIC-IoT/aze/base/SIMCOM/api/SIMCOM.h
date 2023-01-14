@@ -128,9 +128,6 @@ extern UBYTE SIMCOM_ReceptionIgnoreCommandCount;
 
 extern UBYTE PublishStatus;
 
-
-extern short int MQTTRecoonectCount;
-
 /*************************/
 /* Function Declarations */
 /*************************/

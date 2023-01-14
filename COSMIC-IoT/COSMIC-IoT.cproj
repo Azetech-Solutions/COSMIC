@@ -242,9 +242,6 @@
     <Compile Include="aze\Cosmic_App\MQTT\api\MQTT.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="aze\Cosmic_App\MQTT\api\MQTT_Certificates.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="aze\Cosmic_App\MQTT\api\MQTT_Publish.h">
       <SubType>compile</SubType>
     </Compile>

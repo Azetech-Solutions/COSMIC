@@ -32,7 +32,6 @@ UWORD g_SysOS_Counter;
 /* Extern Declaration of all the Processes */
 extern void SIMCOM_Init(void);
 extern void SIMCOM_MainFunction(void);
-extern void Buffer_Init(void);
 extern void Avr_Init(void);
 extern void TIM1_Init(void);
 extern void UART_init(void);
@@ -43,24 +42,11 @@ extern void LCD_Init(void);
 /* Definition for the task Init */
 void PRC_SYSOS_TASK_INIT(void)
 {
-<<<<<<< HEAD
-=======
-		Buffer_Init();
->>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 		SIMCOM_Init();
 		UART_init();
 		Avr_Init();
 		LCD_Init();
 		TIM1_Init();
-<<<<<<< HEAD
-=======
-}
-
-/* Definition for the task x10 */
-void PRC_SYSOS_TASK_X10(void)
-{
-		Avr_Main_x10();
->>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 }
 
 /* Definition for the task x100 */

@@ -25,7 +25,6 @@
 /******************************************************/
 
 UBYTE BufferArray_SIMCOM[P_BUFFER_LENGTH_SIMCOM];
-UBYTE BufferArray_BackupBuffer[P_BUFFER_LENGTH_BackupBuffer];
 
 /******************************************************/
 /*        Configuration Function Definitions          */
@@ -34,9 +33,5 @@ UBYTE BufferArray_BackupBuffer[P_BUFFER_LENGTH_BackupBuffer];
 void Buffer_Init(void)
 {
 	SIMCOM_Buffer_Create();
-<<<<<<< HEAD
-=======
-	BackupBuffer_Buffer_Create();
->>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 }
 

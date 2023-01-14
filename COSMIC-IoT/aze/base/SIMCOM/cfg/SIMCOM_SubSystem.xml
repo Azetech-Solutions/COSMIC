@@ -19,11 +19,7 @@
         <Name>Buffer_Init</Name>
         <Index>9</Index>
         <ProcessGroupRef>Avr_Init</ProcessGroupRef>
-<<<<<<< HEAD
         <Enabled>False</Enabled>
-=======
-        <Enabled>True</Enabled>
->>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
       </Process>
     </Processes>
   </Config>

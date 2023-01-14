@@ -12,11 +12,7 @@
 #include MQTT_H
 #include MQTT_PUBLISH_H
 #include <avr/io.h>
-<<<<<<< HEAD
 #include LCD_H
-=======
-#include "LCD.h"
->>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 #include MQTT_APPLICATION_H
 
 /*****************************************/
@@ -29,8 +25,6 @@ static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE MQTT_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT;
 
-UBYTE MQTTConnectWaittime = 30;
-
 /*****************************************/
 /* Static Function Definitions           */
 /*****************************************/
@@ -42,7 +36,7 @@ static void MQTT_CALLBACK(SIMCOM_Job_Result_EN result)
 	// This will be read in the Main function, so simply set the value
 	SIMCOM_Job_Result = result;
 }
-
+UBYTE MQTTReconnectCount = 600;
 
 /*****************************************/
 /* Function Definitions                  */
@@ -52,10 +46,14 @@ void MQTT_StateMachine(void)
 {
 	MQTT_State_EN MQTT_State_Before_Execution = MQTT_State;
 
-	if(MQTTRecoonectCount == 0)
+	if(MQTTReconnectCount == 0)
 	{
 		MQTT_State = MQTTCONNECTIONCHECK;
-		MQTTRecoonectCount = 60;
+		MQTTReconnectCount = 600;
+	}
+	else
+	{
+		MQTTReconnectCount--;
 	}
 
 	BOOL RetryInNextCycle = FALSE;
@@ -359,12 +357,11 @@ void MQTT_StateMachine(void)
 			break;
 			
 			case MQTT_WaitForConnectResponce:
-			{
-				MQTTConnectWaittime--;
-				
-				if(MQTTConnectWaittime <= 0)
+			{	
+				RetryInNextCycle = TRUE;
+				if(MQTT_Retry_Count == 10)
 				{
-					
+					MQTT_Retry_Count = 30;
 				}
 			}
 			break;

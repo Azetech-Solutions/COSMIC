@@ -24,12 +24,7 @@ aze/Cosmic_App/MQTT/src/MQTT_Publish.d \
  ../aze/base\LCD_16X2\lcd.h ../aze/Cosmic_App\MQTT\api\MQTT_Publish.h \
  ../aze/Cosmic_App\MQTT_Application.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdio.h \
-<<<<<<< HEAD
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdarg.h
-=======
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdarg.h \
- ../aze/Cosmic_App\MQTT_Application.h
->>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 
 ../aze/Gen/Includes.h:
 
@@ -88,8 +83,3 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdio.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdarg.h:
-<<<<<<< HEAD
-=======
-
-../aze/Cosmic_App\MQTT_Application.h:
->>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54

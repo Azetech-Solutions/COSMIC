@@ -27,27 +27,15 @@
 /*************************************************/
 
 /* Total number of Buffers */
-#define BUFFER_MAX_COUNT                  2
+#define BUFFER_MAX_COUNT                  1
 
 /* Maximum Size of each configured Buffer */
-<<<<<<< HEAD
 #define BUFFER_MAX_SIZE                   200
-=======
-#define BUFFER_MAX_SIZE                   50
->>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 
 
 /* Buffer for SIMCOM */
 #define P_BUFFER_ID_SIMCOM            0
-<<<<<<< HEAD
 #define P_BUFFER_LENGTH_SIMCOM        200
-=======
-#define P_BUFFER_LENGTH_SIMCOM        50
-
-/* Buffer for BackupBuffer */
-#define P_BUFFER_ID_BackupBuffer            1
-#define P_BUFFER_LENGTH_BackupBuffer        50
->>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 
 
 
@@ -63,14 +51,6 @@
 #define SIMCOM_Buffer_Clear()              Buffer_Clear(P_BUFFER_ID_SIMCOM)
 #define SIMCOM_IsBufferEmpty()             (SIMCOM_Buffer_Length() == 0)
 
-#define BackupBuffer_Buffer_Create()             Buffer_Create(P_BUFFER_ID_BackupBuffer, BufferArray_BackupBuffer, P_BUFFER_LENGTH_BackupBuffer)
-#define BackupBuffer_Buffer_Get()                Buffer_GetBuffer(P_BUFFER_ID_BackupBuffer)
-#define BackupBuffer_Buffer_EnQueue(Data)        Buffer_EnQueue(P_BUFFER_ID_BackupBuffer, Data)
-#define BackupBuffer_Buffer_DeQueue(Data)        Buffer_DeQueue(P_BUFFER_ID_BackupBuffer, Data)
-#define BackupBuffer_Buffer_Length()             Buffer_Length(P_BUFFER_ID_BackupBuffer)
-#define BackupBuffer_Buffer_Clear()              Buffer_Clear(P_BUFFER_ID_BackupBuffer)
-#define BackupBuffer_IsBufferEmpty()             (BackupBuffer_Buffer_Length() == 0)
-
 
 /*************************************************/
 /*               Type Definitions                */
@@ -83,7 +63,6 @@ typedef UBYTE BufferLengthType;
 /*************************************************/
 
 extern UBYTE BufferArray_SIMCOM[];
-extern UBYTE BufferArray_BackupBuffer[];
 
 /*************************************************/
 /*          Extern Function Declarations         */
