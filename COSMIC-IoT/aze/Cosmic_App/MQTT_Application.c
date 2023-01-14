@@ -27,6 +27,23 @@
 
 CommandData_ST CommandData;
 
+
+void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
+{
+
+	/* This function will be called for an un-scheduled job. So check for the response and clear the buffer */
+	SIMCOM_ClearResponseBuffer();
+}
+
+void COSMIC_SIMCOM_Error_Callback(SIMCOM_Error_State_EN Error)
+{
+	if(Error == SIMCOM_Error_GSM_Not_Connected)
+	{
+		DebugStringRow2("GSM_Not_Connected");
+	}
+}
+
+
 MQTTApp_States MQTTApp_State = MQTTApp_Init;
 
 char SubscribeDataBuff[30];

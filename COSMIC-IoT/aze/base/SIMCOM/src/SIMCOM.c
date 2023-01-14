@@ -8,6 +8,7 @@
 
 #include <stdint.h>
 #include <avr/io.h>
+<<<<<<< HEAD
 #include MQTT_PUBLISH_H
 #include MQTT_H
 #include MQTT_APPLICATION_H
@@ -19,6 +20,19 @@
 
 #include "stdio.h"
 #include LCD_H
+=======
+#include SIMCOM_H
+#include MQTT_PUBLISH_H
+#include MQTT_H
+#include MQTT_APPLICATION_H
+#include PLATFORM_TYPES_H // For Data Types
+#include MQTT_SSL_H
+#include <avr/pgmspace.h>
+
+
+#include "stdio.h"
+#include "LCD.h"
+>>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 
 
 
@@ -303,11 +317,26 @@ void SIMCOM_MainFunction(void)
 
 	/* Call the Main Functions of the SIMCOM Sub Modules */
 
+<<<<<<< HEAD
 	SIMCOM_StateMachine();
 	SIMCOM_SSL_CONFIG_MainFunction();
 	MQTT_StateMachine();
 	MQTT_Publish_StateMachine();
 	MQTT_AppMain();
+=======
+	if (IsSSLCertConfigured == FALSE)
+	{
+		SIMCOM_SSL_CONFIG_MainFunction();
+	}
+	else
+	{
+		SIMCOM_StateMachine();
+
+		MQTT_StateMachine();
+		MQTT_Publish_StateMachine();
+		MQTT_AppMain();
+	}
+>>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 	
 }
 
@@ -346,6 +375,46 @@ BOOL SIMCOM_Schedule_Job(const char * Command, ULONG Timeout, SIMCOM_Callback_Ty
 
 	return retval;
 }
+
+
+BOOL SIMCOM_SSL_Schedule_Job(const char * Command, ULONG Timeout, SIMCOM_Callback_Type Callback)
+{
+	BOOL retval = FALSE;
+
+	if(SIMCOM_ComState == SIMCOM_Idle)
+	{
+		SIMCOM_ComState = SIMCOM_WriteInProgress; // Will act as a Mutex
+		
+		SIMCOM_CurrentJob.Timeout = (ULONG)(Timeout / P_SIMCOM_TASK_CYCLE_FACTOR);
+		SIMCOM_CurrentJob.Callback = Callback;
+		SIMCOM_CurrentJob.State = SIMCOM_Job_Idle;
+
+		/* Clear the Timer */
+		SIMCOM_IncompleteCounter = P_SIMCOM_INCOMPLETE_RESPONSE_TIMEOUT;
+
+		SIMCOM_Aliveness_Counter = P_SIMCOM_ALIVENESS_ERROR_TIME;
+
+		SIMCOM_ReceptionIgnoreCommandCount = 0;
+
+		/* Clear Response Buffer */
+		SIMCOM_ClearResponseBuffer();
+
+		for(int i=0;i<strlen_P(Command);i++)
+		{
+			UBYTE Data = pgm_read_byte_near(Command+i);
+			SIMCOM_SEND_BYTE(Data);
+		}
+		
+		SIMCOM_SEND_BYTE(CARRIAGE_RETURN);
+		
+		SIMCOM_ComState = SIMCOM_WaitingForResponse;
+
+		retval = TRUE;
+	}
+
+	return retval;
+}
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*                   SIMCOM Data Read Function                    */

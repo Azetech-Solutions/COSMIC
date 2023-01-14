@@ -10,10 +10,18 @@
 #include STRINGHELPER_H
 #include MQTT_H
 #include <avr/io.h>
+<<<<<<< HEAD
 #include LCD_H
 #include MQTT_PUBLISH_H
 #include MQTT_APPLICATION_H
 #include "stdio.h"
+=======
+#include "LCD.h"
+#include MQTT_PUBLISH_H
+#include "stdio.h"
+#include MQTT_APPLICATION_H
+
+>>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 
 /*****************************************/
 /* Global Variables                      */

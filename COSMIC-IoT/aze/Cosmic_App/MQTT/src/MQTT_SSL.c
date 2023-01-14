@@ -9,7 +9,7 @@
 #include MQTT_SSL_H
 #include STRINGHELPER_H
 #include LCD_H
-
+#include MQTT_CERTIFICATES_H
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
@@ -20,9 +20,7 @@ static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE SIMCOM_SSL_Config_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT;
 
-/*****************************************/
-/* Static Function Definitions           */
-/*****************************************/
+BOOL IsSSLCertConfigured = FALSE;
 
 static void SIMCOM_SSL_Configration_Callback(SIMCOM_Job_Result_EN result)
 {
@@ -37,6 +35,8 @@ static void SIMCOM_SSL_Configration_Callback(SIMCOM_Job_Result_EN result)
 /* Function Definitions                  */
 /*****************************************/
 
+
+
 void SIMCOM_SSL_CONFIG_MainFunction(void)
 {
 	if(IsSIMCOM_Module_Ready())
@@ -47,6 +47,522 @@ void SIMCOM_SSL_CONFIG_MainFunction(void)
 
 		switch(C_MQTT_SSL_Config_State)
 		{
+				case C_MQTT_SSL_Config_Init:
+				{
+					// First Ensure the SIMCOM Module is Connected
+					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+					{
+						// Send AT Command and wait for response
+						if(SIMCOM_Schedule_Job("AT", SIMCOM_DEFAULT_TIMEOUT,SIMCOM_SSL_Configration_Callback) == TRUE)
+						{
+							// Set it to Scheduled only when the SIMCOM Module Accepted it
+							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+						}
+					}
+					else
+					{
+						// Cyclic part for the response
+						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+						{
+							// Job has been completed
+								
+							// Check if the response is OK or not.
+							if(SIMCOM_IsResponseOK())
+							{
+								C_MQTT_SSL_Config_State = C_MQTT_SSL_URCStopCmd;
+							}
+							else
+							{
+								// If the returned value is ERROR or something else, then act accordingly
+								// TODO: Later
+								RetryInNextCycle = TRUE;
+							}
+						}
+						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+						{
+							// If there is a problem in reception, retry sending the command
+							RetryInNextCycle = TRUE;
+
+							// TODO: Log Error. Possibly the GSM Module is not powered or connected
+						}
+						else
+						{
+							// Do Nothing. Wait
+						}
+					}
+				}
+				break;
+				case C_MQTT_SSL_URCStopCmd:
+				{
+					// First Ensure the SIMCOM Module is Connected
+					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+					{
+
+						// Send AT Command and wait for response
+						if(SIMCOM_Schedule_Job("AT+CNMI=0,0,0,0,0", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_SSL_Configration_Callback) == TRUE)
+						{
+							// Set it to Scheduled only when the SIMCOM Module Accepted it
+							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+
+						}
+					}
+					else
+					{
+							
+						// Cyclic part for the response
+						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+						{
+							// Job has been completed
+								
+							// Check if the response is OK or not.
+							if(SIMCOM_IsResponseOK())
+							{
+								C_MQTT_SSL_Config_State = C_MQTT_SSL_DeleteCacert;
+							}
+							else
+							{
+								// If the returned value is ERROR or something else, then act accordingly
+								// TODO: Later
+								RetryInNextCycle = TRUE;
+							}
+						}
+						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+						{
+							// If there is a problem in reception, retry sending the command
+							RetryInNextCycle = TRUE;
+
+							// TODO: Log Error. Possibly the GSM Module is not powered or connected
+						}
+						else
+						{
+							// Do Nothing. Wait
+						}
+					}
+				}
+				break;
+				case C_MQTT_SSL_DeleteCacert:
+				{
+					// First Ensure the SIMCOM Module is Connected
+					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+					{
+						// Send AT Command and wait for response
+						if(SIMCOM_Schedule_Job("AT+CCERTDELE=\"cacert.pem\"\r\n", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_SSL_Configration_Callback) == TRUE)
+						{
+							// Set it to Scheduled only when the SIMCOM Module Accepted it
+							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+						}
+					}
+					else
+					{
+							
+						// Cyclic part for the response
+						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+						{
+							C_MQTT_SSL_Config_State = C_MQTT_SSL_DeleteClientKey;
+						}
+						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+						{
+							// If there is a problem in reception, retry sending the command
+							RetryInNextCycle = TRUE;
+
+							// TODO: Log Error. Possibly the GSM Module is not powered or connected
+						}
+						else
+						{
+							// Do Nothing. Wait
+						}
+					}
+				}
+				break;
+				case C_MQTT_SSL_DeleteClientKey:
+				{
+					// First Ensure the SIMCOM Module is Connected
+					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+					{
+						// Send AT Command and wait for response
+						if(SIMCOM_Schedule_Job("AT+CCERTDELE=\"clientkey.pem\"\r\n", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_SSL_Configration_Callback) == TRUE)
+						{
+							// Set it to Scheduled only when the SIMCOM Module Accepted it
+							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+						}
+					}
+					else
+					{
+							
+						// Cyclic part for the response
+						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+						{
+							C_MQTT_SSL_Config_State = C_MQTT_SSL_DeleteClientCert;
+						}
+						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+						{
+							// If there is a problem in reception, retry sending the command
+							RetryInNextCycle = TRUE;
+
+							// TODO: Log Error. Possibly the GSM Module is not powered or connected
+						}
+						else
+						{
+							// Do Nothing. Wait
+						}
+					}
+				}
+				break;
+				case C_MQTT_SSL_DeleteClientCert:
+				{
+					// First Ensure the SIMCOM Module is Connected
+					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+					{
+						// Send AT Command and wait for response
+						if(SIMCOM_Schedule_Job("AT+CCERTDELE=\"clientcert.pem\",\r\n", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_SSL_Configration_Callback) == TRUE)
+						{
+							// Set it to Scheduled only when the SIMCOM Module Accepted it
+							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+						}
+					}
+					else
+					{
+							
+						// Cyclic part for the response
+						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+						{
+							C_MQTT_SSL_Config_State = C_MQTT_SSL_cacert;
+						}
+						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+						{
+							// If there is a problem in reception, retry sending the command
+							RetryInNextCycle = TRUE;
+
+							// TODO: Log Error. Possibly the GSM Module is not powered or connected
+						}
+						else
+						{
+							// Do Nothing. Wait
+						}
+					}
+				}
+				break;
+					
+				case C_MQTT_SSL_cacert:
+				{
+					// First Ensure the SIMCOM Module is Connected
+					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+					{
+						// Send AT Command and wait for response
+						if(SIMCOM_Schedule_Job("AT+CCERTDOWN=\"cacert.pem\",1188\r\n", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_SSL_Configration_Callback) == TRUE)
+						{
+							// Set it to Scheduled only when the SIMCOM Module Accepted it
+							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+							C_MQTT_SSL_Config_State = C_MQTT_SSLWaitfor_CACERT_EnterMsg;
+						}
+					}
+					else
+					{
+							
+						// Cyclic part for the response
+						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+						{
+							// Job has been completed
+						}
+						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+						{
+							// If there is a problem in reception, retry sending the command
+							RetryInNextCycle = TRUE;
+
+							// TODO: Log Error. Possibly the GSM Module is not powered or connected
+						}
+						else
+						{
+							// Do Nothing. Wait
+						}
+					}
+				}
+				break;
+				case C_MQTT_SSLWaitfor_CACERT_EnterMsg:
+				{
+					if (SIMCOM_IsResponse_Entermessage())
+					{
+						C_MQTT_SSL_Config_State = C_MQTT_SSL_UploadCacert;
+					}
+				}
+				case C_MQTT_SSL_UploadCacert:
+				{
+					// First Ensure the SIMCOM Module is Connected
+					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+					{
+						// Send AT Command and wait for response
+						if(SIMCOM_SSL_Schedule_Job(CA_CERT, SIMCOM_DEFAULT_TIMEOUT,SIMCOM_SSL_Configration_Callback) == TRUE)
+						{
+							// Set it to Scheduled only when the SIMCOM Module Accepted it
+							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+						}
+					}
+					else
+					{
+							
+						// Cyclic part for the response
+						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+						{
+							// Job has been completed
+								
+							// Check if the response is OK or not.
+							if(SIMCOM_IsResponseOK())
+							{
+								C_MQTT_SSL_Config_State = C_MQTT_SSL_ClientCert;
+							}
+							else
+							{
+								// If the returned value is ERROR or something else, then act accordingly
+								// TODO: Later
+								RetryInNextCycle = TRUE;
+							}
+						}
+						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+						{
+							// If there is a problem in reception, retry sending the command
+							RetryInNextCycle = TRUE;
+
+							// TODO: Log Error. Possibly the GSM Module is not powered or connected
+						}
+						else
+						{
+							// Do Nothing. Wait
+						}
+					}
+				}
+				break;
+				case C_MQTT_SSL_ClientCert:
+				{
+					// First Ensure the SIMCOM Module is Connected
+					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+					{
+						// Send AT Command and wait for response
+						if(SIMCOM_Schedule_Job("AT+CCERTDOWN=\"clientcert.pem\",1220\r\n", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_SSL_Configration_Callback) == TRUE)
+						{
+							// Set it to Scheduled only when the SIMCOM Module Accepted it
+							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+							C_MQTT_SSL_Config_State = C_MQTT_SSLWaitfor_ClientCert_EnterMsg;
+						}
+					}
+					else
+					{
+							
+						// Cyclic part for the response
+						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+						{
+							// Job has been completed
+						}
+						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+						{
+							// If there is a problem in reception, retry sending the command
+							RetryInNextCycle = TRUE;
+
+							// TODO: Log Error. Possibly the GSM Module is not powered or connected
+						}
+						else
+						{
+							// Do Nothing. Wait
+						}
+					}
+				}
+				break;
+				case C_MQTT_SSLWaitfor_ClientCert_EnterMsg:
+				{
+					if (SIMCOM_IsResponse_Entermessage())
+					{
+						C_MQTT_SSL_Config_State = C_MQTT_SSL_UploadClientCert;
+					}
+				}
+				case C_MQTT_SSL_UploadClientCert:
+				{
+					// First Ensure the SIMCOM Module is Connected
+					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+					{
+						// Send AT Command and wait for response
+						if(SIMCOM_SSL_Schedule_Job(CLIENT_CERT, SIMCOM_DEFAULT_TIMEOUT, SIMCOM_SSL_Configration_Callback) == TRUE)
+						{
+							// Set it to Scheduled only when the SIMCOM Module Accepted it
+							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+						}
+					}
+					else
+					{
+						// Cyclic part for the response
+						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+						{
+							// Job has been completed
+								
+							// Check if the response is OK or not.
+							if(SIMCOM_IsResponseOK())
+							{
+								C_MQTT_SSL_Config_State = C_MQTT_SSL_ClientKey;
+							}
+							else
+							{
+								// If the returned value is ERROR or something else, then act accordingly
+								// TODO: Later
+								RetryInNextCycle = TRUE;
+							}
+						}
+						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+						{
+							// If there is a problem in reception, retry sending the command
+							RetryInNextCycle = TRUE;
+
+							// TODO: Log Error. Possibly the GSM Module is not powered or connected
+						}
+						else
+						{
+							// Do Nothing. Wait
+						}
+					}
+				}
+				break;
+				case C_MQTT_SSL_ClientKey:
+				{
+					// First Ensure the SIMCOM Module is Connected
+					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+					{
+						// Send AT Command and wait for response
+						if(SIMCOM_Schedule_Job("AT+CCERTDOWN=\"clientkey.pem\",1675\r\n", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_SSL_Configration_Callback) == TRUE)
+						{
+							// Set it to Scheduled only when the SIMCOM Module Accepted it
+							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+							C_MQTT_SSL_Config_State = C_MQTT_SSLWaitfor_ClientKey_EnterMsg;
+						}
+					}
+					else
+					{
+							
+						// Cyclic part for the response
+						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+						{
+							// Job has been completed
+						}
+						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+						{
+							// If there is a problem in reception, retry sending the command
+							RetryInNextCycle = TRUE;
+
+							// TODO: Log Error. Possibly the GSM Module is not powered or connected
+						}
+						else
+						{
+							// Do Nothing. Wait
+						}
+					}
+				}
+				break;
+				case C_MQTT_SSLWaitfor_ClientKey_EnterMsg:
+				{
+					if (SIMCOM_IsResponse_Entermessage())
+					{
+						C_MQTT_SSL_Config_State = C_MQTT_SSL_UploadClientKey;
+					}
+				}
+				case C_MQTT_SSL_UploadClientKey:
+				{
+					// First Ensure the SIMCOM Module is Connected
+					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+					{
+						// Send AT Command and wait for response
+						if(SIMCOM_SSL_Schedule_Job(PRIVATE_KEY, SIMCOM_DEFAULT_TIMEOUT, SIMCOM_SSL_Configration_Callback) == TRUE)
+						{
+							// Set it to Scheduled only when the SIMCOM Module Accepted it
+							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+						}
+					}
+					else
+					{
+						// Cyclic part for the response
+						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+						{
+							// Job has been completed
+								
+							// Check if the response is OK or not.
+							if(SIMCOM_IsResponseOK())
+							{
+								C_MQTT_SSL_Config_State = C_MQTT_SSL_CheckCertList;
+							}
+							else
+							{
+								// If the returned value is ERROR or something else, then act accordingly
+								// TODO: Later
+								RetryInNextCycle = TRUE;
+							}
+						}
+						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+						{
+							// If there is a problem in reception, retry sending the command
+							RetryInNextCycle = TRUE;
+
+							// TODO: Log Error. Possibly the GSM Module is not powered or connected
+						}
+						else
+						{
+							// Do Nothing. Wait
+						}
+					}
+				}
+				break;
+				case C_MQTT_SSL_CheckCertList:
+				{
+					// First Ensure the SIMCOM Module is Connected
+					if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+					{
+
+						// Send AT Command and wait for response
+						if(SIMCOM_Schedule_Job("AT+CCERTLIST", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_SSL_Configration_Callback) == TRUE)
+						{
+							// Set it to Scheduled only when the SIMCOM Module Accepted it
+							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+							C_MQTT_SSL_Config_State = C_MQTT_SSL_Cert_Configured;
+						}
+					}
+					else
+					{
+							
+						// Cyclic part for the response
+						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+						{
+							// Job has been completed
+								
+							// Check if the response is OK or not.
+							if(SIMCOM_IsResponseOK())
+							{
+									
+							}
+							else
+							{
+								// If the returned value is ERROR or something else, then act accordingly
+								// TODO: Later
+								RetryInNextCycle = TRUE;
+							}
+						}
+						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+						{
+							// If there is a problem in reception, retry sending the command
+							RetryInNextCycle = TRUE;
+
+							// TODO: Log Error. Possibly the GSM Module is not powered or connected
+						}
+						else
+						{
+							// Do Nothing. Wait
+						}
+					}
+				}
+				break;
+				case C_MQTT_SSL_Cert_Configured:
+				{
+					IsSSLCertConfigured = TRUE;
+				}
+				break;
+				case C_MQTT_SSL_Cert_ConfigError:
+				{
+					// Do Nothing, The state machine has been completed
+				}
+				break;
 			case C_MQTT_SSL_Init:
 			{
 				

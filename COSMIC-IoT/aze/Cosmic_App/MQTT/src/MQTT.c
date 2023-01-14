@@ -12,7 +12,11 @@
 #include MQTT_H
 #include MQTT_PUBLISH_H
 #include <avr/io.h>
+<<<<<<< HEAD
 #include LCD_H
+=======
+#include "LCD.h"
+>>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 #include MQTT_APPLICATION_H
 
 /*****************************************/

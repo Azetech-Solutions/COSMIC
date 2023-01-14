@@ -10,8 +10,12 @@
 #include STRINGHELPER_H
 #include <avr/io.h>
 #include MQTT_SSL_H
+<<<<<<< HEAD
 #include LCD_H
 #include <stdio.h>
+=======
+#include "LCD.h"
+>>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 
 /*****************************************/
 /* Global Variables                      */
@@ -163,7 +167,11 @@ void SIMCOM_StateMachine(void)
 						// Check if the response is OK or not.
 						if(strcmp(RxString,"OK"))
 						{
+<<<<<<< HEAD
 							SIMCOM_State = SIMCOM_DisableCall;
+=======
+							SIMCOM_State = SIMCOM_SM_Check_signal_strength;
+>>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 						}
 						else
 						{
@@ -171,7 +179,13 @@ void SIMCOM_StateMachine(void)
 							// TODO: Later
 							RetryInNextCycle = TRUE;
 						}
+<<<<<<< HEAD
 					}			
+=======
+					}
+							
+							
+>>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 				}
 				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
 				{
@@ -188,6 +202,7 @@ void SIMCOM_StateMachine(void)
 			}
 		}
 		break;
+<<<<<<< HEAD
 		
 		case SIMCOM_DisableCall:
 		{
@@ -336,6 +351,8 @@ void SIMCOM_StateMachine(void)
 		}
 		break;
 		
+=======
+>>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
 		case SIMCOM_SM_Check_signal_strength:
 		{
 				// First Ensure the SIMCOM Module is Connected

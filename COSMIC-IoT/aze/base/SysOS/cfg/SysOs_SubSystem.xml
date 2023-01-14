@@ -27,6 +27,15 @@
         <ProcessGroupRef>Avr_Init</ProcessGroupRef>
         <Enabled>True</Enabled>
       </Process>
+<<<<<<< HEAD
+=======
+      <Process>
+        <Name>LCD_Mainfunction</Name>
+        <Index>255</Index>
+        <ProcessGroupRef>1ms</ProcessGroupRef>
+        <Enabled>True</Enabled>
+      </Process>
+>>>>>>> 3e6d55a2e89125c386b60f8710c0eeba301b7b54
     </Processes>
   </Config>
   <General>
