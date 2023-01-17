@@ -1,24 +1,19 @@
 /*
- * MQTT_Connection_Establishment.c
+ * MQTT.c
  *
- * Created: 10-12-2022 16:20:39
+ * Created: 23-12-2022 11:43:31
  *  Author: Admin
  */ 
-/*
- * SIMCOM_State.c
- *
- *  Created on: 17-Apr-2021
- *      Author: Hari
- */
-
 
 #include "Includes.h"
 #include SIMCOM_H
-#include SIMCOM_SSL_CONFIGURATION_H
+#include MQTT_SSL_H
 #include STRINGHELPER_H
-#include MQTT_HEADER_H
+#include MQTT_H
+#include MQTT_PUBLISH_H
 #include <avr/io.h>
-#include "LCD.h"
+#include LCD_H
+#include MQTT_APPLICATION_H
 
 /*****************************************/
 /* Global Variables                      */
@@ -44,7 +39,7 @@ static void MQTT_CALLBACK(SIMCOM_Job_Result_EN result)
 	SIMCOM_Job_Result = result;
 }
 
-
+UBYTE MQTTRecoonectCount = 600;
 /*****************************************/
 /* Function Definitions                  */
 /*****************************************/
@@ -53,9 +48,15 @@ void MQTT_StateMachine(void)
 {
 	MQTT_State_EN MQTT_State_Before_Execution = MQTT_State;
 
+	if(MQTTRecoonectCount == 0)
+	{
+		MQTT_State = MQTTCONNECTIONCHECK;
+		MQTTRecoonectCount = 60;
+	}
+
 	BOOL RetryInNextCycle = FALSE;
 
-	if(IsSIMCOM_SSL_Configuration_Completed())
+	if(IsMQTT_SSL_Configuration_Completed())
 	{
 		switch(MQTT_State)
 		{
@@ -69,7 +70,7 @@ void MQTT_StateMachine(void)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
-					
+						
 					}
 				}
 				else
@@ -136,6 +137,10 @@ void MQTT_StateMachine(void)
 
 							// Move to next state
 						}
+						else if(SIMCOM_IsResponseError())
+						{
+							MQTT_State = MQTT_ClientRelease;
+						}
 						else
 						{
 							// If the returned value is ERROR or something else, then act accordingly
@@ -159,7 +164,55 @@ void MQTT_StateMachine(void)
 			}
 			break;
 
+			case MQTT_ClientRelease:
+			{
+				// First Ensure the SIMCOM Module is Connected
+				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+				{
+					// Send AT Command and wait for response
+					if(SIMCOM_Schedule_Job("AT+CMQTTREL=0", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
+					{
+						// Set it to Scheduled only when the SIMCOM Module Accepted it
+						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					}
+				}
+				else
+				{
+					// Cyclic part for the response
+					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+					{
+						// Job has been completed
 
+						// Check if the response is OK or not.
+						if(SIMCOM_IsResponseOK())
+						{
+							MQTT_State = MQTT_Accquire;
+
+							// Move to next state
+						}
+						else if(SIMCOM_IsResponse_Entermessage())
+						{
+							MQTT_State = MQTTDISCONNEECT;
+						}
+						else
+						{
+							MQTT_State = MQTTDISCONNEECT;
+						}						
+					}
+					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+					{
+						// If there is a problem in reception, retry sending the command
+						RetryInNextCycle = TRUE;
+
+						// TODO: Log Error. Possibly the GSM Module is not powered or connected
+					}
+					else
+					{
+						// Do Nothing. Wait
+					}
+				}
+			}
+			break;
 
 			case MQTT_SSL_Configure:
 			{
@@ -212,7 +265,7 @@ void MQTT_StateMachine(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
 					// Send AT Command and wait for response
-					if(SIMCOM_Schedule_Job("AT+CMQTTCONNECT=0,\"tcp://a1nwcqrp1qjjtm-ats.iot.ap-south-1.amazonaws.com:8883\",60,1", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
+					if(SIMCOM_Schedule_Job("AT+CMQTTCONNECT=0,\"tcp://a1nwcqrp1qjjtm-ats.iot.ap-south-1.amazonaws.com:8883\",3,1", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
@@ -251,17 +304,111 @@ void MQTT_StateMachine(void)
 				}
 			}
 			break;
+			
+			case MQTTDISCONNEECT:
+			{
+				// First Ensure the SIMCOM Module is Connected
+				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+				{
+					// Send AT Command and wait for response
+					if(SIMCOM_Schedule_Job("AT+CMQTTDISC=0,60", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
+					{
+						// Set it to Scheduled only when the SIMCOM Module Accepted it
+						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+						
+					}
+				}
+				else
+				{
+					// Cyclic part for the response
+					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+					{
+						// Job has been completed
+						// Positive Response would be -> +CLTS: <mode>
+						// <mode> : 0 Disable   1 Enable
+						
+						if(SIMCOM_IsResponseOK())
+						{
+							MQTT_State = MQTTSTART;
+							
+						}
+						else
+						{
+							RetryInNextCycle = TRUE;
+						}
+					}
+					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+					{
+						// If there is a problem in reception, retry sending the command
+						RetryInNextCycle = TRUE;
+
+
+						// TODO: Log Error.
+					}
+					else
+					{
+						// Do Nothing. Wait
+					}
+				}
+			}
+			break;
+			
+			case MQTTCONNECTIONCHECK:
+			{
+				// First Ensure the SIMCOM Module is Connected
+				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+				{
+					// Send AT Command and wait for response
+					if(SIMCOM_Schedule_Job("AT+CMQTTCONNECT?", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
+					{
+						// Set it to Scheduled only when the SIMCOM Module Accepted it
+						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					}
+				}
+				else
+				{
+					// Cyclic part for the response
+					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+					{
+						// Job has been completed
+						// Positive Response would be -> +CLTS: <mode>
+						// <mode> : 0 Disable   1 Enable
+						if(IsSIMCOM_ResponseStartsWith("+CMQTTCONNECT: 0,\"tcp:"))
+						{
+							MQTT_State = MQTT_Ready;
+						}
+						else
+						{
+							C_MQTT_SSL_Config_State = C_MQTT_SSL_Init;
+							MQTT_State = MQTTSTART;
+							Publish_State = MQTT_Publish_Idle;
+							
+						}
+					}
+					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+					{
+						// If there is a problem in reception, retry sending the command
+						RetryInNextCycle = TRUE;
+
+
+						// TODO: Log Error.
+					}
+					else
+					{
+						// Do Nothing. Wait
+					}
+				}
+			}
+			break;
+			
 			case MQTT_WaitForConnectResponce:
 			{
-
-
 				MQTTConnectWaittime--;
 				
 				if(MQTTConnectWaittime <= 0)
 				{
-				
+					
 				}
-				
 			}
 			break;
 			case MQTT_SubscribeTopic_Config:
@@ -270,7 +417,7 @@ void MQTT_StateMachine(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
 					// Send AT Command and wait for response
-					if(SIMCOM_Schedule_Job("AT+CMQTTSUBTOPIC=0,18,1", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
+					if(SIMCOM_Schedule_Job("AT+CMQTTSUBTOPIC=0,16,1", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
@@ -314,7 +461,7 @@ void MQTT_StateMachine(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
 					// Send AT Command and wait for response
-					if(SIMCOM_Schedule_Job("aws/things/COSSUB1", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
+					if(SIMCOM_Schedule_Job(SUBTOPIC, SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
@@ -363,7 +510,7 @@ void MQTT_StateMachine(void)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
-					//	MQTT_State = MQTT_WaitForSubResponce;
+						//	MQTT_State = MQTT_WaitForSubResponce;
 					}
 				}
 				else
@@ -389,9 +536,58 @@ void MQTT_StateMachine(void)
 			
 			case MQTT_WaitForSubResponce:
 			{
-				if(SubscribeStatus == 1)
+				RetryInNextCycle = TRUE;
+				if(MQTT_Retry_Count == 10)
 				{
-					MQTT_State =  MQTT_Ready;
+					MQTT_Retry_Count = 50;
+				}
+			}
+			break;
+			
+			case MQTTSTOP:
+			{
+				// First Ensure the SIMCOM Module is Connected
+				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+				{
+					// Send AT Command and wait for response
+					if(SIMCOM_Schedule_Job("AT+CMQTTSTOP", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
+					{
+						// Set it to Scheduled only when the SIMCOM Module Accepted it
+						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					}
+				}
+				else
+				{
+					// Cyclic part for the response
+					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+					{
+						// Job has been completed
+
+						// Check if the response is OK or not.
+						if(SIMCOM_IsResponseOK())
+						{
+							MQTT_State = MQTTSTART;
+
+							// Move to next state
+						}
+						else
+						{
+							// If the returned value is ERROR or something else, then act accordingly
+							// TODO: Later
+							RetryInNextCycle = TRUE;
+						}
+						
+					}
+					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+					{
+						// If there is a problem in reception, retry sending the command
+						RetryInNextCycle = TRUE;
+						// TODO: Log Error. Possibly the GSM Module is not powered or connected
+					}
+					else
+					{
+						// Do Nothing. Wait
+					}
 				}
 			}
 			break;
@@ -399,8 +595,8 @@ void MQTT_StateMachine(void)
 			default:
 			case MQTT_Ready:
 			{
-				
 			}
+			break;
 			case SIMCOM_MQTT_Connection_Error:
 			{
 				// Do Nothing, The state machine has been completed
@@ -425,11 +621,8 @@ void MQTT_StateMachine(void)
 		}
 		if(SIMCOM_Job_Result == SIMCOM_Job_Aborted)
 		{
-			// If in any of the state, the Job is aborted, then move to the error state
-
-			
-
-			//SIMCOM_ERROR_CALLBACK(SIMCOM_Error_GPRS);
+			// If in any of the state, the Job is aborted, then move to the error state	
+			  SIMCOM_ERROR_CALLBACK();
 		}
 
 		/* Check if the state changed after execution */

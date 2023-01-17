@@ -53,5 +53,5 @@ extern unsigned int StringHelper_SplitAndGet(const char *str, char sep, int posi
 extern ULONG StringHelper_SplitAndGet_Number(const char *str, char sep,  int position);
 extern char* StringHelper_NumberToString(ULONG Number);
 extern BOOL StringHelper_startsWith(const char *pre, const char *str);
-
+extern char *StringSearch(const char *source,const char *responsehead);
 #endif /* _STRINGHELPER_H_ */

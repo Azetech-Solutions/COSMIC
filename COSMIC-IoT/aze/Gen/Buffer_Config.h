@@ -30,12 +30,12 @@
 #define BUFFER_MAX_COUNT                  1
 
 /* Maximum Size of each configured Buffer */
-#define BUFFER_MAX_SIZE                   100
+#define BUFFER_MAX_SIZE                   200
 
 
 /* Buffer for SIMCOM */
 #define P_BUFFER_ID_SIMCOM            0
-#define P_BUFFER_LENGTH_SIMCOM        100
+#define P_BUFFER_LENGTH_SIMCOM        200
 
 
 

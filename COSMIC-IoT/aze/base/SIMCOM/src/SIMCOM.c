@@ -4,28 +4,28 @@
  *  Created on: 08-Mar-2021
  *      Author: Hari
  */
-
-
 #include "Includes.h" // Will have all definitions of the Project Headers
-
-#include MQTT_HEADER_H
 #include <stdint.h>
 #include <avr/io.h>
+#include MQTT_PUBLISH_H
+#include MQTT_H
+#include MQTT_APPLICATION_H
 #include PLATFORM_TYPES_H // For Data Types
-#include "stdio.h"
 #include SIMCOM_H
+#include BUFFER_H
+#include LCD_H
+#include "stdio.h"
 #include <string.h>
-#include "LCD.h"
-//#include "SubandPub.h"
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
-
 SIMCOM_ComState_EN SIMCOM_ComState = SIMCOM_Idle;
 
 SIMCOM_JobType SIMCOM_CurrentJob;
 
 char SIMCOM_ResponseBuffer[BUFFER_MAX_SIZE];
+
+char RxBuffer[30];
 
 BufferLengthType SIMCOM_ResponseLength = 0;
 
@@ -37,7 +37,7 @@ UBYTE SIMCOM_ReceptionIgnoreCommandCount = 0;
 
 UBYTE PublishStatus = 0;
 
-UBYTE SubscribeStatus = 0;
+Rx_Response_EN Rx_Response_State = I_MQTT_Rx_Response_Idle;
 
 /*****************************************/
 /* Static Function Definitions           */
@@ -53,6 +53,7 @@ static void SIMCOM_Send_Command()
 	}
 
 	SIMCOM_SEND_BYTE(CARRIAGE_RETURN);
+	SIMCOM_SEND_BYTE(LINE_FEED);
 }
 
 static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
@@ -74,26 +75,6 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				SIMCOM_ReEvaluate_State();
 			}
 		}
-
-		else if(IsSIMCOM_ResponseStartsWith("{\"ctrl\":"))
-		{
-			
-			UBYTE Rxdata = SIMCOM_GetCSV_Number_fromBuffer("{\"ctrl\":[",1);
-			char data[2];
-			data[0] = Rxdata+48;
-			data[1]= '\0';
-			DebugStringRow2(data);
-			if(Rxdata == 1)
-			{
-				PORTA = 0X00;
-				SubscribeStatus = 1;
-			}
-			else
-			{
-				PORTA = 0XFF;
-				SubscribeStatus = 0;
-		}
-	}
 		else if(IsSIMCOM_ResponseStartsWith("+CMQTTCONNECT:"))
 		{
 			ULONG ConnectResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTCONNECT:", 1);
@@ -104,17 +85,15 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				MQTT_State = MQTT_SubscribeTopic_Config;// Move to next state
 			}
 		}
-		
-		
 		else if(IsSIMCOM_ResponseStartsWith("+CMQTTPUB:"))
 		{
-			
 			ULONG PublishResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTPUB:", 1);
 			ULONG PublishResponse2 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTPUB:", 2);
 			// Check if the response is OK or not.
 			if((PublishResponse1==0)&&(PublishResponse2==0))
 			{
 				PublishStatus = 1;
+				Publish_State = MQTT_Publish_Idle;
 			}
 			else
 			{
@@ -122,17 +101,18 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 			}
 		}
 		
-		else if(IsSIMCOM_ResponseStartsWith("+CMQTTRXSTART:"))
+		else if(IsSIMCOM_ResponseStartsWith("+CMQTTSUB:"))
 		{
-			DebugStringRow1((const char *)SIMCOM_Buffer_Get());
-			PORTB = 0X00;
+			ULONG SubscribeResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTSUB:", 1);
+			ULONG SubscribeResponse2 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTSUB:", 2);
+			
+			// Check if the response is OK or not.
+			if((SubscribeResponse1 ==0)&&(SubscribeResponse2 ==0))
+			{
+				MQTT_State = MQTT_Ready;
+			}
 		}
 		
-		
-		else if(IsSIMCOM_ResponseStartsWith("+SAPBR 1: DEACT"))
-		{
-			// If the GPRS is de-activated by the module, then move SIMCOM GPRS Sub Module to Idle state
-		}
 		else
 		{
 			// If something else is received, then give a call to the Application layer to handle
@@ -143,12 +123,10 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 
 static void SIMCOM_UpdateCurrentJobResponse()
 {
-	int i = 0;
-
 	SIMCOM_ClearResponseBuffer();
-
+	
 	SIMCOM_ResponseLength = SIMCOM_GET_BUFFER_LENGTH();
-
+	UBYTE i;
 	for(i = 0; i < SIMCOM_ResponseLength; i++)
 	{
 		SIMCOM_ResponseBuffer[i] = SIMCOM_BUFFER_GET_BYTE();
@@ -225,7 +203,7 @@ void SIMCOM_MainFunction(void)
 			}
 			else
 			{
-				SIMCOM_ERROR_CALLBACK(SIMCOM_Error_Inactivity); // Report Error
+				SIMCOM_ERROR_CALLBACK(); // Report Error
 				SIMCOM_Aliveness_Counter = P_SIMCOM_ALIVENESS_ERROR_TIME; // Reload Timer
 			}
 		}
@@ -303,10 +281,10 @@ void SIMCOM_MainFunction(void)
 	/* Call the Main Functions of the SIMCOM Sub Modules */
 
 	SIMCOM_StateMachine();
-//	SIMCOM_Clock_MainFunction();
 	SIMCOM_SSL_CONFIG_MainFunction();
 	MQTT_StateMachine();
-	MQTT_SubPub_StateMachine();
+	MQTT_Publish_StateMachine();
+	MQTT_AppMain();
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -345,14 +323,73 @@ BOOL SIMCOM_Schedule_Job(const char * Command, ULONG Timeout, SIMCOM_Callback_Ty
 	return retval;
 }
 
+
+
+void SIMCOM_RxMessageCallBack()
+{
+	BufferType_ST *Buff = SIMCOM_Buffer_Get();
+	
+	if(memcmp((char*)Buff->BufferPtr,"+CMQTTRXSTART:",14)==0) 
+	{ 
+		Rx_Response_State = I_MQTT_Rx_msg;
+	}
+	
+		
+	switch(Rx_Response_State)
+	{
+		case I_MQTT_Rx_Response_Idle:
+		{
+			
+		}
+		break;
+		case I_MQTT_Rx_msg:
+		{
+			if(memcmp((char*)Buff->BufferPtr,"prj01/cp0001/sub",12)==0)
+			{
+				Rx_Response_State = I_MQTT_Rx_Storedata;
+			}
+			
+			memset(Buff->BufferPtr,0,Buff->Length);
+			
+			Buff->HeadIndex = 0;
+			Buff->TailIndex = 0;
+			Buff->Length = 0;
+		}
+		break;
+		case I_MQTT_Rx_Storedata:
+		{
+			if (StringHelper_startsWith("7;", Buff->BufferPtr))
+			{
+				Rx_Response_State = I_MQTT_Rx_Response_Idle;
+				
+				memcpy(TOPIC1_SubscribeMsg,Buff->BufferPtr,Buff->Length);
+				
+				MQTTApp_State = MQTTApp_ComifRxindication;
+			}
+			
+			memset(Buff->BufferPtr,0,Buff->Length);
+			Buff->HeadIndex = 0;
+			Buff->TailIndex = 0;
+			Buff->Length = 0;
+		}
+		break;
+		default:
+		{
+			break;
+		}
+	}
+}
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*                   SIMCOM Data Read Function                    */
 /*                                                                */
 /* To be called by the USART ISR function                         */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 BOOL SIMCOM_Data_Read(UBYTE Data)
 {
 	static UBYTE prevData = 0;
+	
 	BOOL retval = FALSE;
 
 	BOOL proceedStoring = FALSE;
@@ -362,7 +399,6 @@ BOOL SIMCOM_Data_Read(UBYTE Data)
 		if((prevData == CARRIAGE_RETURN) && (Data == LINE_FEED))
 		{
 			// Either Start or Stop command is received.
-
 			if(SIMCOM_ComState == SIMCOM_WaitingForResponse)
 			{
 				/* A Command has already been sent, and Software is waiting for a response */
@@ -374,7 +410,13 @@ BOOL SIMCOM_Data_Read(UBYTE Data)
 				/* A response has already started, then complete it */
 				if(SIMCOM_ReceptionIgnoreCommandCount == 0)
 				{
-					SIMCOM_ComState = SIMCOM_ReceptionCompleted;
+					SIMCOM_RxMessageCallBack();
+					
+					if (!SIMCOM_IsBufferEmpty())
+					{
+						SIMCOM_ComState = SIMCOM_ReceptionCompleted;
+					}
+					
 				}
 				else
 				{
@@ -414,14 +456,15 @@ BOOL SIMCOM_Data_Read(UBYTE Data)
 
 	/* If Okay to store in buffer */
 	if(proceedStoring == TRUE)
-	{
+	{	
 		retval = SIMCOM_BUFFER_PUT_BYTE(Data);
 	}
 
 	prevData = Data; // Store for later processing
-
+	
 	return retval;
 }
+
 
 void SIMCOM_IgnoreCRLFs(UBYTE Count)
 {
@@ -432,6 +475,7 @@ void SIMCOM_IgnoreCRLFs(UBYTE Count)
 		// If there are multiple items to be received, then set the Incomplete timeout as the Job Timeout
 		SIMCOM_IncompleteCounter = SIMCOM_CurrentJob.Timeout;
 	}
+	
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -466,3 +510,6 @@ ULONG SIMCOM_Number_fromBuffer(const char * ResponseHead)
 
 	return retval;
 }
+
+
+

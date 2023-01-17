@@ -9,17 +9,28 @@
 #include SIMCOM_H
 #include STRINGHELPER_H
 #include <avr/io.h>
-#include SIMCOM_SSL_CONFIGURATION_H
-#include "LCD.h"
+#include MQTT_SSL_H
+#include LCD_H
+#include <stdio.h>
+
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
+
+void APN_Selection(char *checkstring);
 
 SIMCOM_State_EN SIMCOM_State = SIMCOM_SM_Init;
 
 static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE SIMCOM_SM_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT;
+
+#define AIRTEL  "\"airtelgprs.com\""
+#define VI      "\"internet\""
+#define JIO     "\"jionet\""
+#define BSNL    "\"bsnlnet\""
+
+char APN_name[40];
 
 /*****************************************/
 /* Static Function Definitions           */
@@ -33,7 +44,36 @@ static void SIMCOM_StateMachine_Callback(SIMCOM_Job_Result_EN result)
 	SIMCOM_Job_Result = result;
 }
 
-
+void APN_Selection(char *checkstring)
+{
+	checkstring = checkstring+5;
+	UBYTE i;
+	char *APN,temp[30];
+	ULONG val;
+	for(i=0;i<=3;i++)
+	{
+		temp[i] = *checkstring;
+		checkstring++;
+	}
+	val = atoi(temp);
+	if(val == 4044)
+	{
+		APN = VI;
+	}
+	else if(val == 4058)
+	{
+		APN = JIO;
+	}
+	else if(val == 4049)
+	{
+		APN = AIRTEL;
+	}
+	else if(val == 4048)
+	{
+		APN = BSNL;
+	}
+	sprintf(APN_name,"AT+CGDCONT=1,\"IP\",%s",APN);
+}
 /*****************************************/
 /* Function Definitions                  */
 /*****************************************/
@@ -42,8 +82,6 @@ void SIMCOM_StateMachine(void)
 {
 	SIMCOM_State_EN SIMCOM_State_Before_Execution = SIMCOM_State;
 	
-	
-
 	BOOL RetryInNextCycle = FALSE;
 
 	switch(SIMCOM_State)
@@ -53,11 +91,9 @@ void SIMCOM_StateMachine(void)
 			// First Ensure the SIMCOM Module is Connected
 			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 			{
-
 				// Send AT Command and wait for response
 				if(SIMCOM_Schedule_Job("AT", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
 				{	
-					//Display_String("AT");
 					// Set it to Scheduled only when the SIMCOM Module Accepted it
 					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
 				}
@@ -96,7 +132,6 @@ void SIMCOM_StateMachine(void)
 			}
 		}
 		break;
-		
 		case SIMCOM_SM_SIM_Check:
 		{
 			// First Ensure the SIMCOM Module is Connected
@@ -113,22 +148,22 @@ void SIMCOM_StateMachine(void)
 			}
 			else
 			{
-				
+						
 				// Cyclic part for the response
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
 					// Job has been completed
 					char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN: ");
-					
+							
 
 					if(strcmp(RxString, "READY") == 0)
-					{		
+					{
 						char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN:READY");
-						
+								
 						// Check if the response is OK or not.
 						if(strcmp(RxString,"OK"))
 						{
-							SIMCOM_State = SIMCOM_SM_Check_signal_strength;
+							SIMCOM_State = SIMCOM_DisableCall;
 						}
 						else
 						{
@@ -136,9 +171,7 @@ void SIMCOM_StateMachine(void)
 							// TODO: Later
 							RetryInNextCycle = TRUE;
 						}
-					}
-					
-			
+					}			
 				}
 				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
 				{
@@ -151,6 +184,153 @@ void SIMCOM_StateMachine(void)
 				{
 					// Do Nothing. Wait
 
+				}
+			}
+		}
+		break;
+		
+		case SIMCOM_DisableCall:
+		{
+			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+			{
+				// Send AT Command and wait for response
+				if(SIMCOM_Schedule_Job("AT+CRC=0", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
+				{
+					// Set it to Scheduled only when the SIMCOM Module Accepted it
+					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					
+				}
+			}
+			else
+			{
+				// Cyclic part for the response
+				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+				{
+					/* Accept both Roaming and Local Registration */
+					if(SIMCOM_IsResponseOK())
+					{
+						SIMCOM_State = SIMCOM_DisableMsg; // Move to next state
+					}
+					else
+					{
+						if(SIMCOM_SM_Retry_Count == 0) // If this is the last attempt
+						{
+							// Network Not Registered.
+							// TODO: Throw Error including the Status returned by the SIM800 module
+						}
+
+						RetryInNextCycle = TRUE;
+					}
+
+				}
+				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+				{
+					// If there is a problem in reception, retry sending the command
+					RetryInNextCycle = TRUE;
+
+					// TODO: Log Timeout Error.
+				}
+				else
+				{
+					// Do Nothing. Wait
+				}
+			}
+		}
+		break;
+		
+		case SIMCOM_DisableMsg:
+		{
+			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+			{
+				// Send AT Command and wait for response
+				if(SIMCOM_Schedule_Job("AT+CNMI=0,0,0,0", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
+				{
+					// Set it to Scheduled only when the SIMCOM Module Accepted it
+					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					
+				}
+			}
+			else
+			{
+				// Cyclic part for the response
+				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+				{
+					/* Accept both Roaming and Local Registration */
+					if(SIMCOM_IsResponseOK())
+					{
+						SIMCOM_State = SIMCOM_DisableGPRS_URC; // Move to next state
+					}
+					else
+					{
+						if(SIMCOM_SM_Retry_Count == 0) // If this is the last attempt
+						{
+							// Network Not Registered.
+							// TODO: Throw Error including the Status returned by the SIM800 module
+						}
+
+						RetryInNextCycle = TRUE;
+					}
+
+				}
+				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+				{
+					// If there is a problem in reception, retry sending the command
+					RetryInNextCycle = TRUE;
+
+					// TODO: Log Timeout Error.
+				}
+				else
+				{
+					// Do Nothing. Wait
+				}
+			}
+		}
+		break;
+		
+		case SIMCOM_DisableGPRS_URC:
+		{
+			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+			{
+				// Send AT Command and wait for response
+				if(SIMCOM_Schedule_Job("AT+CSSN=0,0", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
+				{
+					// Set it to Scheduled only when the SIMCOM Module Accepted it
+					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					
+				}
+			}
+			else
+			{
+				// Cyclic part for the response
+				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+				{
+					/* Accept both Roaming and Local Registration */
+					if(SIMCOM_IsResponseOK())
+					{
+						SIMCOM_State = SIMCOM_SM_Check_signal_strength; // Move to next state
+					}
+					else
+					{
+						if(SIMCOM_SM_Retry_Count == 0) // If this is the last attempt
+						{
+							// Network Not Registered.
+							// TODO: Throw Error including the Status returned by the SIM800 module
+						}
+
+						RetryInNextCycle = TRUE;
+					}
+
+				}
+				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+				{
+					// If there is a problem in reception, retry sending the command
+					RetryInNextCycle = TRUE;
+
+					// TODO: Log Timeout Error.
+				}
+				else
+				{
+					// Do Nothing. Wait
 				}
 			}
 		}
@@ -250,7 +430,7 @@ void SIMCOM_StateMachine(void)
 					if((NetworkRegistrationStatus == 1) || (NetworkRegistrationStatus == 5))
 					{
 						
-						SIMCOM_State = SIMCOM_SM_LTE_Check; // Move to next state
+						SIMCOM_State = SIMCOM_SM_CheckNetwork; // Move to next state
 				
 					}
 					else
@@ -271,6 +451,102 @@ void SIMCOM_StateMachine(void)
 					RetryInNextCycle = TRUE;
 
 					// TODO: Log Timeout Error.
+				}
+				else
+				{
+					// Do Nothing. Wait
+				}
+			}
+		}
+		break;
+		
+		case SIMCOM_SM_CheckNetwork:
+		{
+			// First Ensure the SIMCOM Module is Connected
+			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+			{
+				// Send AT Command and wait for response
+				if(SIMCOM_Schedule_Job("AT+COPS?", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
+				{
+					//Display_String("AT");
+					// Set it to Scheduled only when the SIMCOM Module Accepted it
+					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+				}
+			}
+			else
+			{
+				// Cyclic part for the response
+				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+				{
+					// Job has been completed
+									
+					// Check if the response is OK or not.
+					if(IsSIMCOM_ResponseStartsWith("+COPS: "))
+					{
+						char *Netstr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+COPS: ");
+						APN_Selection(Netstr);
+						SIMCOM_State = SIMCOM_SM_SelectNetwork;
+					}
+					else
+					{
+						// If the returned value is ERROR or something else, then act accordingly
+						// TODO: Later
+						RetryInNextCycle = TRUE;
+					}
+				}
+				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+				{
+					// If there is a problem in reception, retry sending the command
+					RetryInNextCycle = TRUE;
+
+					// TODO: Log Error. Possibly the GSM Module is not powered or connected
+				}
+				else
+				{
+					// Do Nothing. Wait
+				}
+			}
+		}
+		break;
+
+		case SIMCOM_SM_SelectNetwork:
+		{
+			// First Ensure the SIMCOM Module is Connected
+			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+			{
+
+				// Send AT Command and wait for response
+				if(SIMCOM_Schedule_Job(APN_name, SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
+				{
+					//Display_String("AT");
+					// Set it to Scheduled only when the SIMCOM Module Accepted it
+					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+				}
+			}
+			else
+			{
+				// Cyclic part for the response
+				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+				{
+					// Job has been completed
+
+					// Check if the response is OK or not.
+					if(SIMCOM_IsResponseOK())
+					{
+						SIMCOM_State = SIMCOM_SM_LTE_Check;
+					}
+					else
+					{
+						// If the returned value is ERROR or something else, then act accordingly
+						// TODO: Later
+						RetryInNextCycle = TRUE;
+					}
+				}
+				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+				{
+					// If there is a problem in reception, retry sending the command
+					RetryInNextCycle = TRUE;
+					// TODO: Log Error. Possibly the GSM Module is not powered or connected
 				}
 				else
 				{
@@ -336,6 +612,8 @@ void SIMCOM_StateMachine(void)
 				}
 			}
 		}
+		break;
+		
 		case SIMCOM_PDP_context:
 		{
 			// First Ensure the SIMCOM Module is Connected
@@ -365,8 +643,7 @@ void SIMCOM_StateMachine(void)
 					if(PDP_Context == 1)
 					{
 						
-						SIMCOM_State = SIMCOM_SM_Ready; // Move to next state
-						
+						SIMCOM_State = SIMCOM_SM_Ready; // Move to next state		
 					}
 					else
 					{
@@ -436,14 +713,11 @@ void SIMCOM_StateMachine(void)
 				case SIMCOM_SM_Init                      : ErrorState = SIMCOM_Error_GSM_Not_Connected; break;
 				case SIMCOM_SM_SIM_Check                 : ErrorState = SIMCOM_Error_SIM_Card_NotInserted; break;
 				case SIMCOM_SM_NW_Registration_Check     : ErrorState = SIMCOM_Error_NetworkNotRegistered; break;
-	//			case SIMCOM_SM_Check_signal_strength : ErrorState = SIMCOM_Error_ClockConfigurationDisabled; break;
-	//			case SIMCOM_SM_LTE_Check                 : ErrorState = SIMCOM_Error_LTE_Not_Connected; break;
 				default:
 					// Do Nothing, SIMCOM Module will timeout and report error
 					break;
 			}
-
-			SIMCOM_ERROR_CALLBACK(ErrorState);
+			SIMCOM_ERROR_CALLBACK();
 		}
 	}
 

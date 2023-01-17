@@ -13,7 +13,5 @@
 
 int main(void)
 {
-
 	SysOs_Main();
-	
 }
