@@ -621,8 +621,16 @@ void MQTT_StateMachine(void)
 		}
 		if(SIMCOM_Job_Result == SIMCOM_Job_Aborted)
 		{
-			// If in any of the state, the Job is aborted, then move to the error state	
-			  SIMCOM_ERROR_CALLBACK();
+			SIMCOM_Error_State_EN ErrorState = SIMCOM_Error_Unknown;
+			
+			switch(SIMCOM_State)
+			{
+				case MQTT_Connect                      : ErrorState = MQTTnotconnected; break;
+				default:
+				// Do Nothing, SIMCOM Module will timeout and report error
+				break;
+			}
+			SIMCOM_ERROR_CALLBACK(ErrorState);
 		}
 
 		/* Check if the state changed after execution */

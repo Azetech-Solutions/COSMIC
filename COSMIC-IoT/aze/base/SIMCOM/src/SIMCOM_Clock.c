@@ -161,7 +161,7 @@ void SIMCOM_Clock_MainFunction(void)
 					}
 					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
 					{
-						SIMCOM_ERROR_CALLBACK();
+						SIMCOM_ERROR_CALLBACK(SIMCOM_Error_ClockConfigurationDisabled);
 					}
 					else
 					{
@@ -214,7 +214,7 @@ void SIMCOM_Clock_MainFunction(void)
 							else
 							{
 								// Unable to Sync the Time for 100ms.
-								SIMCOM_ERROR_CALLBACK();
+								SIMCOM_ERROR_CALLBACK(SIMCOM_Error_ClockConfigurationDisabled);
 
 								// But Still move to the next state as the time functionality is needed
 								SIMCOM_Clock_State = SIMCOM_Clock_Running; // Move to Next State
@@ -229,7 +229,7 @@ void SIMCOM_Clock_MainFunction(void)
 					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
 					{
 
-						SIMCOM_ERROR_CALLBACK();
+						SIMCOM_ERROR_CALLBACK(SIMCOM_Error_ClockConfigurationDisabled);
 					}
 					else
 					{

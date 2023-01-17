@@ -115,9 +115,9 @@ typedef enum
 	SIMCOM_Error_ClockConfigurationDisabled,
 	SIMCOM_Error_Clock,
 	SIMCOM_Error_GPRS,
-	SIMCOM_Error_HTTP,
-	SIMCOM_Error_POST,
 	SIMCOM_Error_Buffer_Empty,
+	MQTTnotconnected,
+	MQTT_PublishFailed
 
 }SIMCOM_Error_State_EN;
 
@@ -134,7 +134,7 @@ extern void SIM_Send_Data(UBYTE Data);
 
 extern void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState);
 
-extern void COSMIC_SIMCOM_Error_Callback();
+extern void COSMIC_SIMCOM_Error_Callback(SIMCOM_Error_State_EN Error);
 
 //extern UBYTE (char * Message);
 
@@ -153,7 +153,7 @@ static inline UBYTE SIMCOM_GetResponseByte()
 	{
 		// Buffer is Empty. When the Buffer is empty, the SIMCOM Module should've not called.
 		// This is a development Error. So report Error to the application
-		SIMCOM_ERROR_CALLBACK();
+		SIMCOM_ERROR_CALLBACK(SIMCOM_Error_Buffer_Empty);
 	}
 
 	return Data;
