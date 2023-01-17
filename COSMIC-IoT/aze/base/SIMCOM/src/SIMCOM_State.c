@@ -717,7 +717,7 @@ void SIMCOM_StateMachine(void)
 					// Do Nothing, SIMCOM Module will timeout and report error
 					break;
 			}
-			SIMCOM_ERROR_CALLBACK();
+			SIMCOM_ERROR_CALLBACK(ErrorState);
 		}
 	}
 

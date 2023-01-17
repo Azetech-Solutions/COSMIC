@@ -50,7 +50,7 @@ void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 	SIMCOM_ClearResponseBuffer();
 }
 
-void COSMIC_SIMCOM_Error_Callback()
+void COSMIC_SIMCOM_Error_Callback(SIMCOM_Error_State_EN Error)
 {
 	SIMCOM_State = SIMCOM_SM_Init;
 	C_MQTT_SSL_Config_State = C_MQTT_SSL_Init;

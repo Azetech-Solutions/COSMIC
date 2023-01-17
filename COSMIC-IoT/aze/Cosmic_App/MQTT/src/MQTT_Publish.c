@@ -270,7 +270,7 @@ void MQTT_Publish_StateMachine(void)
 				RetryInNextCycle = TRUE;
 				if(MQTT_Publish_Retry_Count == 10)
 				{
-					MQTT_Publish_Retry_Count = 50;
+					MQTT_Publish_Retry_Count = 2000;
 				}
 			}
 			
@@ -298,8 +298,16 @@ void MQTT_Publish_StateMachine(void)
 		}
 		if(SIMCOM_Job_Result == SIMCOM_Job_Aborted)
 		{
-			// If in any of the state, the Job is aborted, then move to the error state
-			SIMCOM_ERROR_CALLBACK();
+			SIMCOM_Error_State_EN ErrorState = SIMCOM_Error_Unknown;
+			
+			switch(MQTT_State)
+			{
+				case MQTTWaitforPublishResponse                      : ErrorState = MQTT_PublishFailed; break;
+				default:
+				// Do Nothing, SIMCOM Module will timeout and report error
+				break;
+			}
+			SIMCOM_ERROR_CALLBACK(ErrorState);
 		}
 
 		/* Check if the state changed after execution */

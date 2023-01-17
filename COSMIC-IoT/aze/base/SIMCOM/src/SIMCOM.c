@@ -203,7 +203,7 @@ void SIMCOM_MainFunction(void)
 			}
 			else
 			{
-				SIMCOM_ERROR_CALLBACK(); // Report Error
+				SIMCOM_ERROR_CALLBACK(SIMCOM_Error_Inactivity); // Report Error
 				SIMCOM_Aliveness_Counter = P_SIMCOM_ALIVENESS_ERROR_TIME; // Reload Timer
 			}
 		}
