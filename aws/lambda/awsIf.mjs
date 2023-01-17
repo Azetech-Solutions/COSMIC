@@ -291,7 +291,7 @@ export async function ScanDatabase(projectName)
                     
                     for (var key in item) {
 
-                        data[key] = item[key];
+                        data[key] = item[key][Object.keys(item[key])[0]]; // Get the first object key value
                         
                         if(key == "iotdata") {
                             // JSON Parse the string
