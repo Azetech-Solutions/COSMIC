@@ -1,17 +1,27 @@
-var AWS = require('aws-sdk');
+import * as AWS from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+import { IoTDataPlane } from '@aws-sdk/client-iot-data-plane';
+
 
 var ddb;
 
+export async function SendMqttResponse(topicName, data)
+{ 
+    const IoTClient = new IoTDataPlane({
+      region: 'ap-south-1',
+      endpoint: 'https://avruhytgmbwix-ats.iot.ap-south-1.amazonaws.com'
+    });
 
-module.exports = {
-    
-    GetNodeData        : getDBContents,
-    GetMultiNodeData   : getDBContentsInBatch,
-    SetNodeData        : updateDBContents,
-    ScanDatabase       : scanTable
-};
+    var mqttParams = {
+        topic: topicName,
+        payload: data,
+        qos: 1
+    };
 
-async function getDBContents(projectName, deviceID) {
+    await IoTClient.publish(mqttParams);
+}
+
+export async function GetNodeData(projectName, deviceID) {
     
     var rawData;
     var data = {};
@@ -29,7 +39,7 @@ async function getDBContents(projectName, deviceID) {
 
     try {
         rawData = await getItemDDB(params);
-        
+
         rawData = rawData.Item;
         
         for (var key in rawData) {
@@ -65,7 +75,7 @@ function getItemDDB(params) {
     });
 }
 
-async function getDBContentsInBatch(projectName, nodeIDList) {
+export async function GetMultiNodeData(projectName, nodeIDList) {
     
     var rawData;
     let retval = [];
@@ -134,7 +144,7 @@ function getBatchItemDDB(params) {
     });
 }
 
-async function updateDBContents(CurrentNodeData, UpdatedNodeData) {
+export async function SetNodeData(CurrentNodeData, UpdatedNodeData) {
     
     var rawData;
     var data = {};
@@ -229,14 +239,14 @@ function updateItemDDB(params) {
     });
 }
 
-async function scanTable(projectName)
+export async function ScanDatabase(projectName)
 {
     // If projectName is null, then scan all items in the table
     
     let retval = [];
     
     // Create the DynamoDB service object
-    const docClient = new AWS.DynamoDB.DocumentClient({
+    const docClient = new AWS.DynamoDBClient({
         apiVersion: '2012-10-08',
         sslEnabled: false,
         paramValidation: false,
@@ -252,7 +262,7 @@ async function scanTable(projectName)
             ExpressionAttributeNames: {
                 "#prj": "prj",
             },
-            ExpressionAttributeValues: { ":prj_val": projectName }
+            ExpressionAttributeValues: { ":prj_val": { "S" : projectName } }
         };
     }
     else {
@@ -267,7 +277,11 @@ async function scanTable(projectName)
         
         do
         {
-            rawData = await docClient.scan(params).promise();
+            const command = new AWS.ScanCommand(params);
+            
+            console.log(params);
+            
+            rawData = await docClient.send(command);
             
             if(rawData.Items != null)
             {
