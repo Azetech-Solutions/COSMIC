@@ -7,23 +7,8 @@
 #include "Includes.h"
 #include SIMCOM_H
 #include <avr/io.h>
-#include "LCD.h"
+#include LCD_H
 #include "stdio.h"
-void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
-{
-
-	/* This function will be called for an un-scheduled job. So check for the response and clear the buffer */
-	SIMCOM_ClearResponseBuffer();
-}
-
-void COSMIC_SIMCOM_Error_Callback(SIMCOM_Error_State_EN Error)
-{
-	if(Error == SIMCOM_Error_GSM_Not_Connected)
-	{
-		DebugStringRow2("GSM_Not_Connected");
-	}
-}
-
 
 void Avr_Init()
 {
@@ -31,10 +16,4 @@ void Avr_Init()
 		DDRB  = 0xFF;
 		PORTA = 0XFF;
 		PORTB = 0xFF;
-}
-
-void Avr_Main_x10()
-{
-	
-	
 }

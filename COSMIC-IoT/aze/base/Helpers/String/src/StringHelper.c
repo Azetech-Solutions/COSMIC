@@ -206,3 +206,8 @@ BOOL StringHelper_startsWith(const char *pre, const char *str)
 
     return lenstr < lenpre ? FALSE : (memcmp(pre, str, lenpre) == 0);
 }
+
+char *StringSearch(const char *source,const char *responsehead)
+{
+	return strstr(source,responsehead);
+}

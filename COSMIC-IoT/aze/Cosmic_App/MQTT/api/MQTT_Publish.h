@@ -25,7 +25,7 @@ typedef enum
 extern MQTT_Publish_state_EN Publish_State;
 extern void MQTT_Publish_StateMachine(void);
 
-extern char PublishPayload[25];
+extern char PublishPayload[64];
 
 
 

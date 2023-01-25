@@ -8,21 +8,9 @@
       <Enabled>True</Enabled>
     </ProcessSection>
     <ProcessSection>
-      <Name>Avr_Main_x10</Name>
-      <Index>2</Index>
-      <TaskRef>x10</TaskRef>
-      <Enabled>True</Enabled>
-    </ProcessSection>
-    <ProcessSection>
       <Name>PRC_X100</Name>
       <Index>2</Index>
       <TaskRef>x100</TaskRef>
-      <Enabled>True</Enabled>
-    </ProcessSection>
-    <ProcessSection>
-      <Name>1ms</Name>
-      <Index>1</Index>
-      <TaskRef>x1</TaskRef>
       <Enabled>True</Enabled>
     </ProcessSection>
   </ProcessSections>

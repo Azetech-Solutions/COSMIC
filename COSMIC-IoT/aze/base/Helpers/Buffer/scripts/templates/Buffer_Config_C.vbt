@@ -23,6 +23,14 @@ UBYTE BufferArray_$(myBuffer.Name)[P_BUFFER_LENGTH_$(myBuffer.Name)];
 /*        Configuration Function Definitions          */
 /******************************************************/
 
+void Buffer_Init(void)
+{
+.For Each myBuffer as RingBuffer in pBuffer.Config.RingBuffers
+. If CBool(myBuffer.Enabled) = True Then
+	$(myBuffer.Name)_Buffer_Create();
+. End If
+.next
+}
 
 .endoutput
 .end module

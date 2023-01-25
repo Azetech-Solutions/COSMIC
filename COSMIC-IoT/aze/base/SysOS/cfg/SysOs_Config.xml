@@ -12,23 +12,7 @@
         <Priority>1</Priority>
       </Task>
       <Task>
-        <Name>x10</Name>
-        <Factor>10</Factor>
-        <Enabled>True</Enabled>
-        <Core>0</Core>
-        <StackSize>1024</StackSize>
-        <Priority>10</Priority>
-      </Task>
-      <Task>
         <Name>x100</Name>
-        <Factor>100</Factor>
-        <Enabled>True</Enabled>
-        <Core>0</Core>
-        <StackSize>1024</StackSize>
-        <Priority>10</Priority>
-      </Task>
-      <Task>
-        <Name>x1</Name>
         <Factor>1</Factor>
         <Enabled>True</Enabled>
         <Core>0</Core>
@@ -39,7 +23,7 @@
   </Config>
   <General>
     <Name>SysOs_General</Name>
-    <Method>Interrupt</Method>
+    <Method>Polling</Method>
     <Tick>10</Tick>
     <MainFunctionType>Default</MainFunctionType>
     <DualCoreScheduling>False</DualCoreScheduling>

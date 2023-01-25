@@ -130,7 +130,9 @@
             <Value>../aze/Gen</Value>
             <Value>../aze/base/Atmega_Drivers</Value>
             <Value>../aze/base/Atmega_Drivers/API</Value>
-            <Value>../aze/base/LCD_16X2</Value>
+            <Value>../aze/base/ComIf/api</Value>
+            <Value>../aze/base/ComIf/src</Value>
+            <Value>../aze/base/SysOS/api</Value>
           </ListValues>
         </avrgcc.compiler.directories.IncludePaths>
         <avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level>
@@ -165,6 +167,30 @@
     <Compile Include="aze\base\Atmega_Drivers\uart.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="aze\base\ComIf\api\ComIf.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\base\ComIf\api\ComIf_Config_Elements.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\base\ComIf\src\ComIf.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\base\ComIf\src\ComIf_CalcChecksum.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\base\ComIf\src\ComIf_RxIndication.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\base\ComIf\src\ComIf_RxRequest.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\base\ComIf\src\ComIf_Transmit.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\base\ComIf\src\ComIf_TxShadowBuffer.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="aze\base\Helpers\Buffer\api\Buffer.h">
       <SubType>compile</SubType>
     </Compile>
@@ -177,13 +203,10 @@
     <Compile Include="aze\base\Helpers\String\src\StringHelper.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="aze\base\LCD_16X2\LCD.c">
+    <Compile Include="aze\base\LCD_16X2\lcd.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="aze\base\LCD_16X2\LCD.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="aze\base\LCD_16X2\LCD_Jobs.c">
+    <Compile Include="aze\base\LCD_16X2\lcd.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\base\SIMCOM\api\SIMCOM.h">
@@ -213,9 +236,6 @@
     <Compile Include="aze\base\SysOS\src\SysOS.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="aze\Cosmic_App\CS_Iot.c">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="aze\Cosmic_App\CS_Iot.h">
       <SubType>compile</SubType>
     </Compile>
@@ -228,6 +248,9 @@
     <Compile Include="aze\Cosmic_App\MQTT\api\MQTT_SSL.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="aze\Cosmic_App\MQTT\src\CS_Iot.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="aze\Cosmic_App\MQTT\src\MQTT.c">
       <SubType>compile</SubType>
     </Compile>
@@ -237,16 +260,22 @@
     <Compile Include="aze\Cosmic_App\MQTT\src\MQTT_SSL.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="aze\Cosmic_App\MQTT_Apllication.c">
+    <Compile Include="aze\Cosmic_App\MQTT_Application.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="aze\Cosmic_App\MQTT_Apllication.h">
+    <Compile Include="aze\Cosmic_App\MQTT_Application.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\Gen\Buffer_Config.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\Gen\Buffer_Config.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\Gen\ComIf_Config.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="aze\Gen\ComIf_Config.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="aze\Gen\Includes.h">
@@ -270,6 +299,13 @@
     <Folder Include="aze\base\" />
     <Folder Include="aze\base\Atmega_Drivers\" />
     <Folder Include="aze\base\Atmega_Drivers\API\" />
+    <Folder Include="aze\base\ComIf\" />
+    <Folder Include="aze\base\ComIf\api\" />
+    <Folder Include="aze\base\ComIf\cfg\" />
+    <Folder Include="aze\base\ComIf\scripts\" />
+    <Folder Include="aze\base\ComIf\scripts\schema\" />
+    <Folder Include="aze\base\ComIf\scripts\templates\" />
+    <Folder Include="aze\base\ComIf\src\" />
     <Folder Include="aze\base\Helpers\" />
     <Folder Include="aze\base\Helpers\Buffer\" />
     <Folder Include="aze\base\Helpers\Buffer\api\" />
@@ -303,6 +339,24 @@
     <Folder Include="aze\Cosmic_App" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="aze\base\ComIf\cfg\ComIf_Core_SubSystem.xml">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="aze\base\ComIf\cfg\ComIf_Settings.xml">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="aze\base\ComIf\scripts\schema\ComIf.xml">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="aze\base\ComIf\scripts\schema\ComIf_Schema.vbt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="aze\base\ComIf\scripts\templates\ComIf_Config_C.vbt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="aze\base\ComIf\scripts\templates\ComIf_Config_H.vbt">
+      <SubType>compile</SubType>
+    </None>
     <None Include="aze\base\Helpers\Buffer\cfg\schema\Buffer.xml">
       <SubType>compile</SubType>
     </None>

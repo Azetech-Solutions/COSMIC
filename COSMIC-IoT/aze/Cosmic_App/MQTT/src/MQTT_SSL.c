@@ -6,7 +6,7 @@
  */ 
 #include "Includes.h"
 #include SIMCOM_H
-#include MQTT_SSL_CONFIGURATION_H
+#include MQTT_SSL_H
 #include STRINGHELPER_H
 #include LCD_H
 
@@ -323,11 +323,6 @@ void SIMCOM_SSL_CONFIG_MainFunction(void)
 
 				switch(C_MQTT_SSL_Config_State)
 				{
-					// 						case SIMCOM_SSL_Init                         : ErrorState = SIMCOM_Error_SSL_Init; break;
-					// 						case SIMCOM_SSL_Authentication               : ErrorState = SIMCOM_Error_SSL_Authentication; break;
-					// 						case SIMCOM_SSL_CaCert_Configuration         : ErrorState = SIMCOM_Error_SSL_CaCert_Configuration; break;
-					// 						case SIMCOM_SSL_Clientcert_Configuration     : ErrorState = SIMCOM_Error_SSL_Clientcert_Configuration; break;
-					// 						case SIMCOM_SSL_Clientkey_Configuration      : ErrorState = //SIMCOM_Error__SSL_Clientkey_Configuration; break;
 					default:
 					// Do Nothing, SIMCOM Module will timeout and reerror
 					break;

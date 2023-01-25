@@ -15,6 +15,12 @@
         <ProcessGroupRef>PRC_X100</ProcessGroupRef>
         <Enabled>True</Enabled>
       </Process>
+      <Process>
+        <Name>Buffer_Init</Name>
+        <Index>9</Index>
+        <ProcessGroupRef>Avr_Init</ProcessGroupRef>
+        <Enabled>False</Enabled>
+      </Process>
     </Processes>
   </Config>
   <General>

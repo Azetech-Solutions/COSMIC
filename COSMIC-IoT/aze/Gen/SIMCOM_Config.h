@@ -22,6 +22,7 @@
 #include <Includes.h>
 #include PLATFORM_TYPES_H
 #include BUFFER_H
+#include SIMCOM_H
 
 /*************************************************/
 /* Functional Switches and Parameter Definitions */
@@ -31,7 +32,7 @@
 
 #define P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT         10
 
-#define P_SIMCOM_TASK_CYCLE_FACTOR                   100
+#define P_SIMCOM_TASK_CYCLE_FACTOR                   1
 
 #define P_SIMCOM_ALIVENESS_ERROR_TIME                60000
 
@@ -114,9 +115,9 @@ typedef enum
 	SIMCOM_Error_ClockConfigurationDisabled,
 	SIMCOM_Error_Clock,
 	SIMCOM_Error_GPRS,
-	SIMCOM_Error_HTTP,
-	SIMCOM_Error_POST,
 	SIMCOM_Error_Buffer_Empty,
+	MQTTnotconnected,
+	MQTT_PublishFailed
 
 }SIMCOM_Error_State_EN;
 
@@ -154,6 +155,7 @@ static inline UBYTE SIMCOM_GetResponseByte()
 		// This is a development Error. So report Error to the application
 		SIMCOM_ERROR_CALLBACK(SIMCOM_Error_Buffer_Empty);
 	}
+
 	return Data;
 }
 

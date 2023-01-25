@@ -10,7 +10,7 @@
 
 #include SIMCOM_CONFIG_H
 #include STRINGHELPER_H
-
+#include BUFFER_CONFIG_H
 /* Include Sub Modules */
 #include SIMCOM_CLOCK_H
 
@@ -37,9 +37,12 @@
 
 #define IsSIMCOM_ResponseStartsWith(x)    StringHelper_startsWith(x, SIMCOM_GetResponseBuffer())
 
+#define IsStringStartsWith(X)			StringSearch(BackupBuffer_Buffer_Get(),X)
+
 #define IsSIMCOM_SubModule_Error()    0
 
 #define IsSIMCOM_ReadyForApplication() (SIMCOM_IsClockRunning() && SIMCOM_IsBT_CheckedAtleastOnce())
+
 
 
 /*************************/
@@ -51,10 +54,12 @@ typedef enum
 {
 	SIMCOM_SM_Init = 0,
 	SIMCOM_SM_SIM_Check,
-	SIMCOMUnsollidatedErrorHandling,
 	SIMCOM_SM_Check_signal_strength,
 	SIMCOM_SM_NW_Registration_Check,
 	SIMCOM_PDP_context,
+	SIMCOM_DisableCall,
+	SIMCOM_DisableMsg,
+	SIMCOM_DisableGPRS_URC,
 	SIMCOM_SM_LTE_Check,
 	SIMCOM_SM_Reset,
 	SIMCOM_SM_CheckNetwork,
@@ -77,6 +82,17 @@ typedef enum
 
 }SIMCOM_ComState_EN;
 
+typedef enum
+{	
+	I_MQTT_Rx_Response_Idle,
+	I_MQTT_Rx_OK,
+	I_MQTT_Rx_ERROR,
+	I_MQTT_Rx_msg,
+	I_MQTT_Rx_Storedata,
+	I_MQTT_Rx_CMQTTSUB,
+	I_MQTT_Rx_CMQTTPUB
+	
+}Rx_Response_EN;
 
 /* SIMCOM Job Callback type */
 typedef void (*SIMCOM_Callback_Type)(SIMCOM_Job_Result_EN);
@@ -132,6 +148,15 @@ static inline void SIMCOM_ClearResponseBuffer()
 	memset(SIMCOM_ResponseBuffer, 0, BUFFER_MAX_SIZE);
 
 	SIMCOM_ResponseLength = 0;
+}
+
+static inline void SIMCOMCurrentBufferClear(BufferType_ST *Buff)
+{
+	memset(Buff->BufferPtr,0,Buff->Length);
+				
+	Buff->HeadIndex = 0;
+	Buff->TailIndex = 0;
+	Buff->Length = 0;
 }
 
 static inline BOOL SIMCOM_IsResponseOK()
@@ -195,6 +220,7 @@ extern BOOL SIMCOM_Data_Read(UBYTE Data); // MUST ONLY USED BY UART ISR
 
 extern BOOL SIMCOM_Schedule_Job(const char * Command, ULONG Timeout, SIMCOM_Callback_Type Callback);
 
+extern BOOL SIMCOM_SSL_Schedule_Job(const char * Command, ULONG Timeout, SIMCOM_Callback_Type Callback);
 //extern void SIMCOM_StateMachine_Callback(SIMCOM_Job_Result_EN result);
 
 extern ULONG SIMCOM_GetCSV_Number_fromBuffer(const char * ResponseHead, UBYTE Position);
@@ -207,6 +233,6 @@ extern void MQTT_StateMachine(void);
 
 extern void MQTT_SubPub_StateMachine(void);
 
-
+extern void APN_Selection(char *checkstring);
 
 #endif /* _SIMCOM_H_ */
