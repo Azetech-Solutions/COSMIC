@@ -1,5 +1,6 @@
 package com.aze.cosmiciot;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -11,8 +12,14 @@ import com.aze.cosmiciot.classes.Globals;
 import com.aze.cosmiciot.ui.DeviceAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -35,7 +42,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.WindowInsetsController;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -164,6 +177,12 @@ public class MainActivity extends AppCompatActivity implements DeviceAdapter.Dev
     public void onDeviceClicked(Device device) {
         Globals.CurrentDevice = device;
         startActivity(new Intent(getApplicationContext(), ControlActivity.class));
+    }
+
+    @Override
+    public void onDeviceRemoveRequested(Device device) {
+        Globals.RemoveDevice(getApplicationContext(), device.Name);
+        UpdateUI();
     }
 
     /**

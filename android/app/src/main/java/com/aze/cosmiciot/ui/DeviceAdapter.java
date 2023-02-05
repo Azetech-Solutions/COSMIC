@@ -64,6 +64,13 @@ public class DeviceAdapter extends RecyclerView.Adapter <DeviceAdapter.DeviceVie
                 listener.onDeviceClicked(device);
             }
         });
+        holder.removeDeviceImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onDeviceRemoveRequested(device);
+            }
+        });
+
     }
     @Override
     public int getItemCount() {
@@ -75,6 +82,7 @@ public class DeviceAdapter extends RecyclerView.Adapter <DeviceAdapter.DeviceVie
         TextView textViewTitle;
         ImageView imageViewThumbNail;
         CardView cardView;
+        ImageView removeDeviceImageView;
 
         public DeviceViewHolder(View itemView) {
             super(itemView);
@@ -82,11 +90,13 @@ public class DeviceAdapter extends RecyclerView.Adapter <DeviceAdapter.DeviceVie
             textViewTitle = itemView.findViewById(R.id.title);
             imageViewThumbNail = itemView.findViewById(R.id.thumbnail);
             cardView = itemView.findViewById(R.id.PCardView);
+            removeDeviceImageView = itemView.findViewById(R.id.removeDevice);
         }
 
     }
 
     public interface DeviceAdapterListener {
         void onDeviceClicked(Device device);
+        void onDeviceRemoveRequested(Device device);
     }
 }

@@ -6,8 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.aze.cosmiciot.classes.Globals;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class AddDevice extends AppCompatActivity {
 
@@ -28,6 +34,7 @@ public class AddDevice extends AppCompatActivity {
                     Globals.AddDevice(getApplicationContext(), DeviceName);
                     finish();
                 }
+
 
             }
         });
