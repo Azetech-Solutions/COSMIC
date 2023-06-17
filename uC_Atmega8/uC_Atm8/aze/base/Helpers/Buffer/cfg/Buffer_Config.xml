@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Buffer type="paramconfig" ref="Buffer">
+  <Config>
+    <Name>Buffer_Config</Name>
+    <RingBuffers />
+  </Config>
+</Buffer>
