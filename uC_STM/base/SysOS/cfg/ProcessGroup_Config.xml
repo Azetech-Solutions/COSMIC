@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ProcessGroupDef type="paramconfig" ref="ProcessGroupDef">
+  <ProcessGroups>
+    <ProcessGroup>
+      <Name>STM32_Init</Name>
+      <Index>1</Index>
+      <ProcessSectionRef>STM32_Init</ProcessSectionRef>
+      <Enabled>true</Enabled>
+    </ProcessGroup>
+    <ProcessGroup>
+      <Name>PRC_X100</Name>
+      <Index>3</Index>
+      <ProcessSectionRef>PRC_X100</ProcessSectionRef>
+      <Enabled>True</Enabled>
+    </ProcessGroup>
+  </ProcessGroups>
+</ProcessGroupDef>

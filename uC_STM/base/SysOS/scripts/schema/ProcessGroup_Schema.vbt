@@ -1,0 +1,36 @@
+﻿.usedmodule ProcessGroupDef
+.Imports Microsoft.VisualBasic
+.Imports System
+.Imports System.Collections.Generic
+.Imports System.Xml.Serialization
+.Imports System.IO
+.
+.
+.Public Class ProcessGroup
+.    Public Property Name As String = ""
+.	 Public Property Index As UInteger = 0
+.	 Public Property ProcessSectionRef As String = ""
+.    Public Property Enabled As String = "false"
+.End Class
+.
+.Public Class ProcessGroupDef
+.    Public Property ProcessGroups As New List(Of ProcessGroup)
+.End Class
+.
+.Public Module ProcessGroupDef_Global
+.
+.    Public ProcessGroupDefs As New List(Of ProcessGroupDef)
+.
+.    Public Sub AddProcessGroupDefModule(ByVal FilePath As String)
+.        Try
+.            Dim serializer As New XmlSerializer(GetType(ProcessGroupDef))
+.            Dim fs As New FileStream(FilePath, FileMode.Open)
+.            Dim pProcessGroupDef As ProcessGroupDef = CType(serializer.Deserialize(fs), ProcessGroupDef)
+.            ProcessGroupDefs.Add(pProcessGroupDef)
+.        Catch ex As Exception
+.            Console.WriteLine("ERROR: Exception while accessing " + FilePath)
+.            Console.WriteLine(ex.Message)
+.        End Try
+.    End Sub
+.
+.End Module

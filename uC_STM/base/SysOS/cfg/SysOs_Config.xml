@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SysOs type="paramconfig" ref="SysOs">
+  <Config>
+    <Name>SysOs_Config</Name>
+    <Tasks>
+      <Task>
+        <Name>Init</Name>
+        <Factor>0</Factor>
+        <Enabled>True</Enabled>
+        <Core>0</Core>
+        <StackSize>0</StackSize>
+        <Priority>1</Priority>
+      </Task>
+      <Task>
+        <Name>x100</Name>
+        <Factor>1</Factor>
+        <Enabled>True</Enabled>
+        <Core>0</Core>
+        <StackSize>1024</StackSize>
+        <Priority>10</Priority>
+      </Task>
+    </Tasks>
+  </Config>
+  <General>
+    <Name>SysOs_General</Name>
+    <Method>Polling</Method>
+    <Tick>10</Tick>
+    <MainFunctionType>Default</MainFunctionType>
+    <DualCoreScheduling>False</DualCoreScheduling>
+    <TaskOverrunMonitoring>False</TaskOverrunMonitoring>
+    <StackOverflowMonitoring>False</StackOverflowMonitoring>
+    <StackOverflowWaitCycles>10</StackOverflowWaitCycles>
+  </General>
+</SysOs>
