@@ -15,8 +15,14 @@ typedef enum
 	MSG_DeleteMsgs,
 	MSG_SelectMsgFormat,
 	MSG_SelectMobNum,
-	MSG_SendMsg
+	WaitforMessageResponse,
+	MSG_SendMsg,
+	MessageEnded
 }SendMSG_EN;
+
+extern SendMSG_EN SendMSG_State;
+
+extern void SendMessage(const char* str);
 
 /**********************************************************/
 /* Global Variable Declarations                           */

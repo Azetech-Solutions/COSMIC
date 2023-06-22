@@ -5,6 +5,10 @@
 #include "Message.h"
 #include SIMCOM_H
 #include "stdio.h"
+#include PLATFORM_TYPES_H
+#include "string.h"
+#include FLASH_EEPROM_H
+
 /**********************************************************/
 /* Macro Definitions                                      */
 /**********************************************************/
@@ -19,12 +23,20 @@
 /**********************************************************/
 SendMSG_EN SendMSG_State = MSG_Idle;
 
+void updateNumbertoSendMsg(char MessageString[],UBYTE NumberIndex);
+
+//SendMSG_EN SendMSG_State = MSG_SelectMobNum;
+
 static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE SendMSG_Retry_Count = 50;
 
+void SendMessage(const char* str);
+
 char StoreMSGs[100];
-char MobNumber[13]="+917558023123";
+char MobNumber[13]="+918124922783";
+
+extern void SIM_Send_Data(unsigned char Data);
 /**********************************************************/
 /* Inline Function Definitions                            */
 /**********************************************************/
@@ -49,11 +61,14 @@ static void SendMSG_CallBack(SIMCOM_Job_Result_EN result)
 
 void AddDoubleQts(char *dest,const char *str)
 {
+		char checkstr[20] = "+918124922783";
 		dest[0] = '\"';
-		UBYTE len = strlen(str);
-		memcpy(&dest[1],str,len);
-		dest[len++] = '\"';
+			UBYTE len = strlen(checkstr);
+			memcpy(&dest[1],checkstr,len);
+		len = strlen(dest);
 		dest[len] = '\0';
+		dest[len++] = '\"';
+		
 }
 
 
@@ -69,10 +84,9 @@ void MessageControl(void)
 	SendMSG_EN SendMSG_State_Before_Execution = SendMSG_State;
 
 	BOOL RetryInNextCycle = FALSE;
-
-		
 	switch(SendMSG_State)
 	{
+		
 		case MSG_Idle:
 		{
 			
@@ -100,7 +114,12 @@ void MessageControl(void)
 					// Check if the response is OK or not.
 					if(SIMCOM_IsResponseOK())
 					{
-						SendMSG_State = MSG_SelectMsgFormat; // Move to next state
+						SendMSG_State = MSG_Idle; // Move to next state
+						if(SendNumberMesaageFlag == TRUE)
+						{
+							SIMCOM_State = SIMCOMCancelCall;
+							SendNumberMesaageFlag = FALSE;
+						}
 					}
 					else
 					{
@@ -128,11 +147,11 @@ void MessageControl(void)
 			// First Ensure the SIMCOM Module is Connected
 			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 			{
-				char SetMobileNumber[25];
+				char SetMobileNumber[26];
 				char StoreDoubleQtedNum[16];
-				AddDoubleQts(StoreDoubleQtedNum,MobNumber);
+				AddDoubleQts(&StoreDoubleQtedNum[0],MobNumber);
 				sprintf(SetMobileNumber,"AT+CMGS=%s",StoreDoubleQtedNum);
-				
+				SetMobileNumber[23] = '\0';
 				// Send AT Command and wait for response	
 				if(SIMCOM_Schedule_Job(SetMobileNumber, SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
 				{
@@ -146,11 +165,10 @@ void MessageControl(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
 					// Job has been completed
-
 					// Check if the response is OK or not.
-					if(SIMCOM_IsResponse_Entermessage())
+					if(IsSIMCOM_ResponseStartsWith(">"))
 					{
-						SendMSG_State = MSG_SendMsg; // Move to next state
+						SendMSG_State = MSG_SendMsg;// Move to next state
 					}
 					else
 					{
@@ -163,7 +181,6 @@ void MessageControl(void)
 				{
 					// If there is a problem in reception, retry sending the command
 					RetryInNextCycle = TRUE;
-
 					// TODO: Log Error. Possibly the GSM Module is not powered or connected
 				}
 				else
@@ -171,8 +188,14 @@ void MessageControl(void)
 					// Do Nothing. Wait
 				}
 			}
-		}
+		}		
 		break;
+		
+		case WaitforMessageResponse:
+			// do nothing 
+			break;
+		
+		
 		case MSG_SendMsg:
 		{
 			// First Ensure the SIMCOM Module is Connected
@@ -194,9 +217,10 @@ void MessageControl(void)
 					// Job has been completed
 
 					// Check if the response is OK or not.
-					if(SIMCOM_IsResponseOK())
+					if(IsSIMCOM_ResponseStartsWith("+CMGS:"))
 					{
-						SendMSG_State = MSG_Idle; // Move to next state
+//						SendMSG_State = MSG_DeleteMsgs; // Move to next state
+						SendMSG_State = MSG_DeleteMsgs;
 					}
 					else
 					{
@@ -219,6 +243,8 @@ void MessageControl(void)
 			}
 		}
 		break;
+		
+		
 		default:
 		{
 			// Do Nothing, The state machine has been completed
@@ -260,3 +286,26 @@ void MessageControl(void)
 	}
 	
 }
+
+
+//void updateNumbertoSendMsg(char MessageString[],UBYTE NumberIndex)
+//{		
+//	if(SendMSG_State == MSG_Idle)
+//	{
+//		strCheck[0] = 'N';
+//		strCheck[1] = (NumberIndex+48);
+//		strCheck[2] = ' ';
+//		strCheck[3] = '-';
+//		UBYTE k=4;
+//		for(UBYTE cnt =0;cnt<13;cnt++)
+//		{
+//			strCheck[k] = MessageString[cnt];
+//			k++;
+//		}
+//		strCheck[17] = CarraigeReturn;
+//		strCheck[18] = MsdLastWord;
+//		strCheck[19] = '\0';
+//		SendMessage(strCheck);
+//	}				
+
+//}

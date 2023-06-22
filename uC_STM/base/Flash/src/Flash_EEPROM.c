@@ -1,13 +1,24 @@
 #include "stm32g0xx.h"                  // Device header
 #include "Includes.h"
+#include <stdio.h>
 #include UART_DRIVER_H
 #include PLATFORM_TYPES_H
 #include FLASH_EEPROM_H
+#include MESSAGE_H
 #define FLASH_KEY1                      0x45670123U   /*!< Flash key1 */
 #define FLASH_KEY2                      0xCDEF89ABU   /*!< Flash key2: used with FLASH_KEY1*/
+#include SIMCOM_H
+ 
 
-
+St Data;
 St readD;
+St AdressCpy[4];
+UBYTE NumberData = 0;
+UBYTE SendNumberMesaageFlag = FALSE;
+UBYTE CarraigeReturn = 0x0D;
+UBYTE MsdLastWord = 0x1A;
+void updateNumbertoSendMsg(char MessageString[],UBYTE NumberIndex);
+
 extern void SIM_Send_Data(unsigned char Data);
 void FLASH_Lock(void);
 
@@ -121,3 +132,83 @@ UBYTE FlashDataRead(uint32_t Address)
 	return (UBYTE)readD.WriteIndicator;
 }
 
+void EepromFlashMmeoryCopy()
+{
+	uint32_t NumberArray[4] = {0x08007000,0x08007010,0x08007020,0x08007030};
+	UBYTE dummyRead;
+	for(UBYTE i =0;i<4; i++)
+	{
+		dummyRead = FlashDataRead(NumberArray[i]);
+		if(dummyRead == 1)
+		{
+			 AdressCpy[i] = readD;
+		}
+//		for(UBYTE j =0 ;j<4 ;j++)
+//		{
+//			SIM_Send_Data('D');
+//			SIM_Send_Data(j);
+//			SIM_Send_Data(':');
+//			for(UBYTE i =0 ;i<13 ;i++)
+//			{
+//				SIM_Send_Data(AdressCpy[j].MobNo[i]);
+//			}
+//		}
+	}
+}
+
+void EepromDeleteWrite(uint32_t number,UBYTE WrtInd[])
+{
+	EEPROMErasePage(14);
+	uint32_t EEPROMWriteAdress = 0x08007000;
+	for(UBYTE i=0;i<4;i++)
+	{
+		if((EEPROMWriteAdress == number) || (WrtInd[i] != 1))
+		{
+			EEPROMWriteAdress = EEPROMWriteAdress+16;
+//			SIM_Send_Data('R');
+//			SIM_Send_Data('D');
+//			SIM_Send_Data(i);
+//			SIM_Send_Data(':');
+//			SIM_Send_Data(WrtInd[i]);
+			continue;
+		}
+//					SIM_Send_Data('Y');
+		EEPROMmain(EEPROMWriteAdress,AdressCpy[i].byte[0]);
+		EEPROMWriteAdress = EEPROMWriteAdress+8;
+		EEPROMmain(EEPROMWriteAdress,AdressCpy[i].byte[1]);
+		EEPROMWriteAdress = EEPROMWriteAdress+8;
+	}
+}
+char strCheck[100];
+void SendNumberMessage()
+{
+	if(SendNumberMesaageFlag == TRUE)
+	{
+//		UBYTE NumberIndex= 0;
+//		if(SendMSG_State == MSG_Idle)
+//		{
+//				strCheck[0] = 'N';
+//				strCheck[1] = (NumberIndex+48);
+//				strCheck[2] = ' ';
+//				UBYTE k=4;
+//				for(UBYTE cnt =0;cnt<13;cnt++)
+//				{
+//					strCheck[k] = MessageString[cnt];
+//					k++;
+//				}
+//				strCheck[17] = CarraigeReturn;
+//				strCheck[18] = MsdLastWord;
+//				strCheck[19] = '\0';
+//				SendMessage(strCheck);
+//		}
+			if(SendMSG_State == MSG_Idle)
+			{
+				sprintf(strCheck,"N1 - %s\nN2 - %s\nN3 - %s\nN4 - %s",AdressCpy[0].MobNo,AdressCpy[1].MobNo,AdressCpy[2].MobNo,AdressCpy[3].MobNo);
+				UBYTE len = strlen(strCheck);
+				strCheck[len] = CarraigeReturn;
+				strCheck[len+1] = MsdLastWord;
+				strCheck[len+2] = '\0';
+				SendMessage(strCheck);
+			}
+	}
+}				

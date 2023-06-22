@@ -19,18 +19,30 @@
 #include GPIO_DRIVER_H
 #include UART_DRIVER_H
 #include FLASH_EEPROM_H
+#include MESSAGE_H
+
 
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
 
-St Data;
 
-uint64_t EEPROMWriteAdress;
+
+extern void EepromDeleteWrite(uint32_t number,UBYTE WrtInd[]);
+
+uint32_t EEPROMWriteAdress;
+
+//UBYTE pageEraseCount = 0;
+
+extern void SendNumberMessage();
+
+extern void updateSendData(UBYTE Data[]);
 
 extern void DTMFMesaageHanldeFunc(char DtmfCmd);
 
 extern UBYTE FlashDataRead(uint32_t Address);
+
+extern void EepromFlashMmeoryCopy();
 
 extern void SIM_Send_Data(unsigned char Data);
 
@@ -42,6 +54,8 @@ BOOL PREVPUBLISHSTATE = FALSE;
 
 UBYTE DTMFBuffer[15];
 
+extern void MessageControl(void);
+
 extern void EEPROMErasePage(uint32_t page);
 
 SIMCOM_ComState_EN SIMCOM_ComState = SIMCOM_Idle;
@@ -49,6 +63,8 @@ SIMCOM_ComState_EN SIMCOM_ComState = SIMCOM_Idle;
 SIMCOM_JobType SIMCOM_CurrentJob;
 
 UBYTE NumberLength = 0;
+
+extern void SendNumberMessage();
 
 char SIMCOM_ResponseBuffer[BUFFER_MAX_SIZE];
 
@@ -73,11 +89,12 @@ typedef enum DtmfNumberAlterStatus{
 	ChooseTaskToAlter,
 	AddNumberToStore,
 	ChooseAdressToAlterNumber,
+	WaitforPageErase,
 	DeleteExcistingNumber
 }DtmfNumberAlterStatus_En;
 
 char DTMFStoreNumber[13];
-UBYTE BufferLength = 0;
+UBYTE BufferLength = 3;
 
 DtmfNumberAlterStatus_En DtmfState = Idle;
 
@@ -156,6 +173,13 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				SIMCOM_State = SIMCOM_SM_Reset;
 			}
 		}
+//		else if(SendMSG_State == WaitforMessageResponse)
+//		{
+//			if(IsSIMCOM_ResponseStartsWith(">"))
+//			{
+//				SendMSG_State = MSG_SendMsg;
+//			}
+//		}
 		else if(IsSIMCOM_ResponseStartsWith("+CMQTTPUB:"))
 		{
 			UBYTE PublishResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTPUB:", 1);
@@ -193,31 +217,34 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 		else if(IsSIMCOM_ResponseStartsWith("+CLCC:"))
 		{
 			UBYTE DtmfStatusFlag = FlashDataRead(0x08007000);
-			if(DtmfStatusFlag != 1)
+			UBYTE CallStatus;
+			UBYTE BufferLength = 0,i;
+			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+CLCC:");
+			if(RXStr[5] == '4')
 			{
-				UBYTE CallStatus;
-				UBYTE BufferLength = 0,i;
-				char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+CLCC:");
-				if(RXStr[5] == '4')
+				for(i = 12;i<=24; i++)
 				{
-					for(i = 12;i<=24; i++)
-					{
-						DTMFBuffer[BufferLength] = RXStr[i];
-						BufferLength++;
-					}
-					if(memcmp(DTMFBuffer,"+918124922783",13) == 0)
-					{
-						SIMCOM_State = SIMCOMAttendCall;
-					}
-					else
-					{
-						SIMCOM_State = SIMCOMCancelCall;
-					}
+					DTMFBuffer[BufferLength] = RXStr[i];
+					BufferLength++;
 				}
-			}
-			else
-			{
-				SIMCOM_State = SIMCOMCancelCall;
+				UBYTE BuffDiff;
+				if(DtmfStatusFlag == 1)
+				{
+					BuffDiff = memcmp(DTMFBuffer,"+918124922783",13);
+//					BuffDiff = memcmp(DTMFBuffer,readD.MobNo,13);
+				}
+				else
+				{
+					BuffDiff = memcmp(DTMFBuffer,"+918124922783",13);
+				}
+				if(BuffDiff == 0)
+				{
+					SIMCOM_State = SIMCOMAttendCall;
+				}
+				else
+				{
+					SIMCOM_State = SIMCOMCancelCall;
+				}
 			}
 		}
 		else if(IsSIMCOM_ResponseStartsWith("+RXDTMF"))
@@ -225,7 +252,6 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 			char DTMF;
 			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+RXDTMF: ");
 			DTMF = *RXStr;
-//			ReadyforDtmfCmd = TRUE;
 			DTMFStateMachine(DTMF);
 		}
 		else
@@ -235,112 +261,32 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 		}
 	}
 }
-extern void SendMessage(const char* str);
-
-//void DTMFMesaageHanldeFunc(char DtmfCmd)
-//{
-//	if(DtmfState == Idle)
-//	{
-//		
-//	}
-//	
-//	if(ReadyforDtmfCmd == TRUE)
-//	{
-//		switch(DtmfCmd)
-//		{
-//			if(DtmfState != AddNewNumber && DtmfState != DeleteExcistingNumber)
-//			{
-//				case '1':
-//				{
-//					
-//					break;
-//				}
-//				case '2':
-//				{
-//					break;
-//				}
-//				case '3':
-//				{
-//					break;
-//				}
-//				case '4':
-//				{
-//					EEPROMErasePage(14);
-//					EEPROMmain(0x08007000,0x43434343);
-//					EEPROMmain(0x08007008,0x43434343);
-//					break;
-//				}
-//				case '5':
-//				{
-//					DtmfNumberAlter = TRUE;
-//					break;
-//				}
-//				case '*':
-//					if(DtmfNumberAlter == TRUE)
-//					{
-//						DtmfState = AddNewNumber;	
-//						DtmfNumberAlter = FALSE;
-//					}
-//					break;
-//				case '#':
-//					if(DtmfNumberAlter == TRUE)
-//					{
-//						DtmfState = DeleteExcistingNumber;
-//						DtmfNumberAlter = FALSE;
-//					}
-//					break;
-//				default:
-//					break;
-//				}
-//			else
-//			{
-//				switch(DtmfCmd)
-//				{
-//					case 1:
-//						EEPROMWriteAdress = number1;
-//						break;
-//					case 2:
-//						EEPROMWriteAdress = number2;
-//						break;
-//					case 3:
-//						EEPROMWriteAdress = number3;
-//						break;
-//					case 4:
-//						EEPROMWriteAdress = number4;
-//						break;
-//					default:
-//					{
-//						
-//					}
-//				}
-//				AddDtmfNumber(DtmfCmd);
-//			}
-//		}
-//	}
-////	ReadyforDtmfCmd = FALSE;
-////	SIMCOM_State = SIMCOMCancelCall;
-//}
 
 void DTMFStateMachine(char DTMFMessage)
 {
 	switch(DtmfState)
-	{	
+	{
+		AvrCmdData_ST StatusData;		
 		case Idle:
 			if(DTMFMessage == '1')
 			{
-				
+				StatusData.SW1 = 1;
+				updateSendData(StatusData.Data_Bytes);
+				SIMCOM_State = SIMCOMCancelCall;	
 			}
 			else if(DTMFMessage == '2')
 			{
-				
+				StatusData.SW1 = 1;
+				updateSendData(StatusData.Data_Bytes);
+				SIMCOM_State = SIMCOMCancelCall;
 			}
 			else if(DTMFMessage == '3')
 			{
-				
+				SIMCOM_State = SIMCOMCancelCall;
 			}
 			else if(DTMFMessage == '4')
 			{
-				
+				SendNumberMesaageFlag = TRUE;
 			}
 			else if(DTMFMessage == '5')
 			{
@@ -377,7 +323,6 @@ void DTMFStateMachine(char DTMFMessage)
 				SIMCOM_State = SIMCOMCancelCall;
 				DtmfState = Idle;
 			}
-			
 			break;
 		case ChooseTaskToAlter:
 			if(DTMFMessage == '*')
@@ -390,28 +335,62 @@ void DTMFStateMachine(char DTMFMessage)
 			}
 			else
 			{
-				
+				SIMCOM_State = SIMCOMCancelCall;
+				DtmfState = Idle;
 			}
 			break;
 			
 		case AddNumberToStore:
 		{
+			Data.MobNo[0] = '+';
+			Data.MobNo[1] = '9';
+			Data.MobNo[2] = '1';
 			Data.MobNo[BufferLength] = DTMFMessage;
 			BufferLength++;
 			if(BufferLength == 13)
 			{
 				Data.WriteIndicator = 1;
-				BufferLength = 0;
+				BufferLength = 3;
 				DtmfState = Idle;
-				EEPROMErasePage(14);
-				EEPROMmain(0x08007000,Data.byte[0]);
-				EEPROMmain(0x08007008,Data.byte[1]);
+				EEPROMmain(EEPROMWriteAdress,Data.byte[0]);
+				EEPROMWriteAdress = EEPROMWriteAdress+8;
+				EEPROMmain(EEPROMWriteAdress,Data.byte[1]);
 				SIMCOM_State = SIMCOMCancelCall;
 			}
 		}	
 			break;		
 		case DeleteExcistingNumber:
+			if(DTMFMessage == '*')
+			{
+				EEPROMErasePage(14);
+				DtmfState = Idle;
+				SIMCOM_State = SIMCOMCancelCall;
+			}
+			else
+			{
+				UBYTE WrtInd[4];
+				uint32_t EEPROMAdress = 0x08007000;
+				for(UBYTE i = 0;i < 4; i++)
+				{
+					WrtInd[i] = (FlashDataRead(EEPROMAdress));
+					SIM_Send_Data(WrtInd[i]);
+					EEPROMAdress = EEPROMAdress+16;
+				}
+				EepromDeleteWrite(EEPROMWriteAdress,WrtInd);
+				EepromFlashMmeoryCopy();
+				SIMCOM_State = SIMCOMCancelCall;
+				DtmfState = Idle;
+			}
 			break;
+//		case WaitforPageErase:
+//			pageEraseCount++;
+//			if(pageEraseCount == 5)
+//			{
+//				pageEraseCount = 0;
+//				SIMCOM_State = SIMCOMCancelCall;
+//				DtmfState = Idle;
+//			}
+//			break;
 		default :
 			break;
 	}
@@ -576,8 +555,10 @@ void SIMCOM_MainFunction(void)
 	SIMCOM_StateMachine();
 	SIMCOM_SSL_CONFIG_MainFunction();
 	MQTT_StateMachine();
-	MQTT_AppMain();
-	MQTT_Publish_StateMachine();
+//	MQTT_AppMain();
+//	MQTT_Publish_StateMachine();
+	SendNumberMessage();
+	MessageControl();
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

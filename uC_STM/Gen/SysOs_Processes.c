@@ -40,10 +40,10 @@ extern void SystickTimerInit(void);
 extern void PLLInit(void);
 extern void AvrStatusHandleFunc(void);
 extern void Sysos_check(void);
+extern void EepromFlashMmeoryCopy();
+
 
 /* Define the Process calls for the Tasks */
-
-extern void SendMessage(const char* str);
 
 /* Definition for the task Init */
 void PRC_SYSOS_TASK_INIT(void)
@@ -55,15 +55,16 @@ void PRC_SYSOS_TASK_INIT(void)
 		USART_Init();
 		SystickTimerInit();
 		SIMCOM_Init();
+	EepromFlashMmeoryCopy();
 }
-extern void MessageControl(void);
+
 /* Definition for the task x100 */
 void PRC_SYSOS_TASK_X100(void)
 {
 		SIMCOM_MainFunction();
 		AvrStatusHandleFunc();
+		
 		Sysos_check();
-	MessageControl();
 }
 
 

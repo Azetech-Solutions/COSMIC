@@ -1,10 +1,9 @@
 
-
-
 #ifndef _FLASH_H_
 #define _FLASH_H_
 
 #include<stdint.h>
+
 
 typedef union
 {
@@ -21,9 +20,9 @@ typedef union
 #define number3 0x08007020
 #define number4 0x08007030
 
-
-
-
-
+extern St Data;
+extern St readD;
+extern St AdressCpy[4];
+extern unsigned char SendNumberMesaageFlag;
 
 #endif  /* _FLASH_H_ */

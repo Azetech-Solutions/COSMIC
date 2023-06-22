@@ -535,14 +535,14 @@
               <FilePath>..\STM32_Driver\PLL_Driver.c</FilePath>
             </File>
             <File>
-              <FileName>Systick_Interrupt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32_Driver\Systick_Interrupt.c</FilePath>
-            </File>
-            <File>
               <FileName>UART_Driver.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\STM32_Driver\UART_Driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>Systick_Interrupt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32_Driver\Systick_Interrupt.c</FilePath>
             </File>
           </Files>
         </Group>
