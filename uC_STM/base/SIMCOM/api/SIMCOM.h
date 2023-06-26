@@ -19,6 +19,9 @@
 /*************************/
 #define ENTER_MESSAGE                  ">"
 #define CARRIAGE_RETURN               0x0D
+#define MSGLASTWORD                   0X1A
+
+
 #define LINE_FEED                     0x0A
 
 #define IsStartOrStopCommandByte(x)   ((x == CARRIAGE_RETURN) || (x == LINE_FEED))
@@ -42,6 +45,8 @@
 #define IsSIMCOM_SubModule_Error()    0
 
 #define IsSIMCOM_ReadyForApplication() (SIMCOM_IsClockRunning() && SIMCOM_IsBT_CheckedAtleastOnce())
+
+#define IsSIMCOM_ClockReady()  (SIMCOM_Clock_State == SIMCOM_Clock_Running)
 
 
 

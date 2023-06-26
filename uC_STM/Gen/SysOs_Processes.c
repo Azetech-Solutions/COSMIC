@@ -49,13 +49,13 @@ extern void EepromFlashMmeoryCopy();
 void PRC_SYSOS_TASK_INIT(void)
 {
 		PLLInit();
+		EepromFlashMmeoryCopy();
 		Buffer_Init();
 		GPIO_init();
 		USART2_Init();
 		USART_Init();
 		SystickTimerInit();
 		SIMCOM_Init();
-	EepromFlashMmeoryCopy();
 }
 
 /* Definition for the task x100 */
@@ -63,7 +63,6 @@ void PRC_SYSOS_TASK_X100(void)
 {
 		SIMCOM_MainFunction();
 		AvrStatusHandleFunc();
-		
 		Sysos_check();
 }
 

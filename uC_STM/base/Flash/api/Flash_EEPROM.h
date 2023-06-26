@@ -23,6 +23,5 @@ typedef union
 extern St Data;
 extern St readD;
 extern St AdressCpy[4];
-extern unsigned char SendNumberMesaageFlag;
 
 #endif  /* _FLASH_H_ */

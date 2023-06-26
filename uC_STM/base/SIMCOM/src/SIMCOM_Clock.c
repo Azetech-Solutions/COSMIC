@@ -29,6 +29,8 @@ static BOOL RunClock = FALSE;
 /* Static Function Definitions           */
 /*****************************************/
 
+extern void SIM_Send_Data(unsigned char Data);
+
 static void SIMCOM_Clock_ParseDateTime_InResponse()
 {
 	/* Postive Response would be -> +CCLK: <time>

@@ -25,6 +25,7 @@
 #include LCD_DRIVER_H
 #include GPIO_DRIVER_H
 #include UART_DRIVER_H
+#include MESSAGEHANDLINGAPPLICATION_H
 
 /*****************************************/
 /* Global Variables                      */
@@ -54,6 +55,8 @@ extern UBYTE ComIf_RxIndication_Avr(UBYTE DataByte);
 extern UBYTE AvrTransmitFunc(UWORD Length, void * Data);
 
 extern void SIM_Send_Data(unsigned char Data);
+
+UBYTE MachineInitFlag = FALSE;
 
 UBYTE AvrTransmitFunc(UWORD Length, void * Data)
 {
@@ -170,6 +173,7 @@ void MQTT_AppMain()
 					UBYTE LastStatus[2] = {255,0};
 					RequestLastStatus(LastStatus);
 					MQTTApp_State = MQTTApp_PublishMsgConfiguringinprocess;
+					MachineInitFlag = TRUE;
 				}
 			}
 			break;

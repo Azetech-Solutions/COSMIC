@@ -195,6 +195,8 @@ typedef union
 }AvrCmdSendData_ST;
 
 
+extern UBYTE MachineInitFlag;
+
 extern BOOL MQTTConnectionCheckStatus;
 
 extern MQTTApp_States MQTTApp_State;

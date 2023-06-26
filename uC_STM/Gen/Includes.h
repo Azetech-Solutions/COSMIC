@@ -31,6 +31,7 @@
 #define INCLUDES_H   "..\Gen\Includes.h"
 #define SIMCOM_CONFIG_H   "..\Gen\SIMCOM_Config.h"
 #define SYSOS_CONFIG_H   "..\Gen\SysOs_Config.h"
+#define MESSAGEHANDLINGAPPLICATION_H   "..\project\MessageHandlingApplication.h"
 #define RTE_COMPONENTS_H   "..\project\RTE\_Target_1\RTE_Components.h"
 #define GPIO_DRIVER_H   "..\STM32_Driver\GPIO_Driver.h"
 #define LCD_DRIVER_H   "..\STM32_Driver\LCD_Driver.h"

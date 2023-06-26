@@ -15,6 +15,7 @@
 #include MQTT_APPLICATION_H
 #include COMIF_CONFIG_H
 #include "stdio.h"
+#include MESSAGEHANDLINGAPPLICATION_H
 
 /*****************************************/
 /* Global Variables                      */
@@ -286,6 +287,11 @@ void MQTT_Publish_StateMachine(void)
 			case MQTT_PublishMsgPublished:
 			{
 				Publish_State = MQTT_Publish_Idle;
+				if(MachineInitFlag == TRUE)
+				{
+						MachineInitFlag = FALSE;
+						DtmfMessageHandlerState = MachineInit;
+				}
 //				DebugStringRow1("READY        ");
 			}
 			break;

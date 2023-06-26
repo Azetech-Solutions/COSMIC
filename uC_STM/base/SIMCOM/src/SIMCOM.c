@@ -20,6 +20,7 @@
 #include UART_DRIVER_H
 #include FLASH_EEPROM_H
 #include MESSAGE_H
+#include MESSAGEHANDLINGAPPLICATION_H
 
 
 /*****************************************/
@@ -34,7 +35,6 @@ uint32_t EEPROMWriteAdress;
 
 //UBYTE pageEraseCount = 0;
 
-extern void SendNumberMessage();
 
 extern void updateSendData(UBYTE Data[]);
 
@@ -64,7 +64,6 @@ SIMCOM_JobType SIMCOM_CurrentJob;
 
 UBYTE NumberLength = 0;
 
-extern void SendNumberMessage();
 
 char SIMCOM_ResponseBuffer[BUFFER_MAX_SIZE];
 
@@ -216,7 +215,7 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 		}
 		else if(IsSIMCOM_ResponseStartsWith("+CLCC:"))
 		{
-			UBYTE DtmfStatusFlag = FlashDataRead(0x08007000);
+			UBYTE DtmfStatusFlag = FlashDataRead(0x08007000)||FlashDataRead(0x08007010)||FlashDataRead(0x08007020)||FlashDataRead(0x08007030);
 			UBYTE CallStatus;
 			UBYTE BufferLength = 0,i;
 			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+CLCC:");
@@ -227,11 +226,23 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 					DTMFBuffer[BufferLength] = RXStr[i];
 					BufferLength++;
 				}
+				SIM_Send_Data(DtmfStatusFlag);
 				UBYTE BuffDiff;
 				if(DtmfStatusFlag == 1)
 				{
-					BuffDiff = memcmp(DTMFBuffer,"+918124922783",13);
-//					BuffDiff = memcmp(DTMFBuffer,readD.MobNo,13);
+					uint64_t CheckAdress = 0x08007000;
+					for(UBYTE i = 0;i < 4; i++)
+					{
+						if(FlashDataRead(CheckAdress) == 1)
+						{
+							BuffDiff = memcmp(DTMFBuffer,readD.MobNo,13);
+							if(BuffDiff == 0)
+							{
+								break;
+							}
+						}
+						CheckAdress = CheckAdress+16;
+					}
 				}
 				else
 				{
@@ -286,7 +297,8 @@ void DTMFStateMachine(char DTMFMessage)
 			}
 			else if(DTMFMessage == '4')
 			{
-				SendNumberMesaageFlag = TRUE;
+				DtmfMessageHandlerState = SendNumberMessage;
+				DtmfState = Idle;
 			}
 			else if(DTMFMessage == '5')
 			{
@@ -355,6 +367,7 @@ void DTMFStateMachine(char DTMFMessage)
 				EEPROMmain(EEPROMWriteAdress,Data.byte[0]);
 				EEPROMWriteAdress = EEPROMWriteAdress+8;
 				EEPROMmain(EEPROMWriteAdress,Data.byte[1]);
+				EepromFlashMmeoryCopy();
 				SIMCOM_State = SIMCOMCancelCall;
 			}
 		}	
@@ -364,6 +377,7 @@ void DTMFStateMachine(char DTMFMessage)
 			{
 				EEPROMErasePage(14);
 				DtmfState = Idle;
+				EepromFlashMmeoryCopy();
 				SIMCOM_State = SIMCOMCancelCall;
 			}
 			else
@@ -382,15 +396,6 @@ void DTMFStateMachine(char DTMFMessage)
 				DtmfState = Idle;
 			}
 			break;
-//		case WaitforPageErase:
-//			pageEraseCount++;
-//			if(pageEraseCount == 5)
-//			{
-//				pageEraseCount = 0;
-//				SIMCOM_State = SIMCOMCancelCall;
-//				DtmfState = Idle;
-//			}
-//			break;
 		default :
 			break;
 	}
@@ -552,12 +557,14 @@ void SIMCOM_MainFunction(void)
 	}
 
 	/* Call the Main Functions of the SIMCOM Sub Modules */
+
 	SIMCOM_StateMachine();
+	SIMCOM_Clock_MainFunction();
 	SIMCOM_SSL_CONFIG_MainFunction();
 	MQTT_StateMachine();
-//	MQTT_AppMain();
-//	MQTT_Publish_StateMachine();
-	SendNumberMessage();
+	MQTT_AppMain();
+	MQTT_Publish_StateMachine();
+	DtmfMessageCallFunc();
 	MessageControl();
 }
 

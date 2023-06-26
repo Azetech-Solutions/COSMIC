@@ -8,6 +8,7 @@
 #include PLATFORM_TYPES_H
 #include "string.h"
 #include FLASH_EEPROM_H
+#include MESSAGEHANDLINGAPPLICATION_H
 
 /**********************************************************/
 /* Macro Definitions                                      */
@@ -63,12 +64,11 @@ void AddDoubleQts(char *dest,const char *str)
 {
 		char checkstr[20] = "+918124922783";
 		dest[0] = '\"';
-			UBYTE len = strlen(checkstr);
-			memcpy(&dest[1],checkstr,len);
+		UBYTE len = strlen(checkstr);
+		memcpy(&dest[1],checkstr,len);
 		len = strlen(dest);
 		dest[len] = '\0';
 		dest[len++] = '\"';
-		
 }
 
 
@@ -115,11 +115,12 @@ void MessageControl(void)
 					if(SIMCOM_IsResponseOK())
 					{
 						SendMSG_State = MSG_Idle; // Move to next state
-						if(SendNumberMesaageFlag == TRUE)
+						if(DtmfMessageHandlerState == SendNumberMessage)
 						{
 							SIMCOM_State = SIMCOMCancelCall;
-							SendNumberMesaageFlag = FALSE;
+							DtmfMessageHandlerState = IdleState;
 						}
+						memset(StoreMSGs,'\0',100);
 					}
 					else
 					{
@@ -286,26 +287,3 @@ void MessageControl(void)
 	}
 	
 }
-
-
-//void updateNumbertoSendMsg(char MessageString[],UBYTE NumberIndex)
-//{		
-//	if(SendMSG_State == MSG_Idle)
-//	{
-//		strCheck[0] = 'N';
-//		strCheck[1] = (NumberIndex+48);
-//		strCheck[2] = ' ';
-//		strCheck[3] = '-';
-//		UBYTE k=4;
-//		for(UBYTE cnt =0;cnt<13;cnt++)
-//		{
-//			strCheck[k] = MessageString[cnt];
-//			k++;
-//		}
-//		strCheck[17] = CarraigeReturn;
-//		strCheck[18] = MsdLastWord;
-//		strCheck[19] = '\0';
-//		SendMessage(strCheck);
-//	}				
-
-//}

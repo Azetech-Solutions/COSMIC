@@ -484,6 +484,16 @@
               <FileType>1</FileType>
               <FilePath>..\Cosmic_App\Message.c</FilePath>
             </File>
+            <File>
+              <FileName>MessageHandlingApllication.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MessageHandlingApllication.c</FilePath>
+            </File>
+            <File>
+              <FileName>MessageHandlingApplication.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\MessageHandlingApplication.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -520,14 +530,14 @@
           <GroupName>STM32_Driver</GroupName>
           <Files>
             <File>
-              <FileName>Flash_EEPROM.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\base\Flash\src\Flash_EEPROM.c</FilePath>
-            </File>
-            <File>
               <FileName>GPIO_Driver.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\STM32_Driver\GPIO_Driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>Flash_EEPROM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\base\Flash\src\Flash_EEPROM.c</FilePath>
             </File>
             <File>
               <FileName>PLL_Driver.c</FileName>

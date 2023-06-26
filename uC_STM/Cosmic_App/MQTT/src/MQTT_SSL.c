@@ -5,9 +5,12 @@
  *  Author: Admin
  */ 
 #include "Includes.h"
+#include <stdio.h>
 #include SIMCOM_H
 #include MQTT_SSL_H
 #include STRINGHELPER_H
+#include UART_DRIVER_H
+
 
 /*****************************************/
 /* Global Variables                      */
@@ -22,6 +25,11 @@ static UBYTE SIMCOM_SSL_Config_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUN
 /*****************************************/
 /* Static Function Definitions           */
 /*****************************************/
+
+
+void USART1_String(const char* data);
+
+extern void SIM_Send_Data(unsigned char Data);
 
 static void SIMCOM_SSL_Configration_Callback(SIMCOM_Job_Result_EN result)
 {
@@ -38,7 +46,7 @@ static void SIMCOM_SSL_Configration_Callback(SIMCOM_Job_Result_EN result)
 
 void SIMCOM_SSL_CONFIG_MainFunction(void)
 {
-	if(IsSIMCOM_Module_Ready())
+	if(IsSIMCOM_ClockReady())
 	{
 		C_MQTT_SSL_Configuration_State_EN C_MQTT_SSL_Configuration_State_Before_Execution = C_MQTT_SSL_Config_State;
 
@@ -51,7 +59,22 @@ void SIMCOM_SSL_CONFIG_MainFunction(void)
 				// First Ensure the SIMCOM Module is Connected
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
-					
+					SIMCOM_Clock_DateTime_ST Time = SIMCOM_GetDateTime();
+//					char arr[5];
+//					sprintf(arr,"%d:",Time.Day);
+//					USART1_String(arr);
+//					sprintf(arr,"%d:",Time.Hour);
+//					USART1_String(arr);
+//					sprintf(arr,"%d:",Time.Minute);
+//					USART1_String(arr);
+//					SIM_Send_Data(Time.Month+48);
+//					SIM_Send_Data(':');
+//					sprintf(arr,"%d:",Time.Second);
+//					USART1_String(arr);
+//					SIM_Send_Data(Time.TimeZone+48);
+//					SIM_Send_Data(':');
+//					sprintf(arr,"%d:",Time.Year);
+//					USART1_String(arr);
 					// Send AT Command and wait for response
 					if(SIMCOM_Schedule_Job("AT+CSSLCFG=\"sslversion\",0,4", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_SSL_Configration_Callback) == TRUE)
 					{

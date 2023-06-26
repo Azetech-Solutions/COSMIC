@@ -14,9 +14,6 @@ St Data;
 St readD;
 St AdressCpy[4];
 UBYTE NumberData = 0;
-UBYTE SendNumberMesaageFlag = FALSE;
-UBYTE CarraigeReturn = 0x0D;
-UBYTE MsdLastWord = 0x1A;
 void updateNumbertoSendMsg(char MessageString[],UBYTE NumberIndex);
 
 extern void SIM_Send_Data(unsigned char Data);
@@ -143,16 +140,6 @@ void EepromFlashMmeoryCopy()
 		{
 			 AdressCpy[i] = readD;
 		}
-//		for(UBYTE j =0 ;j<4 ;j++)
-//		{
-//			SIM_Send_Data('D');
-//			SIM_Send_Data(j);
-//			SIM_Send_Data(':');
-//			for(UBYTE i =0 ;i<13 ;i++)
-//			{
-//				SIM_Send_Data(AdressCpy[j].MobNo[i]);
-//			}
-//		}
 	}
 }
 
@@ -165,50 +152,11 @@ void EepromDeleteWrite(uint32_t number,UBYTE WrtInd[])
 		if((EEPROMWriteAdress == number) || (WrtInd[i] != 1))
 		{
 			EEPROMWriteAdress = EEPROMWriteAdress+16;
-//			SIM_Send_Data('R');
-//			SIM_Send_Data('D');
-//			SIM_Send_Data(i);
-//			SIM_Send_Data(':');
-//			SIM_Send_Data(WrtInd[i]);
 			continue;
 		}
-//					SIM_Send_Data('Y');
 		EEPROMmain(EEPROMWriteAdress,AdressCpy[i].byte[0]);
 		EEPROMWriteAdress = EEPROMWriteAdress+8;
 		EEPROMmain(EEPROMWriteAdress,AdressCpy[i].byte[1]);
 		EEPROMWriteAdress = EEPROMWriteAdress+8;
 	}
-}
-char strCheck[100];
-void SendNumberMessage()
-{
-	if(SendNumberMesaageFlag == TRUE)
-	{
-//		UBYTE NumberIndex= 0;
-//		if(SendMSG_State == MSG_Idle)
-//		{
-//				strCheck[0] = 'N';
-//				strCheck[1] = (NumberIndex+48);
-//				strCheck[2] = ' ';
-//				UBYTE k=4;
-//				for(UBYTE cnt =0;cnt<13;cnt++)
-//				{
-//					strCheck[k] = MessageString[cnt];
-//					k++;
-//				}
-//				strCheck[17] = CarraigeReturn;
-//				strCheck[18] = MsdLastWord;
-//				strCheck[19] = '\0';
-//				SendMessage(strCheck);
-//		}
-			if(SendMSG_State == MSG_Idle)
-			{
-				sprintf(strCheck,"N1 - %s\nN2 - %s\nN3 - %s\nN4 - %s",AdressCpy[0].MobNo,AdressCpy[1].MobNo,AdressCpy[2].MobNo,AdressCpy[3].MobNo);
-				UBYTE len = strlen(strCheck);
-				strCheck[len] = CarraigeReturn;
-				strCheck[len+1] = MsdLastWord;
-				strCheck[len+2] = '\0';
-				SendMessage(strCheck);
-			}
-	}
-}				
+}			
