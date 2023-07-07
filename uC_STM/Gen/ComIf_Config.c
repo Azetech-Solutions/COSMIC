@@ -133,8 +133,10 @@ ComIfTxMessageConfig ComIfTxMsgCfg_Avr[1] = {
 
 extern void AvrStatusRxFunc(UBYTE Length, UBYTE *Data);
 UBYTE ComIf_RxMessageBuffer_Avr_AvrStatusData[3];
+extern void ADC_RxCbk(UBYTE Length, UBYTE *Data);
+UBYTE ComIf_RxMessageBuffer_Avr_ADC_Data[33];
 
-ComIfRxMessageConfig ComIfRxMsgCfg_Avr[1] = {
+ComIfRxMessageConfig ComIfRxMsgCfg_Avr[2] = {
 	{
 		/* AvrStatusData */
 		/* ID */      0x5D,
@@ -150,6 +152,22 @@ ComIfRxMessageConfig ComIfRxMsgCfg_Avr[1] = {
 		/* RxngIdx */ 0,
 		/* Buffer */  ComIf_RxMessageBuffer_Avr_AvrStatusData,
 		/* RxCbk */   &AvrStatusRxFunc
+	},
+	{
+		/* ADC_Data */
+		/* ID */      0xAD,
+		/* Length */  32,
+		/* CHKLEN */  1,
+		/* RxFlags */ {
+						0, // ReceptionStarted
+						0, // NewMessageReceived
+						0, // ErrorInReception
+						0, // RxRequest
+						0  // RxRequestPlaced
+					  },
+		/* RxngIdx */ 0,
+		/* Buffer */  ComIf_RxMessageBuffer_Avr_ADC_Data,
+		/* RxCbk */   &ADC_RxCbk
 	},
 };
 
@@ -212,7 +230,7 @@ ComIf_ChannelConfigType ComIf_ChannelConfig[C_ComIfChannel_TOTAL] =
 		/* Tx Message Config Pointer */     ComIfTxMsgCfg_Avr,
 		/* Total Number of Tx Messages */   1,
 		/* Rx Message Config Pointer */     ComIfRxMsgCfg_Avr,
-		/* Total Number of Rx Messages */   1,
+		/* Total Number of Rx Messages */   2,
 		/* Index of Receiving Message */    P_COMIF_INVALID_HANDLE,
 		/* Length of Receiving Message */   0,
 		/* Channel Specific Flags */

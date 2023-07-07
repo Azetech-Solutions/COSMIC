@@ -48,7 +48,7 @@
 #define USART_REG_CR1_RX_ENABLE	((uint32_t)(1<<2))
 #define USART_REG_CR1_RXNE_ENABLE ((uint32_t)(1<<5))
 
-/*	Bit definition for USART CR2 register		*/
+/*	Bit definition for USA CR2 register		*/
 #define USART_STOPBITS_1	((uint32_t)0x00)
 #define USART_STOPBITS_HALF	((uint32_t)0x01)
 #define USART_STOPBITS_2	((uint32_t)0x02)
@@ -61,4 +61,5 @@ static void USART_Pin_Init(void);
 extern unsigned char USART_Transmit_Byte(unsigned char Data);
 extern void USART_String(const char* data);
 extern void UART_main();
+extern void SIM_Send_Data(unsigned char Data);;
 #endif /*USART_H*/

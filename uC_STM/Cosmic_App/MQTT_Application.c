@@ -13,6 +13,7 @@
 /***************************************************/
 
 #include "Includes.h"
+#include COMIF_H
 #include COMIF_CONFIG_H
 #include SIMCOM_H
 #include STRINGHELPER_H
@@ -26,14 +27,14 @@
 #include GPIO_DRIVER_H
 #include UART_DRIVER_H
 #include MESSAGEHANDLINGAPPLICATION_H
-
+#include BUFFER_CONFIG_H
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
 
 //StatusData_ST StatusData;
 AvrCmdData_ST AvrCmdData;
-
+extern UBYTE DTMFMessageFlag;
 MQTTApp_States MQTTApp_State = MQTTApp_Init;
 
 extern void USART1_String(const char* data);
@@ -57,6 +58,8 @@ extern UBYTE AvrTransmitFunc(UWORD Length, void * Data);
 extern void SIM_Send_Data(unsigned char Data);
 
 UBYTE MachineInitFlag = FALSE;
+
+SimcomWorkingMode_ST SimcomWorkingMode = MQTTMode;
 
 UBYTE AvrTransmitFunc(UWORD Length, void * Data)
 {
@@ -90,6 +93,8 @@ void updateSendData(UBYTE Data[])
 	
 }
 
+
+
 void CloudRxCommandDataRxCbk(UBYTE Length, UBYTE *Data)
 {
 	UBYTE i,StatusData[2];
@@ -106,10 +111,27 @@ UBYTE Cloud_Transmit(UWORD Length, void * Data)
 {	
 	UBYTE retval = COMIF_EC_NO_ERROR;
 	
+
+	char *PtrData = (char *)Data;
+	
+//		for(UBYTE i = 0;i < 8; i++)
+//		{
+//			SIM_Send_Data(*(PtrData+i));	
+//		}	
+	
+	
+	
 	if (!ISPublishMsgConfigured())
 	{
 		
-		memcpy(PublishPayload,Data,Length);
+		memcpy(PublishPayload,PtrData,Length);	
+		
+//		for(UBYTE i = 0;i < 26; i++)
+//		{
+//			SIM_Send_Data(PublishPayload[i]);
+//		}
+		
+		
 		ComIf_TxConfirmation(C_ComIfChannel_Cloud);
 	}
 	else
@@ -132,6 +154,10 @@ void RequestLastStatus(UBYTE sts[])
 	UBYTE *PubMsg = ComIf_GetShadowBuffer_Cloud_StatusData();
 	
 	memcpy(PubMsg,CurrentStatus->Data_Bytes,2);
+	
+//	SIM_Send_Data(*PubMsg);
+//	
+//	SIM_Send_Data(*(PubMsg + 1));
 	
 	ComIf_TransmitFromBuffer_Cloud_StatusData();
 }

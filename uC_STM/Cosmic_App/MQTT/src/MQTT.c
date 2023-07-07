@@ -546,8 +546,7 @@ void MQTT_StateMachine(void)
 			break;
 			case MQTT_Connection_Check:
 			{
-				//
-				if ((MQTT_ConnectionCheckCounter <= 0) && (!ISPublishMsgConfigured()))
+				if ((SimcomWorkingMode == MQTTMode) && (MQTT_ConnectionCheckCounter <= 0) && (!ISPublishMsgConfigured()))
 				{
 					//This part is to check whether the SIMCOM is connected to aws server
 					// in a regular interval about(10 min once) 
@@ -597,6 +596,10 @@ void MQTT_StateMachine(void)
 							// Do Nothing. Wait
 						}
 					}
+				}
+				else
+				{
+					MQTT_State = MQTT_Ready;
 				}
 			}
 			break;

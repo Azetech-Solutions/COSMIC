@@ -11,6 +11,7 @@
 #include GPIO_DRIVER_H
 #include MQTT_SSL_H
 #include LCD_DRIVER_H
+#include UART_DRIVER_H
 #include <stdio.h>
 
 /*****************************************/
@@ -22,6 +23,8 @@ void APN_Selection(char *checkstring);
 SIMCOM_State_EN SIMCOM_State = SIMCOM_SM_Reset;
 
 char APN_name[40];
+
+UBYTE DTMFCount = 0;
 
 char SIMCOMRESETWAITCOUNT = 150;
 
@@ -340,6 +343,52 @@ void SIMCOM_StateMachine(void)
 		}
 		break;
 
+		case DialMobileNumber:
+		{
+			// First Ensure the SIMCOM Module is Connected
+			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+			{
+//				DebugStringRow1("INITIAZING...");
+				// Send AT Command and wait for response
+				if(SIMCOM_Schedule_Job("ATD8124922783;", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
+				{	
+					// Set it to Scheduled only when the SIMCOM Module Accepted it
+					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+				}
+			}
+			else
+			{
+				// Cyclic part for the response
+				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+				{
+					// Job has been completed
+					
+					// Check if the response is OK or not.
+					if(SIMCOM_IsResponseOK())
+					{
+						SIMCOM_State = SIMCOM_SM_Ready;
+					}
+					else
+					{
+						// If the returned value is ERROR or something else, then act accordingly
+						// TODO: Later
+						RetryInNextCycle = TRUE;
+					}
+				}
+				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+				{
+					// If there is a problem in reception, retry sending the command
+					RetryInNextCycle = TRUE;
+
+					// TODO: Log Error. Possibly the GSM Module is not powered or connected
+				}
+				else
+				{
+					// Do Nothing. Wait
+				}
+			}
+		}
+			break;
 		
 		case SIMCOM_SM_CheckNetwork:
 		{
@@ -510,7 +559,7 @@ void SIMCOM_StateMachine(void)
 				// Cyclic part for the response
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
-					SIMCOM_State = SimcomWaitforCallAttendResponse;
+					SIMCOM_State = DTMFWaitState;
 				}
 				else
 				{
@@ -604,8 +653,158 @@ void SIMCOM_StateMachine(void)
 			}
 		}
 		break;
+		
+		case SetFullFunctionality:
+		{
+			// First Ensure the SIMCOM Module is Connected
+			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+			{
+//				DebugStringRow1("INITIAZING...");
+				// Send AT Command and wait for response
+				if(SIMCOM_Schedule_Job("AT+CFUN=1", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
+				{	
+					// Set it to Scheduled only when the SIMCOM Module Accepted it
+					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+				}
+			}
+			else
+			{
+				// Cyclic part for the response
+				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+				{
+					// Job has been completed
+					
+					// Check if the response is OK or not.
+					if(SIMCOM_IsResponseOK())
+					{
+						SIMCOM_State = SIMCOM_SM_Check_signal_strength;
+					}
+					else
+					{
+						// If the returned value is ERROR or something else, then act accordingly
+						// TODO: Later
+						RetryInNextCycle = TRUE;
+					}
+				}
+				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+				{
+					// If there is a problem in reception, retry sending the command
+					RetryInNextCycle = TRUE;
 
+					// TODO: Log Error. Possibly the GSM Module is not powered or connected
+				}
+				else
+				{
+					// Do Nothing. Wait
+				}
+			}
+		}		
+		break;			
+		
+		case SetLTEmode:
+		{
+			// First Ensure the SIMCOM Module is Connected
+			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+			{
+//				DebugStringRow1("INITIAZING...");
+				// Send AT Command and wait for response
+				if(SIMCOM_Schedule_Job("AT+CNMP=38", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
+				{	
+					// Set it to Scheduled only when the SIMCOM Module Accepted it
+					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+				}
+			}
+			else
+			{
+				// Cyclic part for the response
+				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+				{
+					// Job has been completed
+					
+					// Check if the response is OK or not.
+					if(SIMCOM_IsResponseOK())
+					{
+						SIMCOM_State = SaveCurrentChanges;
+					}
+					else
+					{
+						// If the returned value is ERROR or something else, then act accordingly
+						// TODO: Later
+						RetryInNextCycle = TRUE;
+					}
+				}
+				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+				{
+					// If there is a problem in reception, retry sending the command
+					RetryInNextCycle = TRUE;
 
+					// TODO: Log Error. Possibly the GSM Module is not powered or connected
+				}
+				else
+				{
+					// Do Nothing. Wait
+				}
+			}
+		}		
+		break;
+		case SaveCurrentChanges:
+		{
+			// First Ensure the SIMCOM Module is Connected
+			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+			{
+//				DebugStringRow1("INITIAZING...");
+				// Send AT Command and wait for response
+				if(SIMCOM_Schedule_Job("AT&W", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
+				{	
+					// Set it to Scheduled only when the SIMCOM Module Accepted it
+					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+				}
+			}
+			else
+			{
+				// Cyclic part for the response
+				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+				{
+					// Job has been completed
+					
+					// Check if the response is OK or not.
+					if(SIMCOM_IsResponseOK())
+					{
+						SIMCOM_State = SIMCOM_SM_Ready;
+					}
+					else
+					{
+						// If the returned value is ERROR or something else, then act accordingly
+						// TODO: Later
+						RetryInNextCycle = TRUE;
+					}
+				}
+				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+				{
+					// If there is a problem in reception, retry sending the command
+					RetryInNextCycle = TRUE;
+
+					// TODO: Log Error. Possibly the GSM Module is not powered or connected
+				}
+				else
+				{
+					// Do Nothing. Wait
+				}
+			}
+		}	
+		break;
+		
+		case DTMFWaitState:
+		{
+			DTMFCount++;
+			if(DTMFCount == 250)
+			{
+				DTMFCount = 0;
+				SIMCOM_State = SIMCOMCancelCall;	
+			}
+		}
+		break;
+		
 		default:
 		case SIMCOM_SM_Ready:
 		case SIMCOM_SM_Error:

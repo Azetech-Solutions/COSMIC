@@ -42,7 +42,6 @@ extern void AvrStatusHandleFunc(void);
 extern void Sysos_check(void);
 extern void EepromFlashMmeoryCopy();
 
-
 /* Define the Process calls for the Tasks */
 
 /* Definition for the task Init */

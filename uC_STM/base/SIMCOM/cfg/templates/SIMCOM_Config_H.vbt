@@ -141,7 +141,7 @@ extern void $(pSIMCOM.Config.Functions.CustomSendByteFunction)(UBYTE Data);
 
 extern void $(pSIMCOM.Config.Functions.GenericRxCallback)(SIMCOM_Job_Result_EN JobState);
 
-extern void $(pSIMCOM.Config.Functions.ErrorCallback)(SIMCOM_Error_State_EN Error);
+extern void $(pSIMCOM.Config.Functions.ErrorCallback)();
 
 //extern UBYTE $(pSIMCOM.Config.Functions.DataRxIndication)(char * Message);
 

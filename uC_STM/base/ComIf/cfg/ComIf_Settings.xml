@@ -63,6 +63,13 @@
             <RxCallback>AvrStatusRxFunc</RxCallback>
             <ChecksumLength>1</ChecksumLength>
           </RxMessage>
+          <RxMessage>
+            <Name>ADC_Data</Name>
+            <ID>173</ID>
+            <Length>32</Length>
+            <RxCallback>ADC_RxCbk</RxCallback>
+            <ChecksumLength>1</ChecksumLength>
+          </RxMessage>
         </RxMessages>
       </Channel>
     </Channels>

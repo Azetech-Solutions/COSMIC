@@ -247,9 +247,9 @@ void SIMCOM_Clock_MainFunction(void)
 			}
 		}
 	}
-	else
-	{
-		// If the parent module is not ready, either initializing or re-initializing, then the keep the state in Init state to re-evaluate
-		SIMCOM_Clock_State = SIMCOM_Clock_Init;
-	}
+//	else
+//	{
+//		// If the parent module is not ready, either initializing or re-initializing, then the keep the state in Init state to re-evaluate
+//		SIMCOM_Clock_State = SIMCOM_Clock_Init;
+//	}
 }

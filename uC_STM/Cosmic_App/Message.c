@@ -36,8 +36,12 @@ void SendMessage(const char* str);
 
 char StoreMSGs[100];
 char MobNumber[13]="+918124922783";
-
+//char MobNumber[13];
+extern UBYTE MsgUpdationCompleteFlag;
 extern void SIM_Send_Data(unsigned char Data);
+extern char strCheck[100];
+extern UBYTE DTMFMessageFlag;
+
 /**********************************************************/
 /* Inline Function Definitions                            */
 /**********************************************************/
@@ -62,13 +66,7 @@ static void SendMSG_CallBack(SIMCOM_Job_Result_EN result)
 
 void AddDoubleQts(char *dest,const char *str)
 {
-		char checkstr[20] = "+918124922783";
-		dest[0] = '\"';
-		UBYTE len = strlen(checkstr);
-		memcpy(&dest[1],checkstr,len);
-		len = strlen(dest);
-		dest[len] = '\0';
-		dest[len++] = '\"';
+	
 }
 
 
@@ -115,10 +113,26 @@ void MessageControl(void)
 					if(SIMCOM_IsResponseOK())
 					{
 						SendMSG_State = MSG_Idle; // Move to next state
-						if(DtmfMessageHandlerState == SendNumberMessage)
+						if(DtmfMessageHandlerState == SendNumberMessage || DtmfMessageHandlerState == NumberUpdateMessage)
 						{
 							SIMCOM_State = SIMCOMCancelCall;
 							DtmfMessageHandlerState = IdleState;
+						}
+						if(DTMFMessageFlag == TRUE)
+						{
+							if(MsgUpdationCompleteFlag == TRUE)
+							{
+								MsgUpdationCompleteFlag = FALSE;
+								SIMCOM_State = SIMCOMCancelCall;
+								DTMFMessageFlag = FALSE;
+								UBYTE len = strlen(strCheck);
+								memset(strCheck,'\0',len);
+							}
+							else
+							{
+								DtmfMessageHandlerState = SendMotorStatus;
+								SendMSG_State = MSG_Idle;
+							}
 						}
 						memset(StoreMSGs,'\0',100);
 					}
@@ -150,8 +164,8 @@ void MessageControl(void)
 			{
 				char SetMobileNumber[26];
 				char StoreDoubleQtedNum[16];
-				AddDoubleQts(&StoreDoubleQtedNum[0],MobNumber);
-				sprintf(SetMobileNumber,"AT+CMGS=%s",StoreDoubleQtedNum);
+//				AddDoubleQts(&StoreDoubleQtedNum[0],MobNumber);
+				sprintf(SetMobileNumber,"AT+CMGS=\"%s\"",MobNumber);
 				SetMobileNumber[23] = '\0';
 				// Send AT Command and wait for response	
 				if(SIMCOM_Schedule_Job(SetMobileNumber, SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
@@ -162,12 +176,13 @@ void MessageControl(void)
 			}
 			else
 			{
+//				UART2_SIM_Send_Data('Y');
 				// Cyclic part for the response
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
 					// Job has been completed
 					// Check if the response is OK or not.
-					if(IsSIMCOM_ResponseStartsWith(">"))
+					if(IsSIMCOM_ResponseStartsWith("> "))
 					{
 						SendMSG_State = MSG_SendMsg;// Move to next state
 					}

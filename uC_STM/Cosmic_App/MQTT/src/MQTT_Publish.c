@@ -15,6 +15,7 @@
 #include MQTT_APPLICATION_H
 #include COMIF_CONFIG_H
 #include "stdio.h"
+#include UART_DRIVER_H
 #include MESSAGEHANDLINGAPPLICATION_H
 
 /*****************************************/
@@ -291,8 +292,8 @@ void MQTT_Publish_StateMachine(void)
 				{
 						MachineInitFlag = FALSE;
 						DtmfMessageHandlerState = MachineInit;
+//				DebugStringRow1("READY        ");					
 				}
-//				DebugStringRow1("READY        ");
 			}
 			break;
 			default:

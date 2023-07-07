@@ -110,6 +110,11 @@ typedef union
 	UBYTE Data_Bytes[2];
 }AvrCmdData_ST;
 
+typedef enum{
+	MQTTMode = 0,
+	DTMFMode
+}SimcomWorkingMode_ST;
+
 typedef union
 {
 	struct
@@ -194,6 +199,7 @@ typedef union
 	UBYTE Data_Bytes[2];
 }AvrCmdSendData_ST;
 
+extern SimcomWorkingMode_ST SimcomWorkingMode;
 
 extern UBYTE MachineInitFlag;
 

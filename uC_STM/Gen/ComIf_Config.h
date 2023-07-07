@@ -189,6 +189,16 @@
 #define ComIf_IsMessageReceptionHasError_Avr_AvrStatusData() (ComIfRxMsgCfg_Avr[0].RxFlags.ErrorInReception)
 #define ComIf_SetMessageProcessesed_Avr_AvrStatusData()      ComIf_SetMessageProcessed(&(ComIfRxMsgCfg_Avr[0].RxFlags))
 
+/* Constants for the Rx message ADC_Data on Avr channel */
+
+#define ComIf_GetIndex_Avr_ADC_Data()                   (1u)
+#define ComIf_GetLength_Avr_ADC_Data()                  (32u)
+#define ComIf_GetBuffer_Avr_ADC_Data()                  ((UBYTE *)ComIf_RxMessageBuffer_Avr_ADC_Data)
+#define ComIf_GetRxFlags_Avr_ADC_Data()                 (ComIfRxMsgCfg_Avr[1].RxFlags)
+#define ComIf_IsNewMessageReceived_Avr_ADC_Data()       ((ComIfRxMsgCfg_Avr[1].RxFlags.NewMessageReceived == TRUE) && (ComIfRxMsgCfg_Avr[1].RxFlags.ReceptionStarted == FALSE))
+#define ComIf_IsMessageReceptionHasError_Avr_ADC_Data() (ComIfRxMsgCfg_Avr[1].RxFlags.ErrorInReception)
+#define ComIf_SetMessageProcessesed_Avr_ADC_Data()      ComIf_SetMessageProcessed(&(ComIfRxMsgCfg_Avr[1].RxFlags))
+
 
 
 #define COMIF_DYNAMIC_DATA_LENGTH_ENABLED
@@ -347,6 +357,7 @@ extern UBYTE ComIfChannelTxBuffer_Avr[];
 extern UBYTE ComIf_ShadowBuffer_Avr_AvrTxFunc[];
 extern ComIfRxMessageConfig ComIfRxMsgCfg_Avr[];
 extern UBYTE ComIf_RxMessageBuffer_Avr_AvrStatusData[];
+extern UBYTE ComIf_RxMessageBuffer_Avr_ADC_Data[];
 
 /**********************************************************/
 /* Inline Function Definitions                            */

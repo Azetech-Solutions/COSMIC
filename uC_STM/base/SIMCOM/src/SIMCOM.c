@@ -27,13 +27,13 @@
 /* Global Variables                      */
 /*****************************************/
 
-
-
 extern void EepromDeleteWrite(uint32_t number,UBYTE WrtInd[]);
 
 uint32_t EEPROMWriteAdress;
 
 //UBYTE pageEraseCount = 0;
+
+UBYTE DTMFMessageFlag = FALSE;
 
 
 extern void updateSendData(UBYTE Data[]);
@@ -76,6 +76,8 @@ static ULONG SIMCOM_Aliveness_Counter = P_SIMCOM_ALIVENESS_ERROR_TIME;
 UBYTE SIMCOM_ReceptionIgnoreCommandCount = 0;
 
 UBYTE PublishStatus = 0;
+
+char UpdatedNumber[13];
 
 //UBYTE ReadyforDtmfCmd = FALSE;
 
@@ -124,7 +126,15 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 	}
 	else
 	{ 
-		if(IsSIMCOM_ResponseStartsWith("*ATREADY"))
+		if(IsSIMCOM_ResponseStartsWith("+RXDTMF"))
+		{
+			SimcomWorkingMode = DTMFMode;
+			char DTMF;
+			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+RXDTMF: ");
+			DTMF = *RXStr;
+			DTMFStateMachine(DTMF);
+		}
+		else if(IsSIMCOM_ResponseStartsWith("*ATREADY"))
 		{
 			//do nothing
 		}
@@ -142,18 +152,16 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 			SIMCOM_ERROR_CALLBACK();
 			SIMCOM_State = SIMCOM_SM_Init;
 		}
-		else if(SIMCOM_IsResponseOK())
-		{
-			if(SIMCOM_State == SimcomWaitforCallAttendResponse)
-			{
-				SIMCOM_State = SIMCOM_SM_Ready;
-			}
-		}
+		
 		else if(SIMCOM_IsResponseOK())
 		{
 			if(SIMCOM_State == SimcomWaitforCallHangResponse)
 			{
 				SIMCOM_State = SIMCOM_SM_Ready;
+			}
+			if(SIMCOM_State == SimcomWaitforCallAttendResponse)
+			{
+				SIMCOM_State = DTMFWaitState;
 			}
 		}
 		else if(IsSIMCOM_ResponseStartsWith("+CMQTTCONNECT: "))
@@ -172,13 +180,7 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				SIMCOM_State = SIMCOM_SM_Reset;
 			}
 		}
-//		else if(SendMSG_State == WaitforMessageResponse)
-//		{
-//			if(IsSIMCOM_ResponseStartsWith(">"))
-//			{
-//				SendMSG_State = MSG_SendMsg;
-//			}
-//		}
+		
 		else if(IsSIMCOM_ResponseStartsWith("+CMQTTPUB:"))
 		{
 			UBYTE PublishResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTPUB:", 1);
@@ -211,7 +213,10 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 		}			
 		else if(IsSIMCOM_ResponseStartsWith("+CMQTTCONNLOST:"))
 		{
-			SIMCOM_ERROR_CALLBACK();
+			if(SimcomWorkingMode == MQTTMode)
+			{
+				SIMCOM_ERROR_CALLBACK();
+			}
 		}
 		else if(IsSIMCOM_ResponseStartsWith("+CLCC:"))
 		{
@@ -226,7 +231,6 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 					DTMFBuffer[BufferLength] = RXStr[i];
 					BufferLength++;
 				}
-				SIM_Send_Data(DtmfStatusFlag);
 				UBYTE BuffDiff;
 				if(DtmfStatusFlag == 1)
 				{
@@ -258,12 +262,9 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				}
 			}
 		}
-		else if(IsSIMCOM_ResponseStartsWith("+RXDTMF"))
+		else if(IsSIMCOM_ResponseStartsWith("VOICE CALL: END"))
 		{
-			char DTMF;
-			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+RXDTMF: ");
-			DTMF = *RXStr;
-			DTMFStateMachine(DTMF);
+			DtmfState = Idle;
 		}
 		else
 		{
@@ -279,21 +280,23 @@ void DTMFStateMachine(char DTMFMessage)
 	{
 		AvrCmdData_ST StatusData;		
 		case Idle:
+			SIMCOM_State = SIMCOM_SM_Ready;
 			if(DTMFMessage == '1')
 			{
 				StatusData.SW1 = 1;
-				updateSendData(StatusData.Data_Bytes);
-				SIMCOM_State = SIMCOMCancelCall;	
+				DTMFMessageFlag = TRUE;
+				updateSendData(StatusData.Data_Bytes);	
 			}
 			else if(DTMFMessage == '2')
 			{
-				StatusData.SW1 = 1;
+				StatusData.SW1 = 0;
+				DTMFMessageFlag = TRUE;
 				updateSendData(StatusData.Data_Bytes);
-				SIMCOM_State = SIMCOMCancelCall;
 			}
 			else if(DTMFMessage == '3')
 			{
-				SIMCOM_State = SIMCOMCancelCall;
+				DtmfMessageHandlerState = UpdateMotorStatusMsg;
+				DTMFMessageFlag = TRUE;
 			}
 			else if(DTMFMessage == '4')
 			{
@@ -337,6 +340,10 @@ void DTMFStateMachine(char DTMFMessage)
 			}
 			break;
 		case ChooseTaskToAlter:
+			for(UBYTE i=0;i<13;i++)
+			{
+				UpdatedNumber[i] = DTMFBuffer[i];
+			}
 			if(DTMFMessage == '*')
 			{
 				DtmfState = AddNumberToStore;
@@ -344,6 +351,11 @@ void DTMFStateMachine(char DTMFMessage)
 			else if(DTMFMessage == '#')
 			{
 				DtmfState = DeleteExcistingNumber;
+			}
+			else if(DTMFMessage == '5')
+			{
+				EepromFlashMmeoryCopy();
+				DtmfMessageHandlerState = NumberUpdateMessage;
 			}
 			else
 			{
@@ -387,7 +399,6 @@ void DTMFStateMachine(char DTMFMessage)
 				for(UBYTE i = 0;i < 4; i++)
 				{
 					WrtInd[i] = (FlashDataRead(EEPROMAdress));
-					SIM_Send_Data(WrtInd[i]);
 					EEPROMAdress = EEPROMAdress+16;
 				}
 				EepromDeleteWrite(EEPROMWriteAdress,WrtInd);

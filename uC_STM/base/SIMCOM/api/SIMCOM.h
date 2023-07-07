@@ -71,11 +71,16 @@ typedef enum
 	SIMCOMCancelCall,
 	WaitforSIMCOMReset,
 	SIMCOMAttendCall,
+	DialMobileNumber,
 	SIMCOM_SM_CheckNetwork,
 	SIMCOM_SM_SelectNetwork,
 	SimcomWaitforCallAttendResponse,
 	SimcomWaitforCallHangResponse,
-
+	SetFullFunctionality,
+	SetLTEmode,
+	DTMFWaitState,
+	SaveCurrentChanges,
+	
 	// Below states will not request any AT commands to the module, Will be used for SIMCOM Sub Modules
 	SIMCOM_SM_Ready,                 // This state will reach with all the state has been covered
 	SIMCOM_SM_Error                  // This state will reach when any of the states were failed
