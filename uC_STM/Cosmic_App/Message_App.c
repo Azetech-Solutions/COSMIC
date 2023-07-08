@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 #include PLATFORM_TYPES_H
-#include MESSAGEHANDLINGAPPLICATION_H
+#include MESSAGE_APP_H
 #include FLASH_EEPROM_H
-#include MESSAGE_H
+#include SIMCOM_MESSAGE_H
 #include SIMCOM_H
 
 UBYTE CurrentMotorStatus = 0;

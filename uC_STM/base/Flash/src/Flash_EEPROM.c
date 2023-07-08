@@ -4,7 +4,7 @@
 #include UART_DRIVER_H
 #include PLATFORM_TYPES_H
 #include FLASH_EEPROM_H
-#include MESSAGE_H
+#include SIMCOM_MESSAGE_H
 #define FLASH_KEY1                      0x45670123U   /*!< Flash key1 */
 #define FLASH_KEY2                      0xCDEF89ABU   /*!< Flash key2: used with FLASH_KEY1*/
 #include SIMCOM_H

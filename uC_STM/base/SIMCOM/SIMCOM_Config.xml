@@ -10,7 +10,7 @@
     </Functions>
     <Calls>
       <Name>Calls and Dialing</Name>
-      <Enabled>False</Enabled>
+      <Enabled>True</Enabled>
     </Calls>
     <Network>
       <Name>SIMCOM Network Control</Name>

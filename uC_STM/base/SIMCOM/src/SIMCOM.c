@@ -6,8 +6,8 @@
  */
 #include "Includes.h" // Will have all definitions of the Project Headers
 #include <stdint.h>
-#include MQTT_PUBLISH_H
-#include MQTT_H
+#include SIMCOM_MQTT_PUBLISH_H
+#include SIMCOM_MQTT_H
 #include MQTT_APPLICATION_H
 #include GPIO_DRIVER_H
 #include PLATFORM_TYPES_H // For Data Types
@@ -19,8 +19,8 @@
 #include GPIO_DRIVER_H
 #include UART_DRIVER_H
 #include FLASH_EEPROM_H
-#include MESSAGE_H
-#include MESSAGEHANDLINGAPPLICATION_H
+#include SIMCOM_MESSAGE_H
+#include MESSAGE_APP_H
 
 
 /*****************************************/

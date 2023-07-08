@@ -21,7 +21,6 @@
 
 #include <Includes.h>
 #include PLATFORM_TYPES_H
-
 /*************************************************/
 /* Functional Switches and Parameter Definitions */
 /*************************************************/

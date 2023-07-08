@@ -49,8 +49,10 @@
 /*   SIMCOM Calls and Dialing Related    */
 /*---------------------------------------*/
 
-/* SIMCOM Calls and Dialing Feature is Disabled */
-#define S_SIMCOM_ENABLE_DIALING_FEATURE              OFF
+#define S_SIMCOM_ENABLE_DIALING_FEATURE              ON
+
+#define S_SIMCOM_CALLS_DIAL_TO_NUMBER                ON
+
 
 /*---------------------------------------*/
 /*           SIMCOM HTTP Related         */

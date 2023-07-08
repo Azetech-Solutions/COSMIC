@@ -34,12 +34,6 @@
         <Enabled>True</Enabled>
       </Process>
       <Process>
-        <Name>SIMCOM_Init</Name>
-        <Index>7</Index>
-        <ProcessGroupRef>STM32_Init</ProcessGroupRef>
-        <Enabled>True</Enabled>
-      </Process>
-      <Process>
         <Name>PLLInit</Name>
         <Index>1</Index>
         <ProcessGroupRef>STM32_Init</ProcessGroupRef>

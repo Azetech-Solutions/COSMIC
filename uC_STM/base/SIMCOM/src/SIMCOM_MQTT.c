@@ -7,13 +7,13 @@
 
 #include "Includes.h"
 #include SIMCOM_H
-#include MQTT_SSL_H
+#include SIMCOM_MQTT_H
 #include STRINGHELPER_H
-#include MQTT_H
-#include MQTT_PUBLISH_H
+#include SIMCOM_MQTT_H
+#include SIMCOM_MQTT_PUBLISH_H
 #include GPIO_DRIVER_H
 #include MQTT_APPLICATION_H
-
+#include SIMCOM_MQTT_SSL_H
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/

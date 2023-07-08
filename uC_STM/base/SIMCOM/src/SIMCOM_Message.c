@@ -2,13 +2,13 @@
 /* Header Inclusions                                      */
 /**********************************************************/
 #include "Includes.h"
-#include "Message.h"
+#include SIMCOM_MESSAGE_H
 #include SIMCOM_H
 #include "stdio.h"
 #include PLATFORM_TYPES_H
 #include "string.h"
 #include FLASH_EEPROM_H
-#include MESSAGEHANDLINGAPPLICATION_H
+#include MESSAGE_APP_H
 
 /**********************************************************/
 /* Macro Definitions                                      */

@@ -9,8 +9,7 @@
 #include SIMCOM_H
 #include STRINGHELPER_H
 #include GPIO_DRIVER_H
-#include MQTT_SSL_H
-#include LCD_DRIVER_H
+#include SIMCOM_MQTT_SSL_H
 #include UART_DRIVER_H
 #include <stdio.h>
 

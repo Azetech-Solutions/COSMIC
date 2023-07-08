@@ -6,7 +6,7 @@
 #include SIMCOM_H
 #include UART_DRIVER_H
 #include MQTT_APPLICATION_H
-#include MESSAGEHANDLINGAPPLICATION_H
+#include MESSAGE_APP_H
 
 void UART2_SIM_Send_Data(unsigned char Data);
 

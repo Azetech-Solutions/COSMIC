@@ -7,7 +7,7 @@
 #include "Includes.h"
 #include <stdio.h>
 #include SIMCOM_H
-#include MQTT_SSL_H
+#include SIMCOM_MQTT_SSL_H
 #include STRINGHELPER_H
 #include UART_DRIVER_H
 

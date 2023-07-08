@@ -11,7 +11,7 @@
 
 #include "Includes.h"
 
-#include MQTT_PUBLISH_H
+#include SIMCOM_MQTT_PUBLISH_H
 #include PLATFORM_TYPES_H
 
 #define ISPublishMsgConfigured()	(MQTTApp_State == MQTTApp_PublishMsgConfigured)

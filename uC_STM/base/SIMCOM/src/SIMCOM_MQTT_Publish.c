@@ -7,16 +7,16 @@
 #include "Includes.h"
 #include "stm32g0xx.h"                  // Device header
 #include SIMCOM_H
-#include MQTT_SSL_H
+#include SIMCOM_MQTT_SSL_H
 #include STRINGHELPER_H
-#include MQTT_H
+#include SIMCOM_MQTT_H
 #include GPIO_DRIVER_H
-#include MQTT_PUBLISH_H
+#include SIMCOM_MQTT_PUBLISH_H
 #include MQTT_APPLICATION_H
 #include COMIF_CONFIG_H
 #include "stdio.h"
 #include UART_DRIVER_H
-#include MESSAGEHANDLINGAPPLICATION_H
+#include MESSAGE_APP_H
 
 /*****************************************/
 /* Global Variables                      */

@@ -444,6 +444,26 @@
               <FileType>1</FileType>
               <FilePath>..\base\SysOS\src\SysOS.c</FilePath>
             </File>
+            <File>
+              <FileName>SIMCOM_Message.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\base\SIMCOM\src\SIMCOM_Message.c</FilePath>
+            </File>
+            <File>
+              <FileName>SIMCOM_MQTT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\base\SIMCOM\src\SIMCOM_MQTT.c</FilePath>
+            </File>
+            <File>
+              <FileName>SIMCOM_MQTT_Publish.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\base\SIMCOM\src\SIMCOM_MQTT_Publish.c</FilePath>
+            </File>
+            <File>
+              <FileName>SIMCOM_MQTT_SSL.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\base\SIMCOM\src\SIMCOM_MQTT_SSL.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -465,29 +485,9 @@
               <FilePath>..\Cosmic_App\MQTT_Application.c</FilePath>
             </File>
             <File>
-              <FileName>MQTT.c</FileName>
+              <FileName>Message_App.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Cosmic_App\MQTT\src\MQTT.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTT_Publish.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Cosmic_App\MQTT\src\MQTT_Publish.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTT_SSL.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Cosmic_App\MQTT\src\MQTT_SSL.c</FilePath>
-            </File>
-            <File>
-              <FileName>Message.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Cosmic_App\Message.c</FilePath>
-            </File>
-            <File>
-              <FileName>MessageHandlingApllication.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MessageHandlingApllication.c</FilePath>
+              <FilePath>..\Cosmic_App\Message_App.c</FilePath>
             </File>
           </Files>
         </Group>

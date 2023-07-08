@@ -40,7 +40,6 @@ extern void SystickTimerInit(void);
 extern void PLLInit(void);
 extern void AvrStatusHandleFunc(void);
 extern void Sysos_check(void);
-extern void EepromFlashMmeoryCopy();
 
 /* Define the Process calls for the Tasks */
 
@@ -48,7 +47,6 @@ extern void EepromFlashMmeoryCopy();
 void PRC_SYSOS_TASK_INIT(void)
 {
 		PLLInit();
-		EepromFlashMmeoryCopy();
 		Buffer_Init();
 		GPIO_init();
 		USART2_Init();
