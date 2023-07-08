@@ -29,13 +29,6 @@
 
 extern void EepromDeleteWrite(uint32_t number,UBYTE WrtInd[]);
 
-uint32_t EEPROMWriteAdress;
-
-//UBYTE pageEraseCount = 0;
-
-UBYTE DTMFMessageFlag = FALSE;
-
-
 extern void updateSendData(UBYTE Data[]);
 
 extern void DTMFMesaageHanldeFunc(char DtmfCmd);
@@ -65,6 +58,8 @@ SIMCOM_JobType SIMCOM_CurrentJob;
 UBYTE NumberLength = 0;
 
 
+
+
 char SIMCOM_ResponseBuffer[BUFFER_MAX_SIZE];
 
 BufferLengthType SIMCOM_ResponseLength = 0;
@@ -77,27 +72,13 @@ UBYTE SIMCOM_ReceptionIgnoreCommandCount = 0;
 
 UBYTE PublishStatus = 0;
 
-char UpdatedNumber[13];
-
 //UBYTE ReadyforDtmfCmd = FALSE;
 
 Rx_Response_EN Rx_Response_State = I_MQTT_Rx_Response_Idle;
 
-void DTMFStateMachine(char DTMFMessage);
+extern void DTMFStateMachine(char DTMFMessage);
 
-typedef enum DtmfNumberAlterStatus{
-	Idle = 0,
-	ChooseTaskToAlter,
-	AddNumberToStore,
-	ChooseAdressToAlterNumber,
-	WaitforPageErase,
-	DeleteExcistingNumber
-}DtmfNumberAlterStatus_En;
-
-char DTMFStoreNumber[13];
-UBYTE BufferLength = 3;
-
-DtmfNumberAlterStatus_En DtmfState = Idle;
+//extern DtmfNumberAlterStatus_En DtmfState;
 
 /*****************************************/
 /* Static Function Definitions           */
@@ -264,7 +245,7 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 		}
 		else if(IsSIMCOM_ResponseStartsWith("VOICE CALL: END"))
 		{
-			DtmfState = Idle;
+//			DtmfState = Idle;
 		}
 		else
 		{
@@ -273,145 +254,6 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 		}
 	}
 }
-
-void DTMFStateMachine(char DTMFMessage)
-{
-	switch(DtmfState)
-	{
-		AvrCmdData_ST StatusData;		
-		case Idle:
-			SIMCOM_State = SIMCOM_SM_Ready;
-			if(DTMFMessage == '1')
-			{
-				StatusData.SW1 = 1;
-				DTMFMessageFlag = TRUE;
-				updateSendData(StatusData.Data_Bytes);	
-			}
-			else if(DTMFMessage == '2')
-			{
-				StatusData.SW1 = 0;
-				DTMFMessageFlag = TRUE;
-				updateSendData(StatusData.Data_Bytes);
-			}
-			else if(DTMFMessage == '3')
-			{
-				DtmfMessageHandlerState = UpdateMotorStatusMsg;
-				DTMFMessageFlag = TRUE;
-			}
-			else if(DTMFMessage == '4')
-			{
-				DtmfMessageHandlerState = SendNumberMessage;
-				DtmfState = Idle;
-			}
-			else if(DTMFMessage == '5')
-			{
-				DtmfState = ChooseAdressToAlterNumber;
-			}
-			else
-			{
-				SIMCOM_State = SIMCOMCancelCall;				
-			}
-			break;
-		case ChooseAdressToAlterNumber:
-			if(DTMFMessage == '1')
-			{
-				EEPROMWriteAdress = number1;
-				DtmfState = ChooseTaskToAlter;
-			}
-			else if(DTMFMessage == '2')
-			{
-				EEPROMWriteAdress = number2;
-				DtmfState = ChooseTaskToAlter;
-			}
-			else if(DTMFMessage == '3')
-			{
-				EEPROMWriteAdress = number3;
-				DtmfState = ChooseTaskToAlter;
-			}
-			else if(DTMFMessage == '4')
-			{
-				EEPROMWriteAdress = number4;
-				DtmfState = ChooseTaskToAlter;
-			}
-			else
-			{
-				SIMCOM_State = SIMCOMCancelCall;
-				DtmfState = Idle;
-			}
-			break;
-		case ChooseTaskToAlter:
-			for(UBYTE i=0;i<13;i++)
-			{
-				UpdatedNumber[i] = DTMFBuffer[i];
-			}
-			if(DTMFMessage == '*')
-			{
-				DtmfState = AddNumberToStore;
-			}
-			else if(DTMFMessage == '#')
-			{
-				DtmfState = DeleteExcistingNumber;
-			}
-			else if(DTMFMessage == '5')
-			{
-				EepromFlashMmeoryCopy();
-				DtmfMessageHandlerState = NumberUpdateMessage;
-			}
-			else
-			{
-				SIMCOM_State = SIMCOMCancelCall;
-				DtmfState = Idle;
-			}
-			break;
-			
-		case AddNumberToStore:
-		{
-			Data.MobNo[0] = '+';
-			Data.MobNo[1] = '9';
-			Data.MobNo[2] = '1';
-			Data.MobNo[BufferLength] = DTMFMessage;
-			BufferLength++;
-			if(BufferLength == 13)
-			{
-				Data.WriteIndicator = 1;
-				BufferLength = 3;
-				DtmfState = Idle;
-				EEPROMmain(EEPROMWriteAdress,Data.byte[0]);
-				EEPROMWriteAdress = EEPROMWriteAdress+8;
-				EEPROMmain(EEPROMWriteAdress,Data.byte[1]);
-				EepromFlashMmeoryCopy();
-				SIMCOM_State = SIMCOMCancelCall;
-			}
-		}	
-			break;		
-		case DeleteExcistingNumber:
-			if(DTMFMessage == '*')
-			{
-				EEPROMErasePage(14);
-				DtmfState = Idle;
-				EepromFlashMmeoryCopy();
-				SIMCOM_State = SIMCOMCancelCall;
-			}
-			else
-			{
-				UBYTE WrtInd[4];
-				uint32_t EEPROMAdress = 0x08007000;
-				for(UBYTE i = 0;i < 4; i++)
-				{
-					WrtInd[i] = (FlashDataRead(EEPROMAdress));
-					EEPROMAdress = EEPROMAdress+16;
-				}
-				EepromDeleteWrite(EEPROMWriteAdress,WrtInd);
-				EepromFlashMmeoryCopy();
-				SIMCOM_State = SIMCOMCancelCall;
-				DtmfState = Idle;
-			}
-			break;
-		default :
-			break;
-	}
-}
-
 
 static void SIMCOM_UpdateCurrentJobResponse()
 {

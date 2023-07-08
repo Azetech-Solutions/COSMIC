@@ -489,6 +489,11 @@
               <FileType>1</FileType>
               <FilePath>..\Cosmic_App\Message_App.c</FilePath>
             </File>
+            <File>
+              <FileName>DTMF_app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Cosmic_App\DTMF_app.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

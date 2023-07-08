@@ -24,4 +24,7 @@ extern St Data;
 extern St readD;
 extern St AdressCpy[4];
 
+extern unsigned char FlashDataRead(uint32_t Address);
+
+
 #endif  /* _FLASH_H_ */
