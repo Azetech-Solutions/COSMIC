@@ -464,6 +464,11 @@
               <FileType>1</FileType>
               <FilePath>..\base\SIMCOM\src\SIMCOM_MQTT_SSL.c</FilePath>
             </File>
+            <File>
+              <FileName>ComIf_Signals.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\base\ComIf\src\ComIf_Signals.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -12,6 +12,7 @@
 
 #define COMIF_H   "..\base\ComIf\api\ComIf.h"
 #define COMIF_CONFIG_ELEMENTS_H   "..\base\ComIf\api\ComIf_Config_Elements.h"
+#define COMIF_SIGNALS_H   "..\base\ComIf\api\Comif_Signals.h"
 #define FLASH_EEPROM_H   "..\base\Flash\api\Flash_EEPROM.h"
 #define BUFFER_H   "..\base\Helpers\Buffer\api\Buffer.h"
 #define STRINGHELPER_H   "..\base\Helpers\String\api\StringHelper.h"
@@ -34,7 +35,6 @@
 #define INCLUDES_H   "..\Gen\Includes.h"
 #define SIMCOM_CONFIG_H   "..\Gen\SIMCOM_Config.h"
 #define SYSOS_CONFIG_H   "..\Gen\SysOs_Config.h"
-#define RTE_COMPONENTS_H   "..\project\RTE\_Target_1\RTE_Components.h"
 #define GPIO_DRIVER_H   "..\STM32_Driver\GPIO_Driver.h"
 #define UART_DRIVER_H   "..\STM32_Driver\UART_Driver.h"
 
