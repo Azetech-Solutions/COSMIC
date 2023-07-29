@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SubSystem type="paramconfig" ref="SubSystem">
+  <Config>
+    <Name>Com Core SubSystem Config</Name>
+    <Processes>
+      <Process>
+        <Name>ComIf_TxMainFunction</Name>
+        <Index>100</Index>
+        <ProcessGroupRef>PRC_Main_x1</ProcessGroupRef>
+        <Enabled>False</Enabled>
+      </Process>
+      <Process>
+        <Name>ComIf_RxMainFunction</Name>
+        <Index>100</Index>
+        <ProcessGroupRef>PRC_Main_x1</ProcessGroupRef>
+        <Enabled>False</Enabled>
+      </Process>
+    </Processes>
+  </Config>
+  <General>
+    <Name>Com Core SubSystem General</Name>
+    <HeaderGeneration>False</HeaderGeneration>
+    <ExcludeFileList />
+  </General>
+</SubSystem>

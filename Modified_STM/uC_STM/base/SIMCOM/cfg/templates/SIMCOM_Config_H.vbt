@@ -1,0 +1,173 @@
+.imports system
+.imports system.io
+.Imports System.Collections.Generic
+.public module SIMCOM_Config_H_VBT
+
+.output SIMCOM_Config.h
+.sw.writeline(CopyRightsComments())
+#ifndef __SIMCOM_CONFIG_H__
+#define __SIMCOM_CONFIG_H__
+
+#include <Includes.h>
+#include PLATFORM_TYPES_H
+#include BUFFER_H
+.For Each myHeader as Header in pSIMCOM.General.HeaderList
+. If CBool(myHeader.Enabled) = True Then
+#include $(myHeader.Name)
+. End If
+.next
+
+/*************************************************/
+/* Functional Switches and Parameter Definitions */
+/*************************************************/
+
+#define P_SIMCOM_INCOMPLETE_RESPONSE_TIMEOUT         $(pSIMCOM.General.IncompleteResponseRetryCount)
+
+#define P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT         $(pSIMCOM.General.FailureRetryCount)
+
+#define P_SIMCOM_TASK_CYCLE_FACTOR                   $(Process_GetTaskFactor(pSIMCOM.General.MainFunctionRef))
+
+#define P_SIMCOM_ALIVENESS_ERROR_TIME                $(pSIMCOM.General.AlivenessErrorTime)
+
+#define SIMCOM_DEFAULT_TIMEOUT                       $(pSIMCOM.General.DefaultTimeoutTime)
+
+
+/*---------------------------------------*/
+/*    SIMCOM Network Control Related     */
+/*---------------------------------------*/
+
+#define SIMCOM_CLOCK_SYNC_COUNT                      $(pSIMCOM.Config.Network.NetworkClockSyncCount)
+
+/*---------------------------------------*/
+/*   SIMCOM Calls and Dialing Related    */
+/*---------------------------------------*/
+.If CBool(pSIMCOM.Config.Calls.Enabled) = True Then
+
+#define S_SIMCOM_ENABLE_DIALING_FEATURE              ON
+
+#define S_SIMCOM_CALLS_DIAL_TO_NUMBER                ON
+
+.Else
+
+/* SIMCOM Calls and Dialing Feature is Disabled */
+#define S_SIMCOM_ENABLE_DIALING_FEATURE              OFF
+.End If
+
+/*---------------------------------------*/
+/*           SIMCOM HTTP Related         */
+/*---------------------------------------*/
+.If CBool(pSIMCOM.Config.HTTP.Enabled) = True Then
+
+#define SIMCOM_HTTP_SERVER_URL                       $(pSIMCOM.Config.HTTP.URL)
+
+.Else
+
+/* SIMCOM HTTP Feature is Disabled */
+.End If
+
+
+/*************************************************/
+/*               Macro Definitions               */
+/*************************************************/
+
+#define SIMCOM_SEND_BYTE                             $(pSIMCOM.Config.Functions.CustomSendByteFunction)
+
+#define SIMCOM_GENERIC_CALLBACK                      $(pSIMCOM.Config.Functions.GenericRxCallback)
+
+#define SIMCOM_ERROR_CALLBACK                        $(pSIMCOM.Config.Functions.ErrorCallback)
+
+//#define SIMCOM_RX_INDICATION                         $(pSIMCOM.Config.Functions.DataRxIndication)
+
+//#define SIMCOM_TX_CONFIRMATION                       $(pSIMCOM.Config.Functions.DataTxConfirmation)
+
+
+/*---------------------------------------*/
+/*        SIMCOM Buffer Related          */
+/*---------------------------------------*/
+
+#define SIMCOM_BUFFER_INITIALIZE()                   $(pSIMCOM.General.BufferRef)_Buffer_Create()
+
+#define SIMCOM_GET_BUFFER_LENGTH()                   $(pSIMCOM.General.BufferRef)_Buffer_Length()
+
+#define SIMCOM_BUFFER_PUT_BYTE(x)                    $(pSIMCOM.General.BufferRef)_Buffer_EnQueue(x)
+
+#define SIMCOM_BUFFER_GET_BYTE()                     SIMCOM_GetResponseByte()
+
+/*************************************************/
+/*               Type Definitions                */
+/*************************************************/
+
+/* SIMCOM Job Result State Type */
+typedef enum
+{
+	SIMCOM_Job_Idle = 0,    // Default State
+	SIMCOM_Job_Scheduled,   // ---> This will be updated by the Client who schedules the Job.
+	SIMCOM_Job_InProgress,  // When the Job is In-Progress
+	SIMCOM_Job_Timeout,     // Response Timed out
+	SIMCOM_Job_Incomplete,  // Half of the Response received, but timed out later
+	SIMCOM_Job_Completed,   // Job completed successfully, Response is available in the Buffer
+	SIMCOM_Job_Aborted      // Job aborted because of multiple failure attempts
+
+}SIMCOM_Job_Result_EN;
+
+
+/* SIMCOM Error State Type */
+typedef enum
+{
+	SIMCOM_Error_Inactivity = 0,
+	SIMCOM_Error_Unknown,
+	SIMCOM_Error_GSM_Not_Connected,
+	SIMCOM_Error_SIM_Card_NotInserted,
+	SIMCOM_Error_NetworkNotRegistered,
+	SIMCOM_Error_ClockConfigurationDisabled,
+	SIMCOM_Error_Clock,
+	SIMCOM_Error_GPRS,
+	SIMCOM_Error_HTTP,
+	SIMCOM_Error_POST,
+	SIMCOM_Error_Buffer_Empty,
+
+}SIMCOM_Error_State_EN;
+
+/*************************************************/
+/*               Global Variables                */
+/*************************************************/
+
+
+/*************************************************/
+/*          Extern Function Declarations         */
+/*************************************************/
+
+extern void $(pSIMCOM.Config.Functions.CustomSendByteFunction)(UBYTE Data);
+
+extern void $(pSIMCOM.Config.Functions.GenericRxCallback)(SIMCOM_Job_Result_EN JobState);
+
+extern void $(pSIMCOM.Config.Functions.ErrorCallback)();
+
+//extern UBYTE $(pSIMCOM.Config.Functions.DataRxIndication)(char * Message);
+
+//extern void $(pSIMCOM.Config.Functions.DataTxConfirmation)(void);
+
+
+/*************************************************/
+/*           Inline Function Definitions         */
+/*************************************************/
+
+static inline UBYTE SIMCOM_GetResponseByte()
+{
+	UBYTE Data = 0;
+
+	if($(pSIMCOM.General.BufferRef)_Buffer_DeQueue(&Data) == FALSE)
+	{
+		// Buffer is Empty. When the Buffer is empty, the SIMCOM Module should've not called.
+		// This is a development Error. So report Error to the application
+		SIMCOM_ERROR_CALLBACK();
+	}
+
+	return Data;
+}
+
+
+#endif /* __SIMCOM_CONFIG_H__ */
+
+.endoutput
+.end module
