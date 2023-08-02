@@ -14,15 +14,22 @@
         <EnableAggregation>False</EnableAggregation>
         <TxMessages>
           <TxMessage>
-            <Name>TxCommandData</Name>
-            <ID>205</ID>
-            <Length>8</Length>
+            <Name>IO_Status_Cloud</Name>
+            <ID>93</ID>
+            <Length>2</Length>
             <ChecksumLength>1</ChecksumLength>
             <EnableAggregation>False</EnableAggregation>
           </TxMessage>
           <TxMessage>
-            <Name>StatusData</Name>
-            <ID>93</ID>
+            <Name>ADC_Values_Cloud</Name>
+            <ID>173</ID>
+            <Length>6</Length>
+            <ChecksumLength>1</ChecksumLength>
+            <EnableAggregation>False</EnableAggregation>
+          </TxMessage>
+          <TxMessage>
+            <Name>Cloud_Init</Name>
+            <ID>205</ID>
             <Length>2</Length>
             <ChecksumLength>1</ChecksumLength>
             <EnableAggregation>False</EnableAggregation>
@@ -30,17 +37,51 @@
         </TxMessages>
         <RxMessages>
           <RxMessage>
-            <Name>RxCommandData</Name>
+            <Name>IO_cmdData_Cloud</Name>
             <ID>205</ID>
             <Length>8</Length>
-            <RxCallback>CloudRxCommandDataRxCbk</RxCallback>
+            <RxCallback>IO_cmdData_CloudRxCbk</RxCallback>
             <ChecksumLength>1</ChecksumLength>
           </RxMessage>
         </RxMessages>
       </Channel>
       <Channel>
-        <Name>Avr</Name>
-        <TransmitFunction>AvrTransmitFunc</TransmitFunction>
+        <Name>AVR</Name>
+        <TransmitFunction>AVR_Transmit</TransmitFunction>
+        <DataTransferMethod>Bytes</DataTransferMethod>
+        <TransmitBufferSize>100</TransmitBufferSize>
+        <EnableDynamicDataLength>True</EnableDynamicDataLength>
+        <MaxDynamicDataLength>100</MaxDynamicDataLength>
+        <EnableAggregation>False</EnableAggregation>
+        <TxMessages>
+          <TxMessage>
+            <Name>IO_cmdData_AVR</Name>
+            <ID>205</ID>
+            <Length>2</Length>
+            <ChecksumLength>1</ChecksumLength>
+            <EnableAggregation>False</EnableAggregation>
+          </TxMessage>
+        </TxMessages>
+        <RxMessages>
+          <RxMessage>
+            <Name>AVR_IO_Status</Name>
+            <ID>93</ID>
+            <Length>2</Length>
+            <RxCallback>AVR_IO_StatusRxCbk</RxCallback>
+            <ChecksumLength>1</ChecksumLength>
+          </RxMessage>
+          <RxMessage>
+            <Name>ADC_Values_AVR</Name>
+            <ID>173</ID>
+            <Length>6</Length>
+            <RxCallback>ADC_RxCbk</RxCallback>
+            <ChecksumLength>1</ChecksumLength>
+          </RxMessage>
+        </RxMessages>
+      </Channel>
+      <Channel>
+        <Name>DTMF</Name>
+        <TransmitFunction>DTMF_Transmit</TransmitFunction>
         <DataTransferMethod>Bytes</DataTransferMethod>
         <TransmitBufferSize>64</TransmitBufferSize>
         <EnableDynamicDataLength>True</EnableDynamicDataLength>
@@ -48,26 +89,33 @@
         <EnableAggregation>False</EnableAggregation>
         <TxMessages>
           <TxMessage>
-            <Name>AvrTxFunc</Name>
-            <ID>72</ID>
+            <Name>DTMFCommandData</Name>
+            <ID>220</ID>
             <Length>2</Length>
+            <ChecksumLength>1</ChecksumLength>
+            <EnableAggregation>False</EnableAggregation>
+          </TxMessage>
+          <TxMessage>
+            <Name>MN_Data_Message</Name>
+            <ID>192</ID>
+            <Length>78</Length>
             <ChecksumLength>1</ChecksumLength>
             <EnableAggregation>False</EnableAggregation>
           </TxMessage>
         </TxMessages>
         <RxMessages>
           <RxMessage>
-            <Name>AvrStatusData</Name>
-            <ID>93</ID>
-            <Length>2</Length>
-            <RxCallback>AvrStatusRxFunc</RxCallback>
+            <Name>AVR_Message</Name>
+            <ID>81</ID>
+            <Length>51</Length>
+            <RxCallback>DTMFMessageRxCbk</RxCallback>
             <ChecksumLength>1</ChecksumLength>
           </RxMessage>
           <RxMessage>
-            <Name>ADC_Data</Name>
-            <ID>173</ID>
-            <Length>32</Length>
-            <RxCallback>ADC_RxCbk</RxCallback>
+            <Name>AVR_Call</Name>
+            <ID>202</ID>
+            <Length>1</Length>
+            <RxCallback>DTMFCallMessageCbk</RxCallback>
             <ChecksumLength>1</ChecksumLength>
           </RxMessage>
         </RxMessages>

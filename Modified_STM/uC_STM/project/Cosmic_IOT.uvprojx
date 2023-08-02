@@ -395,14 +395,14 @@
               <FilePath>..\base\ComIf\src\ComIf_CalcChecksum.c</FilePath>
             </File>
             <File>
-              <FileName>ComIf_RxIndication.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\base\ComIf\src\ComIf_RxIndication.c</FilePath>
-            </File>
-            <File>
               <FileName>ComIf_RxRequest.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\base\ComIf\src\ComIf_RxRequest.c</FilePath>
+            </File>
+            <File>
+              <FileName>ComIf_RxIndication.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\base\ComIf\src\ComIf_RxIndication.c</FilePath>
             </File>
             <File>
               <FileName>ComIf_Transmit.c</FileName>

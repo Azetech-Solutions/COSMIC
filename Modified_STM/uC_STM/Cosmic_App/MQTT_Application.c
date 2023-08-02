@@ -32,7 +32,6 @@
 /*****************************************/
 extern UBYTE DTMFMessageFlag;
 extern void USART1_String(const char* data);
-extern void CloudRxCommandDataRxCbk(UBYTE Length, UBYTE *Data);
 
 //StatusData_ST StatusData;
 AvrCmdData_ST AvrCmdData;
@@ -42,10 +41,12 @@ UBYTE Current_IOStatus = 0;
 UBYTE Previous_IOStatus = 0;
 BOOL MQTTConnectionCheckStatus = FALSE;
 StatusData_ST StatusData;
+
 /***************************************************/
 /* Function Definitions                            */
 /***************************************************/
 
+void IO_cmdData_CloudRxCbk(UBYTE Length, UBYTE *Data);
 
 extern UBYTE avrstatus[2];
 
@@ -55,11 +56,17 @@ extern UBYTE AvrTransmitFunc(UWORD Length, void * Data);
 
 extern void SIM_Send_Data(unsigned char Data);
 
+void CloudInit();
+
 UBYTE MachineInitFlag = FALSE;
 
 SimcomWorkingMode_ST SimcomWorkingMode = MQTTMode;
 
-UBYTE AvrTransmitFunc(UWORD Length, void * Data)
+AvrCmdData_ST prevAvrStatusData;
+
+AvrCmdData_ST prevCloudCmdData;
+
+UBYTE AVR_Transmit(UWORD Length, void * Data)
 {
 	UBYTE retval = COMIF_EC_NO_ERROR;
 	
@@ -70,7 +77,7 @@ UBYTE AvrTransmitFunc(UWORD Length, void * Data)
 	
 	memset(Data,'0',Length);
 	
-	ComIf_TxConfirmation(C_ComIfChannel_Avr);
+	ComIf_TxConfirmation(C_ComIfChannel_AVR);
 	
 	return retval;
 }
@@ -83,17 +90,15 @@ void updateSendData(UBYTE Data[])
 	
 	AvrCmd->Data_Bytes[1] = Data[1];
 	
-	UBYTE *PubMsg = ComIf_GetShadowBuffer_Avr_AvrTxFunc();
+	UBYTE *PubMsg = ComIf_GetShadowBuffer_AVR_IO_cmdData_AVR();
 	
 	memcpy(PubMsg,AvrCmd->Data_Bytes,2);
 	
-	ComIf_TransmitFromBuffer_Avr_AvrTxFunc();
+	ComIf_TransmitFromBuffer_AVR_IO_cmdData_AVR();
 	
 }
 
-
-
-void CloudRxCommandDataRxCbk(UBYTE Length, UBYTE *Data)
+void IO_cmdData_CloudRxCbk(UBYTE Length, UBYTE *Data)
 {
 	UBYTE i,StatusData[2];
 	for(i = 0; i<Length ;i++)
@@ -112,25 +117,14 @@ UBYTE Cloud_Transmit(UWORD Length, void * Data)
 
 	char *PtrData = (char *)Data;
 	
-//		for(UBYTE i = 0;i < 8; i++)
-//		{
-//			SIM_Send_Data(*(PtrData+i));	
-//		}	
-	
-	
-	
 	if (!ISPublishMsgConfigured())
 	{
 		
 		memcpy(PublishPayload,PtrData,Length);	
 		
-//		for(UBYTE i = 0;i < 26; i++)
-//		{
-//			SIM_Send_Data(PublishPayload[i]);
-//		}
-		
-		
+
 		ComIf_TxConfirmation(C_ComIfChannel_Cloud);
+
 	}
 	else
 	{
@@ -141,6 +135,7 @@ UBYTE Cloud_Transmit(UWORD Length, void * Data)
 }
 
 //function to send status data(like led on or led off)from microcontroller to cloud to update application  
+
 void RequestLastStatus(UBYTE sts[])
 {
 	StatusData_ST *CurrentStatus = &StatusData;
@@ -149,15 +144,22 @@ void RequestLastStatus(UBYTE sts[])
 	
 	CurrentStatus->Data_Bytes[1] = sts[1];
 	
-	UBYTE *PubMsg = ComIf_GetShadowBuffer_Cloud_StatusData();
+	UBYTE *PubMsg = ComIf_GetShadowBuffer_Cloud_IO_Status_Cloud();
 	
 	memcpy(PubMsg,CurrentStatus->Data_Bytes,2);
 	
-//	SIM_Send_Data(*PubMsg);
-//	
-//	SIM_Send_Data(*(PubMsg + 1));
+	ComIf_TransmitFromBuffer_Cloud_IO_Status_Cloud();
+}
+
+void CloudInit()
+{
+	UBYTE *PubMsg = ComIf_GetShadowBuffer_Cloud_Cloud_Init();
 	
-	ComIf_TransmitFromBuffer_Cloud_StatusData();
+	 UBYTE val[2] = {255,0};
+	
+	memcpy(PubMsg,val,2);
+	
+	ComIf_TransmitFromBuffer_Cloud_Cloud_Init();
 }
 
 
@@ -184,7 +186,6 @@ void MQTT_AppMain()
 					MQTTApp_State = MQTTApp_Publish_IO_state;
 				}
 
-				
 			}
 			break;
 			
@@ -194,8 +195,8 @@ void MQTT_AppMain()
 				//that the microcontroller is ready to recieve data 
 				if(IsMQTT_Ready())
 				{
-					UBYTE LastStatus[2] = {255,0};
-					RequestLastStatus(LastStatus);
+//					UBYTE LastStatus[2] = {255,0};
+					CloudInit();
 					MQTTApp_State = MQTTApp_PublishMsgConfiguringinprocess;
 					MachineInitFlag = TRUE;
 				}
@@ -213,18 +214,18 @@ void MQTT_AppMain()
 			{	
 				//this part is to publish the command status of the 
 				
-				UBYTE *Data  = ComIf_GetShadowBuffer_Cloud_TxCommandData();
-				
-				Data[0] = avrstatus[0];
-				
-				Data[1] = avrstatus[1];
-				
-				for(UBYTE i=2;i<8;i++)
-				{
-					Data[i] = 0;
-				}
+//				UBYTE *Data  = ComIf_GetShadowBuffer_Cloud_TxCommandData();
+//				
+//				Data[0] = avrstatus[0];
+//				
+//				Data[1] = avrstatus[1];
+//				
+//				for(UBYTE i=2;i<8;i++)
+//				{
+//					Data[i] = 0;
+//				}
 
-				ComIf_TransmitFromBuffer_Cloud_TxCommandData();
+//				ComIf_TransmitFromBuffer_Cloud_TxCommandData();
 				MQTTApp_State = MQTTApp_PublishMsgConfiguringinprocess;
 			}
 			break;
@@ -263,7 +264,6 @@ void COSMIC_SIMCOM_Error_Callback()
 	MQTTApp_State = MQTTApp_Init;
 	Publish_State = MQTT_Publish_Idle;
 }
-
 
 void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 {

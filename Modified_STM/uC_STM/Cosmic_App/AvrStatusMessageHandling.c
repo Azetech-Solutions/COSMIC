@@ -17,8 +17,6 @@ void UART2_SIM_Send_Data(unsigned char Data);
 
 extern UBYTE DTMFBuffer[15];
 
-extern void AvrStatusRxFunc(UBYTE Length, UBYTE *Data);
-
 extern UBYTE ComIf_RxIndication_Avr(UBYTE DataByte);
 
 extern void updateSendData(UBYTE Data[]);
@@ -37,7 +35,9 @@ AvrRxHanler AvrRxHanlerType1;
 /* Function Definitions                            */
 /***************************************************/
 
-void AvrStatusRxFunc(UBYTE Length, UBYTE *Data)
+
+
+void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)
 {
 	for(UBYTE i=0;i<Length;i++)
 	{
@@ -61,19 +61,6 @@ void AvrStatusRxFunc(UBYTE Length, UBYTE *Data)
 			}
 			else
 			{
-	//			DTMFBuffer[0] = 'A';
-	//			DTMFBuffer[1] = 'W';
-	//			DTMFBuffer[2] = 'S';
-	//			DTMFBuffer[3] = ' ';
-	//			DTMFBuffer[4] = 'C';
-	//			DTMFBuffer[5] = 'O';
-	//			DTMFBuffer[6] = 'N';
-	//			DTMFBuffer[7] = 'S';
-	//			DTMFBuffer[8] = 'O';
-	//			DTMFBuffer[9] = 'L';
-	//			DTMFBuffer[10] = 'E';
-	//			DTMFBuffer[11] = ' ';
-	//			DTMFBuffer[12] = ' ';
 				DtmfMessageHandlerState = UpdateMotorStatusMsg;
 			}
 		}
@@ -85,7 +72,7 @@ void AvrStatusRxFunc(UBYTE Length, UBYTE *Data)
 	}
 }
 
-void UpdateStatusCmdData()
+void ADC_RxCbk(UBYTE Length, UBYTE *Data)
 {
 	
 }
@@ -98,14 +85,8 @@ void 	AvrStatusHandleFunc()
 		
 		if(AvrStatus_Buffer_DeQueue(&data))
 		{
-			ComIf_RxIndication_Avr(data);
+			ComIf_RxIndication_AVR(data);
 		}
 	}
-}
-
-
- void ADC_RxCbk(UBYTE Length, UBYTE *Data)
-{
-	
 }
 	

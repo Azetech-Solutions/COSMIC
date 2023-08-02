@@ -25,6 +25,7 @@
 #define PLATFORM_TYPES_H   "..\base\SysOS\api\Platform_Types.h"
 #define SYSOS_H   "..\base\SysOS\api\SysOS.h"
 #define SYSOS_CONFIG_ELEMENTS_H   "..\base\SysOS\api\SysOS_Config_Elements.h"
+#define AVR_H   "..\Cosmic_App\AVR.h"
 #define CS_IOT_H   "..\Cosmic_App\CS_Iot.h"
 #define MESSAGE_APP_H   "..\Cosmic_App\Message_App.h"
 #define MQTT_APPLICATION_H   "..\Cosmic_App\MQTT_Application.h"
