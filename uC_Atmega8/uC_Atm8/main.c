@@ -11,8 +11,11 @@
 #include <avr/wdt.h>
 #include <avr/interrupt.h>
 #include "Includes.h"
+#include UART_H
 #include TR_MSGS_H
 #include COMIF_H
+#include <stdio.h>
+#include <string.h>
 
 /**********************************************************/
 /* Macro Definitions                                      */
@@ -25,7 +28,7 @@
 /**********************************************************/
 /* Global Variable Declarations                           */
 /**********************************************************/
-
+AVR_IO_Control_ST prevIO_Status={0};
 /**********************************************************/
 /* Inline Function Definitions                            */
 /**********************************************************/
@@ -65,11 +68,23 @@ void IOControls()
 		PORTC &= ~(1<<5);
 	}
 	
-	for(UBYTE i=0;i<DataLen;i++)
+#if 0
+	if(memcmp(*InputIO_Data->Bytes,prevIO_Status.Bytes,2) != 0)
 	{
-		InputIO_Data->Bytes[i] = IO_StatusData->Bytes[i];
+		for(UBYTE i=0;i<DataLen;i++)
+		{
+			IO_StatusData->Bytes[i] = InputIO_Data->Bytes[i];
+		}
+		
+		UBYTE *Buff = ComIf_GetShadowBuffer_STM32_AVR_IO_Status();
+		
+		memcpy(Buff,IO_StatusData->Bytes,2);
+		
+		ComIf_TransmitFromBuffer_STM32_AVR_IO_Status();	
+		
+		prevIO_Status = *InputIO_Data;
 	}
-	 
+#endif
 }
 
 int main(void)

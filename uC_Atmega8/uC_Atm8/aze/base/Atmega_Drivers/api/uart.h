@@ -20,7 +20,7 @@
 /**********************************************************/
 /* Macro Definitions                                      */
 /**********************************************************/
-#define USART_BAUDRATE 115200
+#define USART_BAUDRATE 9600
 #define BAUD_PRESCALE (((F_CPU / (USART_BAUDRATE * 16UL))) - 1)
 /**********************************************************/
 /* Type Definitions                                       */
