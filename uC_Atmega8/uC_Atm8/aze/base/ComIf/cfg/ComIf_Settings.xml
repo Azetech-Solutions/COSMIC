@@ -4,36 +4,64 @@
     <Name>ComIf Config</Name>
     <Channels>
       <Channel>
-        <Name>Cloud</Name>
-        <TransmitFunction>Cloud_Transmit</TransmitFunction>
+        <Name>STM32</Name>
+        <TransmitFunction>STM32_Transmit</TransmitFunction>
         <DataTransferMethod>Bytes</DataTransferMethod>
-        <TransmitBufferSize>64</TransmitBufferSize>
-        <ErrorNotification>Cloud_ComIf_ErrorNotification</ErrorNotification>
+        <TransmitBufferSize>100</TransmitBufferSize>
+        <ErrorNotification>STM32_ComIf_ErrorNotification</ErrorNotification>
         <EnableDynamicDataLength>True</EnableDynamicDataLength>
-        <MaxDynamicDataLength>64</MaxDynamicDataLength>
+        <MaxDynamicDataLength>100</MaxDynamicDataLength>
         <EnableAggregation>False</EnableAggregation>
         <TxMessages>
           <TxMessage>
-            <Name>AdcVoltageCarryFunc</Name>
+            <Name>ADC_Values_AVR</Name>
             <ID>173</ID>
-            <Length>32</Length>
+            <Length>6</Length>
             <ChecksumLength>1</ChecksumLength>
             <EnableAggregation>False</EnableAggregation>
           </TxMessage>
           <TxMessage>
-            <Name>StatusData</Name>
+            <Name>AVR_IO_Status</Name>
             <ID>93</ID>
             <Length>2</Length>
+            <ChecksumLength>1</ChecksumLength>
+            <EnableAggregation>False</EnableAggregation>
+          </TxMessage>
+          <TxMessage>
+            <Name>AVR_Message</Name>
+            <ID>81</ID>
+            <Length>51</Length>
+            <ChecksumLength>1</ChecksumLength>
+            <EnableAggregation>False</EnableAggregation>
+          </TxMessage>
+          <TxMessage>
+            <Name>AVR_Call</Name>
+            <ID>202</ID>
+            <Length>1</Length>
             <ChecksumLength>1</ChecksumLength>
             <EnableAggregation>False</EnableAggregation>
           </TxMessage>
         </TxMessages>
         <RxMessages>
           <RxMessage>
-            <Name>RxCommandData</Name>
-            <ID>72</ID>
+            <Name>IO_cmdData_AVR</Name>
+            <ID>205</ID>
             <Length>2</Length>
-            <RxCallback>CloudRxCommandDataRxCbk</RxCallback>
+            <RxCallback>IO_cmdData_AVRRxcbk</RxCallback>
+            <ChecksumLength>1</ChecksumLength>
+          </RxMessage>
+          <RxMessage>
+            <Name>DTMF_Command_Data</Name>
+            <ID>220</ID>
+            <Length>2</Length>
+            <RxCallback>DTMF_Command_DataRxCbk</RxCallback>
+            <ChecksumLength>1</ChecksumLength>
+          </RxMessage>
+          <RxMessage>
+            <Name>Stored_MobNums</Name>
+            <ID>192</ID>
+            <Length>78</Length>
+            <RxCallback>Stored_MobNumsRxCbk</RxCallback>
             <ChecksumLength>1</ChecksumLength>
           </RxMessage>
         </RxMessages>

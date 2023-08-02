@@ -2,14 +2,34 @@
  * uart.c
  *
  * Created: 05-10-2018 22:47:04
- *  Author: MDRP
+ *  Author: AZETECH
  */ 
+/**********************************************************/
+/* Header Inclusions                                      */
+/**********************************************************/
 #include "Includes.h"
 #include "uart.h"
-#define F_CPU 8000000UL
-#include BUFFER_CONFIG_H
+#include COMIF_H
 
-extern UBYTE ComIf_RxIndication_Cloud(UBYTE DataByte);
+/**********************************************************/
+/* Macro Definitions                                      */
+/**********************************************************/
+#define F_CPU 8000000UL
+/**********************************************************/
+/* Type Definitions                                       */
+/**********************************************************/
+
+/**********************************************************/
+/* Global Variable Declarations                           */
+/**********************************************************/
+BOOL IsUartCommunicationOkay = FALSE;
+/**********************************************************/
+/* Inline Function Definitions                            */
+/**********************************************************/
+
+/**********************************************************/
+/* Function Declaration                                   */
+/**********************************************************/
 
 void uart_init()
 {
@@ -23,12 +43,18 @@ void uart_init()
 /*	UCSRA |= (1<<U2X);*/
 	UCSRB |= (1 << RXCIE); // Enable the USART Recieve Complete interrupt (USART_RXC)
 	sei(); // Enable the Global Interrupt Enable flag so that interrupts can be processed
+	
+	IsUartCommunicationOkay = TRUE;// To indicate The uart is initialized in proper way
 }
 
-void uart_tx(unsigned char a)
+unsigned char uart_tx(unsigned char a)
 {
+	unsigned char retval = 0;
 	while ( !( UCSRA & (1<<UDRE)) );
 	UDR = a;
+	retval = 1;
+	
+	return retval;
 }
 
 unsigned char uart_rx()
@@ -49,5 +75,5 @@ void uart_string(unsigned char *str)
 ISR(USART_RXC_vect)
 {
 	unsigned char d = UDR;
-	ComIf_RxIndication_Cloud(d);
+	ComIf_RxIndication_STM32(d);
 }

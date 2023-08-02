@@ -1,3 +1,4 @@
+#if 0
 /*
  * MessageHandling.c
  *
@@ -9,7 +10,7 @@
 #include <string.h>
 #include <avr/io.h>
 #include "Includes.h"
-#include LCD_H
+
 #include PLATFORM_TYPES_H
 #include COMIF_H
 
@@ -161,11 +162,13 @@ AvrMessageState_ST AvrMessageState = AvrIdle;
 void CloudRxCommandDataRxCbk(UBYTE Length, UBYTE *Data)
 {
 	UBYTE avrcmd[Length];
+	
 	for(UBYTE i=0;i<Length;i++)
 	{
 		avrcmd[i] = *Data;
 		Data++;
 	}
+	
 	if((avrcmd[0]&1) == 1)
 	{
 		PORTC |= (1<<5);
@@ -276,3 +279,4 @@ void AvrStatusTransmitFunc(UBYTE avrstat[])
 
 
 	
+#endif

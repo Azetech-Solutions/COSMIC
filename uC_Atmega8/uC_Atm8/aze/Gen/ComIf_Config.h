@@ -44,94 +44,184 @@
 /*               Macro Definitions               */
 /*************************************************/
 
-#if COMIF_MAX_SUPPORTED_DLC < 64
-#error "The channel Cloud has more data length in the dynamic section than the supported DLC"
+#if COMIF_MAX_SUPPORTED_DLC < 100
+#error "The channel STM32 has more data length in the dynamic section than the supported DLC"
 #endif
 
-/* Transmit Message constants for the channel : Cloud */
-#define P_COMIF_TXBUFFER_SIZE_CLOUD                    64u
+/* Transmit Message constants for the channel : STM32 */
+#define P_COMIF_TXBUFFER_SIZE_STM32                    100u
 
-/* Constants for the Tx message AdcVoltageCarryFunc on Cloud channel */
+/* Constants for the Tx message ADC_Values_AVR on STM32 channel */
 
-#define ComIf_GetIndex_Cloud_AdcVoltageCarryFunc()                   (0u)
-#define ComIf_GetLength_Cloud_AdcVoltageCarryFunc()                  (32u)
-#define ComIf_GetShadowBuffer_Cloud_AdcVoltageCarryFunc()            ((UBYTE *)ComIf_ShadowBuffer_Cloud_AdcVoltageCarryFunc)
-#define ComIf_Transmit_Cloud_AdcVoltageCarryFunc(x, y)               ComIf_Transmit(C_ComIfChannel_Cloud, 0, ((void *)x), y)
-#define ComIf_ForceTransmit_Cloud_AdcVoltageCarryFunc(x, y)          do{ComIfTxMsgCfg_Cloud[0].TxFlags.ForceTransmit = TRUE; ComIf_Transmit(C_ComIfChannel_Cloud, 0, ((void *)x), y); } while(0)
-#define ComIf_UpdateTxShadowBuffer_Cloud_AdcVoltageCarryFunc(x, y)   ComIf_UpdateTxShadowBuffer(C_ComIfChannel_Cloud, 0, ((void *)x), y)
-#define ComIf_TransmitFromBuffer_Cloud_AdcVoltageCarryFunc()         ComIf_Transmit_Cloud_AdcVoltageCarryFunc(ComIf_ShadowBuffer_Cloud_AdcVoltageCarryFunc, 32)
-#define ComIf_ForceTransmitFromBuffer_Cloud_AdcVoltageCarryFunc()    ComIf_ForceTransmit_Cloud_AdcVoltageCarryFunc(ComIf_ShadowBuffer_Cloud_AdcVoltageCarryFunc, 32)
+#define ComIf_GetIndex_STM32_ADC_Values_AVR()                   (0u)
+#define ComIf_GetLength_STM32_ADC_Values_AVR()                  (6u)
+#define ComIf_GetShadowBuffer_STM32_ADC_Values_AVR()            ((UBYTE *)ComIf_ShadowBuffer_STM32_ADC_Values_AVR)
+#define ComIf_Transmit_STM32_ADC_Values_AVR(x, y)               ComIf_Transmit(C_ComIfChannel_STM32, 0, ((void *)x), y)
+#define ComIf_ForceTransmit_STM32_ADC_Values_AVR(x, y)          do{ComIfTxMsgCfg_STM32[0].TxFlags.ForceTransmit = TRUE; ComIf_Transmit(C_ComIfChannel_STM32, 0, ((void *)x), y); } while(0)
+#define ComIf_UpdateTxShadowBuffer_STM32_ADC_Values_AVR(x, y)   ComIf_UpdateTxShadowBuffer(C_ComIfChannel_STM32, 0, ((void *)x), y)
+#define ComIf_TransmitFromBuffer_STM32_ADC_Values_AVR()         ComIf_Transmit_STM32_ADC_Values_AVR(ComIf_ShadowBuffer_STM32_ADC_Values_AVR, 6)
+#define ComIf_ForceTransmitFromBuffer_STM32_ADC_Values_AVR()    ComIf_ForceTransmit_STM32_ADC_Values_AVR(ComIf_ShadowBuffer_STM32_ADC_Values_AVR, 6)
 
-/* Debug Measurement Variables for AdcVoltageCarryFunc on Cloud */
+/* Debug Measurement Variables for ADC_Values_AVR on STM32 */
 
 /* [[DEBUG_MEASUREMENT */
-/* NAME=ComIfTxMsgCfg_Cloud[0].TxFlags.PendingForTransmission */
-/* MODELNAME=ComIfTxMsgCfg_Cloud_AdcVoltageCarryFunc_PendingForTransmission */
+/* NAME=ComIfTxMsgCfg_STM32[0].TxFlags.PendingForTransmission */
+/* MODELNAME=ComIfTxMsgCfg_STM32_ADC_Values_AVR_PendingForTransmission */
 /* SIZE=1 */
 /* HEADER=ComIf_Config.h */
 /* DEBUG_MEASUREMENT]] */
 
 /* [[DEBUG_MEASUREMENT */
-/* NAME=ComIfTxMsgCfg_Cloud[0].TxFlags.PendingForConfirmation */
-/* MODELNAME=ComIfTxMsgCfg_Cloud_AdcVoltageCarryFunc_PendingForConfirmation */
+/* NAME=ComIfTxMsgCfg_STM32[0].TxFlags.PendingForConfirmation */
+/* MODELNAME=ComIfTxMsgCfg_STM32_ADC_Values_AVR_PendingForConfirmation */
 /* SIZE=1 */
 /* HEADER=ComIf_Config.h */
 /* DEBUG_MEASUREMENT]] */
 
 /* [[DEBUG_MEASUREMENT */
-/* NAME=ComIfTxMsgCfg_Cloud[0].TxFlags.AggregatedInBuffer */
-/* MODELNAME=ComIfTxMsgCfg_Cloud_AdcVoltageCarryFunc_AggregatedInBuffer */
+/* NAME=ComIfTxMsgCfg_STM32[0].TxFlags.AggregatedInBuffer */
+/* MODELNAME=ComIfTxMsgCfg_STM32_ADC_Values_AVR_AggregatedInBuffer */
 /* SIZE=1 */
 /* HEADER=ComIf_Config.h */
 /* DEBUG_MEASUREMENT]] */
 
 
-/* Constants for the Tx message StatusData on Cloud channel */
+/* Constants for the Tx message AVR_IO_Status on STM32 channel */
 
-#define ComIf_GetIndex_Cloud_StatusData()                   (1u)
-#define ComIf_GetLength_Cloud_StatusData()                  (2u)
-#define ComIf_GetShadowBuffer_Cloud_StatusData()            ((UBYTE *)ComIf_ShadowBuffer_Cloud_StatusData)
-#define ComIf_Transmit_Cloud_StatusData(x, y)               ComIf_Transmit(C_ComIfChannel_Cloud, 1, ((void *)x), y)
-#define ComIf_ForceTransmit_Cloud_StatusData(x, y)          do{ComIfTxMsgCfg_Cloud[1].TxFlags.ForceTransmit = TRUE; ComIf_Transmit(C_ComIfChannel_Cloud, 1, ((void *)x), y); } while(0)
-#define ComIf_UpdateTxShadowBuffer_Cloud_StatusData(x, y)   ComIf_UpdateTxShadowBuffer(C_ComIfChannel_Cloud, 1, ((void *)x), y)
-#define ComIf_TransmitFromBuffer_Cloud_StatusData()         ComIf_Transmit_Cloud_StatusData(ComIf_ShadowBuffer_Cloud_StatusData, 2)
-#define ComIf_ForceTransmitFromBuffer_Cloud_StatusData()    ComIf_ForceTransmit_Cloud_StatusData(ComIf_ShadowBuffer_Cloud_StatusData, 2)
+#define ComIf_GetIndex_STM32_AVR_IO_Status()                   (1u)
+#define ComIf_GetLength_STM32_AVR_IO_Status()                  (2u)
+#define ComIf_GetShadowBuffer_STM32_AVR_IO_Status()            ((UBYTE *)ComIf_ShadowBuffer_STM32_AVR_IO_Status)
+#define ComIf_Transmit_STM32_AVR_IO_Status(x, y)               ComIf_Transmit(C_ComIfChannel_STM32, 1, ((void *)x), y)
+#define ComIf_ForceTransmit_STM32_AVR_IO_Status(x, y)          do{ComIfTxMsgCfg_STM32[1].TxFlags.ForceTransmit = TRUE; ComIf_Transmit(C_ComIfChannel_STM32, 1, ((void *)x), y); } while(0)
+#define ComIf_UpdateTxShadowBuffer_STM32_AVR_IO_Status(x, y)   ComIf_UpdateTxShadowBuffer(C_ComIfChannel_STM32, 1, ((void *)x), y)
+#define ComIf_TransmitFromBuffer_STM32_AVR_IO_Status()         ComIf_Transmit_STM32_AVR_IO_Status(ComIf_ShadowBuffer_STM32_AVR_IO_Status, 2)
+#define ComIf_ForceTransmitFromBuffer_STM32_AVR_IO_Status()    ComIf_ForceTransmit_STM32_AVR_IO_Status(ComIf_ShadowBuffer_STM32_AVR_IO_Status, 2)
 
-/* Debug Measurement Variables for StatusData on Cloud */
-
-/* [[DEBUG_MEASUREMENT */
-/* NAME=ComIfTxMsgCfg_Cloud[1].TxFlags.PendingForTransmission */
-/* MODELNAME=ComIfTxMsgCfg_Cloud_StatusData_PendingForTransmission */
-/* SIZE=1 */
-/* HEADER=ComIf_Config.h */
-/* DEBUG_MEASUREMENT]] */
+/* Debug Measurement Variables for AVR_IO_Status on STM32 */
 
 /* [[DEBUG_MEASUREMENT */
-/* NAME=ComIfTxMsgCfg_Cloud[1].TxFlags.PendingForConfirmation */
-/* MODELNAME=ComIfTxMsgCfg_Cloud_StatusData_PendingForConfirmation */
+/* NAME=ComIfTxMsgCfg_STM32[1].TxFlags.PendingForTransmission */
+/* MODELNAME=ComIfTxMsgCfg_STM32_AVR_IO_Status_PendingForTransmission */
 /* SIZE=1 */
 /* HEADER=ComIf_Config.h */
 /* DEBUG_MEASUREMENT]] */
 
 /* [[DEBUG_MEASUREMENT */
-/* NAME=ComIfTxMsgCfg_Cloud[1].TxFlags.AggregatedInBuffer */
-/* MODELNAME=ComIfTxMsgCfg_Cloud_StatusData_AggregatedInBuffer */
+/* NAME=ComIfTxMsgCfg_STM32[1].TxFlags.PendingForConfirmation */
+/* MODELNAME=ComIfTxMsgCfg_STM32_AVR_IO_Status_PendingForConfirmation */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_STM32[1].TxFlags.AggregatedInBuffer */
+/* MODELNAME=ComIfTxMsgCfg_STM32_AVR_IO_Status_AggregatedInBuffer */
 /* SIZE=1 */
 /* HEADER=ComIf_Config.h */
 /* DEBUG_MEASUREMENT]] */
 
 
-/* Receive Message constants for the channel : Cloud */
+/* Constants for the Tx message AVR_Message on STM32 channel */
 
-/* Constants for the Rx message RxCommandData on Cloud channel */
+#define ComIf_GetIndex_STM32_AVR_Message()                   (2u)
+#define ComIf_GetLength_STM32_AVR_Message()                  (51u)
+#define ComIf_GetShadowBuffer_STM32_AVR_Message()            ((UBYTE *)ComIf_ShadowBuffer_STM32_AVR_Message)
+#define ComIf_Transmit_STM32_AVR_Message(x, y)               ComIf_Transmit(C_ComIfChannel_STM32, 2, ((void *)x), y)
+#define ComIf_ForceTransmit_STM32_AVR_Message(x, y)          do{ComIfTxMsgCfg_STM32[2].TxFlags.ForceTransmit = TRUE; ComIf_Transmit(C_ComIfChannel_STM32, 2, ((void *)x), y); } while(0)
+#define ComIf_UpdateTxShadowBuffer_STM32_AVR_Message(x, y)   ComIf_UpdateTxShadowBuffer(C_ComIfChannel_STM32, 2, ((void *)x), y)
+#define ComIf_TransmitFromBuffer_STM32_AVR_Message()         ComIf_Transmit_STM32_AVR_Message(ComIf_ShadowBuffer_STM32_AVR_Message, 51)
+#define ComIf_ForceTransmitFromBuffer_STM32_AVR_Message()    ComIf_ForceTransmit_STM32_AVR_Message(ComIf_ShadowBuffer_STM32_AVR_Message, 51)
 
-#define ComIf_GetIndex_Cloud_RxCommandData()                   (0u)
-#define ComIf_GetLength_Cloud_RxCommandData()                  (2u)
-#define ComIf_GetBuffer_Cloud_RxCommandData()                  ((UBYTE *)ComIf_RxMessageBuffer_Cloud_RxCommandData)
-#define ComIf_GetRxFlags_Cloud_RxCommandData()                 (ComIfRxMsgCfg_Cloud[0].RxFlags)
-#define ComIf_IsNewMessageReceived_Cloud_RxCommandData()       ((ComIfRxMsgCfg_Cloud[0].RxFlags.NewMessageReceived == TRUE) && (ComIfRxMsgCfg_Cloud[0].RxFlags.ReceptionStarted == FALSE))
-#define ComIf_IsMessageReceptionHasError_Cloud_RxCommandData() (ComIfRxMsgCfg_Cloud[0].RxFlags.ErrorInReception)
-#define ComIf_SetMessageProcessesed_Cloud_RxCommandData()      ComIf_SetMessageProcessed(&(ComIfRxMsgCfg_Cloud[0].RxFlags))
+/* Debug Measurement Variables for AVR_Message on STM32 */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_STM32[2].TxFlags.PendingForTransmission */
+/* MODELNAME=ComIfTxMsgCfg_STM32_AVR_Message_PendingForTransmission */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_STM32[2].TxFlags.PendingForConfirmation */
+/* MODELNAME=ComIfTxMsgCfg_STM32_AVR_Message_PendingForConfirmation */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_STM32[2].TxFlags.AggregatedInBuffer */
+/* MODELNAME=ComIfTxMsgCfg_STM32_AVR_Message_AggregatedInBuffer */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+
+/* Constants for the Tx message AVR_Call on STM32 channel */
+
+#define ComIf_GetIndex_STM32_AVR_Call()                   (3u)
+#define ComIf_GetLength_STM32_AVR_Call()                  (1u)
+#define ComIf_GetShadowBuffer_STM32_AVR_Call()            ((UBYTE *)ComIf_ShadowBuffer_STM32_AVR_Call)
+#define ComIf_Transmit_STM32_AVR_Call(x, y)               ComIf_Transmit(C_ComIfChannel_STM32, 3, ((void *)x), y)
+#define ComIf_ForceTransmit_STM32_AVR_Call(x, y)          do{ComIfTxMsgCfg_STM32[3].TxFlags.ForceTransmit = TRUE; ComIf_Transmit(C_ComIfChannel_STM32, 3, ((void *)x), y); } while(0)
+#define ComIf_UpdateTxShadowBuffer_STM32_AVR_Call(x, y)   ComIf_UpdateTxShadowBuffer(C_ComIfChannel_STM32, 3, ((void *)x), y)
+#define ComIf_TransmitFromBuffer_STM32_AVR_Call()         ComIf_Transmit_STM32_AVR_Call(ComIf_ShadowBuffer_STM32_AVR_Call, 1)
+#define ComIf_ForceTransmitFromBuffer_STM32_AVR_Call()    ComIf_ForceTransmit_STM32_AVR_Call(ComIf_ShadowBuffer_STM32_AVR_Call, 1)
+
+/* Debug Measurement Variables for AVR_Call on STM32 */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_STM32[3].TxFlags.PendingForTransmission */
+/* MODELNAME=ComIfTxMsgCfg_STM32_AVR_Call_PendingForTransmission */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_STM32[3].TxFlags.PendingForConfirmation */
+/* MODELNAME=ComIfTxMsgCfg_STM32_AVR_Call_PendingForConfirmation */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_STM32[3].TxFlags.AggregatedInBuffer */
+/* MODELNAME=ComIfTxMsgCfg_STM32_AVR_Call_AggregatedInBuffer */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+
+/* Receive Message constants for the channel : STM32 */
+
+/* Constants for the Rx message IO_cmdData_AVR on STM32 channel */
+
+#define ComIf_GetIndex_STM32_IO_cmdData_AVR()                   (0u)
+#define ComIf_GetLength_STM32_IO_cmdData_AVR()                  (2u)
+#define ComIf_GetBuffer_STM32_IO_cmdData_AVR()                  ((UBYTE *)ComIf_RxMessageBuffer_STM32_IO_cmdData_AVR)
+#define ComIf_GetRxFlags_STM32_IO_cmdData_AVR()                 (ComIfRxMsgCfg_STM32[0].RxFlags)
+#define ComIf_IsNewMessageReceived_STM32_IO_cmdData_AVR()       ((ComIfRxMsgCfg_STM32[0].RxFlags.NewMessageReceived == TRUE) && (ComIfRxMsgCfg_STM32[0].RxFlags.ReceptionStarted == FALSE))
+#define ComIf_IsMessageReceptionHasError_STM32_IO_cmdData_AVR() (ComIfRxMsgCfg_STM32[0].RxFlags.ErrorInReception)
+#define ComIf_SetMessageProcessesed_STM32_IO_cmdData_AVR()      ComIf_SetMessageProcessed(&(ComIfRxMsgCfg_STM32[0].RxFlags))
+
+/* Constants for the Rx message DTMF_Command_Data on STM32 channel */
+
+#define ComIf_GetIndex_STM32_DTMF_Command_Data()                   (1u)
+#define ComIf_GetLength_STM32_DTMF_Command_Data()                  (2u)
+#define ComIf_GetBuffer_STM32_DTMF_Command_Data()                  ((UBYTE *)ComIf_RxMessageBuffer_STM32_DTMF_Command_Data)
+#define ComIf_GetRxFlags_STM32_DTMF_Command_Data()                 (ComIfRxMsgCfg_STM32[1].RxFlags)
+#define ComIf_IsNewMessageReceived_STM32_DTMF_Command_Data()       ((ComIfRxMsgCfg_STM32[1].RxFlags.NewMessageReceived == TRUE) && (ComIfRxMsgCfg_STM32[1].RxFlags.ReceptionStarted == FALSE))
+#define ComIf_IsMessageReceptionHasError_STM32_DTMF_Command_Data() (ComIfRxMsgCfg_STM32[1].RxFlags.ErrorInReception)
+#define ComIf_SetMessageProcessesed_STM32_DTMF_Command_Data()      ComIf_SetMessageProcessed(&(ComIfRxMsgCfg_STM32[1].RxFlags))
+
+/* Constants for the Rx message Stored_MobNums on STM32 channel */
+
+#define ComIf_GetIndex_STM32_Stored_MobNums()                   (2u)
+#define ComIf_GetLength_STM32_Stored_MobNums()                  (78u)
+#define ComIf_GetBuffer_STM32_Stored_MobNums()                  ((UBYTE *)ComIf_RxMessageBuffer_STM32_Stored_MobNums)
+#define ComIf_GetRxFlags_STM32_Stored_MobNums()                 (ComIfRxMsgCfg_STM32[2].RxFlags)
+#define ComIf_IsNewMessageReceived_STM32_Stored_MobNums()       ((ComIfRxMsgCfg_STM32[2].RxFlags.NewMessageReceived == TRUE) && (ComIfRxMsgCfg_STM32[2].RxFlags.ReceptionStarted == FALSE))
+#define ComIf_IsMessageReceptionHasError_STM32_Stored_MobNums() (ComIfRxMsgCfg_STM32[2].RxFlags.ErrorInReception)
+#define ComIf_SetMessageProcessesed_STM32_Stored_MobNums()      ComIf_SetMessageProcessed(&(ComIfRxMsgCfg_STM32[2].RxFlags))
 
 
 
@@ -196,7 +286,7 @@ typedef struct __ComIfRxMessageConfig
 
 typedef enum __ComIf_ChannelType
 {
-	C_ComIfChannel_Cloud = 0,
+	C_ComIfChannel_STM32 = 0,
 
 	C_ComIfChannel_TOTAL = 1
 }ComIf_ChannelType;
@@ -276,13 +366,17 @@ extern ComIf_ChannelConfigType ComIf_ChannelConfig[];
 
 /* Channel Buffers and Configuration */
 
-/* For the Channel: Cloud */
-extern ComIfTxMessageConfig ComIfTxMsgCfg_Cloud[];
-extern UBYTE ComIfChannelTxBuffer_Cloud[];
-extern UBYTE ComIf_ShadowBuffer_Cloud_AdcVoltageCarryFunc[];
-extern UBYTE ComIf_ShadowBuffer_Cloud_StatusData[];
-extern ComIfRxMessageConfig ComIfRxMsgCfg_Cloud[];
-extern UBYTE ComIf_RxMessageBuffer_Cloud_RxCommandData[];
+/* For the Channel: STM32 */
+extern ComIfTxMessageConfig ComIfTxMsgCfg_STM32[];
+extern UBYTE ComIfChannelTxBuffer_STM32[];
+extern UBYTE ComIf_ShadowBuffer_STM32_ADC_Values_AVR[];
+extern UBYTE ComIf_ShadowBuffer_STM32_AVR_IO_Status[];
+extern UBYTE ComIf_ShadowBuffer_STM32_AVR_Message[];
+extern UBYTE ComIf_ShadowBuffer_STM32_AVR_Call[];
+extern ComIfRxMessageConfig ComIfRxMsgCfg_STM32[];
+extern UBYTE ComIf_RxMessageBuffer_STM32_IO_cmdData_AVR[];
+extern UBYTE ComIf_RxMessageBuffer_STM32_DTMF_Command_Data[];
+extern UBYTE ComIf_RxMessageBuffer_STM32_Stored_MobNums[];
 
 /**********************************************************/
 /* Inline Function Definitions                            */
@@ -308,7 +402,7 @@ extern UBYTE ComIf_Rx_Request(ComIf_ChannelType ChannelIndex, UBYTE MsgIndex);
 extern UBYTE ComIf_Rx_CancelRequest(ComIf_ChannelType ChannelIndex, UBYTE MsgIndex);
 
 /* Channel Specific Rx Indication Functions */
-extern UBYTE ComIf_RxIndication_Cloud(UBYTE DataByte);
+extern UBYTE ComIf_RxIndication_STM32(UBYTE DataByte);
 
 #endif /* __COMIF_CONFIG_H__ */
 
