@@ -75,6 +75,5 @@ void uart_string(unsigned char *str)
 ISR(USART_RXC_vect)
 {
 	unsigned char d = UDR;
-	uart_tx(d);
 	ComIf_RxIndication_STM32(d);
 }

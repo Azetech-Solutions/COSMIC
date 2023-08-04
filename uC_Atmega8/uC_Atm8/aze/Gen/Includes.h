@@ -10,6 +10,7 @@
 /*************************************************/
 /* Generation Mode : RELATIVE */
 
+#define COSMIC_APP_H   "..\Application\Cosmic_App.h"
 #define PLATFORM_TYPES_H   "..\base\Platform_Types.h"
 #define UART_H   "..\base\Atmega_Drivers\api\uart.h"
 #define COMIF_H   "..\base\ComIf\api\ComIf.h"
