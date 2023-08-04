@@ -1,6 +1,6 @@
 #include "SIMCOM_Calls.h"
 #include "Includes.h"
-
+#include SIMCOM_H
 #include "stdio.h"
 
 /*****************************************/
@@ -45,7 +45,49 @@ void SIMCOM_Calls_Callback(SIMCOM_Job_Result_EN result)
 {
 	// This function will be called by the SIMCOM handler upon successful reception of the response
 	// Check for the last requested command and then check the result
-	SIMCOM_Job_Result = result;
+
+	switch(SIMCOM_Dial_Request)
+	{
+		default:
+		case SMC_Idle:
+		{
+			// If nothing was requested, then possibly the SIMCOM might have received something that is relevant for the Calls feature
+		}
+		break;
+
+	#if (S_SIMCOM_CALLS_DIAL_TO_NUMBER == ON)
+		case SMC_DialNumber:
+		{
+			switch(result)
+			{
+				case SIMCOM_Job_Completed:
+				{
+					// Success
+					// Debug_SendString(SIMCOM_GetCurrentJobResponse());
+
+				}
+				break;
+
+				case SIMCOM_Job_InProgress:
+				{
+					// Wait
+				}
+				break;
+
+				default:
+				case SIMCOM_Job_Idle:
+				case SIMCOM_Job_Timeout:
+				case SIMCOM_Job_Incomplete:
+				{
+					// Error
+				}
+				break;
+			}
+		}
+		break;
+	#endif /* (S_SIMCOM_CALLS_DIAL_TO_NUMBER == ON) */
+
+	}
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
