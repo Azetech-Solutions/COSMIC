@@ -212,6 +212,76 @@
 /* DEBUG_MEASUREMENT]] */
 
 
+/* Constants for the Tx message DTMFCommandData on AVR channel */
+
+#define ComIf_GetIndex_AVR_DTMFCommandData()                   (1u)
+#define ComIf_GetLength_AVR_DTMFCommandData()                  (2u)
+#define ComIf_GetShadowBuffer_AVR_DTMFCommandData()            ((UBYTE *)ComIf_ShadowBuffer_AVR_DTMFCommandData)
+#define ComIf_Transmit_AVR_DTMFCommandData(x, y)               ComIf_Transmit(C_ComIfChannel_AVR, 1, ((void *)x), y)
+#define ComIf_ForceTransmit_AVR_DTMFCommandData(x, y)          do{ComIfTxMsgCfg_AVR[1].TxFlags.ForceTransmit = TRUE; ComIf_Transmit(C_ComIfChannel_AVR, 1, ((void *)x), y); } while(0)
+#define ComIf_UpdateTxShadowBuffer_AVR_DTMFCommandData(x, y)   ComIf_UpdateTxShadowBuffer(C_ComIfChannel_AVR, 1, ((void *)x), y)
+#define ComIf_TransmitFromBuffer_AVR_DTMFCommandData()         ComIf_Transmit_AVR_DTMFCommandData(ComIf_ShadowBuffer_AVR_DTMFCommandData, 2)
+#define ComIf_ForceTransmitFromBuffer_AVR_DTMFCommandData()    ComIf_ForceTransmit_AVR_DTMFCommandData(ComIf_ShadowBuffer_AVR_DTMFCommandData, 2)
+
+/* Debug Measurement Variables for DTMFCommandData on AVR */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_AVR[1].TxFlags.PendingForTransmission */
+/* MODELNAME=ComIfTxMsgCfg_AVR_DTMFCommandData_PendingForTransmission */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_AVR[1].TxFlags.PendingForConfirmation */
+/* MODELNAME=ComIfTxMsgCfg_AVR_DTMFCommandData_PendingForConfirmation */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_AVR[1].TxFlags.AggregatedInBuffer */
+/* MODELNAME=ComIfTxMsgCfg_AVR_DTMFCommandData_AggregatedInBuffer */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+
+/* Constants for the Tx message Stored_MobNums on AVR channel */
+
+#define ComIf_GetIndex_AVR_Stored_MobNums()                   (2u)
+#define ComIf_GetLength_AVR_Stored_MobNums()                  (78u)
+#define ComIf_GetShadowBuffer_AVR_Stored_MobNums()            ((UBYTE *)ComIf_ShadowBuffer_AVR_Stored_MobNums)
+#define ComIf_Transmit_AVR_Stored_MobNums(x, y)               ComIf_Transmit(C_ComIfChannel_AVR, 2, ((void *)x), y)
+#define ComIf_ForceTransmit_AVR_Stored_MobNums(x, y)          do{ComIfTxMsgCfg_AVR[2].TxFlags.ForceTransmit = TRUE; ComIf_Transmit(C_ComIfChannel_AVR, 2, ((void *)x), y); } while(0)
+#define ComIf_UpdateTxShadowBuffer_AVR_Stored_MobNums(x, y)   ComIf_UpdateTxShadowBuffer(C_ComIfChannel_AVR, 2, ((void *)x), y)
+#define ComIf_TransmitFromBuffer_AVR_Stored_MobNums()         ComIf_Transmit_AVR_Stored_MobNums(ComIf_ShadowBuffer_AVR_Stored_MobNums, 78)
+#define ComIf_ForceTransmitFromBuffer_AVR_Stored_MobNums()    ComIf_ForceTransmit_AVR_Stored_MobNums(ComIf_ShadowBuffer_AVR_Stored_MobNums, 78)
+
+/* Debug Measurement Variables for Stored_MobNums on AVR */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_AVR[2].TxFlags.PendingForTransmission */
+/* MODELNAME=ComIfTxMsgCfg_AVR_Stored_MobNums_PendingForTransmission */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_AVR[2].TxFlags.PendingForConfirmation */
+/* MODELNAME=ComIfTxMsgCfg_AVR_Stored_MobNums_PendingForConfirmation */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+/* [[DEBUG_MEASUREMENT */
+/* NAME=ComIfTxMsgCfg_AVR[2].TxFlags.AggregatedInBuffer */
+/* MODELNAME=ComIfTxMsgCfg_AVR_Stored_MobNums_AggregatedInBuffer */
+/* SIZE=1 */
+/* HEADER=ComIf_Config.h */
+/* DEBUG_MEASUREMENT]] */
+
+
 /* Receive Message constants for the channel : AVR */
 
 /* Constants for the Rx message AVR_IO_Status on AVR channel */
@@ -234,106 +304,25 @@
 #define ComIf_IsMessageReceptionHasError_AVR_ADC_Values_AVR() (ComIfRxMsgCfg_AVR[1].RxFlags.ErrorInReception)
 #define ComIf_SetMessageProcessesed_AVR_ADC_Values_AVR()      ComIf_SetMessageProcessed(&(ComIfRxMsgCfg_AVR[1].RxFlags))
 
+/* Constants for the Rx message AVR_TextMessage on AVR channel */
 
+#define ComIf_GetIndex_AVR_AVR_TextMessage()                   (2u)
+#define ComIf_GetLength_AVR_AVR_TextMessage()                  (51u)
+#define ComIf_GetBuffer_AVR_AVR_TextMessage()                  ((UBYTE *)ComIf_RxMessageBuffer_AVR_AVR_TextMessage)
+#define ComIf_GetRxFlags_AVR_AVR_TextMessage()                 (ComIfRxMsgCfg_AVR[2].RxFlags)
+#define ComIf_IsNewMessageReceived_AVR_AVR_TextMessage()       ((ComIfRxMsgCfg_AVR[2].RxFlags.NewMessageReceived == TRUE) && (ComIfRxMsgCfg_AVR[2].RxFlags.ReceptionStarted == FALSE))
+#define ComIf_IsMessageReceptionHasError_AVR_AVR_TextMessage() (ComIfRxMsgCfg_AVR[2].RxFlags.ErrorInReception)
+#define ComIf_SetMessageProcessesed_AVR_AVR_TextMessage()      ComIf_SetMessageProcessed(&(ComIfRxMsgCfg_AVR[2].RxFlags))
 
-#if COMIF_MAX_SUPPORTED_DLC < 64
-#error "The channel DTMF has more data length in the dynamic section than the supported DLC"
-#endif
+/* Constants for the Rx message AVR_Call on AVR channel */
 
-/* Transmit Message constants for the channel : DTMF */
-#define P_COMIF_TXBUFFER_SIZE_DTMF                    64u
-
-/* Constants for the Tx message DTMFCommandData on DTMF channel */
-
-#define ComIf_GetIndex_DTMF_DTMFCommandData()                   (0u)
-#define ComIf_GetLength_DTMF_DTMFCommandData()                  (2u)
-#define ComIf_GetShadowBuffer_DTMF_DTMFCommandData()            ((UBYTE *)ComIf_ShadowBuffer_DTMF_DTMFCommandData)
-#define ComIf_Transmit_DTMF_DTMFCommandData(x, y)               ComIf_Transmit(C_ComIfChannel_DTMF, 0, ((void *)x), y)
-#define ComIf_ForceTransmit_DTMF_DTMFCommandData(x, y)          do{ComIfTxMsgCfg_DTMF[0].TxFlags.ForceTransmit = TRUE; ComIf_Transmit(C_ComIfChannel_DTMF, 0, ((void *)x), y); } while(0)
-#define ComIf_UpdateTxShadowBuffer_DTMF_DTMFCommandData(x, y)   ComIf_UpdateTxShadowBuffer(C_ComIfChannel_DTMF, 0, ((void *)x), y)
-#define ComIf_TransmitFromBuffer_DTMF_DTMFCommandData()         ComIf_Transmit_DTMF_DTMFCommandData(ComIf_ShadowBuffer_DTMF_DTMFCommandData, 2)
-#define ComIf_ForceTransmitFromBuffer_DTMF_DTMFCommandData()    ComIf_ForceTransmit_DTMF_DTMFCommandData(ComIf_ShadowBuffer_DTMF_DTMFCommandData, 2)
-
-/* Debug Measurement Variables for DTMFCommandData on DTMF */
-
-/* [[DEBUG_MEASUREMENT */
-/* NAME=ComIfTxMsgCfg_DTMF[0].TxFlags.PendingForTransmission */
-/* MODELNAME=ComIfTxMsgCfg_DTMF_DTMFCommandData_PendingForTransmission */
-/* SIZE=1 */
-/* HEADER=ComIf_Config.h */
-/* DEBUG_MEASUREMENT]] */
-
-/* [[DEBUG_MEASUREMENT */
-/* NAME=ComIfTxMsgCfg_DTMF[0].TxFlags.PendingForConfirmation */
-/* MODELNAME=ComIfTxMsgCfg_DTMF_DTMFCommandData_PendingForConfirmation */
-/* SIZE=1 */
-/* HEADER=ComIf_Config.h */
-/* DEBUG_MEASUREMENT]] */
-
-/* [[DEBUG_MEASUREMENT */
-/* NAME=ComIfTxMsgCfg_DTMF[0].TxFlags.AggregatedInBuffer */
-/* MODELNAME=ComIfTxMsgCfg_DTMF_DTMFCommandData_AggregatedInBuffer */
-/* SIZE=1 */
-/* HEADER=ComIf_Config.h */
-/* DEBUG_MEASUREMENT]] */
-
-
-/* Constants for the Tx message MN_Data_Message on DTMF channel */
-
-#define ComIf_GetIndex_DTMF_MN_Data_Message()                   (1u)
-#define ComIf_GetLength_DTMF_MN_Data_Message()                  (78u)
-#define ComIf_GetShadowBuffer_DTMF_MN_Data_Message()            ((UBYTE *)ComIf_ShadowBuffer_DTMF_MN_Data_Message)
-#define ComIf_Transmit_DTMF_MN_Data_Message(x, y)               ComIf_Transmit(C_ComIfChannel_DTMF, 1, ((void *)x), y)
-#define ComIf_ForceTransmit_DTMF_MN_Data_Message(x, y)          do{ComIfTxMsgCfg_DTMF[1].TxFlags.ForceTransmit = TRUE; ComIf_Transmit(C_ComIfChannel_DTMF, 1, ((void *)x), y); } while(0)
-#define ComIf_UpdateTxShadowBuffer_DTMF_MN_Data_Message(x, y)   ComIf_UpdateTxShadowBuffer(C_ComIfChannel_DTMF, 1, ((void *)x), y)
-#define ComIf_TransmitFromBuffer_DTMF_MN_Data_Message()         ComIf_Transmit_DTMF_MN_Data_Message(ComIf_ShadowBuffer_DTMF_MN_Data_Message, 78)
-#define ComIf_ForceTransmitFromBuffer_DTMF_MN_Data_Message()    ComIf_ForceTransmit_DTMF_MN_Data_Message(ComIf_ShadowBuffer_DTMF_MN_Data_Message, 78)
-
-/* Debug Measurement Variables for MN_Data_Message on DTMF */
-
-/* [[DEBUG_MEASUREMENT */
-/* NAME=ComIfTxMsgCfg_DTMF[1].TxFlags.PendingForTransmission */
-/* MODELNAME=ComIfTxMsgCfg_DTMF_MN_Data_Message_PendingForTransmission */
-/* SIZE=1 */
-/* HEADER=ComIf_Config.h */
-/* DEBUG_MEASUREMENT]] */
-
-/* [[DEBUG_MEASUREMENT */
-/* NAME=ComIfTxMsgCfg_DTMF[1].TxFlags.PendingForConfirmation */
-/* MODELNAME=ComIfTxMsgCfg_DTMF_MN_Data_Message_PendingForConfirmation */
-/* SIZE=1 */
-/* HEADER=ComIf_Config.h */
-/* DEBUG_MEASUREMENT]] */
-
-/* [[DEBUG_MEASUREMENT */
-/* NAME=ComIfTxMsgCfg_DTMF[1].TxFlags.AggregatedInBuffer */
-/* MODELNAME=ComIfTxMsgCfg_DTMF_MN_Data_Message_AggregatedInBuffer */
-/* SIZE=1 */
-/* HEADER=ComIf_Config.h */
-/* DEBUG_MEASUREMENT]] */
-
-
-/* Receive Message constants for the channel : DTMF */
-
-/* Constants for the Rx message AVR_Message on DTMF channel */
-
-#define ComIf_GetIndex_DTMF_AVR_Message()                   (0u)
-#define ComIf_GetLength_DTMF_AVR_Message()                  (51u)
-#define ComIf_GetBuffer_DTMF_AVR_Message()                  ((UBYTE *)ComIf_RxMessageBuffer_DTMF_AVR_Message)
-#define ComIf_GetRxFlags_DTMF_AVR_Message()                 (ComIfRxMsgCfg_DTMF[0].RxFlags)
-#define ComIf_IsNewMessageReceived_DTMF_AVR_Message()       ((ComIfRxMsgCfg_DTMF[0].RxFlags.NewMessageReceived == TRUE) && (ComIfRxMsgCfg_DTMF[0].RxFlags.ReceptionStarted == FALSE))
-#define ComIf_IsMessageReceptionHasError_DTMF_AVR_Message() (ComIfRxMsgCfg_DTMF[0].RxFlags.ErrorInReception)
-#define ComIf_SetMessageProcessesed_DTMF_AVR_Message()      ComIf_SetMessageProcessed(&(ComIfRxMsgCfg_DTMF[0].RxFlags))
-
-/* Constants for the Rx message AVR_Call on DTMF channel */
-
-#define ComIf_GetIndex_DTMF_AVR_Call()                   (1u)
-#define ComIf_GetLength_DTMF_AVR_Call()                  (1u)
-#define ComIf_GetBuffer_DTMF_AVR_Call()                  ((UBYTE *)ComIf_RxMessageBuffer_DTMF_AVR_Call)
-#define ComIf_GetRxFlags_DTMF_AVR_Call()                 (ComIfRxMsgCfg_DTMF[1].RxFlags)
-#define ComIf_IsNewMessageReceived_DTMF_AVR_Call()       ((ComIfRxMsgCfg_DTMF[1].RxFlags.NewMessageReceived == TRUE) && (ComIfRxMsgCfg_DTMF[1].RxFlags.ReceptionStarted == FALSE))
-#define ComIf_IsMessageReceptionHasError_DTMF_AVR_Call() (ComIfRxMsgCfg_DTMF[1].RxFlags.ErrorInReception)
-#define ComIf_SetMessageProcessesed_DTMF_AVR_Call()      ComIf_SetMessageProcessed(&(ComIfRxMsgCfg_DTMF[1].RxFlags))
+#define ComIf_GetIndex_AVR_AVR_Call()                   (3u)
+#define ComIf_GetLength_AVR_AVR_Call()                  (1u)
+#define ComIf_GetBuffer_AVR_AVR_Call()                  ((UBYTE *)ComIf_RxMessageBuffer_AVR_AVR_Call)
+#define ComIf_GetRxFlags_AVR_AVR_Call()                 (ComIfRxMsgCfg_AVR[3].RxFlags)
+#define ComIf_IsNewMessageReceived_AVR_AVR_Call()       ((ComIfRxMsgCfg_AVR[3].RxFlags.NewMessageReceived == TRUE) && (ComIfRxMsgCfg_AVR[3].RxFlags.ReceptionStarted == FALSE))
+#define ComIf_IsMessageReceptionHasError_AVR_AVR_Call() (ComIfRxMsgCfg_AVR[3].RxFlags.ErrorInReception)
+#define ComIf_SetMessageProcessesed_AVR_AVR_Call()      ComIf_SetMessageProcessed(&(ComIfRxMsgCfg_AVR[3].RxFlags))
 
 
 
@@ -400,9 +389,8 @@ typedef enum __ComIf_ChannelType
 {
 	C_ComIfChannel_Cloud = 0,
 	C_ComIfChannel_AVR = 1,
-	C_ComIfChannel_DTMF = 2,
 
-	C_ComIfChannel_TOTAL = 3
+	C_ComIfChannel_TOTAL = 2
 }ComIf_ChannelType;
 
 typedef UBYTE (*ComIf_ChannelTransmitType)(UWORD, void*);
@@ -493,18 +481,13 @@ extern UBYTE ComIf_RxMessageBuffer_Cloud_IO_cmdData_Cloud[];
 extern ComIfTxMessageConfig ComIfTxMsgCfg_AVR[];
 extern UBYTE ComIfChannelTxBuffer_AVR[];
 extern UBYTE ComIf_ShadowBuffer_AVR_IO_cmdData_AVR[];
+extern UBYTE ComIf_ShadowBuffer_AVR_DTMFCommandData[];
+extern UBYTE ComIf_ShadowBuffer_AVR_Stored_MobNums[];
 extern ComIfRxMessageConfig ComIfRxMsgCfg_AVR[];
 extern UBYTE ComIf_RxMessageBuffer_AVR_AVR_IO_Status[];
 extern UBYTE ComIf_RxMessageBuffer_AVR_ADC_Values_AVR[];
-
-/* For the Channel: DTMF */
-extern ComIfTxMessageConfig ComIfTxMsgCfg_DTMF[];
-extern UBYTE ComIfChannelTxBuffer_DTMF[];
-extern UBYTE ComIf_ShadowBuffer_DTMF_DTMFCommandData[];
-extern UBYTE ComIf_ShadowBuffer_DTMF_MN_Data_Message[];
-extern ComIfRxMessageConfig ComIfRxMsgCfg_DTMF[];
-extern UBYTE ComIf_RxMessageBuffer_DTMF_AVR_Message[];
-extern UBYTE ComIf_RxMessageBuffer_DTMF_AVR_Call[];
+extern UBYTE ComIf_RxMessageBuffer_AVR_AVR_TextMessage[];
+extern UBYTE ComIf_RxMessageBuffer_AVR_AVR_Call[];
 
 /**********************************************************/
 /* Inline Function Definitions                            */
@@ -532,7 +515,6 @@ extern UBYTE ComIf_Rx_CancelRequest(ComIf_ChannelType ChannelIndex, UBYTE MsgInd
 /* Channel Specific Rx Indication Functions */
 extern UBYTE ComIf_RxIndication_Cloud(char * DataString, UWORD Length);
 extern UBYTE ComIf_RxIndication_AVR(UBYTE DataByte);
-extern UBYTE ComIf_RxIndication_DTMF(UBYTE DataByte);
 
 #endif /* __COMIF_CONFIG_H__ */
 
