@@ -1,0 +1,3454 @@
+
+Cosmic(Atmega32).elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000fa0  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000005a  00800060  00000fa0  00001034  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000139  008000ba  008000ba  0000108e  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000108e  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000010c0  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000001f8  00000000  00000000  000010fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00003fdd  00000000  00000000  000012f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000154c  00000000  00000000  000052d1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000014f6  00000000  00000000  0000681d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000508  00000000  00000000  00007d14  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000ebf  00000000  00000000  0000821c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000022f2  00000000  00000000  000090db  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000318  00000000  00000000  0000b3cd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	37 c0       	rjmp	.+110    	; 0x86 <__vector_11>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e0 ea       	ldi	r30, 0xA0	; 160
+  3a:	ff e0       	ldi	r31, 0x0F	; 15
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	aa 3b       	cpi	r26, 0xBA	; 186
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	21 e0       	ldi	r18, 0x01	; 1
+  4a:	aa eb       	ldi	r26, 0xBA	; 186
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a3 3f       	cpi	r26, 0xF3	; 243
+  54:	b2 07       	cpc	r27, r18
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	8f d7       	rcall	.+3870   	; 0xf78 <main>
+  5a:	a0 c7       	rjmp	.+3904   	; 0xf9c <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <uart_init>:
+{
+	while(*str!='\0')
+	{
+		uart_tx(*str++);
+	}
+}
+  5e:	88 e1       	ldi	r24, 0x18	; 24
+  60:	8a b9       	out	0x0a, r24	; 10
+  62:	8e e8       	ldi	r24, 0x8E	; 142
+  64:	80 bd       	out	0x20, r24	; 32
+  66:	10 bc       	out	0x20, r1	; 32
+  68:	83 e3       	ldi	r24, 0x33	; 51
+  6a:	89 b9       	out	0x09, r24	; 9
+  6c:	8a b1       	in	r24, 0x0a	; 10
+  6e:	80 68       	ori	r24, 0x80	; 128
+  70:	8a b9       	out	0x0a, r24	; 10
+  72:	78 94       	sei
+  74:	81 e0       	ldi	r24, 0x01	; 1
+  76:	80 93 ba 00 	sts	0x00BA, r24	; 0x8000ba <__data_end>
+  7a:	08 95       	ret
+
+0000007c <uart_tx>:
+  7c:	5d 9b       	sbis	0x0b, 5	; 11
+  7e:	fe cf       	rjmp	.-4      	; 0x7c <uart_tx>
+  80:	8c b9       	out	0x0c, r24	; 12
+  82:	81 e0       	ldi	r24, 0x01	; 1
+  84:	08 95       	ret
+
+00000086 <__vector_11>:
+
+ISR(USART_RXC_vect)
+{
+  86:	1f 92       	push	r1
+  88:	0f 92       	push	r0
+  8a:	0f b6       	in	r0, 0x3f	; 63
+  8c:	0f 92       	push	r0
+  8e:	11 24       	eor	r1, r1
+  90:	2f 93       	push	r18
+  92:	3f 93       	push	r19
+  94:	4f 93       	push	r20
+  96:	5f 93       	push	r21
+  98:	6f 93       	push	r22
+  9a:	7f 93       	push	r23
+  9c:	8f 93       	push	r24
+  9e:	9f 93       	push	r25
+  a0:	af 93       	push	r26
+  a2:	bf 93       	push	r27
+  a4:	ef 93       	push	r30
+  a6:	ff 93       	push	r31
+	unsigned char d = UDR;
+  a8:	8c b1       	in	r24, 0x0c	; 12
+	ComIf_RxIndication_STM32(d);
+  aa:	04 d7       	rcall	.+3592   	; 0xeb4 <ComIf_RxIndication_STM32>
+}
+  ac:	ff 91       	pop	r31
+  ae:	ef 91       	pop	r30
+  b0:	bf 91       	pop	r27
+  b2:	af 91       	pop	r26
+  b4:	9f 91       	pop	r25
+  b6:	8f 91       	pop	r24
+  b8:	7f 91       	pop	r23
+  ba:	6f 91       	pop	r22
+  bc:	5f 91       	pop	r21
+  be:	4f 91       	pop	r20
+  c0:	3f 91       	pop	r19
+  c2:	2f 91       	pop	r18
+  c4:	0f 90       	pop	r0
+  c6:	0f be       	out	0x3f, r0	; 63
+  c8:	0f 90       	pop	r0
+  ca:	1f 90       	pop	r1
+  cc:	18 95       	reti
+
+000000ce <ComIf_ErrorNotify>:
+    
+    return handle;
+}
+
+void ComIf_ErrorNotify(ComIf_ChannelConfigType * Channel, ULONG Debug0, ULONG Debug1)
+{
+  ce:	0f 93       	push	r16
+  d0:	1f 93       	push	r17
+	if(Channel->ErrorCallback != NULL)
+  d2:	dc 01       	movw	r26, r24
+  d4:	12 96       	adiw	r26, 0x02	; 2
+  d6:	ed 91       	ld	r30, X+
+  d8:	fc 91       	ld	r31, X
+  da:	13 97       	sbiw	r26, 0x03	; 3
+  dc:	30 97       	sbiw	r30, 0x00	; 0
+  de:	29 f0       	breq	.+10     	; 0xea <ComIf_ErrorNotify+0x1c>
+  e0:	cb 01       	movw	r24, r22
+  e2:	ba 01       	movw	r22, r20
+	{
+		Channel->ErrorCallback(Debug0, Debug1);
+  e4:	a9 01       	movw	r20, r18
+  e6:	98 01       	movw	r18, r16
+  e8:	09 95       	icall
+	}
+}
+  ea:	1f 91       	pop	r17
+  ec:	0f 91       	pop	r16
+  ee:	08 95       	ret
+
+000000f0 <ComIf_CalcChecksum>:
+/***************************************************/
+/* Function Definitions                            */
+/***************************************************/
+
+ULONG ComIf_CalcChecksum(UBYTE * Data, UBYTE Length)
+{
+  f0:	0f 93       	push	r16
+  f2:	1f 93       	push	r17
+  f4:	dc 01       	movw	r26, r24
+  f6:	36 2f       	mov	r19, r22
+	ULONG Checksum = 0;
+
+	UBYTE i = 0;
+
+	ComIf_Lock_Checksum();
+	for(i = 0; i < Length; i++)
+  f8:	90 e0       	ldi	r25, 0x00	; 0
+/* Function Definitions                            */
+/***************************************************/
+
+ULONG ComIf_CalcChecksum(UBYTE * Data, UBYTE Length)
+{
+	ULONG Checksum = 0;
+  fa:	40 e0       	ldi	r20, 0x00	; 0
+  fc:	50 e0       	ldi	r21, 0x00	; 0
+  fe:	ba 01       	movw	r22, r20
+
+	UBYTE i = 0;
+
+	ComIf_Lock_Checksum();
+	for(i = 0; i < Length; i++)
+ 100:	09 c0       	rjmp	.+18     	; 0x114 <ComIf_CalcChecksum+0x24>
+	{
+		Checksum += Data[i];
+ 102:	fd 01       	movw	r30, r26
+ 104:	e9 0f       	add	r30, r25
+ 106:	f1 1d       	adc	r31, r1
+ 108:	20 81       	ld	r18, Z
+ 10a:	42 0f       	add	r20, r18
+ 10c:	51 1d       	adc	r21, r1
+ 10e:	61 1d       	adc	r22, r1
+ 110:	71 1d       	adc	r23, r1
+	ULONG Checksum = 0;
+
+	UBYTE i = 0;
+
+	ComIf_Lock_Checksum();
+	for(i = 0; i < Length; i++)
+ 112:	9f 5f       	subi	r25, 0xFF	; 255
+ 114:	93 17       	cp	r25, r19
+ 116:	a8 f3       	brcs	.-22     	; 0x102 <ComIf_CalcChecksum+0x12>
+	{
+		Checksum += Data[i];
+	}
+	ComIf_UnLock_Checksum();
+
+	Checksum = ((~Checksum) + 1);
+ 118:	8a 01       	movw	r16, r20
+ 11a:	9b 01       	movw	r18, r22
+ 11c:	66 27       	eor	r22, r22
+ 11e:	77 27       	eor	r23, r23
+ 120:	cb 01       	movw	r24, r22
+ 122:	60 1b       	sub	r22, r16
+ 124:	71 0b       	sbc	r23, r17
+ 126:	82 0b       	sbc	r24, r18
+ 128:	93 0b       	sbc	r25, r19
+
+	return Checksum;
+}
+ 12a:	1f 91       	pop	r17
+ 12c:	0f 91       	pop	r16
+ 12e:	08 95       	ret
+
+00000130 <ComIf_GetChecksumMaskValue>:
+
+
+ULONG ComIf_GetChecksumMaskValue(UBYTE ChecksumLength)
+{
+ 130:	28 2f       	mov	r18, r24
+	ULONG Mask = 0xFF; // Default 1 Byte Checksum Mask
+
+	if(ChecksumLength > COMIF_MAX_SUPPORTED_CHKLEN)
+ 132:	82 30       	cpi	r24, 0x02	; 2
+ 134:	08 f0       	brcs	.+2      	; 0x138 <ComIf_GetChecksumMaskValue+0x8>
+	{
+		ChecksumLength = COMIF_MAX_SUPPORTED_CHKLEN;
+ 136:	21 e0       	ldi	r18, 0x01	; 1
+ 138:	6f ef       	ldi	r22, 0xFF	; 255
+ 13a:	70 e0       	ldi	r23, 0x00	; 0
+ 13c:	80 e0       	ldi	r24, 0x00	; 0
+ 13e:	90 e0       	ldi	r25, 0x00	; 0
+ 140:	07 c0       	rjmp	.+14     	; 0x150 <ComIf_GetChecksumMaskValue+0x20>
+	}
+
+    while(--ChecksumLength)
+    {
+        Mask <<= 8;
+ 142:	b8 2f       	mov	r27, r24
+ 144:	a7 2f       	mov	r26, r23
+ 146:	96 2f       	mov	r25, r22
+ 148:	88 27       	eor	r24, r24
+        Mask |= 0xFF;
+ 14a:	bc 01       	movw	r22, r24
+ 14c:	cd 01       	movw	r24, r26
+ 14e:	6f 6f       	ori	r22, 0xFF	; 255
+	if(ChecksumLength > COMIF_MAX_SUPPORTED_CHKLEN)
+	{
+		ChecksumLength = COMIF_MAX_SUPPORTED_CHKLEN;
+	}
+
+    while(--ChecksumLength)
+ 150:	21 50       	subi	r18, 0x01	; 1
+ 152:	b9 f7       	brne	.-18     	; 0x142 <ComIf_GetChecksumMaskValue+0x12>
+        Mask <<= 8;
+        Mask |= 0xFF;
+    }
+    
+	return Mask;
+}
+ 154:	08 95       	ret
+
+00000156 <ComIf_GetHandle>:
+
+/***************************************************/
+/* Function Definitions                            */
+/***************************************************/
+static UBYTE ComIf_GetHandle(ComIfRxMessageConfig *RxMsgList, UBYTE Count,  UBYTE ID)
+{
+ 156:	dc 01       	movw	r26, r24
+	/* Default handle ID assigned */
+	UBYTE handle = P_COMIF_INVALID_HANDLE;
+
+	for (UB i = 0 ; i < Count; i++ )
+ 158:	80 e0       	ldi	r24, 0x00	; 0
+ 15a:	12 c0       	rjmp	.+36     	; 0x180 <ComIf_GetHandle+0x2a>
+	{
+		if(ID == RxMsgList[i].ID )
+ 15c:	28 2f       	mov	r18, r24
+ 15e:	30 e0       	ldi	r19, 0x00	; 0
+ 160:	f9 01       	movw	r30, r18
+ 162:	ee 0f       	add	r30, r30
+ 164:	ff 1f       	adc	r31, r31
+ 166:	ee 0f       	add	r30, r30
+ 168:	ff 1f       	adc	r31, r31
+ 16a:	ee 0f       	add	r30, r30
+ 16c:	ff 1f       	adc	r31, r31
+ 16e:	2e 0f       	add	r18, r30
+ 170:	3f 1f       	adc	r19, r31
+ 172:	fd 01       	movw	r30, r26
+ 174:	e2 0f       	add	r30, r18
+ 176:	f3 1f       	adc	r31, r19
+ 178:	90 81       	ld	r25, Z
+ 17a:	94 17       	cp	r25, r20
+ 17c:	21 f0       	breq	.+8      	; 0x186 <ComIf_GetHandle+0x30>
+static UBYTE ComIf_GetHandle(ComIfRxMessageConfig *RxMsgList, UBYTE Count,  UBYTE ID)
+{
+	/* Default handle ID assigned */
+	UBYTE handle = P_COMIF_INVALID_HANDLE;
+
+	for (UB i = 0 ; i < Count; i++ )
+ 17e:	8f 5f       	subi	r24, 0xFF	; 255
+ 180:	86 17       	cp	r24, r22
+ 182:	60 f3       	brcs	.-40     	; 0x15c <ComIf_GetHandle+0x6>
+/* Function Definitions                            */
+/***************************************************/
+static UBYTE ComIf_GetHandle(ComIfRxMessageConfig *RxMsgList, UBYTE Count,  UBYTE ID)
+{
+	/* Default handle ID assigned */
+	UBYTE handle = P_COMIF_INVALID_HANDLE;
+ 184:	8f ef       	ldi	r24, 0xFF	; 255
+			handle = i;
+			break;
+		}
+	}
+	return handle;
+}
+ 186:	08 95       	ret
+
+00000188 <ComIf_ResetRxInfo>:
+
+static void ComIf_ResetRxInfo(ComIf_ChannelConfigType * Channel, BOOL IsError)
+{
+ 188:	dc 01       	movw	r26, r24
+	Channel->ChannelFlags.IsReceiving = FALSE;
+ 18a:	52 96       	adiw	r26, 0x12	; 18
+ 18c:	8c 91       	ld	r24, X
+ 18e:	52 97       	sbiw	r26, 0x12	; 18
+	Channel->ChannelFlags.DLCVerified = FALSE;
+ 190:	8e 7f       	andi	r24, 0xFE	; 254
+ 192:	8b 7f       	andi	r24, 0xFB	; 251
+ 194:	52 96       	adiw	r26, 0x12	; 18
+ 196:	8c 93       	st	X, r24
+ 198:	52 97       	sbiw	r26, 0x12	; 18
+
+	if(Channel->RxMsgIndex != P_COMIF_INVALID_HANDLE)
+ 19a:	50 96       	adiw	r26, 0x10	; 16
+ 19c:	2c 91       	ld	r18, X
+ 19e:	50 97       	sbiw	r26, 0x10	; 16
+ 1a0:	2f 3f       	cpi	r18, 0xFF	; 255
+ 1a2:	f1 f0       	breq	.+60     	; 0x1e0 <ComIf_ResetRxInfo+0x58>
+	{
+		ComIfRxMessageConfig * RxMsg = &(Channel->RxMessages[Channel->RxMsgIndex]);
+ 1a4:	1d 96       	adiw	r26, 0x0d	; 13
+ 1a6:	8d 91       	ld	r24, X+
+ 1a8:	9c 91       	ld	r25, X
+ 1aa:	1e 97       	sbiw	r26, 0x0e	; 14
+ 1ac:	30 e0       	ldi	r19, 0x00	; 0
+ 1ae:	f9 01       	movw	r30, r18
+ 1b0:	ee 0f       	add	r30, r30
+ 1b2:	ff 1f       	adc	r31, r31
+ 1b4:	ee 0f       	add	r30, r30
+ 1b6:	ff 1f       	adc	r31, r31
+ 1b8:	ee 0f       	add	r30, r30
+ 1ba:	ff 1f       	adc	r31, r31
+ 1bc:	2e 0f       	add	r18, r30
+ 1be:	3f 1f       	adc	r19, r31
+ 1c0:	fc 01       	movw	r30, r24
+ 1c2:	e2 0f       	add	r30, r18
+ 1c4:	f3 1f       	adc	r31, r19
+
+		RxMsg->CurRxngIdx = 0;
+ 1c6:	14 82       	std	Z+4, r1	; 0x04
+		RxMsg->RxFlags.ErrorInReception = IsError;
+ 1c8:	83 81       	ldd	r24, Z+3	; 0x03
+ 1ca:	60 fb       	bst	r22, 0
+ 1cc:	82 f9       	bld	r24, 2
+ 1ce:	83 83       	std	Z+3, r24	; 0x03
+		RxMsg->RxFlags.NewMessageReceived = !IsError;
+ 1d0:	91 e0       	ldi	r25, 0x01	; 1
+ 1d2:	61 11       	cpse	r22, r1
+ 1d4:	90 e0       	ldi	r25, 0x00	; 0
+ 1d6:	83 81       	ldd	r24, Z+3	; 0x03
+ 1d8:	90 fb       	bst	r25, 0
+ 1da:	81 f9       	bld	r24, 1
+		RxMsg->RxFlags.ReceptionStarted = FALSE;
+ 1dc:	8e 7f       	andi	r24, 0xFE	; 254
+ 1de:	83 83       	std	Z+3, r24	; 0x03
+	}
+
+	Channel->RxMsgIndex = P_COMIF_INVALID_HANDLE;
+ 1e0:	8f ef       	ldi	r24, 0xFF	; 255
+ 1e2:	50 96       	adiw	r26, 0x10	; 16
+ 1e4:	8c 93       	st	X, r24
+ 1e6:	50 97       	sbiw	r26, 0x10	; 16
+	Channel->RxMsgLength = 0;
+ 1e8:	51 96       	adiw	r26, 0x11	; 17
+ 1ea:	1c 92       	st	X, r1
+ 1ec:	08 95       	ret
+
+000001ee <ComIf_StoreDataByte>:
+}
+
+static UBYTE ComIf_StoreDataByte(ComIf_ChannelConfigType * Channel, UBYTE DataByte)
+{
+ 1ee:	0f 93       	push	r16
+ 1f0:	1f 93       	push	r17
+ 1f2:	cf 93       	push	r28
+ 1f4:	df 93       	push	r29
+ 1f6:	ec 01       	movw	r28, r24
+	UBYTE retval = COMIF_EC_NO_ERROR;
+
+	ComIfRxMessageConfig * RxMsg = &(Channel->RxMessages[Channel->RxMsgIndex]);
+ 1f8:	8d 85       	ldd	r24, Y+13	; 0x0d
+ 1fa:	9e 85       	ldd	r25, Y+14	; 0x0e
+ 1fc:	28 89       	ldd	r18, Y+16	; 0x10
+ 1fe:	30 e0       	ldi	r19, 0x00	; 0
+ 200:	f9 01       	movw	r30, r18
+ 202:	ee 0f       	add	r30, r30
+ 204:	ff 1f       	adc	r31, r31
+ 206:	ee 0f       	add	r30, r30
+ 208:	ff 1f       	adc	r31, r31
+ 20a:	ee 0f       	add	r30, r30
+ 20c:	ff 1f       	adc	r31, r31
+ 20e:	2e 0f       	add	r18, r30
+ 210:	3f 1f       	adc	r19, r31
+ 212:	fc 01       	movw	r30, r24
+ 214:	e2 0f       	add	r30, r18
+ 216:	f3 1f       	adc	r31, r19
+
+	if((RxMsg->CurRxngIdx) == (Channel->RxMsgLength + RxMsg->ChecksumLength))
+ 218:	04 81       	ldd	r16, Z+4	; 0x04
+ 21a:	80 2f       	mov	r24, r16
+ 21c:	90 e0       	ldi	r25, 0x00	; 0
+ 21e:	49 89       	ldd	r20, Y+17	; 0x11
+ 220:	22 81       	ldd	r18, Z+2	; 0x02
+ 222:	30 e0       	ldi	r19, 0x00	; 0
+ 224:	24 0f       	add	r18, r20
+ 226:	31 1d       	adc	r19, r1
+ 228:	82 17       	cp	r24, r18
+ 22a:	93 07       	cpc	r25, r19
+ 22c:	91 f4       	brne	.+36     	; 0x252 <__EEPROM_REGION_LENGTH__+0x52>
+	{
+		// If the Maximum Message Buffer Length reached, then do not process further and report error
+		retval = COMIF_EC_INVALID_MSG;
+
+        /* Report Error */
+        ComIf_ErrorNotify(Channel, retval, COMIF_DEBUG_DATA_WORDS(RxMsg->CurRxngIdx, DataByte));
+ 22e:	10 e0       	ldi	r17, 0x00	; 0
+ 230:	20 e0       	ldi	r18, 0x00	; 0
+ 232:	30 e0       	ldi	r19, 0x00	; 0
+ 234:	98 01       	movw	r18, r16
+ 236:	11 27       	eor	r17, r17
+ 238:	00 27       	eor	r16, r16
+ 23a:	06 2b       	or	r16, r22
+ 23c:	40 e1       	ldi	r20, 0x10	; 16
+ 23e:	50 e0       	ldi	r21, 0x00	; 0
+ 240:	60 e0       	ldi	r22, 0x00	; 0
+ 242:	70 e0       	ldi	r23, 0x00	; 0
+ 244:	ce 01       	movw	r24, r28
+ 246:	43 df       	rcall	.-378    	; 0xce <ComIf_ErrorNotify>
+        
+		// Reset the Reception information
+		ComIf_ResetRxInfo(Channel, TRUE);
+ 248:	61 e0       	ldi	r22, 0x01	; 1
+ 24a:	ce 01       	movw	r24, r28
+ 24c:	9d df       	rcall	.-198    	; 0x188 <ComIf_ResetRxInfo>
+	ComIfRxMessageConfig * RxMsg = &(Channel->RxMessages[Channel->RxMsgIndex]);
+
+	if((RxMsg->CurRxngIdx) == (Channel->RxMsgLength + RxMsg->ChecksumLength))
+	{
+		// If the Maximum Message Buffer Length reached, then do not process further and report error
+		retval = COMIF_EC_INVALID_MSG;
+ 24e:	80 e1       	ldi	r24, 0x10	; 16
+ 250:	09 c0       	rjmp	.+18     	; 0x264 <__EEPROM_REGION_LENGTH__+0x64>
+		// Reset the Reception information
+		ComIf_ResetRxInfo(Channel, TRUE);
+	}
+	else
+	{
+		RxMsg->MessageBuffer[RxMsg->CurRxngIdx] = DataByte;
+ 252:	a5 81       	ldd	r26, Z+5	; 0x05
+ 254:	b6 81       	ldd	r27, Z+6	; 0x06
+ 256:	a0 0f       	add	r26, r16
+ 258:	b1 1d       	adc	r27, r1
+ 25a:	6c 93       	st	X, r22
+		RxMsg->CurRxngIdx++;
+ 25c:	84 81       	ldd	r24, Z+4	; 0x04
+ 25e:	8f 5f       	subi	r24, 0xFF	; 255
+ 260:	84 83       	std	Z+4, r24	; 0x04
+	Channel->RxMsgLength = 0;
+}
+
+static UBYTE ComIf_StoreDataByte(ComIf_ChannelConfigType * Channel, UBYTE DataByte)
+{
+	UBYTE retval = COMIF_EC_NO_ERROR;
+ 262:	80 e0       	ldi	r24, 0x00	; 0
+		RxMsg->MessageBuffer[RxMsg->CurRxngIdx] = DataByte;
+		RxMsg->CurRxngIdx++;
+	}
+
+	return retval;
+}
+ 264:	df 91       	pop	r29
+ 266:	cf 91       	pop	r28
+ 268:	1f 91       	pop	r17
+ 26a:	0f 91       	pop	r16
+ 26c:	08 95       	ret
+
+0000026e <ComIf_RxIndication>:
+ * This function will be called by the communication channel's driver source.
+ * This function will eliminate the Start, Stop and Delimiter bytes and straight away give the
+ * Rx Indication
+ **/
+UBYTE ComIf_RxIndication(UBYTE ChannelIndex, UBYTE DataByte)
+{
+ 26e:	4f 92       	push	r4
+ 270:	5f 92       	push	r5
+ 272:	6f 92       	push	r6
+ 274:	7f 92       	push	r7
+ 276:	9f 92       	push	r9
+ 278:	af 92       	push	r10
+ 27a:	bf 92       	push	r11
+ 27c:	cf 92       	push	r12
+ 27e:	df 92       	push	r13
+ 280:	ef 92       	push	r14
+ 282:	ff 92       	push	r15
+ 284:	0f 93       	push	r16
+ 286:	1f 93       	push	r17
+ 288:	cf 93       	push	r28
+ 28a:	df 93       	push	r29
+ 28c:	00 d0       	rcall	.+0      	; 0x28e <ComIf_RxIndication+0x20>
+ 28e:	00 d0       	rcall	.+0      	; 0x290 <ComIf_RxIndication+0x22>
+ 290:	00 d0       	rcall	.+0      	; 0x292 <ComIf_RxIndication+0x24>
+ 292:	cd b7       	in	r28, 0x3d	; 61
+ 294:	de b7       	in	r29, 0x3e	; 62
+	UBYTE retval = 0;
+
+	if(ChannelIndex < C_ComIfChannel_TOTAL)
+ 296:	81 11       	cpse	r24, r1
+ 298:	ec c1       	rjmp	.+984    	; 0x672 <__stack+0x213>
+ 29a:	06 2f       	mov	r16, r22
+ 29c:	18 2f       	mov	r17, r24
+	{
+		ComIf_ChannelConfigType * Channel = &ComIf_ChannelConfig[ChannelIndex];
+ 29e:	e8 2e       	mov	r14, r24
+ 2a0:	f1 2c       	mov	r15, r1
+ 2a2:	83 e1       	ldi	r24, 0x13	; 19
+ 2a4:	8e 9d       	mul	r24, r14
+ 2a6:	90 01       	movw	r18, r0
+ 2a8:	8f 9d       	mul	r24, r15
+ 2aa:	30 0d       	add	r19, r0
+ 2ac:	11 24       	eor	r1, r1
+ 2ae:	20 5a       	subi	r18, 0xA0	; 160
+ 2b0:	3f 4f       	sbci	r19, 0xFF	; 255
+ 2b2:	3e 83       	std	Y+6, r19	; 0x06
+ 2b4:	2d 83       	std	Y+5, r18	; 0x05
+
+		/* Check for Commands */
+		if(Channel->ChannelFlags.Delimit == FALSE)
+ 2b6:	d9 01       	movw	r26, r18
+ 2b8:	52 96       	adiw	r26, 0x12	; 18
+ 2ba:	8c 91       	ld	r24, X
+ 2bc:	52 97       	sbiw	r26, 0x12	; 18
+ 2be:	81 fd       	sbrc	r24, 1
+ 2c0:	bf c1       	rjmp	.+894    	; 0x640 <__stack+0x1e1>
+		{
+			if(DataByte == COMIF_STX)
+ 2c2:	6b 37       	cpi	r22, 0x7B	; 123
+ 2c4:	59 f5       	brne	.+86     	; 0x31c <ComIf_RxIndication+0xae>
+			{
+				if((Channel->ChannelFlags.IsReceiving == TRUE) && (Channel->RxMsgIndex != P_COMIF_INVALID_HANDLE))
+ 2c6:	80 ff       	sbrs	r24, 0
+ 2c8:	13 c0       	rjmp	.+38     	; 0x2f0 <ComIf_RxIndication+0x82>
+ 2ca:	f9 01       	movw	r30, r18
+ 2cc:	00 89       	ldd	r16, Z+16	; 0x10
+ 2ce:	0f 3f       	cpi	r16, 0xFF	; 255
+ 2d0:	79 f0       	breq	.+30     	; 0x2f0 <ComIf_RxIndication+0x82>
+					 * In such scenarios, set the error for the previously receiving message and
+					 * start reading the new message
+					 **/
+
+                    /* Report Error */
+					ComIf_ErrorNotify(Channel, COMIF_EC_INVALID_MSG, COMIF_DEBUG_DATA_WORDS(COMIF_STX, Channel->RxMsgIndex));
+ 2d2:	10 e0       	ldi	r17, 0x00	; 0
+ 2d4:	20 e0       	ldi	r18, 0x00	; 0
+ 2d6:	30 e0       	ldi	r19, 0x00	; 0
+ 2d8:	2b 67       	ori	r18, 0x7B	; 123
+ 2da:	40 e1       	ldi	r20, 0x10	; 16
+ 2dc:	50 e0       	ldi	r21, 0x00	; 0
+ 2de:	60 e0       	ldi	r22, 0x00	; 0
+ 2e0:	70 e0       	ldi	r23, 0x00	; 0
+ 2e2:	cd 01       	movw	r24, r26
+ 2e4:	f4 de       	rcall	.-536    	; 0xce <ComIf_ErrorNotify>
+					
+					ComIf_ResetRxInfo(Channel, TRUE);
+ 2e6:	61 e0       	ldi	r22, 0x01	; 1
+ 2e8:	8d 81       	ldd	r24, Y+5	; 0x05
+ 2ea:	9e 81       	ldd	r25, Y+6	; 0x06
+ 2ec:	4d df       	rcall	.-358    	; 0x188 <ComIf_ResetRxInfo>
+ 2ee:	0b c0       	rjmp	.+22     	; 0x306 <ComIf_RxIndication+0x98>
+				}
+				else
+				{
+					Channel->ChannelFlags.IsReceiving =TRUE;
+ 2f0:	83 e1       	ldi	r24, 0x13	; 19
+ 2f2:	8e 9d       	mul	r24, r14
+ 2f4:	f0 01       	movw	r30, r0
+ 2f6:	8f 9d       	mul	r24, r15
+ 2f8:	f0 0d       	add	r31, r0
+ 2fa:	11 24       	eor	r1, r1
+ 2fc:	ee 58       	subi	r30, 0x8E	; 142
+ 2fe:	ff 4f       	sbci	r31, 0xFF	; 255
+ 300:	80 81       	ld	r24, Z
+ 302:	81 60       	ori	r24, 0x01	; 1
+ 304:	80 83       	st	Z, r24
+				}
+
+				/* Wait for the ID to be received */
+				Channel->RxMsgIndex = P_COMIF_INVALID_HANDLE;
+ 306:	83 e1       	ldi	r24, 0x13	; 19
+ 308:	8e 9d       	mul	r24, r14
+ 30a:	f0 01       	movw	r30, r0
+ 30c:	8f 9d       	mul	r24, r15
+ 30e:	f0 0d       	add	r31, r0
+ 310:	11 24       	eor	r1, r1
+ 312:	e0 5a       	subi	r30, 0xA0	; 160
+ 314:	ff 4f       	sbci	r31, 0xFF	; 255
+ 316:	8f ef       	ldi	r24, 0xFF	; 255
+ 318:	80 8b       	std	Z+16, r24	; 0x10
+ 31a:	ab c1       	rjmp	.+854    	; 0x672 <__stack+0x213>
+			}
+
+			else if(Channel->ChannelFlags.IsReceiving == TRUE)
+ 31c:	80 ff       	sbrs	r24, 0
+ 31e:	a9 c1       	rjmp	.+850    	; 0x672 <__stack+0x213>
+			{
+				// Only Delimit the data bytes and Checksum, ID and DLC are not part of the de-limitation
+				if((DataByte == COMIF_DLE) && (Channel->ChannelFlags.DLCVerified == TRUE))
+ 320:	6c 37       	cpi	r22, 0x7C	; 124
+ 322:	71 f4       	brne	.+28     	; 0x340 <ComIf_RxIndication+0xd2>
+ 324:	82 ff       	sbrs	r24, 2
+ 326:	0c c0       	rjmp	.+24     	; 0x340 <ComIf_RxIndication+0xd2>
+				{
+					Channel->ChannelFlags.Delimit = TRUE;
+ 328:	83 e1       	ldi	r24, 0x13	; 19
+ 32a:	8e 9d       	mul	r24, r14
+ 32c:	f0 01       	movw	r30, r0
+ 32e:	8f 9d       	mul	r24, r15
+ 330:	f0 0d       	add	r31, r0
+ 332:	11 24       	eor	r1, r1
+ 334:	ee 58       	subi	r30, 0x8E	; 142
+ 336:	ff 4f       	sbci	r31, 0xFF	; 255
+ 338:	80 81       	ld	r24, Z
+ 33a:	82 60       	ori	r24, 0x02	; 2
+ 33c:	80 83       	st	Z, r24
+ 33e:	99 c1       	rjmp	.+818    	; 0x672 <__stack+0x213>
+				}
+				else if(DataByte == COMIF_ETX)
+ 340:	0d 37       	cpi	r16, 0x7D	; 125
+ 342:	09 f0       	breq	.+2      	; 0x346 <ComIf_RxIndication+0xd8>
+ 344:	b8 c0       	rjmp	.+368    	; 0x4b6 <__stack+0x57>
+				{
+					// If End of Transmission is received, then calculate checksum and give Rx Indication
+					ComIfRxMessageConfig * RxMsg = &(Channel->RxMessages[Channel->RxMsgIndex]);
+ 346:	83 e1       	ldi	r24, 0x13	; 19
+ 348:	8e 9d       	mul	r24, r14
+ 34a:	f0 01       	movw	r30, r0
+ 34c:	8f 9d       	mul	r24, r15
+ 34e:	f0 0d       	add	r31, r0
+ 350:	11 24       	eor	r1, r1
+ 352:	e0 5a       	subi	r30, 0xA0	; 160
+ 354:	ff 4f       	sbci	r31, 0xFF	; 255
+ 356:	25 85       	ldd	r18, Z+13	; 0x0d
+ 358:	36 85       	ldd	r19, Z+14	; 0x0e
+ 35a:	80 89       	ldd	r24, Z+16	; 0x10
+ 35c:	90 e0       	ldi	r25, 0x00	; 0
+ 35e:	6c 01       	movw	r12, r24
+ 360:	cc 0c       	add	r12, r12
+ 362:	dd 1c       	adc	r13, r13
+ 364:	cc 0c       	add	r12, r12
+ 366:	dd 1c       	adc	r13, r13
+ 368:	cc 0c       	add	r12, r12
+ 36a:	dd 1c       	adc	r13, r13
+ 36c:	8c 0d       	add	r24, r12
+ 36e:	9d 1d       	adc	r25, r13
+ 370:	69 01       	movw	r12, r18
+ 372:	c8 0e       	add	r12, r24
+ 374:	d9 1e       	adc	r13, r25
+					UBYTE DataLength = Channel->RxMsgLength;
+ 376:	91 88       	ldd	r9, Z+17	; 0x11
+					UBYTE ChecksumLength = RxMsg->ChecksumLength;
+ 378:	f6 01       	movw	r30, r12
+ 37a:	12 81       	ldd	r17, Z+2	; 0x02
+
+					// Calculate Checksum if all the bytes were received
+					// If the receive checksum is ignored, but the transmitted still sends the CHK, then the CurRxngIdx will be greater
+					// Even though we receive more data, we only should pass the actual data length to the user
+					if((RxMsg->CurRxngIdx) == (DataLength + ChecksumLength))
+ 37c:	84 81       	ldd	r24, Z+4	; 0x04
+ 37e:	48 2f       	mov	r20, r24
+ 380:	50 e0       	ldi	r21, 0x00	; 0
+ 382:	a9 2c       	mov	r10, r9
+ 384:	b1 2c       	mov	r11, r1
+ 386:	95 01       	movw	r18, r10
+ 388:	21 0f       	add	r18, r17
+ 38a:	31 1d       	adc	r19, r1
+ 38c:	42 17       	cp	r20, r18
+ 38e:	53 07       	cpc	r21, r19
+ 390:	09 f0       	breq	.+2      	; 0x394 <ComIf_RxIndication+0x126>
+ 392:	6d c0       	rjmp	.+218    	; 0x46e <__stack+0xf>
+					{
+						ULONG ReceivedChecksum = 0;
+						ULONG CalcChecksum = 0;
+
+						/* Validate Checksum only when the configured checksum length is greater than 0 */
+						if(ChecksumLength > 0)
+ 394:	11 23       	and	r17, r17
+ 396:	b9 f1       	breq	.+110    	; 0x406 <__DATA_REGION_LENGTH__+0x6>
+						{
+							ULONG ChecksumMask = ComIf_GetChecksumMaskValue(ChecksumLength);
+ 398:	81 2f       	mov	r24, r17
+ 39a:	ca de       	rcall	.-620    	; 0x130 <ComIf_GetChecksumMaskValue>
+ 39c:	69 83       	std	Y+1, r22	; 0x01
+ 39e:	7a 83       	std	Y+2, r23	; 0x02
+ 3a0:	8b 83       	std	Y+3, r24	; 0x03
+ 3a2:	9c 83       	std	Y+4, r25	; 0x04
+							CalcChecksum = ComIf_CalcChecksum(RxMsg->MessageBuffer, DataLength) & ChecksumMask;
+ 3a4:	69 2d       	mov	r22, r9
+ 3a6:	d6 01       	movw	r26, r12
+ 3a8:	15 96       	adiw	r26, 0x05	; 5
+ 3aa:	8d 91       	ld	r24, X+
+ 3ac:	9c 91       	ld	r25, X
+ 3ae:	16 97       	sbiw	r26, 0x06	; 6
+ 3b0:	9f de       	rcall	.-706    	; 0xf0 <ComIf_CalcChecksum>
+ 3b2:	49 80       	ldd	r4, Y+1	; 0x01
+ 3b4:	5a 80       	ldd	r5, Y+2	; 0x02
+ 3b6:	6b 80       	ldd	r6, Y+3	; 0x03
+ 3b8:	7c 80       	ldd	r7, Y+4	; 0x04
+ 3ba:	46 22       	and	r4, r22
+ 3bc:	57 22       	and	r5, r23
+ 3be:	68 22       	and	r6, r24
+ 3c0:	79 22       	and	r7, r25
+
+							for(UBYTE i = 0; i < ChecksumLength; i++)
+ 3c2:	e0 e0       	ldi	r30, 0x00	; 0
+					// Calculate Checksum if all the bytes were received
+					// If the receive checksum is ignored, but the transmitted still sends the CHK, then the CurRxngIdx will be greater
+					// Even though we receive more data, we only should pass the actual data length to the user
+					if((RxMsg->CurRxngIdx) == (DataLength + ChecksumLength))
+					{
+						ULONG ReceivedChecksum = 0;
+ 3c4:	40 e0       	ldi	r20, 0x00	; 0
+ 3c6:	50 e0       	ldi	r21, 0x00	; 0
+ 3c8:	ba 01       	movw	r22, r20
+						if(ChecksumLength > 0)
+						{
+							ULONG ChecksumMask = ComIf_GetChecksumMaskValue(ChecksumLength);
+							CalcChecksum = ComIf_CalcChecksum(RxMsg->MessageBuffer, DataLength) & ChecksumMask;
+
+							for(UBYTE i = 0; i < ChecksumLength; i++)
+ 3ca:	12 c0       	rjmp	.+36     	; 0x3f0 <ComIf_RxIndication+0x182>
+							{
+								ReceivedChecksum <<= 8;
+ 3cc:	76 2f       	mov	r23, r22
+ 3ce:	65 2f       	mov	r22, r21
+ 3d0:	54 2f       	mov	r21, r20
+ 3d2:	44 27       	eor	r20, r20
+								ReceivedChecksum |= ((UL)(RxMsg->MessageBuffer[DataLength + i]));
+ 3d4:	d6 01       	movw	r26, r12
+ 3d6:	15 96       	adiw	r26, 0x05	; 5
+ 3d8:	2d 91       	ld	r18, X+
+ 3da:	3c 91       	ld	r19, X
+ 3dc:	16 97       	sbiw	r26, 0x06	; 6
+ 3de:	c5 01       	movw	r24, r10
+ 3e0:	8e 0f       	add	r24, r30
+ 3e2:	91 1d       	adc	r25, r1
+ 3e4:	d9 01       	movw	r26, r18
+ 3e6:	a8 0f       	add	r26, r24
+ 3e8:	b9 1f       	adc	r27, r25
+ 3ea:	8c 91       	ld	r24, X
+ 3ec:	48 2b       	or	r20, r24
+						if(ChecksumLength > 0)
+						{
+							ULONG ChecksumMask = ComIf_GetChecksumMaskValue(ChecksumLength);
+							CalcChecksum = ComIf_CalcChecksum(RxMsg->MessageBuffer, DataLength) & ChecksumMask;
+
+							for(UBYTE i = 0; i < ChecksumLength; i++)
+ 3ee:	ef 5f       	subi	r30, 0xFF	; 255
+ 3f0:	e1 17       	cp	r30, r17
+ 3f2:	60 f3       	brcs	.-40     	; 0x3cc <ComIf_RxIndication+0x15e>
+							{
+								ReceivedChecksum <<= 8;
+								ReceivedChecksum |= ((UL)(RxMsg->MessageBuffer[DataLength + i]));
+							}
+
+							ReceivedChecksum &= ChecksumMask;
+ 3f4:	89 81       	ldd	r24, Y+1	; 0x01
+ 3f6:	9a 81       	ldd	r25, Y+2	; 0x02
+ 3f8:	ab 81       	ldd	r26, Y+3	; 0x03
+ 3fa:	bc 81       	ldd	r27, Y+4	; 0x04
+ 3fc:	48 23       	and	r20, r24
+ 3fe:	59 23       	and	r21, r25
+ 400:	6a 23       	and	r22, r26
+ 402:	7b 23       	and	r23, r27
+ 404:	06 c0       	rjmp	.+12     	; 0x412 <__DATA_REGION_LENGTH__+0x12>
+					// If the receive checksum is ignored, but the transmitted still sends the CHK, then the CurRxngIdx will be greater
+					// Even though we receive more data, we only should pass the actual data length to the user
+					if((RxMsg->CurRxngIdx) == (DataLength + ChecksumLength))
+					{
+						ULONG ReceivedChecksum = 0;
+						ULONG CalcChecksum = 0;
+ 406:	41 2c       	mov	r4, r1
+ 408:	51 2c       	mov	r5, r1
+ 40a:	32 01       	movw	r6, r4
+					// Calculate Checksum if all the bytes were received
+					// If the receive checksum is ignored, but the transmitted still sends the CHK, then the CurRxngIdx will be greater
+					// Even though we receive more data, we only should pass the actual data length to the user
+					if((RxMsg->CurRxngIdx) == (DataLength + ChecksumLength))
+					{
+						ULONG ReceivedChecksum = 0;
+ 40c:	40 e0       	ldi	r20, 0x00	; 0
+ 40e:	50 e0       	ldi	r21, 0x00	; 0
+ 410:	ba 01       	movw	r22, r20
+
+							ReceivedChecksum &= ChecksumMask;
+
+						}
+
+						if(ReceivedChecksum == CalcChecksum)
+ 412:	44 15       	cp	r20, r4
+ 414:	55 05       	cpc	r21, r5
+ 416:	66 05       	cpc	r22, r6
+ 418:	77 05       	cpc	r23, r7
+ 41a:	91 f4       	brne	.+36     	; 0x440 <__DATA_REGION_LENGTH__+0x40>
+						{
+							/* A Valid  Message is being received */
+
+							/* Send RxCbk */
+							if(RxMsg->RxCallback != NULL)
+ 41c:	d6 01       	movw	r26, r12
+ 41e:	17 96       	adiw	r26, 0x07	; 7
+ 420:	ed 91       	ld	r30, X+
+ 422:	fc 91       	ld	r31, X
+ 424:	18 97       	sbiw	r26, 0x08	; 8
+ 426:	30 97       	sbiw	r30, 0x00	; 0
+ 428:	31 f0       	breq	.+12     	; 0x436 <__DATA_REGION_LENGTH__+0x36>
+							{
+								RxMsg->RxCallback(DataLength, RxMsg->MessageBuffer);
+ 42a:	15 96       	adiw	r26, 0x05	; 5
+ 42c:	6d 91       	ld	r22, X+
+ 42e:	7c 91       	ld	r23, X
+ 430:	16 97       	sbiw	r26, 0x06	; 6
+ 432:	89 2d       	mov	r24, r9
+ 434:	09 95       	icall
+							}
+                            
+                            /* Reset the Rx Info as No Error */
+							ComIf_ResetRxInfo(Channel, FALSE);
+ 436:	60 e0       	ldi	r22, 0x00	; 0
+ 438:	8d 81       	ldd	r24, Y+5	; 0x05
+ 43a:	9e 81       	ldd	r25, Y+6	; 0x06
+ 43c:	a5 de       	rcall	.-694    	; 0x188 <ComIf_ResetRxInfo>
+ 43e:	19 c1       	rjmp	.+562    	; 0x672 <__stack+0x213>
+						}
+						else
+						{
+							/* Reset the Rx Info as Error */
+							ComIf_ResetRxInfo(Channel, TRUE);
+ 440:	61 e0       	ldi	r22, 0x01	; 1
+ 442:	8d 81       	ldd	r24, Y+5	; 0x05
+ 444:	9e 81       	ldd	r25, Y+6	; 0x06
+ 446:	a0 de       	rcall	.-704    	; 0x188 <ComIf_ResetRxInfo>
+
+                            /* Report Error */
+							ComIf_ErrorNotify(Channel, COMIF_DEBUG_DATA_WORDS(COMIF_EC_INVALID_CHK, Channel->RxMsgIndex), CalcChecksum);
+ 448:	83 e1       	ldi	r24, 0x13	; 19
+ 44a:	8e 9d       	mul	r24, r14
+ 44c:	f0 01       	movw	r30, r0
+ 44e:	8f 9d       	mul	r24, r15
+ 450:	f0 0d       	add	r31, r0
+ 452:	11 24       	eor	r1, r1
+ 454:	e0 5a       	subi	r30, 0xA0	; 160
+ 456:	ff 4f       	sbci	r31, 0xFF	; 255
+ 458:	40 89       	ldd	r20, Z+16	; 0x10
+ 45a:	50 e0       	ldi	r21, 0x00	; 0
+ 45c:	60 e0       	ldi	r22, 0x00	; 0
+ 45e:	70 e0       	ldi	r23, 0x00	; 0
+ 460:	6f 60       	ori	r22, 0x0F	; 15
+ 462:	93 01       	movw	r18, r6
+ 464:	82 01       	movw	r16, r4
+ 466:	8d 81       	ldd	r24, Y+5	; 0x05
+ 468:	9e 81       	ldd	r25, Y+6	; 0x06
+ 46a:	31 de       	rcall	.-926    	; 0xce <ComIf_ErrorNotify>
+ 46c:	02 c1       	rjmp	.+516    	; 0x672 <__stack+0x213>
+					else
+					{
+						/* If the received information is less than the configured one, then possibly the data might be lost */
+
+                        /* Report Error */
+						ComIf_ErrorNotify(Channel, COMIF_EC_INVALID_MSG, COMIF_DEBUG_DATA_BYTES(COMIF_ETX, RxMsg->CurRxngIdx, DataLength, ChecksumLength));
+ 46e:	90 e0       	ldi	r25, 0x00	; 0
+ 470:	a0 e0       	ldi	r26, 0x00	; 0
+ 472:	b0 e0       	ldi	r27, 0x00	; 0
+ 474:	bc 01       	movw	r22, r24
+ 476:	55 27       	eor	r21, r21
+ 478:	44 27       	eor	r20, r20
+ 47a:	89 2d       	mov	r24, r9
+ 47c:	90 e0       	ldi	r25, 0x00	; 0
+ 47e:	a0 e0       	ldi	r26, 0x00	; 0
+ 480:	b0 e0       	ldi	r27, 0x00	; 0
+ 482:	ba 2f       	mov	r27, r26
+ 484:	a9 2f       	mov	r26, r25
+ 486:	98 2f       	mov	r25, r24
+ 488:	88 27       	eor	r24, r24
+ 48a:	84 2b       	or	r24, r20
+ 48c:	95 2b       	or	r25, r21
+ 48e:	a6 2b       	or	r26, r22
+ 490:	b7 2b       	or	r27, r23
+ 492:	ac 01       	movw	r20, r24
+ 494:	bd 01       	movw	r22, r26
+ 496:	41 2b       	or	r20, r17
+ 498:	8a 01       	movw	r16, r20
+ 49a:	9b 01       	movw	r18, r22
+ 49c:	3d 67       	ori	r19, 0x7D	; 125
+ 49e:	40 e1       	ldi	r20, 0x10	; 16
+ 4a0:	50 e0       	ldi	r21, 0x00	; 0
+ 4a2:	60 e0       	ldi	r22, 0x00	; 0
+ 4a4:	70 e0       	ldi	r23, 0x00	; 0
+ 4a6:	8d 81       	ldd	r24, Y+5	; 0x05
+ 4a8:	9e 81       	ldd	r25, Y+6	; 0x06
+ 4aa:	11 de       	rcall	.-990    	; 0xce <ComIf_ErrorNotify>
+						
+						/* Reset the Rx Info as Error */
+						ComIf_ResetRxInfo(Channel, TRUE);
+ 4ac:	61 e0       	ldi	r22, 0x01	; 1
+ 4ae:	8d 81       	ldd	r24, Y+5	; 0x05
+ 4b0:	9e 81       	ldd	r25, Y+6	; 0x06
+ 4b2:	6a de       	rcall	.-812    	; 0x188 <ComIf_ResetRxInfo>
+ 4b4:	de c0       	rjmp	.+444    	; 0x672 <__stack+0x213>
+					}
+				}
+				else
+				{
+					/* If the MsgIndex is INVALID, then the reception is waiting for the ID */
+					if(Channel->RxMsgIndex == P_COMIF_INVALID_HANDLE)
+ 4b6:	93 e1       	ldi	r25, 0x13	; 19
+ 4b8:	9e 9d       	mul	r25, r14
+ 4ba:	f0 01       	movw	r30, r0
+ 4bc:	9f 9d       	mul	r25, r15
+ 4be:	f0 0d       	add	r31, r0
+ 4c0:	11 24       	eor	r1, r1
+ 4c2:	e0 5a       	subi	r30, 0xA0	; 160
+ 4c4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4c6:	90 89       	ldd	r25, Z+16	; 0x10
+ 4c8:	9f 3f       	cpi	r25, 0xFF	; 255
+ 4ca:	19 f5       	brne	.+70     	; 0x512 <__stack+0xb3>
+					{
+						// This is the ID Byte
+						Channel->RxMsgIndex = ComIf_GetHandle(Channel->RxMessages, Channel->TotalRxMessages, DataByte);
+ 4cc:	7f 01       	movw	r14, r30
+ 4ce:	40 2f       	mov	r20, r16
+ 4d0:	67 85       	ldd	r22, Z+15	; 0x0f
+ 4d2:	85 85       	ldd	r24, Z+13	; 0x0d
+ 4d4:	96 85       	ldd	r25, Z+14	; 0x0e
+ 4d6:	3f de       	rcall	.-898    	; 0x156 <ComIf_GetHandle>
+ 4d8:	f7 01       	movw	r30, r14
+ 4da:	80 8b       	std	Z+16, r24	; 0x10
+
+						/* If we can't able to identify the Message in the Handle */
+						if(Channel->RxMsgIndex == P_COMIF_INVALID_HANDLE)
+ 4dc:	8f 3f       	cpi	r24, 0xFF	; 255
+ 4de:	09 f0       	breq	.+2      	; 0x4e2 <__stack+0x83>
+ 4e0:	c8 c0       	rjmp	.+400    	; 0x672 <__stack+0x213>
+						{
+							/* Then, reset the reception interfaces */
+							ComIf_ResetRxInfo(Channel, TRUE);
+ 4e2:	61 e0       	ldi	r22, 0x01	; 1
+ 4e4:	8d 81       	ldd	r24, Y+5	; 0x05
+ 4e6:	9e 81       	ldd	r25, Y+6	; 0x06
+ 4e8:	4f de       	rcall	.-866    	; 0x188 <ComIf_ResetRxInfo>
+
+                            /* Report Error */
+							ComIf_ErrorNotify(Channel, COMIF_EC_INVALID_ID, COMIF_DEBUG_DATA_WORDS(ChannelIndex, DataByte));
+ 4ea:	81 2f       	mov	r24, r17
+ 4ec:	90 e0       	ldi	r25, 0x00	; 0
+ 4ee:	a0 e0       	ldi	r26, 0x00	; 0
+ 4f0:	b0 e0       	ldi	r27, 0x00	; 0
+ 4f2:	dc 01       	movw	r26, r24
+ 4f4:	99 27       	eor	r25, r25
+ 4f6:	88 27       	eor	r24, r24
+ 4f8:	ac 01       	movw	r20, r24
+ 4fa:	bd 01       	movw	r22, r26
+ 4fc:	40 2b       	or	r20, r16
+ 4fe:	8a 01       	movw	r16, r20
+ 500:	9b 01       	movw	r18, r22
+ 502:	4d e0       	ldi	r20, 0x0D	; 13
+ 504:	50 e0       	ldi	r21, 0x00	; 0
+ 506:	60 e0       	ldi	r22, 0x00	; 0
+ 508:	70 e0       	ldi	r23, 0x00	; 0
+ 50a:	8d 81       	ldd	r24, Y+5	; 0x05
+ 50c:	9e 81       	ldd	r25, Y+6	; 0x06
+ 50e:	df dd       	rcall	.-1090   	; 0xce <ComIf_ErrorNotify>
+ 510:	b0 c0       	rjmp	.+352    	; 0x672 <__stack+0x213>
+						}
+					}
+					else
+					{
+						// ID is available
+						if(Channel->ChannelFlags.DLCVerified == FALSE)
+ 512:	82 fd       	sbrc	r24, 2
+ 514:	90 c0       	rjmp	.+288    	; 0x636 <__stack+0x1d7>
+						#else
+							UBYTE DataLength = DataByte & 0x3F;
+							UBYTE ChecksumLength = ((DataByte & 0xC0) >> 6) + 1; // CHKLEN Coding : 0 -> 1 Byte Checksum ... 3 -> 4 Byte Checksum, So add 1
+						#endif
+
+							ComIfRxMessageConfig * RxMsg = &(Channel->RxMessages[Channel->RxMsgIndex]);
+ 516:	83 e1       	ldi	r24, 0x13	; 19
+ 518:	8e 9d       	mul	r24, r14
+ 51a:	f0 01       	movw	r30, r0
+ 51c:	8f 9d       	mul	r24, r15
+ 51e:	f0 0d       	add	r31, r0
+ 520:	11 24       	eor	r1, r1
+ 522:	e0 5a       	subi	r30, 0xA0	; 160
+ 524:	ff 4f       	sbci	r31, 0xFF	; 255
+ 526:	25 85       	ldd	r18, Z+13	; 0x0d
+ 528:	36 85       	ldd	r19, Z+14	; 0x0e
+ 52a:	89 2f       	mov	r24, r25
+ 52c:	90 e0       	ldi	r25, 0x00	; 0
+ 52e:	6c 01       	movw	r12, r24
+ 530:	cc 0c       	add	r12, r12
+ 532:	dd 1c       	adc	r13, r13
+ 534:	cc 0c       	add	r12, r12
+ 536:	dd 1c       	adc	r13, r13
+ 538:	cc 0c       	add	r12, r12
+ 53a:	dd 1c       	adc	r13, r13
+ 53c:	8c 0d       	add	r24, r12
+ 53e:	9d 1d       	adc	r25, r13
+ 540:	69 01       	movw	r12, r18
+ 542:	c8 0e       	add	r12, r24
+ 544:	d9 1e       	adc	r13, r25
+
+							if( ((RxMsg->Length == DataLength)
+ 546:	d6 01       	movw	r26, r12
+ 548:	11 96       	adiw	r26, 0x01	; 1
+ 54a:	8c 91       	ld	r24, X
+ 54c:	08 17       	cp	r16, r24
+ 54e:	69 f0       	breq	.+26     	; 0x56a <__stack+0x10b>
+						#ifdef COMIF_DYNAMIC_DATA_LENGTH_ENABLED
+							|| ((RxMsg->Length == 0) && (DataLength <= Channel->DynamicMaxDataLength))
+ 550:	81 11       	cpse	r24, r1
+ 552:	22 c0       	rjmp	.+68     	; 0x598 <__stack+0x139>
+ 554:	83 e1       	ldi	r24, 0x13	; 19
+ 556:	8e 9d       	mul	r24, r14
+ 558:	f0 01       	movw	r30, r0
+ 55a:	8f 9d       	mul	r24, r15
+ 55c:	f0 0d       	add	r31, r0
+ 55e:	11 24       	eor	r1, r1
+ 560:	e0 5a       	subi	r30, 0xA0	; 160
+ 562:	ff 4f       	sbci	r31, 0xFF	; 255
+ 564:	80 85       	ldd	r24, Z+8	; 0x08
+ 566:	80 17       	cp	r24, r16
+ 568:	b8 f0       	brcs	.+46     	; 0x598 <__stack+0x139>
+						#endif
+							   )
+							 && ((RxMsg->ChecksumLength == ChecksumLength) || (RxMsg->ChecksumLength == 0)) // Ignore the received checksum length if configured to ignore
+ 56a:	f6 01       	movw	r30, r12
+ 56c:	82 81       	ldd	r24, Z+2	; 0x02
+ 56e:	81 30       	cpi	r24, 0x01	; 1
+ 570:	11 f0       	breq	.+4      	; 0x576 <__stack+0x117>
+ 572:	81 11       	cpse	r24, r1
+ 574:	11 c0       	rjmp	.+34     	; 0x598 <__stack+0x139>
+							  )
+							{
+								Channel->ChannelFlags.DLCVerified = TRUE;
+ 576:	23 e1       	ldi	r18, 0x13	; 19
+ 578:	2e 9d       	mul	r18, r14
+ 57a:	c0 01       	movw	r24, r0
+ 57c:	2f 9d       	mul	r18, r15
+ 57e:	90 0d       	add	r25, r0
+ 580:	11 24       	eor	r1, r1
+ 582:	fc 01       	movw	r30, r24
+ 584:	ee 58       	subi	r30, 0x8E	; 142
+ 586:	ff 4f       	sbci	r31, 0xFF	; 255
+ 588:	20 81       	ld	r18, Z
+ 58a:	24 60       	ori	r18, 0x04	; 4
+ 58c:	20 83       	st	Z, r18
+								Channel->RxMsgLength = DataLength;
+ 58e:	fc 01       	movw	r30, r24
+ 590:	e0 5a       	subi	r30, 0xA0	; 160
+ 592:	ff 4f       	sbci	r31, 0xFF	; 255
+ 594:	01 8b       	std	Z+17, r16	; 0x11
+ 596:	6d c0       	rjmp	.+218    	; 0x672 <__stack+0x213>
+							}
+							else
+							{
+								// If the received DLC does not match with the configured DLC, then report error and stop reception
+								ComIf_ResetRxInfo(Channel, TRUE);
+ 598:	61 e0       	ldi	r22, 0x01	; 1
+ 59a:	8d 81       	ldd	r24, Y+5	; 0x05
+ 59c:	9e 81       	ldd	r25, Y+6	; 0x06
+ 59e:	f4 dd       	rcall	.-1048   	; 0x188 <ComIf_ResetRxInfo>
+                                
+                                /* Report Error */
+								ComIf_ErrorNotify(Channel, COMIF_EC_INVALID_DLC, COMIF_DEBUG_DATA_BYTES(ChannelIndex, Channel->RxMsgIndex, DataByte, (RxMsg->Length | ((RxMsg->ChecksumLength - 1) << 6)) ));
+ 5a0:	81 2f       	mov	r24, r17
+ 5a2:	90 e0       	ldi	r25, 0x00	; 0
+ 5a4:	a0 e0       	ldi	r26, 0x00	; 0
+ 5a6:	b0 e0       	ldi	r27, 0x00	; 0
+ 5a8:	b8 2f       	mov	r27, r24
+ 5aa:	aa 27       	eor	r26, r26
+ 5ac:	99 27       	eor	r25, r25
+ 5ae:	88 27       	eor	r24, r24
+ 5b0:	23 e1       	ldi	r18, 0x13	; 19
+ 5b2:	2e 9d       	mul	r18, r14
+ 5b4:	f0 01       	movw	r30, r0
+ 5b6:	2f 9d       	mul	r18, r15
+ 5b8:	f0 0d       	add	r31, r0
+ 5ba:	11 24       	eor	r1, r1
+ 5bc:	e0 5a       	subi	r30, 0xA0	; 160
+ 5be:	ff 4f       	sbci	r31, 0xFF	; 255
+ 5c0:	40 88       	ldd	r4, Z+16	; 0x10
+ 5c2:	51 2c       	mov	r5, r1
+ 5c4:	61 2c       	mov	r6, r1
+ 5c6:	71 2c       	mov	r7, r1
+ 5c8:	32 01       	movw	r6, r4
+ 5ca:	55 24       	eor	r5, r5
+ 5cc:	44 24       	eor	r4, r4
+ 5ce:	48 2a       	or	r4, r24
+ 5d0:	59 2a       	or	r5, r25
+ 5d2:	6a 2a       	or	r6, r26
+ 5d4:	7b 2a       	or	r7, r27
+ 5d6:	80 2f       	mov	r24, r16
+ 5d8:	90 e0       	ldi	r25, 0x00	; 0
+ 5da:	a0 e0       	ldi	r26, 0x00	; 0
+ 5dc:	b0 e0       	ldi	r27, 0x00	; 0
+ 5de:	ba 2f       	mov	r27, r26
+ 5e0:	a9 2f       	mov	r26, r25
+ 5e2:	98 2f       	mov	r25, r24
+ 5e4:	88 27       	eor	r24, r24
+ 5e6:	84 29       	or	r24, r4
+ 5e8:	95 29       	or	r25, r5
+ 5ea:	a6 29       	or	r26, r6
+ 5ec:	b7 29       	or	r27, r7
+ 5ee:	f6 01       	movw	r30, r12
+ 5f0:	41 81       	ldd	r20, Z+1	; 0x01
+ 5f2:	22 81       	ldd	r18, Z+2	; 0x02
+ 5f4:	30 e0       	ldi	r19, 0x00	; 0
+ 5f6:	21 50       	subi	r18, 0x01	; 1
+ 5f8:	31 09       	sbc	r19, r1
+ 5fa:	00 24       	eor	r0, r0
+ 5fc:	36 95       	lsr	r19
+ 5fe:	27 95       	ror	r18
+ 600:	07 94       	ror	r0
+ 602:	36 95       	lsr	r19
+ 604:	27 95       	ror	r18
+ 606:	07 94       	ror	r0
+ 608:	32 2f       	mov	r19, r18
+ 60a:	20 2d       	mov	r18, r0
+ 60c:	b9 01       	movw	r22, r18
+ 60e:	64 2b       	or	r22, r20
+ 610:	ab 01       	movw	r20, r22
+ 612:	05 2e       	mov	r0, r21
+ 614:	00 0c       	add	r0, r0
+ 616:	66 0b       	sbc	r22, r22
+ 618:	77 0b       	sbc	r23, r23
+ 61a:	8a 01       	movw	r16, r20
+ 61c:	9b 01       	movw	r18, r22
+ 61e:	08 2b       	or	r16, r24
+ 620:	19 2b       	or	r17, r25
+ 622:	2a 2b       	or	r18, r26
+ 624:	3b 2b       	or	r19, r27
+ 626:	4e e0       	ldi	r20, 0x0E	; 14
+ 628:	50 e0       	ldi	r21, 0x00	; 0
+ 62a:	60 e0       	ldi	r22, 0x00	; 0
+ 62c:	70 e0       	ldi	r23, 0x00	; 0
+ 62e:	8d 81       	ldd	r24, Y+5	; 0x05
+ 630:	9e 81       	ldd	r25, Y+6	; 0x06
+ 632:	4d dd       	rcall	.-1382   	; 0xce <ComIf_ErrorNotify>
+ 634:	1e c0       	rjmp	.+60     	; 0x672 <__stack+0x213>
+						}
+						else
+						{
+							// If ID and DLC verified, then the receiving bytes are the data bytes only
+							// Store the Data
+							ComIf_StoreDataByte(Channel, DataByte);
+ 636:	60 2f       	mov	r22, r16
+ 638:	8d 81       	ldd	r24, Y+5	; 0x05
+ 63a:	9e 81       	ldd	r25, Y+6	; 0x06
+ 63c:	d8 dd       	rcall	.-1104   	; 0x1ee <ComIf_StoreDataByte>
+ 63e:	19 c0       	rjmp	.+50     	; 0x672 <__stack+0x213>
+				// If the Data is not targeted to be received, or the STX is not received, then ignore the data bytes.
+			}
+		}
+		else
+		{
+			if(Channel->RxMsgIndex != P_COMIF_INVALID_HANDLE)
+ 640:	83 e1       	ldi	r24, 0x13	; 19
+ 642:	8e 9d       	mul	r24, r14
+ 644:	f0 01       	movw	r30, r0
+ 646:	8f 9d       	mul	r24, r15
+ 648:	f0 0d       	add	r31, r0
+ 64a:	11 24       	eor	r1, r1
+ 64c:	e0 5a       	subi	r30, 0xA0	; 160
+ 64e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 650:	80 89       	ldd	r24, Z+16	; 0x10
+ 652:	8f 3f       	cpi	r24, 0xFF	; 255
+ 654:	19 f0       	breq	.+6      	; 0x65c <__stack+0x1fd>
+			{
+				// Store the Data
+				ComIf_StoreDataByte(Channel, DataByte);
+ 656:	8d 81       	ldd	r24, Y+5	; 0x05
+ 658:	9e 81       	ldd	r25, Y+6	; 0x06
+ 65a:	c9 dd       	rcall	.-1134   	; 0x1ee <ComIf_StoreDataByte>
+			}
+
+			/* Once stored, clear the delimit flag */
+			Channel->ChannelFlags.Delimit = FALSE;
+ 65c:	83 e1       	ldi	r24, 0x13	; 19
+ 65e:	8e 9d       	mul	r24, r14
+ 660:	f0 01       	movw	r30, r0
+ 662:	8f 9d       	mul	r24, r15
+ 664:	f0 0d       	add	r31, r0
+ 666:	11 24       	eor	r1, r1
+ 668:	ee 58       	subi	r30, 0x8E	; 142
+ 66a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 66c:	80 81       	ld	r24, Z
+ 66e:	8d 7f       	andi	r24, 0xFD	; 253
+ 670:	80 83       	st	Z, r24
+		}
+
+	}
+
+	return retval;
+}
+ 672:	80 e0       	ldi	r24, 0x00	; 0
+ 674:	26 96       	adiw	r28, 0x06	; 6
+ 676:	0f b6       	in	r0, 0x3f	; 63
+ 678:	f8 94       	cli
+ 67a:	de bf       	out	0x3e, r29	; 62
+ 67c:	0f be       	out	0x3f, r0	; 63
+ 67e:	cd bf       	out	0x3d, r28	; 61
+ 680:	df 91       	pop	r29
+ 682:	cf 91       	pop	r28
+ 684:	1f 91       	pop	r17
+ 686:	0f 91       	pop	r16
+ 688:	ff 90       	pop	r15
+ 68a:	ef 90       	pop	r14
+ 68c:	df 90       	pop	r13
+ 68e:	cf 90       	pop	r12
+ 690:	bf 90       	pop	r11
+ 692:	af 90       	pop	r10
+ 694:	9f 90       	pop	r9
+ 696:	7f 90       	pop	r7
+ 698:	6f 90       	pop	r6
+ 69a:	5f 90       	pop	r5
+ 69c:	4f 90       	pop	r4
+ 69e:	08 95       	ret
+
+000006a0 <ComIf_EncodeFromShadowToChannelBuffer>:
+}
+
+
+
+UBYTE ComIf_EncodeFromShadowToChannelBuffer(UBYTE ChannelIndex, UBYTE MsgIndex, UBYTE Length, UWORD * OutLength, UBYTE * OutBuffer, UWORD BoundLimit)
+{
+ 6a0:	2f 92       	push	r2
+ 6a2:	3f 92       	push	r3
+ 6a4:	4f 92       	push	r4
+ 6a6:	5f 92       	push	r5
+ 6a8:	6f 92       	push	r6
+ 6aa:	7f 92       	push	r7
+ 6ac:	8f 92       	push	r8
+ 6ae:	9f 92       	push	r9
+ 6b0:	af 92       	push	r10
+ 6b2:	bf 92       	push	r11
+ 6b4:	cf 92       	push	r12
+ 6b6:	df 92       	push	r13
+ 6b8:	ef 92       	push	r14
+ 6ba:	ff 92       	push	r15
+ 6bc:	0f 93       	push	r16
+ 6be:	1f 93       	push	r17
+ 6c0:	cf 93       	push	r28
+ 6c2:	df 93       	push	r29
+ 6c4:	00 d0       	rcall	.+0      	; 0x6c6 <ComIf_EncodeFromShadowToChannelBuffer+0x26>
+ 6c6:	00 d0       	rcall	.+0      	; 0x6c8 <ComIf_EncodeFromShadowToChannelBuffer+0x28>
+ 6c8:	1f 92       	push	r1
+ 6ca:	cd b7       	in	r28, 0x3d	; 61
+ 6cc:	de b7       	in	r29, 0x3e	; 62
+ 6ce:	c8 2e       	mov	r12, r24
+ 6d0:	69 83       	std	Y+1, r22	; 0x01
+ 6d2:	d4 2e       	mov	r13, r20
+ 6d4:	3b 83       	std	Y+3, r19	; 0x03
+ 6d6:	2a 83       	std	Y+2, r18	; 0x02
+
+	ULONG Checksum = 0;
+	UWORD CurrentIndex = 0;
+	UWORD TentativeDataLength = 0;
+
+	ComIf_ChannelConfigType * Channel = &ComIf_ChannelConfig[ChannelIndex];
+ 6d8:	88 2e       	mov	r8, r24
+ 6da:	91 2c       	mov	r9, r1
+ 6dc:	23 e1       	ldi	r18, 0x13	; 19
+ 6de:	28 9d       	mul	r18, r8
+ 6e0:	c0 01       	movw	r24, r0
+ 6e2:	29 9d       	mul	r18, r9
+ 6e4:	90 0d       	add	r25, r0
+ 6e6:	11 24       	eor	r1, r1
+ 6e8:	9c 01       	movw	r18, r24
+ 6ea:	20 5a       	subi	r18, 0xA0	; 160
+ 6ec:	3f 4f       	sbci	r19, 0xFF	; 255
+ 6ee:	19 01       	movw	r2, r18
+
+	// Once the update shadow buffer return no error, then it means the channel and msg indices were valid
+	// So, we can simply get the information from the channel and msg indices
+
+	ComIfTxMessageConfig * TxMsgCfg = &(Channel->TxMessages[MsgIndex]);
+ 6f0:	d9 01       	movw	r26, r18
+ 6f2:	1a 96       	adiw	r26, 0x0a	; 10
+ 6f4:	ad 90       	ld	r10, X+
+ 6f6:	bc 90       	ld	r11, X
+ 6f8:	1b 97       	sbiw	r26, 0x0b	; 11
+ 6fa:	bb e0       	ldi	r27, 0x0B	; 11
+ 6fc:	6b 9f       	mul	r22, r27
+ 6fe:	a0 0c       	add	r10, r0
+ 700:	b1 1c       	adc	r11, r1
+ 702:	11 24       	eor	r1, r1
+	ComIf_ChannelConfigType * Channel = &ComIf_ChannelConfig[ChannelIndex];
+
+	// Once the update shadow buffer return no error, then it means the channel and msg indices were valid
+	// So, we can simply get the information from the channel and msg indices
+
+	ComIfTxMessageConfig * TxMsgCfg = &(Channel->TxMessages[MsgIndex]);
+ 704:	d5 01       	movw	r26, r10
+
+UBYTE ComIf_EncodeFromShadowToChannelBuffer(UBYTE ChannelIndex, UBYTE MsgIndex, UBYTE Length, UWORD * OutLength, UBYTE * OutBuffer, UWORD BoundLimit)
+{
+	UBYTE retval = COMIF_EC_NO_ERROR;
+
+	ULONG Checksum = 0;
+ 706:	41 2c       	mov	r4, r1
+ 708:	51 2c       	mov	r5, r1
+ 70a:	32 01       	movw	r6, r4
+	ComIfTxMessageConfig * TxMsgCfg = &(Channel->TxMessages[MsgIndex]);
+
+	/* Calculate Checksum for the data */
+	ComIf_Lock_TxShadowBuffer();
+	{
+		for(UBYTE i = 0; i < Length; i++)
+ 70c:	20 e0       	ldi	r18, 0x00	; 0
+}
+
+static inline UWORD ComIf_GetChecksumAndTentativeDataLength(UBYTE ChannelIndex, UBYTE MsgIndex, UBYTE Length, ULONG *Checksum)
+{
+	ULONG ChecksumMask = 0;
+	UWORD TentativeDataLength = 1 + 1 + 1 + 1; // STX, ID, DLC, ETX
+ 70e:	e4 e0       	ldi	r30, 0x04	; 4
+ 710:	f0 e0       	ldi	r31, 0x00	; 0
+ 712:	fd 83       	std	Y+5, r31	; 0x05
+ 714:	ec 83       	std	Y+4, r30	; 0x04
+ 716:	1f c0       	rjmp	.+62     	; 0x756 <ComIf_EncodeFromShadowToChannelBuffer+0xb6>
+	/* Calculate Checksum for the data */
+	ComIf_Lock_TxShadowBuffer();
+	{
+		for(UBYTE i = 0; i < Length; i++)
+		{
+			UBYTE DataByte = TxMsgCfg->ShadowBuffer[i];
+ 718:	15 96       	adiw	r26, 0x05	; 5
+ 71a:	ed 91       	ld	r30, X+
+ 71c:	fc 91       	ld	r31, X
+ 71e:	16 97       	sbiw	r26, 0x06	; 6
+ 720:	e2 0f       	add	r30, r18
+ 722:	f1 1d       	adc	r31, r1
+ 724:	30 81       	ld	r19, Z
+
+			*Checksum += DataByte;
+ 726:	43 0e       	add	r4, r19
+ 728:	51 1c       	adc	r5, r1
+ 72a:	61 1c       	adc	r6, r1
+ 72c:	71 1c       	adc	r7, r1
+
+			TentativeDataLength++;
+ 72e:	8c 81       	ldd	r24, Y+4	; 0x04
+ 730:	9d 81       	ldd	r25, Y+5	; 0x05
+ 732:	01 96       	adiw	r24, 0x01	; 1
+
+static inline BOOL ComIf_IsNeedDelimiter(UBYTE Data)
+{
+	if( (Data == COMIF_STX)
+	 || (Data == COMIF_DLE)
+	 || (Data == COMIF_ETX)
+ 734:	3b 57       	subi	r19, 0x7B	; 123
+	*(Str + 1) = ((Value & 0x0F) + 0x30);
+}
+
+static inline BOOL ComIf_IsNeedDelimiter(UBYTE Data)
+{
+	if( (Data == COMIF_STX)
+ 736:	33 30       	cpi	r19, 0x03	; 3
+ 738:	10 f4       	brcc	.+4      	; 0x73e <ComIf_EncodeFromShadowToChannelBuffer+0x9e>
+	 || (Data == COMIF_DLE)
+	 || (Data == COMIF_ETX)
+	)
+	{
+		return TRUE;
+ 73a:	31 e0       	ldi	r19, 0x01	; 1
+ 73c:	01 c0       	rjmp	.+2      	; 0x740 <ComIf_EncodeFromShadowToChannelBuffer+0xa0>
+	}
+	return FALSE;
+ 73e:	30 e0       	ldi	r19, 0x00	; 0
+
+			*Checksum += DataByte;
+
+			TentativeDataLength++;
+
+			if(ComIf_IsNeedDelimiter(DataByte)) { TentativeDataLength++; }
+ 740:	33 23       	and	r19, r19
+ 742:	31 f0       	breq	.+12     	; 0x750 <ComIf_EncodeFromShadowToChannelBuffer+0xb0>
+ 744:	8c 81       	ldd	r24, Y+4	; 0x04
+ 746:	9d 81       	ldd	r25, Y+5	; 0x05
+ 748:	02 96       	adiw	r24, 0x02	; 2
+ 74a:	9d 83       	std	Y+5, r25	; 0x05
+ 74c:	8c 83       	std	Y+4, r24	; 0x04
+ 74e:	02 c0       	rjmp	.+4      	; 0x754 <ComIf_EncodeFromShadowToChannelBuffer+0xb4>
+		{
+			UBYTE DataByte = TxMsgCfg->ShadowBuffer[i];
+
+			*Checksum += DataByte;
+
+			TentativeDataLength++;
+ 750:	9d 83       	std	Y+5, r25	; 0x05
+ 752:	8c 83       	std	Y+4, r24	; 0x04
+	ComIfTxMessageConfig * TxMsgCfg = &(Channel->TxMessages[MsgIndex]);
+
+	/* Calculate Checksum for the data */
+	ComIf_Lock_TxShadowBuffer();
+	{
+		for(UBYTE i = 0; i < Length; i++)
+ 754:	2f 5f       	subi	r18, 0xFF	; 255
+ 756:	2d 15       	cp	r18, r13
+ 758:	f8 f2       	brcs	.-66     	; 0x718 <ComIf_EncodeFromShadowToChannelBuffer+0x78>
+			if(ComIf_IsNeedDelimiter(DataByte)) { TentativeDataLength++; }
+		}
+	}
+	ComIf_UnLock_TxShadowBuffer();
+
+	ChecksumMask = ComIf_GetChecksumMaskValue(TxMsgCfg->ChecksumLength);
+ 75a:	d5 01       	movw	r26, r10
+ 75c:	13 96       	adiw	r26, 0x03	; 3
+ 75e:	8c 91       	ld	r24, X
+ 760:	e7 dc       	rcall	.-1586   	; 0x130 <ComIf_GetChecksumMaskValue>
+
+	(*Checksum) = (((~(*Checksum)) + 1) & ChecksumMask);
+ 762:	70 94       	com	r7
+ 764:	60 94       	com	r6
+ 766:	50 94       	com	r5
+ 768:	40 94       	com	r4
+ 76a:	41 1c       	adc	r4, r1
+ 76c:	51 1c       	adc	r5, r1
+ 76e:	61 1c       	adc	r6, r1
+ 770:	71 1c       	adc	r7, r1
+ 772:	46 22       	and	r4, r22
+ 774:	57 22       	and	r5, r23
+ 776:	68 22       	and	r6, r24
+ 778:	79 22       	and	r7, r25
+
+	for(int i = TxMsgCfg->ChecksumLength - 1; i >= 0; i--)
+ 77a:	f5 01       	movw	r30, r10
+ 77c:	83 81       	ldd	r24, Z+3	; 0x03
+ 77e:	90 e0       	ldi	r25, 0x00	; 0
+ 780:	01 97       	sbiw	r24, 0x01	; 1
+ 782:	34 c0       	rjmp	.+104    	; 0x7ec <ComIf_EncodeFromShadowToChannelBuffer+0x14c>
+	{
+		UBYTE ChkData = (UB)(((*Checksum) & (((UL)0xFF) << (i * 8))) >> (i * 8));
+ 784:	9c 01       	movw	r18, r24
+ 786:	22 0f       	add	r18, r18
+ 788:	33 1f       	adc	r19, r19
+ 78a:	22 0f       	add	r18, r18
+ 78c:	33 1f       	adc	r19, r19
+ 78e:	22 0f       	add	r18, r18
+ 790:	33 1f       	adc	r19, r19
+ 792:	4f ef       	ldi	r20, 0xFF	; 255
+ 794:	50 e0       	ldi	r21, 0x00	; 0
+ 796:	60 e0       	ldi	r22, 0x00	; 0
+ 798:	70 e0       	ldi	r23, 0x00	; 0
+ 79a:	02 2e       	mov	r0, r18
+ 79c:	04 c0       	rjmp	.+8      	; 0x7a6 <ComIf_EncodeFromShadowToChannelBuffer+0x106>
+ 79e:	44 0f       	add	r20, r20
+ 7a0:	55 1f       	adc	r21, r21
+ 7a2:	66 1f       	adc	r22, r22
+ 7a4:	77 1f       	adc	r23, r23
+ 7a6:	0a 94       	dec	r0
+ 7a8:	d2 f7       	brpl	.-12     	; 0x79e <ComIf_EncodeFromShadowToChannelBuffer+0xfe>
+ 7aa:	44 21       	and	r20, r4
+ 7ac:	55 21       	and	r21, r5
+ 7ae:	66 21       	and	r22, r6
+ 7b0:	77 21       	and	r23, r7
+ 7b2:	04 c0       	rjmp	.+8      	; 0x7bc <ComIf_EncodeFromShadowToChannelBuffer+0x11c>
+ 7b4:	76 95       	lsr	r23
+ 7b6:	67 95       	ror	r22
+ 7b8:	57 95       	ror	r21
+ 7ba:	47 95       	ror	r20
+ 7bc:	2a 95       	dec	r18
+ 7be:	d2 f7       	brpl	.-12     	; 0x7b4 <ComIf_EncodeFromShadowToChannelBuffer+0x114>
+
+		TentativeDataLength++;
+ 7c0:	2c 81       	ldd	r18, Y+4	; 0x04
+ 7c2:	3d 81       	ldd	r19, Y+5	; 0x05
+ 7c4:	2f 5f       	subi	r18, 0xFF	; 255
+ 7c6:	3f 4f       	sbci	r19, 0xFF	; 255
+
+static inline BOOL ComIf_IsNeedDelimiter(UBYTE Data)
+{
+	if( (Data == COMIF_STX)
+	 || (Data == COMIF_DLE)
+	 || (Data == COMIF_ETX)
+ 7c8:	4b 57       	subi	r20, 0x7B	; 123
+	*(Str + 1) = ((Value & 0x0F) + 0x30);
+}
+
+static inline BOOL ComIf_IsNeedDelimiter(UBYTE Data)
+{
+	if( (Data == COMIF_STX)
+ 7ca:	43 30       	cpi	r20, 0x03	; 3
+ 7cc:	10 f4       	brcc	.+4      	; 0x7d2 <ComIf_EncodeFromShadowToChannelBuffer+0x132>
+	 || (Data == COMIF_DLE)
+	 || (Data == COMIF_ETX)
+	)
+	{
+		return TRUE;
+ 7ce:	41 e0       	ldi	r20, 0x01	; 1
+ 7d0:	01 c0       	rjmp	.+2      	; 0x7d4 <ComIf_EncodeFromShadowToChannelBuffer+0x134>
+	}
+	return FALSE;
+ 7d2:	40 e0       	ldi	r20, 0x00	; 0
+	{
+		UBYTE ChkData = (UB)(((*Checksum) & (((UL)0xFF) << (i * 8))) >> (i * 8));
+
+		TentativeDataLength++;
+
+		if(ComIf_IsNeedDelimiter(ChkData)) { TentativeDataLength++; }
+ 7d4:	44 23       	and	r20, r20
+ 7d6:	39 f0       	breq	.+14     	; 0x7e6 <ComIf_EncodeFromShadowToChannelBuffer+0x146>
+ 7d8:	2c 81       	ldd	r18, Y+4	; 0x04
+ 7da:	3d 81       	ldd	r19, Y+5	; 0x05
+ 7dc:	2e 5f       	subi	r18, 0xFE	; 254
+ 7de:	3f 4f       	sbci	r19, 0xFF	; 255
+ 7e0:	3d 83       	std	Y+5, r19	; 0x05
+ 7e2:	2c 83       	std	Y+4, r18	; 0x04
+ 7e4:	02 c0       	rjmp	.+4      	; 0x7ea <ComIf_EncodeFromShadowToChannelBuffer+0x14a>
+
+	for(int i = TxMsgCfg->ChecksumLength - 1; i >= 0; i--)
+	{
+		UBYTE ChkData = (UB)(((*Checksum) & (((UL)0xFF) << (i * 8))) >> (i * 8));
+
+		TentativeDataLength++;
+ 7e6:	3d 83       	std	Y+5, r19	; 0x05
+ 7e8:	2c 83       	std	Y+4, r18	; 0x04
+
+	ChecksumMask = ComIf_GetChecksumMaskValue(TxMsgCfg->ChecksumLength);
+
+	(*Checksum) = (((~(*Checksum)) + 1) & ChecksumMask);
+
+	for(int i = TxMsgCfg->ChecksumLength - 1; i >= 0; i--)
+ 7ea:	01 97       	sbiw	r24, 0x01	; 1
+ 7ec:	99 23       	and	r25, r25
+ 7ee:	54 f6       	brge	.-108    	; 0x784 <ComIf_EncodeFromShadowToChannelBuffer+0xe4>
+		TentativeDataLength++;
+
+		if(ComIf_IsNeedDelimiter(ChkData)) { TentativeDataLength++; }
+	}
+
+	if(Channel->DataTxfrMethod == COMIF_DATA_TXFR_METHOD_STRING)
+ 7f0:	83 e1       	ldi	r24, 0x13	; 19
+ 7f2:	88 9d       	mul	r24, r8
+ 7f4:	f0 01       	movw	r30, r0
+ 7f6:	89 9d       	mul	r24, r9
+ 7f8:	f0 0d       	add	r31, r0
+ 7fa:	11 24       	eor	r1, r1
+ 7fc:	e0 5a       	subi	r30, 0xA0	; 160
+ 7fe:	ff 4f       	sbci	r31, 0xFF	; 255
+ 800:	81 85       	ldd	r24, Z+9	; 0x09
+ 802:	81 30       	cpi	r24, 0x01	; 1
+ 804:	39 f4       	brne	.+14     	; 0x814 <ComIf_EncodeFromShadowToChannelBuffer+0x174>
+	{
+		/* If the Data transfer method is STRING, then add 2 chars per byte and a NULL character at the end */
+		TentativeDataLength = (TentativeDataLength * 2) + 1;
+ 806:	8c 81       	ldd	r24, Y+4	; 0x04
+ 808:	9d 81       	ldd	r25, Y+5	; 0x05
+ 80a:	88 0f       	add	r24, r24
+ 80c:	99 1f       	adc	r25, r25
+ 80e:	01 96       	adiw	r24, 0x01	; 1
+ 810:	9d 83       	std	Y+5, r25	; 0x05
+ 812:	8c 83       	std	Y+4, r24	; 0x04
+#endif
+
+	TentativeDataLength = ComIf_GetChecksumAndTentativeDataLength(ChannelIndex, MsgIndex, Length, &Checksum);
+
+	/* Build Data Buffer */
+	if(Channel->DataTxfrMethod == COMIF_DATA_TXFR_METHOD_STRING)
+ 814:	23 e1       	ldi	r18, 0x13	; 19
+ 816:	28 9d       	mul	r18, r8
+ 818:	c0 01       	movw	r24, r0
+ 81a:	29 9d       	mul	r18, r9
+ 81c:	90 0d       	add	r25, r0
+ 81e:	11 24       	eor	r1, r1
+ 820:	fc 01       	movw	r30, r24
+ 822:	e0 5a       	subi	r30, 0xA0	; 160
+ 824:	ff 4f       	sbci	r31, 0xFF	; 255
+ 826:	81 85       	ldd	r24, Z+9	; 0x09
+ 828:	81 30       	cpi	r24, 0x01	; 1
+ 82a:	09 f0       	breq	.+2      	; 0x82e <ComIf_EncodeFromShadowToChannelBuffer+0x18e>
+ 82c:	be c0       	rjmp	.+380    	; 0x9aa <ComIf_EncodeFromShadowToChannelBuffer+0x30a>
+	{
+		/* Check if the channel buffer has enough space to fill in */
+		if(TentativeDataLength < BoundLimit)
+ 82e:	ac 81       	ldd	r26, Y+4	; 0x04
+ 830:	bd 81       	ldd	r27, Y+5	; 0x05
+ 832:	ae 15       	cp	r26, r14
+ 834:	bf 05       	cpc	r27, r15
+ 836:	08 f0       	brcs	.+2      	; 0x83a <ComIf_EncodeFromShadowToChannelBuffer+0x19a>
+ 838:	9a c0       	rjmp	.+308    	; 0x96e <ComIf_EncodeFromShadowToChannelBuffer+0x2ce>
+/* Function Definitions                            */
+/***************************************************/
+
+static inline void ConvertByteToString(unsigned char * Str, UBYTE Value)
+{
+	*Str = (((Value & 0xF0) >> 4) + 0x30);
+ 83a:	87 e3       	ldi	r24, 0x37	; 55
+ 83c:	f8 01       	movw	r30, r16
+ 83e:	80 83       	st	Z, r24
+	*(Str + 1) = ((Value & 0x0F) + 0x30);
+ 840:	8b e3       	ldi	r24, 0x3B	; 59
+ 842:	81 83       	std	Z+1, r24	; 0x01
+		if(TentativeDataLength < BoundLimit)
+		{
+			ConvertByteToString(&(OutBuffer[CurrentIndex]), COMIF_STX);
+			CurrentIndex += 2;
+
+			ConvertByteToString(&(OutBuffer[CurrentIndex]), TxMsgCfg->ID);
+ 844:	d5 01       	movw	r26, r10
+ 846:	8c 91       	ld	r24, X
+/* Function Definitions                            */
+/***************************************************/
+
+static inline void ConvertByteToString(unsigned char * Str, UBYTE Value)
+{
+	*Str = (((Value & 0xF0) >> 4) + 0x30);
+ 848:	98 2f       	mov	r25, r24
+ 84a:	92 95       	swap	r25
+ 84c:	9f 70       	andi	r25, 0x0F	; 15
+ 84e:	90 5d       	subi	r25, 0xD0	; 208
+ 850:	92 83       	std	Z+2, r25	; 0x02
+	*(Str + 1) = ((Value & 0x0F) + 0x30);
+ 852:	8f 70       	andi	r24, 0x0F	; 15
+ 854:	80 5d       	subi	r24, 0xD0	; 208
+ 856:	83 83       	std	Z+3, r24	; 0x03
+/* Function Definitions                            */
+/***************************************************/
+
+static inline void ConvertByteToString(unsigned char * Str, UBYTE Value)
+{
+	*Str = (((Value & 0xF0) >> 4) + 0x30);
+ 858:	8d 2d       	mov	r24, r13
+ 85a:	82 95       	swap	r24
+ 85c:	8f 70       	andi	r24, 0x0F	; 15
+ 85e:	80 5d       	subi	r24, 0xD0	; 208
+ 860:	84 83       	std	Z+4, r24	; 0x04
+	*(Str + 1) = ((Value & 0x0F) + 0x30);
+ 862:	8d 2d       	mov	r24, r13
+ 864:	8f 70       	andi	r24, 0x0F	; 15
+ 866:	80 5d       	subi	r24, 0xD0	; 208
+ 868:	85 83       	std	Z+5, r24	; 0x05
+			ConvertByteToString(&(OutBuffer[CurrentIndex]), DLC);
+			CurrentIndex += 2;
+
+			ComIf_Lock_TxShadowBuffer();
+			{
+				for(UBYTE i = 0; i < Length; i++)
+ 86a:	40 e0       	ldi	r20, 0x00	; 0
+
+			ConvertByteToString(&(OutBuffer[CurrentIndex]), TxMsgCfg->ID);
+			CurrentIndex += 2;
+
+			ConvertByteToString(&(OutBuffer[CurrentIndex]), DLC);
+			CurrentIndex += 2;
+ 86c:	26 e0       	ldi	r18, 0x06	; 6
+ 86e:	30 e0       	ldi	r19, 0x00	; 0
+
+			ComIf_Lock_TxShadowBuffer();
+			{
+				for(UBYTE i = 0; i < Length; i++)
+ 870:	24 c0       	rjmp	.+72     	; 0x8ba <ComIf_EncodeFromShadowToChannelBuffer+0x21a>
+				{
+					CurrentIndex += ComIf_AppendString(&(OutBuffer[CurrentIndex]), TxMsgCfg->ShadowBuffer[i]);
+ 872:	d5 01       	movw	r26, r10
+ 874:	15 96       	adiw	r26, 0x05	; 5
+ 876:	ed 91       	ld	r30, X+
+ 878:	fc 91       	ld	r31, X
+ 87a:	16 97       	sbiw	r26, 0x06	; 6
+ 87c:	e4 0f       	add	r30, r20
+ 87e:	f1 1d       	adc	r31, r1
+ 880:	80 81       	ld	r24, Z
+ 882:	f8 01       	movw	r30, r16
+ 884:	e2 0f       	add	r30, r18
+ 886:	f3 1f       	adc	r31, r19
+{
+	UBYTE AppendLength = 0;
+
+	if( (Data == COMIF_STX)
+	 || (Data == COMIF_DLE)
+	 || (Data == COMIF_ETX)
+ 888:	95 e8       	ldi	r25, 0x85	; 133
+ 88a:	98 0f       	add	r25, r24
+
+static inline UBYTE ComIf_AppendString(UBYTE * DataPtr, UBYTE Data)
+{
+	UBYTE AppendLength = 0;
+
+	if( (Data == COMIF_STX)
+ 88c:	93 30       	cpi	r25, 0x03	; 3
+ 88e:	30 f4       	brcc	.+12     	; 0x89c <ComIf_EncodeFromShadowToChannelBuffer+0x1fc>
+/* Function Definitions                            */
+/***************************************************/
+
+static inline void ConvertByteToString(unsigned char * Str, UBYTE Value)
+{
+	*Str = (((Value & 0xF0) >> 4) + 0x30);
+ 890:	97 e3       	ldi	r25, 0x37	; 55
+ 892:	90 83       	st	Z, r25
+	*(Str + 1) = ((Value & 0x0F) + 0x30);
+ 894:	9c e3       	ldi	r25, 0x3C	; 60
+ 896:	91 83       	std	Z+1, r25	; 0x01
+	 || (Data == COMIF_ETX)
+	)
+	{
+		// If there are any control characters available in the Data, then add a Delimiter
+		ConvertByteToString(DataPtr, COMIF_DLE);
+		AppendLength += 2;
+ 898:	92 e0       	ldi	r25, 0x02	; 2
+ 89a:	01 c0       	rjmp	.+2      	; 0x89e <ComIf_EncodeFromShadowToChannelBuffer+0x1fe>
+	return AppendLength + 1; // Add 1 more byte as the return value should hold the length instead of index
+}
+
+static inline UBYTE ComIf_AppendString(UBYTE * DataPtr, UBYTE Data)
+{
+	UBYTE AppendLength = 0;
+ 89c:	90 e0       	ldi	r25, 0x00	; 0
+		// If there are any control characters available in the Data, then add a Delimiter
+		ConvertByteToString(DataPtr, COMIF_DLE);
+		AppendLength += 2;
+	}
+
+	ConvertByteToString(&(DataPtr[AppendLength]), Data);
+ 89e:	e9 0f       	add	r30, r25
+ 8a0:	f1 1d       	adc	r31, r1
+/* Function Definitions                            */
+/***************************************************/
+
+static inline void ConvertByteToString(unsigned char * Str, UBYTE Value)
+{
+	*Str = (((Value & 0xF0) >> 4) + 0x30);
+ 8a2:	58 2f       	mov	r21, r24
+ 8a4:	52 95       	swap	r21
+ 8a6:	5f 70       	andi	r21, 0x0F	; 15
+ 8a8:	50 5d       	subi	r21, 0xD0	; 208
+ 8aa:	50 83       	st	Z, r21
+	*(Str + 1) = ((Value & 0x0F) + 0x30);
+ 8ac:	8f 70       	andi	r24, 0x0F	; 15
+ 8ae:	80 5d       	subi	r24, 0xD0	; 208
+ 8b0:	81 83       	std	Z+1, r24	; 0x01
+		ConvertByteToString(DataPtr, COMIF_DLE);
+		AppendLength += 2;
+	}
+
+	ConvertByteToString(&(DataPtr[AppendLength]), Data);
+	AppendLength += 2;
+ 8b2:	9e 5f       	subi	r25, 0xFE	; 254
+
+			ComIf_Lock_TxShadowBuffer();
+			{
+				for(UBYTE i = 0; i < Length; i++)
+				{
+					CurrentIndex += ComIf_AppendString(&(OutBuffer[CurrentIndex]), TxMsgCfg->ShadowBuffer[i]);
+ 8b4:	29 0f       	add	r18, r25
+ 8b6:	31 1d       	adc	r19, r1
+			ConvertByteToString(&(OutBuffer[CurrentIndex]), DLC);
+			CurrentIndex += 2;
+
+			ComIf_Lock_TxShadowBuffer();
+			{
+				for(UBYTE i = 0; i < Length; i++)
+ 8b8:	4f 5f       	subi	r20, 0xFF	; 255
+ 8ba:	4d 15       	cp	r20, r13
+ 8bc:	d0 f2       	brcs	.-76     	; 0x872 <ComIf_EncodeFromShadowToChannelBuffer+0x1d2>
+					CurrentIndex += ComIf_AppendString(&(OutBuffer[CurrentIndex]), TxMsgCfg->ShadowBuffer[i]);
+				}
+			}
+			ComIf_UnLock_TxShadowBuffer();
+
+			for(int i = TxMsgCfg->ChecksumLength - 1; i >= 0; i--)
+ 8be:	f5 01       	movw	r30, r10
+ 8c0:	43 81       	ldd	r20, Z+3	; 0x03
+ 8c2:	50 e0       	ldi	r21, 0x00	; 0
+ 8c4:	41 50       	subi	r20, 0x01	; 1
+ 8c6:	51 09       	sbc	r21, r1
+ 8c8:	3b c0       	rjmp	.+118    	; 0x940 <ComIf_EncodeFromShadowToChannelBuffer+0x2a0>
+			{
+				UBYTE ChkData = (UB)((Checksum & (((UL)0xFF) << (i * 8))) >> (i * 8));
+ 8ca:	ba 01       	movw	r22, r20
+ 8cc:	66 0f       	add	r22, r22
+ 8ce:	77 1f       	adc	r23, r23
+ 8d0:	66 0f       	add	r22, r22
+ 8d2:	77 1f       	adc	r23, r23
+ 8d4:	66 0f       	add	r22, r22
+ 8d6:	77 1f       	adc	r23, r23
+ 8d8:	8f ef       	ldi	r24, 0xFF	; 255
+ 8da:	90 e0       	ldi	r25, 0x00	; 0
+ 8dc:	a0 e0       	ldi	r26, 0x00	; 0
+ 8de:	b0 e0       	ldi	r27, 0x00	; 0
+ 8e0:	06 2e       	mov	r0, r22
+ 8e2:	04 c0       	rjmp	.+8      	; 0x8ec <ComIf_EncodeFromShadowToChannelBuffer+0x24c>
+ 8e4:	88 0f       	add	r24, r24
+ 8e6:	99 1f       	adc	r25, r25
+ 8e8:	aa 1f       	adc	r26, r26
+ 8ea:	bb 1f       	adc	r27, r27
+ 8ec:	0a 94       	dec	r0
+ 8ee:	d2 f7       	brpl	.-12     	; 0x8e4 <ComIf_EncodeFromShadowToChannelBuffer+0x244>
+ 8f0:	84 21       	and	r24, r4
+ 8f2:	95 21       	and	r25, r5
+ 8f4:	a6 21       	and	r26, r6
+ 8f6:	b7 21       	and	r27, r7
+ 8f8:	04 c0       	rjmp	.+8      	; 0x902 <ComIf_EncodeFromShadowToChannelBuffer+0x262>
+ 8fa:	b6 95       	lsr	r27
+ 8fc:	a7 95       	ror	r26
+ 8fe:	97 95       	ror	r25
+ 900:	87 95       	ror	r24
+ 902:	6a 95       	dec	r22
+ 904:	d2 f7       	brpl	.-12     	; 0x8fa <ComIf_EncodeFromShadowToChannelBuffer+0x25a>
+
+				CurrentIndex += ComIf_AppendString(&(OutBuffer[CurrentIndex]), ChkData);
+ 906:	f8 01       	movw	r30, r16
+ 908:	e2 0f       	add	r30, r18
+ 90a:	f3 1f       	adc	r31, r19
+{
+	UBYTE AppendLength = 0;
+
+	if( (Data == COMIF_STX)
+	 || (Data == COMIF_DLE)
+	 || (Data == COMIF_ETX)
+ 90c:	65 e8       	ldi	r22, 0x85	; 133
+ 90e:	68 0f       	add	r22, r24
+
+static inline UBYTE ComIf_AppendString(UBYTE * DataPtr, UBYTE Data)
+{
+	UBYTE AppendLength = 0;
+
+	if( (Data == COMIF_STX)
+ 910:	63 30       	cpi	r22, 0x03	; 3
+ 912:	30 f4       	brcc	.+12     	; 0x920 <ComIf_EncodeFromShadowToChannelBuffer+0x280>
+/* Function Definitions                            */
+/***************************************************/
+
+static inline void ConvertByteToString(unsigned char * Str, UBYTE Value)
+{
+	*Str = (((Value & 0xF0) >> 4) + 0x30);
+ 914:	67 e3       	ldi	r22, 0x37	; 55
+ 916:	60 83       	st	Z, r22
+	*(Str + 1) = ((Value & 0x0F) + 0x30);
+ 918:	6c e3       	ldi	r22, 0x3C	; 60
+ 91a:	61 83       	std	Z+1, r22	; 0x01
+	 || (Data == COMIF_ETX)
+	)
+	{
+		// If there are any control characters available in the Data, then add a Delimiter
+		ConvertByteToString(DataPtr, COMIF_DLE);
+		AppendLength += 2;
+ 91c:	62 e0       	ldi	r22, 0x02	; 2
+ 91e:	01 c0       	rjmp	.+2      	; 0x922 <ComIf_EncodeFromShadowToChannelBuffer+0x282>
+	return AppendLength + 1; // Add 1 more byte as the return value should hold the length instead of index
+}
+
+static inline UBYTE ComIf_AppendString(UBYTE * DataPtr, UBYTE Data)
+{
+	UBYTE AppendLength = 0;
+ 920:	60 e0       	ldi	r22, 0x00	; 0
+		// If there are any control characters available in the Data, then add a Delimiter
+		ConvertByteToString(DataPtr, COMIF_DLE);
+		AppendLength += 2;
+	}
+
+	ConvertByteToString(&(DataPtr[AppendLength]), Data);
+ 922:	e6 0f       	add	r30, r22
+ 924:	f1 1d       	adc	r31, r1
+/* Function Definitions                            */
+/***************************************************/
+
+static inline void ConvertByteToString(unsigned char * Str, UBYTE Value)
+{
+	*Str = (((Value & 0xF0) >> 4) + 0x30);
+ 926:	78 2f       	mov	r23, r24
+ 928:	72 95       	swap	r23
+ 92a:	7f 70       	andi	r23, 0x0F	; 15
+ 92c:	70 5d       	subi	r23, 0xD0	; 208
+ 92e:	70 83       	st	Z, r23
+	*(Str + 1) = ((Value & 0x0F) + 0x30);
+ 930:	8f 70       	andi	r24, 0x0F	; 15
+ 932:	80 5d       	subi	r24, 0xD0	; 208
+ 934:	81 83       	std	Z+1, r24	; 0x01
+		ConvertByteToString(DataPtr, COMIF_DLE);
+		AppendLength += 2;
+	}
+
+	ConvertByteToString(&(DataPtr[AppendLength]), Data);
+	AppendLength += 2;
+ 936:	6e 5f       	subi	r22, 0xFE	; 254
+
+			for(int i = TxMsgCfg->ChecksumLength - 1; i >= 0; i--)
+			{
+				UBYTE ChkData = (UB)((Checksum & (((UL)0xFF) << (i * 8))) >> (i * 8));
+
+				CurrentIndex += ComIf_AppendString(&(OutBuffer[CurrentIndex]), ChkData);
+ 938:	26 0f       	add	r18, r22
+ 93a:	31 1d       	adc	r19, r1
+					CurrentIndex += ComIf_AppendString(&(OutBuffer[CurrentIndex]), TxMsgCfg->ShadowBuffer[i]);
+				}
+			}
+			ComIf_UnLock_TxShadowBuffer();
+
+			for(int i = TxMsgCfg->ChecksumLength - 1; i >= 0; i--)
+ 93c:	41 50       	subi	r20, 0x01	; 1
+ 93e:	51 09       	sbc	r21, r1
+ 940:	55 23       	and	r21, r21
+ 942:	1c f6       	brge	.-122    	; 0x8ca <ComIf_EncodeFromShadowToChannelBuffer+0x22a>
+				UBYTE ChkData = (UB)((Checksum & (((UL)0xFF) << (i * 8))) >> (i * 8));
+
+				CurrentIndex += ComIf_AppendString(&(OutBuffer[CurrentIndex]), ChkData);
+			}
+
+			ConvertByteToString(&(OutBuffer[CurrentIndex]), COMIF_ETX);
+ 944:	f8 01       	movw	r30, r16
+ 946:	e2 0f       	add	r30, r18
+ 948:	f3 1f       	adc	r31, r19
+/* Function Definitions                            */
+/***************************************************/
+
+static inline void ConvertByteToString(unsigned char * Str, UBYTE Value)
+{
+	*Str = (((Value & 0xF0) >> 4) + 0x30);
+ 94a:	87 e3       	ldi	r24, 0x37	; 55
+ 94c:	80 83       	st	Z, r24
+	*(Str + 1) = ((Value & 0x0F) + 0x30);
+ 94e:	8d e3       	ldi	r24, 0x3D	; 61
+ 950:	81 83       	std	Z+1, r24	; 0x01
+
+				CurrentIndex += ComIf_AppendString(&(OutBuffer[CurrentIndex]), ChkData);
+			}
+
+			ConvertByteToString(&(OutBuffer[CurrentIndex]), COMIF_ETX);
+			CurrentIndex += 2;
+ 952:	c9 01       	movw	r24, r18
+ 954:	02 96       	adiw	r24, 0x02	; 2
+
+			OutBuffer[CurrentIndex++] = '\0';
+ 956:	2d 5f       	subi	r18, 0xFD	; 253
+ 958:	3f 4f       	sbci	r19, 0xFF	; 255
+ 95a:	f8 01       	movw	r30, r16
+ 95c:	e8 0f       	add	r30, r24
+ 95e:	f9 1f       	adc	r31, r25
+ 960:	10 82       	st	Z, r1
+
+			*OutLength = CurrentIndex;
+ 962:	aa 81       	ldd	r26, Y+2	; 0x02
+ 964:	bb 81       	ldd	r27, Y+3	; 0x03
+ 966:	2d 93       	st	X+, r18
+ 968:	3c 93       	st	X, r19
+
+
+
+UBYTE ComIf_EncodeFromShadowToChannelBuffer(UBYTE ChannelIndex, UBYTE MsgIndex, UBYTE Length, UWORD * OutLength, UBYTE * OutBuffer, UWORD BoundLimit)
+{
+	UBYTE retval = COMIF_EC_NO_ERROR;
+ 96a:	80 e0       	ldi	r24, 0x00	; 0
+ 96c:	b3 c0       	rjmp	.+358    	; 0xad4 <ComIf_EncodeFromShadowToChannelBuffer+0x434>
+		else
+		{
+			retval = COMIF_EC_BUFFER_OVERFLOW;
+
+            /* Report Error */
+			ComIf_ErrorNotify(Channel, COMIF_DEBUG_DATA_BYTES(0, retval, ChannelIndex, MsgIndex), COMIF_DEBUG_DATA_WORDS(TentativeDataLength, BoundLimit));
+ 96e:	ec 81       	ldd	r30, Y+4	; 0x04
+ 970:	fd 81       	ldd	r31, Y+5	; 0x05
+ 972:	8f 01       	movw	r16, r30
+ 974:	20 e0       	ldi	r18, 0x00	; 0
+ 976:	30 e0       	ldi	r19, 0x00	; 0
+ 978:	98 01       	movw	r18, r16
+ 97a:	11 27       	eor	r17, r17
+ 97c:	00 27       	eor	r16, r16
+ 97e:	4c 2d       	mov	r20, r12
+ 980:	50 e0       	ldi	r21, 0x00	; 0
+ 982:	60 e0       	ldi	r22, 0x00	; 0
+ 984:	70 e0       	ldi	r23, 0x00	; 0
+ 986:	76 2f       	mov	r23, r22
+ 988:	65 2f       	mov	r22, r21
+ 98a:	54 2f       	mov	r21, r20
+ 98c:	44 27       	eor	r20, r20
+ 98e:	62 61       	ori	r22, 0x12	; 18
+ 990:	c7 01       	movw	r24, r14
+ 992:	a0 e0       	ldi	r26, 0x00	; 0
+ 994:	b0 e0       	ldi	r27, 0x00	; 0
+ 996:	08 2b       	or	r16, r24
+ 998:	19 2b       	or	r17, r25
+ 99a:	2a 2b       	or	r18, r26
+ 99c:	3b 2b       	or	r19, r27
+ 99e:	f9 81       	ldd	r31, Y+1	; 0x01
+ 9a0:	4f 2b       	or	r20, r31
+ 9a2:	c1 01       	movw	r24, r2
+ 9a4:	94 db       	rcall	.-2264   	; 0xce <ComIf_ErrorNotify>
+
+			*OutLength = CurrentIndex;
+		}
+		else
+		{
+			retval = COMIF_EC_BUFFER_OVERFLOW;
+ 9a6:	82 e1       	ldi	r24, 0x12	; 18
+ 9a8:	95 c0       	rjmp	.+298    	; 0xad4 <ComIf_EncodeFromShadowToChannelBuffer+0x434>
+	}
+	else
+	{
+		/* If Data Transfer Method is COMIF_DATA_TXFR_METHOD_BYTES */
+
+		if(TentativeDataLength < BoundLimit)
+ 9aa:	2c 81       	ldd	r18, Y+4	; 0x04
+ 9ac:	3d 81       	ldd	r19, Y+5	; 0x05
+ 9ae:	2e 15       	cp	r18, r14
+ 9b0:	3f 05       	cpc	r19, r15
+ 9b2:	08 f0       	brcs	.+2      	; 0x9b6 <ComIf_EncodeFromShadowToChannelBuffer+0x316>
+ 9b4:	72 c0       	rjmp	.+228    	; 0xa9a <ComIf_EncodeFromShadowToChannelBuffer+0x3fa>
+		{
+			OutBuffer[CurrentIndex++] = COMIF_STX;
+ 9b6:	8b e7       	ldi	r24, 0x7B	; 123
+ 9b8:	d8 01       	movw	r26, r16
+ 9ba:	8c 93       	st	X, r24
+			OutBuffer[CurrentIndex++] = TxMsgCfg->ID;
+ 9bc:	f5 01       	movw	r30, r10
+ 9be:	80 81       	ld	r24, Z
+ 9c0:	11 96       	adiw	r26, 0x01	; 1
+ 9c2:	8c 93       	st	X, r24
+ 9c4:	11 97       	sbiw	r26, 0x01	; 1
+			OutBuffer[CurrentIndex++] = DLC;
+ 9c6:	12 96       	adiw	r26, 0x02	; 2
+ 9c8:	dc 92       	st	X, r13
+
+			ComIf_Lock_TxShadowBuffer();
+			{
+				for(UBYTE i = 0; i < Length; i++)
+ 9ca:	90 e0       	ldi	r25, 0x00	; 0
+
+		if(TentativeDataLength < BoundLimit)
+		{
+			OutBuffer[CurrentIndex++] = COMIF_STX;
+			OutBuffer[CurrentIndex++] = TxMsgCfg->ID;
+			OutBuffer[CurrentIndex++] = DLC;
+ 9cc:	23 e0       	ldi	r18, 0x03	; 3
+ 9ce:	30 e0       	ldi	r19, 0x00	; 0
+
+			ComIf_Lock_TxShadowBuffer();
+			{
+				for(UBYTE i = 0; i < Length; i++)
+ 9d0:	1b c0       	rjmp	.+54     	; 0xa08 <ComIf_EncodeFromShadowToChannelBuffer+0x368>
+				{
+					CurrentIndex += ComIf_AppendByte(&(OutBuffer[CurrentIndex]), TxMsgCfg->ShadowBuffer[i]);
+ 9d2:	d5 01       	movw	r26, r10
+ 9d4:	15 96       	adiw	r26, 0x05	; 5
+ 9d6:	ed 91       	ld	r30, X+
+ 9d8:	fc 91       	ld	r31, X
+ 9da:	16 97       	sbiw	r26, 0x06	; 6
+ 9dc:	e9 0f       	add	r30, r25
+ 9de:	f1 1d       	adc	r31, r1
+ 9e0:	40 81       	ld	r20, Z
+ 9e2:	f8 01       	movw	r30, r16
+ 9e4:	e2 0f       	add	r30, r18
+ 9e6:	f3 1f       	adc	r31, r19
+{
+	UBYTE AppendLength = 0;
+
+	if( (Data == COMIF_STX)
+	 || (Data == COMIF_DLE)
+	 || (Data == COMIF_ETX)
+ 9e8:	85 e8       	ldi	r24, 0x85	; 133
+ 9ea:	84 0f       	add	r24, r20
+
+static inline UBYTE ComIf_AppendByte(UBYTE * DataPtr, UBYTE Data)
+{
+	UBYTE AppendLength = 0;
+
+	if( (Data == COMIF_STX)
+ 9ec:	83 30       	cpi	r24, 0x03	; 3
+ 9ee:	20 f4       	brcc	.+8      	; 0x9f8 <ComIf_EncodeFromShadowToChannelBuffer+0x358>
+	 || (Data == COMIF_DLE)
+	 || (Data == COMIF_ETX)
+	)
+	{
+		// If there are any control characters available in the Data, then add a Delimiter
+		DataPtr[AppendLength] = COMIF_DLE;
+ 9f0:	8c e7       	ldi	r24, 0x7C	; 124
+ 9f2:	80 83       	st	Z, r24
+		AppendLength++;
+ 9f4:	81 e0       	ldi	r24, 0x01	; 1
+ 9f6:	01 c0       	rjmp	.+2      	; 0x9fa <ComIf_EncodeFromShadowToChannelBuffer+0x35a>
+	return FALSE;
+}
+
+static inline UBYTE ComIf_AppendByte(UBYTE * DataPtr, UBYTE Data)
+{
+	UBYTE AppendLength = 0;
+ 9f8:	80 e0       	ldi	r24, 0x00	; 0
+		// If there are any control characters available in the Data, then add a Delimiter
+		DataPtr[AppendLength] = COMIF_DLE;
+		AppendLength++;
+	}
+
+	DataPtr[AppendLength] = Data;
+ 9fa:	e8 0f       	add	r30, r24
+ 9fc:	f1 1d       	adc	r31, r1
+ 9fe:	40 83       	st	Z, r20
+
+	return AppendLength + 1; // Add 1 more byte as the return value should hold the length instead of index
+ a00:	8f 5f       	subi	r24, 0xFF	; 255
+
+			ComIf_Lock_TxShadowBuffer();
+			{
+				for(UBYTE i = 0; i < Length; i++)
+				{
+					CurrentIndex += ComIf_AppendByte(&(OutBuffer[CurrentIndex]), TxMsgCfg->ShadowBuffer[i]);
+ a02:	28 0f       	add	r18, r24
+ a04:	31 1d       	adc	r19, r1
+			OutBuffer[CurrentIndex++] = TxMsgCfg->ID;
+			OutBuffer[CurrentIndex++] = DLC;
+
+			ComIf_Lock_TxShadowBuffer();
+			{
+				for(UBYTE i = 0; i < Length; i++)
+ a06:	9f 5f       	subi	r25, 0xFF	; 255
+ a08:	9d 15       	cp	r25, r13
+ a0a:	18 f3       	brcs	.-58     	; 0x9d2 <ComIf_EncodeFromShadowToChannelBuffer+0x332>
+				}
+			}
+			ComIf_UnLock_TxShadowBuffer();
+
+
+			for(int i = TxMsgCfg->ChecksumLength - 1; i >= 0; i--)
+ a0c:	f5 01       	movw	r30, r10
+ a0e:	43 81       	ldd	r20, Z+3	; 0x03
+ a10:	50 e0       	ldi	r21, 0x00	; 0
+ a12:	41 50       	subi	r20, 0x01	; 1
+ a14:	51 09       	sbc	r21, r1
+ a16:	32 c0       	rjmp	.+100    	; 0xa7c <ComIf_EncodeFromShadowToChannelBuffer+0x3dc>
+			{
+				UBYTE ChkData = (UB)((Checksum & (((UL)0xFF) << (i * 8))) >> (i * 8));
+ a18:	ba 01       	movw	r22, r20
+ a1a:	66 0f       	add	r22, r22
+ a1c:	77 1f       	adc	r23, r23
+ a1e:	66 0f       	add	r22, r22
+ a20:	77 1f       	adc	r23, r23
+ a22:	66 0f       	add	r22, r22
+ a24:	77 1f       	adc	r23, r23
+ a26:	8f ef       	ldi	r24, 0xFF	; 255
+ a28:	90 e0       	ldi	r25, 0x00	; 0
+ a2a:	a0 e0       	ldi	r26, 0x00	; 0
+ a2c:	b0 e0       	ldi	r27, 0x00	; 0
+ a2e:	06 2e       	mov	r0, r22
+ a30:	04 c0       	rjmp	.+8      	; 0xa3a <ComIf_EncodeFromShadowToChannelBuffer+0x39a>
+ a32:	88 0f       	add	r24, r24
+ a34:	99 1f       	adc	r25, r25
+ a36:	aa 1f       	adc	r26, r26
+ a38:	bb 1f       	adc	r27, r27
+ a3a:	0a 94       	dec	r0
+ a3c:	d2 f7       	brpl	.-12     	; 0xa32 <ComIf_EncodeFromShadowToChannelBuffer+0x392>
+ a3e:	84 21       	and	r24, r4
+ a40:	95 21       	and	r25, r5
+ a42:	a6 21       	and	r26, r6
+ a44:	b7 21       	and	r27, r7
+ a46:	04 c0       	rjmp	.+8      	; 0xa50 <ComIf_EncodeFromShadowToChannelBuffer+0x3b0>
+ a48:	b6 95       	lsr	r27
+ a4a:	a7 95       	ror	r26
+ a4c:	97 95       	ror	r25
+ a4e:	87 95       	ror	r24
+ a50:	6a 95       	dec	r22
+ a52:	d2 f7       	brpl	.-12     	; 0xa48 <ComIf_EncodeFromShadowToChannelBuffer+0x3a8>
+
+				CurrentIndex += ComIf_AppendByte(&(OutBuffer[CurrentIndex]), ChkData);
+ a54:	f8 01       	movw	r30, r16
+ a56:	e2 0f       	add	r30, r18
+ a58:	f3 1f       	adc	r31, r19
+{
+	UBYTE AppendLength = 0;
+
+	if( (Data == COMIF_STX)
+	 || (Data == COMIF_DLE)
+	 || (Data == COMIF_ETX)
+ a5a:	65 e8       	ldi	r22, 0x85	; 133
+ a5c:	68 0f       	add	r22, r24
+
+static inline UBYTE ComIf_AppendByte(UBYTE * DataPtr, UBYTE Data)
+{
+	UBYTE AppendLength = 0;
+
+	if( (Data == COMIF_STX)
+ a5e:	63 30       	cpi	r22, 0x03	; 3
+ a60:	20 f4       	brcc	.+8      	; 0xa6a <ComIf_EncodeFromShadowToChannelBuffer+0x3ca>
+	 || (Data == COMIF_DLE)
+	 || (Data == COMIF_ETX)
+	)
+	{
+		// If there are any control characters available in the Data, then add a Delimiter
+		DataPtr[AppendLength] = COMIF_DLE;
+ a62:	6c e7       	ldi	r22, 0x7C	; 124
+ a64:	60 83       	st	Z, r22
+		AppendLength++;
+ a66:	61 e0       	ldi	r22, 0x01	; 1
+ a68:	01 c0       	rjmp	.+2      	; 0xa6c <ComIf_EncodeFromShadowToChannelBuffer+0x3cc>
+	return FALSE;
+}
+
+static inline UBYTE ComIf_AppendByte(UBYTE * DataPtr, UBYTE Data)
+{
+	UBYTE AppendLength = 0;
+ a6a:	60 e0       	ldi	r22, 0x00	; 0
+		// If there are any control characters available in the Data, then add a Delimiter
+		DataPtr[AppendLength] = COMIF_DLE;
+		AppendLength++;
+	}
+
+	DataPtr[AppendLength] = Data;
+ a6c:	e6 0f       	add	r30, r22
+ a6e:	f1 1d       	adc	r31, r1
+ a70:	80 83       	st	Z, r24
+
+	return AppendLength + 1; // Add 1 more byte as the return value should hold the length instead of index
+ a72:	6f 5f       	subi	r22, 0xFF	; 255
+
+			for(int i = TxMsgCfg->ChecksumLength - 1; i >= 0; i--)
+			{
+				UBYTE ChkData = (UB)((Checksum & (((UL)0xFF) << (i * 8))) >> (i * 8));
+
+				CurrentIndex += ComIf_AppendByte(&(OutBuffer[CurrentIndex]), ChkData);
+ a74:	26 0f       	add	r18, r22
+ a76:	31 1d       	adc	r19, r1
+				}
+			}
+			ComIf_UnLock_TxShadowBuffer();
+
+
+			for(int i = TxMsgCfg->ChecksumLength - 1; i >= 0; i--)
+ a78:	41 50       	subi	r20, 0x01	; 1
+ a7a:	51 09       	sbc	r21, r1
+ a7c:	55 23       	and	r21, r21
+ a7e:	64 f6       	brge	.-104    	; 0xa18 <ComIf_EncodeFromShadowToChannelBuffer+0x378>
+				UBYTE ChkData = (UB)((Checksum & (((UL)0xFF) << (i * 8))) >> (i * 8));
+
+				CurrentIndex += ComIf_AppendByte(&(OutBuffer[CurrentIndex]), ChkData);
+			}
+
+			OutBuffer[CurrentIndex++] = COMIF_ETX;
+ a80:	c9 01       	movw	r24, r18
+ a82:	01 96       	adiw	r24, 0x01	; 1
+ a84:	f8 01       	movw	r30, r16
+ a86:	e2 0f       	add	r30, r18
+ a88:	f3 1f       	adc	r31, r19
+ a8a:	2d e7       	ldi	r18, 0x7D	; 125
+ a8c:	20 83       	st	Z, r18
+
+			*OutLength = CurrentIndex;
+ a8e:	aa 81       	ldd	r26, Y+2	; 0x02
+ a90:	bb 81       	ldd	r27, Y+3	; 0x03
+ a92:	8d 93       	st	X+, r24
+ a94:	9c 93       	st	X, r25
+
+
+
+UBYTE ComIf_EncodeFromShadowToChannelBuffer(UBYTE ChannelIndex, UBYTE MsgIndex, UBYTE Length, UWORD * OutLength, UBYTE * OutBuffer, UWORD BoundLimit)
+{
+	UBYTE retval = COMIF_EC_NO_ERROR;
+ a96:	80 e0       	ldi	r24, 0x00	; 0
+ a98:	1d c0       	rjmp	.+58     	; 0xad4 <ComIf_EncodeFromShadowToChannelBuffer+0x434>
+		else
+		{
+			retval = COMIF_EC_BUFFER_OVERFLOW;
+
+			/* Report Error */
+			ComIf_ErrorNotify(Channel, COMIF_DEBUG_DATA_BYTES(0, retval, ChannelIndex, MsgIndex), COMIF_DEBUG_DATA_WORDS(TentativeDataLength, BoundLimit));
+ a9a:	ec 81       	ldd	r30, Y+4	; 0x04
+ a9c:	fd 81       	ldd	r31, Y+5	; 0x05
+ a9e:	8f 01       	movw	r16, r30
+ aa0:	20 e0       	ldi	r18, 0x00	; 0
+ aa2:	30 e0       	ldi	r19, 0x00	; 0
+ aa4:	98 01       	movw	r18, r16
+ aa6:	11 27       	eor	r17, r17
+ aa8:	00 27       	eor	r16, r16
+ aaa:	4c 2d       	mov	r20, r12
+ aac:	50 e0       	ldi	r21, 0x00	; 0
+ aae:	60 e0       	ldi	r22, 0x00	; 0
+ ab0:	70 e0       	ldi	r23, 0x00	; 0
+ ab2:	76 2f       	mov	r23, r22
+ ab4:	65 2f       	mov	r22, r21
+ ab6:	54 2f       	mov	r21, r20
+ ab8:	44 27       	eor	r20, r20
+ aba:	62 61       	ori	r22, 0x12	; 18
+ abc:	c7 01       	movw	r24, r14
+ abe:	a0 e0       	ldi	r26, 0x00	; 0
+ ac0:	b0 e0       	ldi	r27, 0x00	; 0
+ ac2:	08 2b       	or	r16, r24
+ ac4:	19 2b       	or	r17, r25
+ ac6:	2a 2b       	or	r18, r26
+ ac8:	3b 2b       	or	r19, r27
+ aca:	f9 81       	ldd	r31, Y+1	; 0x01
+ acc:	4f 2b       	or	r20, r31
+ ace:	c1 01       	movw	r24, r2
+ ad0:	fe da       	rcall	.-2564   	; 0xce <ComIf_ErrorNotify>
+
+			*OutLength = CurrentIndex;
+		}
+		else
+		{
+			retval = COMIF_EC_BUFFER_OVERFLOW;
+ ad2:	82 e1       	ldi	r24, 0x12	; 18
+			ComIf_ErrorNotify(Channel, COMIF_DEBUG_DATA_BYTES(0, retval, ChannelIndex, MsgIndex), COMIF_DEBUG_DATA_WORDS(TentativeDataLength, BoundLimit));
+		}
+	}
+
+	return retval;
+}
+ ad4:	0f 90       	pop	r0
+ ad6:	0f 90       	pop	r0
+ ad8:	0f 90       	pop	r0
+ ada:	0f 90       	pop	r0
+ adc:	0f 90       	pop	r0
+ ade:	df 91       	pop	r29
+ ae0:	cf 91       	pop	r28
+ ae2:	1f 91       	pop	r17
+ ae4:	0f 91       	pop	r16
+ ae6:	ff 90       	pop	r15
+ ae8:	ef 90       	pop	r14
+ aea:	df 90       	pop	r13
+ aec:	cf 90       	pop	r12
+ aee:	bf 90       	pop	r11
+ af0:	af 90       	pop	r10
+ af2:	9f 90       	pop	r9
+ af4:	8f 90       	pop	r8
+ af6:	7f 90       	pop	r7
+ af8:	6f 90       	pop	r6
+ afa:	5f 90       	pop	r5
+ afc:	4f 90       	pop	r4
+ afe:	3f 90       	pop	r3
+ b00:	2f 90       	pop	r2
+ b02:	08 95       	ret
+
+00000b04 <ComIf_Transmit>:
+ * TODO: In Future, This function shall be made Non-Reentrant for the same message.
+ *
+ * Usage Notes: This function shall be called for a channel in a same task to avoid issues.
+ **/
+UBYTE ComIf_Transmit(UBYTE ChannelIndex, UBYTE MsgIndex, void * DataPtr, UBYTE Length)
+{
+ b04:	3f 92       	push	r3
+ b06:	4f 92       	push	r4
+ b08:	5f 92       	push	r5
+ b0a:	6f 92       	push	r6
+ b0c:	7f 92       	push	r7
+ b0e:	8f 92       	push	r8
+ b10:	9f 92       	push	r9
+ b12:	af 92       	push	r10
+ b14:	bf 92       	push	r11
+ b16:	cf 92       	push	r12
+ b18:	df 92       	push	r13
+ b1a:	ef 92       	push	r14
+ b1c:	ff 92       	push	r15
+ b1e:	0f 93       	push	r16
+ b20:	1f 93       	push	r17
+ b22:	cf 93       	push	r28
+ b24:	df 93       	push	r29
+ b26:	00 d0       	rcall	.+0      	; 0xb28 <ComIf_Transmit+0x24>
+ b28:	cd b7       	in	r28, 0x3d	; 61
+ b2a:	de b7       	in	r29, 0x3e	; 62
+ b2c:	48 2e       	mov	r4, r24
+ b2e:	56 2e       	mov	r5, r22
+ b30:	32 2e       	mov	r3, r18
+	/* Copy the Data to the Message specific shadow buffer before processing it any further */
+	/* This function will also acts as a validity checks for the passed arguments */
+	UBYTE retval = ComIf_UpdateTxShadowBuffer(ChannelIndex, MsgIndex, DataPtr, Length);
+ b32:	d7 d0       	rcall	.+430    	; 0xce2 <ComIf_UpdateTxShadowBuffer>
+ b34:	f8 2e       	mov	r15, r24
+
+	if(retval == COMIF_EC_NO_ERROR)
+ b36:	81 11       	cpse	r24, r1
+ b38:	6a c0       	rjmp	.+212    	; 0xc0e <ComIf_Transmit+0x10a>
+	{
+		ComIf_ChannelConfigType * Channel = &ComIf_ChannelConfig[ChannelIndex];
+ b3a:	84 2c       	mov	r8, r4
+ b3c:	91 2c       	mov	r9, r1
+ b3e:	23 e1       	ldi	r18, 0x13	; 19
+ b40:	28 9d       	mul	r18, r8
+ b42:	c0 01       	movw	r24, r0
+ b44:	29 9d       	mul	r18, r9
+ b46:	90 0d       	add	r25, r0
+ b48:	11 24       	eor	r1, r1
+ b4a:	9c 01       	movw	r18, r24
+ b4c:	20 5a       	subi	r18, 0xA0	; 160
+ b4e:	3f 4f       	sbci	r19, 0xFF	; 255
+ b50:	69 01       	movw	r12, r18
+
+		ComIfTxMessageConfig * TxMsgCfg = &(Channel->TxMessages[MsgIndex]);
+ b52:	f9 01       	movw	r30, r18
+ b54:	a2 84       	ldd	r10, Z+10	; 0x0a
+ b56:	b3 84       	ldd	r11, Z+11	; 0x0b
+ b58:	fb e0       	ldi	r31, 0x0B	; 11
+ b5a:	5f 9e       	mul	r5, r31
+ b5c:	a0 0c       	add	r10, r0
+ b5e:	b1 1c       	adc	r11, r1
+ b60:	11 24       	eor	r1, r1
+
+		UWORD RemainingBufferLength = Channel->TxBufferLength; // The whole buffer is available for now
+ b62:	f9 01       	movw	r30, r18
+ b64:	e6 80       	ldd	r14, Z+6	; 0x06
+ b66:	f7 80       	ldd	r15, Z+7	; 0x07
+
+		UBYTE * ChannelDataBuffer = &Channel->TxBuffer[0];
+ b68:	64 80       	ldd	r6, Z+4	; 0x04
+ b6a:	75 80       	ldd	r7, Z+5	; 0x05
+
+		UWORD EncodedLength = 0;
+ b6c:	1a 82       	std	Y+2, r1	; 0x02
+ b6e:	19 82       	std	Y+1, r1	; 0x01
+			 * This flag has two uses:
+			 * 1. Acts as a Mutex by avoid updating of the Channel Data Buffer when this function is called re-entrantly for the same channel
+			 * 2. Acts as a Blocker to avoid updating of the Channel Data Buffer when the channel is communicating, but not completed yet
+			 * So, this check should be in the top of any logic that is to be implemented.
+			 **/
+			if(Channel->ChannelFlags.IsTransmitting == FALSE)
+ b70:	82 89       	ldd	r24, Z+18	; 0x12
+ b72:	84 fd       	sbrc	r24, 4
+ b74:	17 c0       	rjmp	.+46     	; 0xba4 <ComIf_Transmit+0xa0>
+			{
+				Channel->ChannelFlags.IsTransmitting = TRUE;
+ b76:	83 e1       	ldi	r24, 0x13	; 19
+ b78:	88 9d       	mul	r24, r8
+ b7a:	f0 01       	movw	r30, r0
+ b7c:	89 9d       	mul	r24, r9
+ b7e:	f0 0d       	add	r31, r0
+ b80:	11 24       	eor	r1, r1
+ b82:	ee 58       	subi	r30, 0x8E	; 142
+ b84:	ff 4f       	sbci	r31, 0xFF	; 255
+ b86:	80 81       	ld	r24, Z
+ b88:	80 61       	ori	r24, 0x10	; 16
+ b8a:	80 83       	st	Z, r24
+				}
+			}
+		}
+		#endif
+
+		retval = ComIf_EncodeFromShadowToChannelBuffer(ChannelIndex, MsgIndex, Length, &EncodedLength, ChannelDataBuffer, RemainingBufferLength);
+ b8c:	83 01       	movw	r16, r6
+ b8e:	9e 01       	movw	r18, r28
+ b90:	2f 5f       	subi	r18, 0xFF	; 255
+ b92:	3f 4f       	sbci	r19, 0xFF	; 255
+ b94:	43 2d       	mov	r20, r3
+ b96:	65 2d       	mov	r22, r5
+ b98:	84 2d       	mov	r24, r4
+ b9a:	82 dd       	rcall	.-1276   	; 0x6a0 <ComIf_EncodeFromShadowToChannelBuffer>
+ b9c:	f8 2e       	mov	r15, r24
+		// Reset the value to the initial position so that the transmit function copied the data from the start
+		ChannelDataBuffer = &Channel->TxBuffer[0];
+
+		#endif
+
+		if(retval == COMIF_EC_NO_ERROR)
+ b9e:	81 11       	cpse	r24, r1
+ ba0:	19 c0       	rjmp	.+50     	; 0xbd4 <ComIf_Transmit+0xd0>
+ ba2:	02 c0       	rjmp	.+4      	; 0xba8 <ComIf_Transmit+0xa4>
+				Channel->ChannelFlags.IsTransmitting = TRUE;
+			}
+			else
+			{
+				/* Return Channel BUSY if the channel is already transmitting */
+				return COMIF_EC_CHANNEL_BUSY;
+ ba4:	81 e0       	ldi	r24, 0x01	; 1
+ ba6:	4a c0       	rjmp	.+148    	; 0xc3c <ComIf_Transmit+0x138>
+
+		#endif
+
+		if(retval == COMIF_EC_NO_ERROR)
+		{
+			retval = Channel->Transmit(EncodedLength, ChannelDataBuffer);
+ ba8:	83 e1       	ldi	r24, 0x13	; 19
+ baa:	88 9d       	mul	r24, r8
+ bac:	f0 01       	movw	r30, r0
+ bae:	89 9d       	mul	r24, r9
+ bb0:	f0 0d       	add	r31, r0
+ bb2:	11 24       	eor	r1, r1
+ bb4:	e0 5a       	subi	r30, 0xA0	; 160
+ bb6:	ff 4f       	sbci	r31, 0xFF	; 255
+ bb8:	01 90       	ld	r0, Z+
+ bba:	f0 81       	ld	r31, Z
+ bbc:	e0 2d       	mov	r30, r0
+ bbe:	b3 01       	movw	r22, r6
+ bc0:	89 81       	ldd	r24, Y+1	; 0x01
+ bc2:	9a 81       	ldd	r25, Y+2	; 0x02
+ bc4:	09 95       	icall
+ bc6:	f8 2e       	mov	r15, r24
+
+			// Channel data buffer has been transmitted properly, then set the PendingConfirmation flag for the sent message
+			if(retval == COMIF_EC_NO_ERROR)
+ bc8:	81 11       	cpse	r24, r1
+ bca:	04 c0       	rjmp	.+8      	; 0xbd4 <ComIf_Transmit+0xd0>
+			{
+				TxMsgCfg->TxFlags.PendingForConfirmation = TRUE;
+ bcc:	f5 01       	movw	r30, r10
+ bce:	84 81       	ldd	r24, Z+4	; 0x04
+ bd0:	80 61       	ori	r24, 0x10	; 16
+ bd2:	84 83       	std	Z+4, r24	; 0x04
+			// Do Nothing
+		}
+
+
+		/* If there are problems in transmitting the data buffer in the channel */
+		if(retval != COMIF_EC_NO_ERROR)
+ bd4:	ff 20       	and	r15, r15
+ bd6:	c9 f0       	breq	.+50     	; 0xc0a <ComIf_Transmit+0x106>
+		{
+			/* Clear the Transmitting flag as there is an error */
+			Channel->ChannelFlags.IsTransmitting = FALSE;
+ bd8:	83 e1       	ldi	r24, 0x13	; 19
+ bda:	88 9d       	mul	r24, r8
+ bdc:	f0 01       	movw	r30, r0
+ bde:	89 9d       	mul	r24, r9
+ be0:	f0 0d       	add	r31, r0
+ be2:	11 24       	eor	r1, r1
+ be4:	ee 58       	subi	r30, 0x8E	; 142
+ be6:	ff 4f       	sbci	r31, 0xFF	; 255
+ be8:	80 81       	ld	r24, Z
+ bea:	8f 7e       	andi	r24, 0xEF	; 239
+ bec:	80 83       	st	Z, r24
+			 * If there are any errors in the transmission of aggregated messages, then do not update the contents AggregatedInBuffer flag
+			 * or clear the buffer, keep the aggregated messages in the buffer and attempt retrying in the next task cycle
+			 **/
+
+			/* Report Error */
+			ComIf_ErrorNotify(Channel, retval, COMIF_DEBUG_DATA_WORDS(ChannelIndex, MsgIndex));
+ bee:	04 2d       	mov	r16, r4
+ bf0:	10 e0       	ldi	r17, 0x00	; 0
+ bf2:	20 e0       	ldi	r18, 0x00	; 0
+ bf4:	30 e0       	ldi	r19, 0x00	; 0
+ bf6:	98 01       	movw	r18, r16
+ bf8:	11 27       	eor	r17, r17
+ bfa:	00 27       	eor	r16, r16
+ bfc:	05 29       	or	r16, r5
+ bfe:	4f 2d       	mov	r20, r15
+ c00:	50 e0       	ldi	r21, 0x00	; 0
+ c02:	60 e0       	ldi	r22, 0x00	; 0
+ c04:	70 e0       	ldi	r23, 0x00	; 0
+ c06:	c6 01       	movw	r24, r12
+ c08:	62 da       	rcall	.-2876   	; 0xce <ComIf_ErrorNotify>
+ c0a:	8f 2d       	mov	r24, r15
+ c0c:	17 c0       	rjmp	.+46     	; 0xc3c <ComIf_Transmit+0x138>
+	#endif
+	}
+    else
+    {
+    	/* If atleast the channel is valid, then report the channel specific error */
+    	if(ChannelIndex < C_ComIfChannel_TOTAL)
+ c0e:	41 10       	cpse	r4, r1
+ c10:	15 c0       	rjmp	.+42     	; 0xc3c <ComIf_Transmit+0x138>
+    	{
+    		ComIf_ChannelConfigType * Channel = &ComIf_ChannelConfig[ChannelIndex];
+ c12:	f3 e1       	ldi	r31, 0x13	; 19
+ c14:	4f 9e       	mul	r4, r31
+ c16:	c0 01       	movw	r24, r0
+ c18:	11 24       	eor	r1, r1
+
+    		/* Report Error */
+    		ComIf_ErrorNotify(Channel, retval, COMIF_DEBUG_DATA_WORDS(ChannelIndex, MsgIndex));
+ c1a:	04 2d       	mov	r16, r4
+ c1c:	10 e0       	ldi	r17, 0x00	; 0
+ c1e:	20 e0       	ldi	r18, 0x00	; 0
+ c20:	30 e0       	ldi	r19, 0x00	; 0
+ c22:	98 01       	movw	r18, r16
+ c24:	11 27       	eor	r17, r17
+ c26:	00 27       	eor	r16, r16
+ c28:	05 29       	or	r16, r5
+ c2a:	4f 2d       	mov	r20, r15
+ c2c:	50 e0       	ldi	r21, 0x00	; 0
+ c2e:	60 e0       	ldi	r22, 0x00	; 0
+ c30:	70 e0       	ldi	r23, 0x00	; 0
+ c32:	80 5a       	subi	r24, 0xA0	; 160
+ c34:	9f 4f       	sbci	r25, 0xFF	; 255
+ c36:	4b da       	rcall	.-2922   	; 0xce <ComIf_ErrorNotify>
+ **/
+UBYTE ComIf_Transmit(UBYTE ChannelIndex, UBYTE MsgIndex, void * DataPtr, UBYTE Length)
+{
+	/* Copy the Data to the Message specific shadow buffer before processing it any further */
+	/* This function will also acts as a validity checks for the passed arguments */
+	UBYTE retval = ComIf_UpdateTxShadowBuffer(ChannelIndex, MsgIndex, DataPtr, Length);
+ c38:	8f 2d       	mov	r24, r15
+ c3a:	00 c0       	rjmp	.+0      	; 0xc3c <ComIf_Transmit+0x138>
+    		ComIf_ErrorNotify(Channel, retval, COMIF_DEBUG_DATA_WORDS(ChannelIndex, MsgIndex));
+    	}
+    }
+
+	return retval;
+}
+ c3c:	0f 90       	pop	r0
+ c3e:	0f 90       	pop	r0
+ c40:	df 91       	pop	r29
+ c42:	cf 91       	pop	r28
+ c44:	1f 91       	pop	r17
+ c46:	0f 91       	pop	r16
+ c48:	ff 90       	pop	r15
+ c4a:	ef 90       	pop	r14
+ c4c:	df 90       	pop	r13
+ c4e:	cf 90       	pop	r12
+ c50:	bf 90       	pop	r11
+ c52:	af 90       	pop	r10
+ c54:	9f 90       	pop	r9
+ c56:	8f 90       	pop	r8
+ c58:	7f 90       	pop	r7
+ c5a:	6f 90       	pop	r6
+ c5c:	5f 90       	pop	r5
+ c5e:	4f 90       	pop	r4
+ c60:	3f 90       	pop	r3
+ c62:	08 95       	ret
+
+00000c64 <ComIf_TxConfirmation>:
+
+
+/* This will be called when the last message transmissions was successful */
+void ComIf_TxConfirmation(UBYTE ChannelIndex)
+{
+ c64:	0f 93       	push	r16
+ c66:	1f 93       	push	r17
+ c68:	cf 93       	push	r28
+	if(ChannelIndex < C_ComIfChannel_TOTAL)
+ c6a:	81 11       	cpse	r24, r1
+ c6c:	36 c0       	rjmp	.+108    	; 0xcda <ComIf_TxConfirmation+0x76>
+	{
+		ComIf_ChannelConfigType * Channel = &ComIf_ChannelConfig[ChannelIndex];
+ c6e:	08 2f       	mov	r16, r24
+ c70:	10 e0       	ldi	r17, 0x00	; 0
+
+		ComIf_Lock_Transmit();
+		Channel->ChannelFlags.IsTransmitting = FALSE;
+ c72:	83 e1       	ldi	r24, 0x13	; 19
+ c74:	80 9f       	mul	r24, r16
+ c76:	f0 01       	movw	r30, r0
+ c78:	81 9f       	mul	r24, r17
+ c7a:	f0 0d       	add	r31, r0
+ c7c:	11 24       	eor	r1, r1
+ c7e:	ee 58       	subi	r30, 0x8E	; 142
+ c80:	ff 4f       	sbci	r31, 0xFF	; 255
+ c82:	80 81       	ld	r24, Z
+ c84:	8f 7e       	andi	r24, 0xEF	; 239
+ c86:	80 83       	st	Z, r24
+		ComIf_UnLock_Transmit();
+		
+		for(UB i = 0; i < Channel->TotalTxMessages; i++)
+ c88:	c0 e0       	ldi	r28, 0x00	; 0
+ c8a:	1c c0       	rjmp	.+56     	; 0xcc4 <ComIf_TxConfirmation+0x60>
+		{
+			ComIfTxMessageConfig * TxMsgCfg = &(Channel->TxMessages[i]);
+ c8c:	83 e1       	ldi	r24, 0x13	; 19
+ c8e:	80 9f       	mul	r24, r16
+ c90:	f0 01       	movw	r30, r0
+ c92:	81 9f       	mul	r24, r17
+ c94:	f0 0d       	add	r31, r0
+ c96:	11 24       	eor	r1, r1
+ c98:	e0 5a       	subi	r30, 0xA0	; 160
+ c9a:	ff 4f       	sbci	r31, 0xFF	; 255
+ c9c:	02 84       	ldd	r0, Z+10	; 0x0a
+ c9e:	f3 85       	ldd	r31, Z+11	; 0x0b
+ ca0:	e0 2d       	mov	r30, r0
+ ca2:	8b e0       	ldi	r24, 0x0B	; 11
+ ca4:	c8 9f       	mul	r28, r24
+ ca6:	e0 0d       	add	r30, r0
+ ca8:	f1 1d       	adc	r31, r1
+ caa:	11 24       	eor	r1, r1
+
+			if(TxMsgCfg->TxFlags.PendingForConfirmation == TRUE)
+ cac:	84 81       	ldd	r24, Z+4	; 0x04
+ cae:	84 ff       	sbrs	r24, 4
+ cb0:	08 c0       	rjmp	.+16     	; 0xcc2 <ComIf_TxConfirmation+0x5e>
+			{
+				TxMsgCfg->TxFlags.PendingForConfirmation = FALSE;
+ cb2:	8f 7e       	andi	r24, 0xEF	; 239
+ cb4:	84 83       	std	Z+4, r24	; 0x04
+				
+				if(TxMsgCfg->TxConfCallback != NULL)
+ cb6:	07 80       	ldd	r0, Z+7	; 0x07
+ cb8:	f0 85       	ldd	r31, Z+8	; 0x08
+ cba:	e0 2d       	mov	r30, r0
+ cbc:	30 97       	sbiw	r30, 0x00	; 0
+ cbe:	09 f0       	breq	.+2      	; 0xcc2 <ComIf_TxConfirmation+0x5e>
+				{
+					TxMsgCfg->TxConfCallback();
+ cc0:	09 95       	icall
+
+		ComIf_Lock_Transmit();
+		Channel->ChannelFlags.IsTransmitting = FALSE;
+		ComIf_UnLock_Transmit();
+		
+		for(UB i = 0; i < Channel->TotalTxMessages; i++)
+ cc2:	cf 5f       	subi	r28, 0xFF	; 255
+ cc4:	83 e1       	ldi	r24, 0x13	; 19
+ cc6:	80 9f       	mul	r24, r16
+ cc8:	f0 01       	movw	r30, r0
+ cca:	81 9f       	mul	r24, r17
+ ccc:	f0 0d       	add	r31, r0
+ cce:	11 24       	eor	r1, r1
+ cd0:	e0 5a       	subi	r30, 0xA0	; 160
+ cd2:	ff 4f       	sbci	r31, 0xFF	; 255
+ cd4:	84 85       	ldd	r24, Z+12	; 0x0c
+ cd6:	c8 17       	cp	r28, r24
+ cd8:	c8 f2       	brcs	.-78     	; 0xc8c <ComIf_TxConfirmation+0x28>
+					TxMsgCfg->TxConfCallback();
+				}
+			}
+		}
+	}
+}
+ cda:	cf 91       	pop	r28
+ cdc:	1f 91       	pop	r17
+ cde:	0f 91       	pop	r16
+ ce0:	08 95       	ret
+
+00000ce2 <ComIf_UpdateTxShadowBuffer>:
+    return BufPtr;
+}
+
+/* Function to Update the Shadow Buffer */
+UBYTE ComIf_UpdateTxShadowBuffer(UBYTE ChannelIndex, UBYTE MsgIndex, void * DataPtr, UBYTE Length)
+{
+ ce2:	ef 92       	push	r14
+ ce4:	ff 92       	push	r15
+ ce6:	0f 93       	push	r16
+ ce8:	1f 93       	push	r17
+ cea:	cf 93       	push	r28
+ cec:	df 93       	push	r29
+ cee:	1f 92       	push	r1
+ cf0:	cd b7       	in	r28, 0x3d	; 61
+ cf2:	de b7       	in	r29, 0x3e	; 62
+ cf4:	29 83       	std	Y+1, r18	; 0x01
+	UBYTE retval = COMIF_EC_GENERIC_ERROR;
+
+	if(ChannelIndex < C_ComIfChannel_TOTAL)
+ cf6:	81 11       	cpse	r24, r1
+ cf8:	5a c0       	rjmp	.+180    	; 0xdae <ComIf_UpdateTxShadowBuffer+0xcc>
+	{
+		ComIf_ChannelConfigType * Channel = &ComIf_ChannelConfig[ChannelIndex];
+ cfa:	90 e0       	ldi	r25, 0x00	; 0
+
+		if(MsgIndex < Channel->TotalTxMessages)
+ cfc:	23 e1       	ldi	r18, 0x13	; 19
+ cfe:	28 9f       	mul	r18, r24
+ d00:	f0 01       	movw	r30, r0
+ d02:	29 9f       	mul	r18, r25
+ d04:	f0 0d       	add	r31, r0
+ d06:	11 24       	eor	r1, r1
+ d08:	e0 5a       	subi	r30, 0xA0	; 160
+ d0a:	ff 4f       	sbci	r31, 0xFF	; 255
+ d0c:	24 85       	ldd	r18, Z+12	; 0x0c
+ d0e:	62 17       	cp	r22, r18
+ d10:	08 f0       	brcs	.+2      	; 0xd14 <ComIf_UpdateTxShadowBuffer+0x32>
+ d12:	4f c0       	rjmp	.+158    	; 0xdb2 <ComIf_UpdateTxShadowBuffer+0xd0>
+		{
+			ComIfTxMessageConfig * TxMsgCfg = &(Channel->TxMessages[MsgIndex]);
+ d14:	23 e1       	ldi	r18, 0x13	; 19
+ d16:	28 9f       	mul	r18, r24
+ d18:	f0 01       	movw	r30, r0
+ d1a:	29 9f       	mul	r18, r25
+ d1c:	f0 0d       	add	r31, r0
+ d1e:	11 24       	eor	r1, r1
+ d20:	e0 5a       	subi	r30, 0xA0	; 160
+ d22:	ff 4f       	sbci	r31, 0xFF	; 255
+ d24:	e2 84       	ldd	r14, Z+10	; 0x0a
+ d26:	f3 84       	ldd	r15, Z+11	; 0x0b
+ d28:	2b e0       	ldi	r18, 0x0B	; 11
+ d2a:	62 9f       	mul	r22, r18
+ d2c:	e0 0c       	add	r14, r0
+ d2e:	f1 1c       	adc	r15, r1
+ d30:	11 24       	eor	r1, r1
+
+			if(
+		#if (COMIF_MAX_SUPPORTED_DLC < 255)
+				((TxMsgCfg->Length <= COMIF_MAX_SUPPORTED_DLC) && (Length == TxMsgCfg->Length))
+		#else
+				(Length == TxMsgCfg->Length)
+ d32:	d7 01       	movw	r26, r14
+ d34:	11 96       	adiw	r26, 0x01	; 1
+ d36:	2c 91       	ld	r18, X
+ d38:	39 81       	ldd	r19, Y+1	; 0x01
+
+		if(MsgIndex < Channel->TotalTxMessages)
+		{
+			ComIfTxMessageConfig * TxMsgCfg = &(Channel->TxMessages[MsgIndex]);
+
+			if(
+ d3a:	23 17       	cp	r18, r19
+ d3c:	79 f0       	breq	.+30     	; 0xd5c <ComIf_UpdateTxShadowBuffer+0x7a>
+				((TxMsgCfg->Length <= COMIF_MAX_SUPPORTED_DLC) && (Length == TxMsgCfg->Length))
+		#else
+				(Length == TxMsgCfg->Length)
+		#endif
+		#ifdef COMIF_DYNAMIC_DATA_LENGTH_ENABLED
+			 || ((TxMsgCfg->Length == 0) && (Length != 0) && (Length <= Channel->DynamicMaxDataLength))
+ d3e:	21 11       	cpse	r18, r1
+ d40:	3a c0       	rjmp	.+116    	; 0xdb6 <ComIf_UpdateTxShadowBuffer+0xd4>
+ d42:	33 23       	and	r19, r19
+ d44:	d1 f1       	breq	.+116    	; 0xdba <ComIf_UpdateTxShadowBuffer+0xd8>
+ d46:	23 e1       	ldi	r18, 0x13	; 19
+ d48:	28 9f       	mul	r18, r24
+ d4a:	f0 01       	movw	r30, r0
+ d4c:	29 9f       	mul	r18, r25
+ d4e:	f0 0d       	add	r31, r0
+ d50:	11 24       	eor	r1, r1
+ d52:	e0 5a       	subi	r30, 0xA0	; 160
+ d54:	ff 4f       	sbci	r31, 0xFF	; 255
+ d56:	80 85       	ldd	r24, Z+8	; 0x08
+ d58:	83 17       	cp	r24, r19
+ d5a:	88 f1       	brcs	.+98     	; 0xdbe <ComIf_UpdateTxShadowBuffer+0xdc>
+ d5c:	8a 01       	movw	r16, r20
+			)
+			{
+				int i = 0;
+
+				/* Check if the data needs to be updated from the TxCbk */
+				if(TxMsgCfg->TxCallback != NULL)
+ d5e:	d7 01       	movw	r26, r14
+ d60:	19 96       	adiw	r26, 0x09	; 9
+ d62:	ed 91       	ld	r30, X+
+ d64:	fc 91       	ld	r31, X
+ d66:	1a 97       	sbiw	r26, 0x0a	; 10
+ d68:	30 97       	sbiw	r30, 0x00	; 0
+ d6a:	31 f0       	breq	.+12     	; 0xd78 <ComIf_UpdateTxShadowBuffer+0x96>
+				{
+					retval = TxMsgCfg->TxCallback((UBYTE*)DataPtr, &Length);
+ d6c:	be 01       	movw	r22, r28
+ d6e:	6f 5f       	subi	r22, 0xFF	; 255
+ d70:	7f 4f       	sbci	r23, 0xFF	; 255
+ d72:	ca 01       	movw	r24, r20
+ d74:	09 95       	icall
+ d76:	01 c0       	rjmp	.+2      	; 0xd7a <ComIf_UpdateTxShadowBuffer+0x98>
+				}
+				else
+				{
+					retval = COMIF_EC_NO_ERROR;
+ d78:	80 e0       	ldi	r24, 0x00	; 0
+				}
+
+				if(retval == COMIF_EC_NO_ERROR)
+ d7a:	88 23       	and	r24, r24
+ d7c:	81 f0       	breq	.+32     	; 0xd9e <ComIf_UpdateTxShadowBuffer+0xbc>
+ d7e:	20 c0       	rjmp	.+64     	; 0xdc0 <ComIf_UpdateTxShadowBuffer+0xde>
+				{
+					ComIf_Lock_TxShadowBuffer();
+					/* Copy Data */
+					for(i = 0; i < Length; i++)
+					{
+						TxMsgCfg->ShadowBuffer[i] = ((UBYTE*)DataPtr)[i];
+ d80:	d7 01       	movw	r26, r14
+ d82:	15 96       	adiw	r26, 0x05	; 5
+ d84:	ed 91       	ld	r30, X+
+ d86:	fc 91       	ld	r31, X
+ d88:	16 97       	sbiw	r26, 0x06	; 6
+ d8a:	e2 0f       	add	r30, r18
+ d8c:	f3 1f       	adc	r31, r19
+ d8e:	d8 01       	movw	r26, r16
+ d90:	a2 0f       	add	r26, r18
+ d92:	b3 1f       	adc	r27, r19
+ d94:	9c 91       	ld	r25, X
+ d96:	90 83       	st	Z, r25
+
+				if(retval == COMIF_EC_NO_ERROR)
+				{
+					ComIf_Lock_TxShadowBuffer();
+					/* Copy Data */
+					for(i = 0; i < Length; i++)
+ d98:	2f 5f       	subi	r18, 0xFF	; 255
+ d9a:	3f 4f       	sbci	r19, 0xFF	; 255
+ d9c:	02 c0       	rjmp	.+4      	; 0xda2 <ComIf_UpdateTxShadowBuffer+0xc0>
+ d9e:	20 e0       	ldi	r18, 0x00	; 0
+ da0:	30 e0       	ldi	r19, 0x00	; 0
+ da2:	49 81       	ldd	r20, Y+1	; 0x01
+ da4:	50 e0       	ldi	r21, 0x00	; 0
+ da6:	24 17       	cp	r18, r20
+ da8:	35 07       	cpc	r19, r21
+ daa:	54 f3       	brlt	.-44     	; 0xd80 <ComIf_UpdateTxShadowBuffer+0x9e>
+ dac:	09 c0       	rjmp	.+18     	; 0xdc0 <ComIf_UpdateTxShadowBuffer+0xde>
+			retval = COMIF_EC_INVALID_MSG;
+		}
+	}
+	else
+	{
+		retval = COMIF_EC_INVALID_CHANNEL;
+ dae:	81 e1       	ldi	r24, 0x11	; 17
+ db0:	07 c0       	rjmp	.+14     	; 0xdc0 <ComIf_UpdateTxShadowBuffer+0xde>
+				retval = COMIF_EC_INVALID_DLC;
+			}
+		}
+		else
+		{
+			retval = COMIF_EC_INVALID_MSG;
+ db2:	80 e1       	ldi	r24, 0x10	; 16
+ db4:	05 c0       	rjmp	.+10     	; 0xdc0 <ComIf_UpdateTxShadowBuffer+0xde>
+					retval = COMIF_EC_NO_ERROR;
+				}
+			}
+			else
+			{
+				retval = COMIF_EC_INVALID_DLC;
+ db6:	8e e0       	ldi	r24, 0x0E	; 14
+ db8:	03 c0       	rjmp	.+6      	; 0xdc0 <ComIf_UpdateTxShadowBuffer+0xde>
+ dba:	8e e0       	ldi	r24, 0x0E	; 14
+ dbc:	01 c0       	rjmp	.+2      	; 0xdc0 <ComIf_UpdateTxShadowBuffer+0xde>
+ dbe:	8e e0       	ldi	r24, 0x0E	; 14
+	{
+		retval = COMIF_EC_INVALID_CHANNEL;
+	}
+
+	return retval;
+}
+ dc0:	0f 90       	pop	r0
+ dc2:	df 91       	pop	r29
+ dc4:	cf 91       	pop	r28
+ dc6:	1f 91       	pop	r17
+ dc8:	0f 91       	pop	r16
+ dca:	ff 90       	pop	r15
+ dcc:	ef 90       	pop	r14
+ dce:	08 95       	ret
+
+00000dd0 <STM32_ComIf_ErrorNotification>:
+/**********************************************************/
+
+
+
+void STM32_ComIf_ErrorNotification(ULONG Debug0, ULONG Debug1)
+{
+ dd0:	08 95       	ret
+
+00000dd2 <STM32_Transmit>:
+	
+}
+
+UBYTE STM32_Transmit(UWORD Length, void * Data)
+{
+ dd2:	cf 92       	push	r12
+ dd4:	df 92       	push	r13
+ dd6:	ef 92       	push	r14
+ dd8:	ff 92       	push	r15
+ dda:	1f 93       	push	r17
+ ddc:	cf 93       	push	r28
+ dde:	df 93       	push	r29
+ de0:	7c 01       	movw	r14, r24
+	UBYTE retval = COMIF_EC_GENERIC_ERROR;
+	
+	if(IsUartCommunicationOkay == TRUE)
+ de2:	80 91 ba 00 	lds	r24, 0x00BA	; 0x8000ba <__data_end>
+ de6:	81 30       	cpi	r24, 0x01	; 1
+ de8:	29 f5       	brne	.+74     	; 0xe34 <STM32_Transmit+0x62>
+	{
+		if(IsUartBusBusy == FALSE)
+ dea:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <IsUartBusBusy>
+ dee:	88 23       	and	r24, r24
+ df0:	91 f0       	breq	.+36     	; 0xe16 <STM32_Transmit+0x44>
+			IsUartBusBusy = FALSE;
+			
+		}
+		else
+		{
+			retval = COMIF_EC_CHANNEL_BUSY;
+ df2:	11 e0       	ldi	r17, 0x01	; 1
+ df4:	20 c0       	rjmp	.+64     	; 0xe36 <STM32_Transmit+0x64>
+	{
+		if(IsUartBusBusy == FALSE)
+		{
+			for(int i=0;i<Length;i++)
+			{
+				if(uart_tx(*((UB*)(Data++))))
+ df6:	6b 01       	movw	r12, r22
+ df8:	8f ef       	ldi	r24, 0xFF	; 255
+ dfa:	c8 1a       	sub	r12, r24
+ dfc:	d8 0a       	sbc	r13, r24
+ dfe:	fb 01       	movw	r30, r22
+ e00:	80 81       	ld	r24, Z
+ e02:	3c d9       	rcall	.-3464   	; 0x7c <uart_tx>
+ e04:	88 23       	and	r24, r24
+ e06:	71 f0       	breq	.+28     	; 0xe24 <STM32_Transmit+0x52>
+				{
+					retval = COMIF_EC_TRANSMISSION_ABORTED;
+					break;
+				}
+				
+				IsUartBusBusy = TRUE;
+ e08:	81 e0       	ldi	r24, 0x01	; 1
+ e0a:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <IsUartBusBusy>
+	
+	if(IsUartCommunicationOkay == TRUE)
+	{
+		if(IsUartBusBusy == FALSE)
+		{
+			for(int i=0;i<Length;i++)
+ e0e:	21 96       	adiw	r28, 0x01	; 1
+			{
+				if(uart_tx(*((UB*)(Data++))))
+				{
+					retval = COMIF_EC_NO_ERROR;
+ e10:	10 e0       	ldi	r17, 0x00	; 0
+	{
+		if(IsUartBusBusy == FALSE)
+		{
+			for(int i=0;i<Length;i++)
+			{
+				if(uart_tx(*((UB*)(Data++))))
+ e12:	b6 01       	movw	r22, r12
+ e14:	03 c0       	rjmp	.+6      	; 0xe1c <STM32_Transmit+0x4a>
+ e16:	c0 e0       	ldi	r28, 0x00	; 0
+ e18:	d0 e0       	ldi	r29, 0x00	; 0
+ e1a:	14 e1       	ldi	r17, 0x14	; 20
+	
+	if(IsUartCommunicationOkay == TRUE)
+	{
+		if(IsUartBusBusy == FALSE)
+		{
+			for(int i=0;i<Length;i++)
+ e1c:	ce 15       	cp	r28, r14
+ e1e:	df 05       	cpc	r29, r15
+ e20:	50 f3       	brcs	.-44     	; 0xdf6 <STM32_Transmit+0x24>
+ e22:	01 c0       	rjmp	.+2      	; 0xe26 <STM32_Transmit+0x54>
+				{
+					retval = COMIF_EC_NO_ERROR;
+				}
+				else
+				{
+					retval = COMIF_EC_TRANSMISSION_ABORTED;
+ e24:	13 e1       	ldi	r17, 0x13	; 19
+				}
+				
+				IsUartBusBusy = TRUE;
+			}
+			
+			if(retval == COMIF_EC_NO_ERROR)
+ e26:	11 11       	cpse	r17, r1
+ e28:	02 c0       	rjmp	.+4      	; 0xe2e <STM32_Transmit+0x5c>
+			{
+				ComIf_TxConfirmation(C_ComIfChannel_STM32); 
+ e2a:	80 e0       	ldi	r24, 0x00	; 0
+ e2c:	1b df       	rcall	.-458    	; 0xc64 <ComIf_TxConfirmation>
+			}
+			
+			IsUartBusBusy = FALSE;
+ e2e:	10 92 bb 00 	sts	0x00BB, r1	; 0x8000bb <IsUartBusBusy>
+ e32:	01 c0       	rjmp	.+2      	; 0xe36 <STM32_Transmit+0x64>
+	
+}
+
+UBYTE STM32_Transmit(UWORD Length, void * Data)
+{
+	UBYTE retval = COMIF_EC_GENERIC_ERROR;
+ e34:	14 e1       	ldi	r17, 0x14	; 20
+			retval = COMIF_EC_CHANNEL_BUSY;
+		}
+	}
+	
+	return retval;
+}
+ e36:	81 2f       	mov	r24, r17
+ e38:	df 91       	pop	r29
+ e3a:	cf 91       	pop	r28
+ e3c:	1f 91       	pop	r17
+ e3e:	ff 90       	pop	r15
+ e40:	ef 90       	pop	r14
+ e42:	df 90       	pop	r13
+ e44:	cf 90       	pop	r12
+ e46:	08 95       	ret
+
+00000e48 <IO_cmdData_AVRRxcbk>:
+
+void IO_cmdData_AVRRxcbk(UBYTE Length, UBYTE *Data)
+{
+	AVR_IO_Control_ST *Buff = &IO_cmdData_AVR;
+		
+	if(Length == ComIf_GetLength_STM32_IO_cmdData_AVR())
+ e48:	82 30       	cpi	r24, 0x02	; 2
+ e4a:	79 f4       	brne	.+30     	; 0xe6a <IO_cmdData_AVRRxcbk+0x22>
+ e4c:	0b c0       	rjmp	.+22     	; 0xe64 <IO_cmdData_AVRRxcbk+0x1c>
+	{
+		for(UBYTE i = 0;i < Length;i++)
+		{
+			Buff->Bytes[i] = *(Data++);
+ e4e:	e9 2f       	mov	r30, r25
+ e50:	f0 e0       	ldi	r31, 0x00	; 0
+ e52:	db 01       	movw	r26, r22
+ e54:	2c 91       	ld	r18, X
+ e56:	e2 54       	subi	r30, 0x42	; 66
+ e58:	ff 4f       	sbci	r31, 0xFF	; 255
+ e5a:	20 83       	st	Z, r18
+{
+	AVR_IO_Control_ST *Buff = &IO_cmdData_AVR;
+		
+	if(Length == ComIf_GetLength_STM32_IO_cmdData_AVR())
+	{
+		for(UBYTE i = 0;i < Length;i++)
+ e5c:	9f 5f       	subi	r25, 0xFF	; 255
+		{
+			Buff->Bytes[i] = *(Data++);
+ e5e:	6f 5f       	subi	r22, 0xFF	; 255
+ e60:	7f 4f       	sbci	r23, 0xFF	; 255
+ e62:	01 c0       	rjmp	.+2      	; 0xe66 <IO_cmdData_AVRRxcbk+0x1e>
+ e64:	90 e0       	ldi	r25, 0x00	; 0
+{
+	AVR_IO_Control_ST *Buff = &IO_cmdData_AVR;
+		
+	if(Length == ComIf_GetLength_STM32_IO_cmdData_AVR())
+	{
+		for(UBYTE i = 0;i < Length;i++)
+ e66:	98 17       	cp	r25, r24
+ e68:	90 f3       	brcs	.-28     	; 0xe4e <IO_cmdData_AVRRxcbk+0x6>
+ e6a:	08 95       	ret
+
+00000e6c <DTMF_Command_DataRxCbk>:
+
+void DTMF_Command_DataRxCbk(UBYTE Length, UBYTE *Data)
+{
+	DTMF_Command_Data_ST *Buff = &DTMFCommandData;
+		
+	if(Length == ComIf_GetLength_STM32_DTMF_Command_Data())
+ e6c:	82 30       	cpi	r24, 0x02	; 2
+ e6e:	79 f4       	brne	.+30     	; 0xe8e <DTMF_Command_DataRxCbk+0x22>
+ e70:	0b c0       	rjmp	.+22     	; 0xe88 <DTMF_Command_DataRxCbk+0x1c>
+	{
+		for(UBYTE i = 0;i < Length;i++)
+		{
+			Buff->Bytes[i] = *(Data++);
+ e72:	e9 2f       	mov	r30, r25
+ e74:	f0 e0       	ldi	r31, 0x00	; 0
+ e76:	db 01       	movw	r26, r22
+ e78:	2c 91       	ld	r18, X
+ e7a:	e4 50       	subi	r30, 0x04	; 4
+ e7c:	ff 4f       	sbci	r31, 0xFF	; 255
+ e7e:	20 83       	st	Z, r18
+{
+	DTMF_Command_Data_ST *Buff = &DTMFCommandData;
+		
+	if(Length == ComIf_GetLength_STM32_DTMF_Command_Data())
+	{
+		for(UBYTE i = 0;i < Length;i++)
+ e80:	9f 5f       	subi	r25, 0xFF	; 255
+		{
+			Buff->Bytes[i] = *(Data++);
+ e82:	6f 5f       	subi	r22, 0xFF	; 255
+ e84:	7f 4f       	sbci	r23, 0xFF	; 255
+ e86:	01 c0       	rjmp	.+2      	; 0xe8a <DTMF_Command_DataRxCbk+0x1e>
+ e88:	90 e0       	ldi	r25, 0x00	; 0
+{
+	DTMF_Command_Data_ST *Buff = &DTMFCommandData;
+		
+	if(Length == ComIf_GetLength_STM32_DTMF_Command_Data())
+	{
+		for(UBYTE i = 0;i < Length;i++)
+ e8a:	98 17       	cp	r25, r24
+ e8c:	90 f3       	brcs	.-28     	; 0xe72 <DTMF_Command_DataRxCbk+0x6>
+ e8e:	08 95       	ret
+
+00000e90 <Stored_MobNumsRxCbk>:
+
+void Stored_MobNumsRxCbk(UBYTE Length, UBYTE *Data)
+{
+	DTMF_Command_Data_ST *Buff = &DTMFCommandData;
+	
+	if(Length == ComIf_GetLength_STM32_DTMF_Command_Data())
+ e90:	82 30       	cpi	r24, 0x02	; 2
+ e92:	79 f4       	brne	.+30     	; 0xeb2 <Stored_MobNumsRxCbk+0x22>
+ e94:	0b c0       	rjmp	.+22     	; 0xeac <Stored_MobNumsRxCbk+0x1c>
+	{
+		for(UBYTE i = 0;i < Length;i++)
+		{
+			Buff->Bytes[i] = *(Data++);
+ e96:	e9 2f       	mov	r30, r25
+ e98:	f0 e0       	ldi	r31, 0x00	; 0
+ e9a:	db 01       	movw	r26, r22
+ e9c:	2c 91       	ld	r18, X
+ e9e:	e4 50       	subi	r30, 0x04	; 4
+ ea0:	ff 4f       	sbci	r31, 0xFF	; 255
+ ea2:	20 83       	st	Z, r18
+{
+	DTMF_Command_Data_ST *Buff = &DTMFCommandData;
+	
+	if(Length == ComIf_GetLength_STM32_DTMF_Command_Data())
+	{
+		for(UBYTE i = 0;i < Length;i++)
+ ea4:	9f 5f       	subi	r25, 0xFF	; 255
+		{
+			Buff->Bytes[i] = *(Data++);
+ ea6:	6f 5f       	subi	r22, 0xFF	; 255
+ ea8:	7f 4f       	sbci	r23, 0xFF	; 255
+ eaa:	01 c0       	rjmp	.+2      	; 0xeae <Stored_MobNumsRxCbk+0x1e>
+ eac:	90 e0       	ldi	r25, 0x00	; 0
+{
+	DTMF_Command_Data_ST *Buff = &DTMFCommandData;
+	
+	if(Length == ComIf_GetLength_STM32_DTMF_Command_Data())
+	{
+		for(UBYTE i = 0;i < Length;i++)
+ eae:	98 17       	cp	r25, r24
+ eb0:	90 f3       	brcs	.-28     	; 0xe96 <Stored_MobNumsRxCbk+0x6>
+ eb2:	08 95       	ret
+
+00000eb4 <ComIf_RxIndication_STM32>:
+/***************************************************/
+/* Channel Specific Rx Indication Functions */
+
+UBYTE ComIf_RxIndication_STM32(UBYTE DataByte)
+{
+	return ComIf_RxIndication(((UBYTE)C_ComIfChannel_STM32), DataByte);
+ eb4:	68 2f       	mov	r22, r24
+ eb6:	80 e0       	ldi	r24, 0x00	; 0
+ eb8:	da d9       	rcall	.-3148   	; 0x26e <ComIf_RxIndication>
+}
+ eba:	08 95       	ret
+
+00000ebc <Avr_Init>:
+		for(UBYTE i=1;i<Len;i++)
+		{
+			Data[i] = (UBYTE )*(str++);
+		}
+		
+		ComIf_TransmitFromBuffer_STM32_AVR_Message();
+ ebc:	87 b3       	in	r24, 0x17	; 23
+ ebe:	81 60       	ori	r24, 0x01	; 1
+ ec0:	87 bb       	out	0x17, r24	; 23
+ ec2:	81 b3       	in	r24, 0x11	; 17
+ ec4:	80 68       	ori	r24, 0x80	; 128
+ ec6:	81 bb       	out	0x11, r24	; 17
+ ec8:	87 b3       	in	r24, 0x17	; 23
+ eca:	80 62       	ori	r24, 0x20	; 32
+ ecc:	87 bb       	out	0x17, r24	; 23
+ ece:	81 b3       	in	r24, 0x11	; 17
+ ed0:	80 61       	ori	r24, 0x10	; 16
+ ed2:	81 bb       	out	0x11, r24	; 17
+ ed4:	84 b3       	in	r24, 0x14	; 20
+ ed6:	80 62       	ori	r24, 0x20	; 32
+ ed8:	84 bb       	out	0x14, r24	; 20
+ eda:	08 95       	ret
+
+00000edc <Atmega32DriverInit>:
+ edc:	c0 d8       	rcall	.-3712   	; 0x5e <uart_init>
+ ede:	08 95       	ret
+
+00000ee0 <Send_ADC_Datas>:
+ ee0:	86 e0       	ldi	r24, 0x06	; 6
+ ee2:	e6 ef       	ldi	r30, 0xF6	; 246
+ ee4:	f0 e0       	ldi	r31, 0x00	; 0
+ ee6:	a7 e8       	ldi	r26, 0x87	; 135
+ ee8:	b1 e0       	ldi	r27, 0x01	; 1
+ eea:	01 90       	ld	r0, Z+
+ eec:	0d 92       	st	X+, r0
+ eee:	8a 95       	dec	r24
+ ef0:	e1 f7       	brne	.-8      	; 0xeea <Send_ADC_Datas+0xa>
+ ef2:	26 e0       	ldi	r18, 0x06	; 6
+ ef4:	47 e8       	ldi	r20, 0x87	; 135
+ ef6:	51 e0       	ldi	r21, 0x01	; 1
+ ef8:	60 e0       	ldi	r22, 0x00	; 0
+ efa:	80 e0       	ldi	r24, 0x00	; 0
+ efc:	03 de       	rcall	.-1018   	; 0xb04 <ComIf_Transmit>
+ efe:	08 95       	ret
+
+00000f00 <IOControls>:
+	AVR_IO_Control_ST *InputIO_Data = &IO_cmdData_AVR;
+	AVR_IO_Control_ST *IO_StatusData = &AVR_IO_Status;
+	
+	UBYTE DataLen = ComIf_GetLength_STM32_IO_cmdData_AVR();
+	
+	if(InputIO_Data->IO1 == TRUE)
+ f00:	80 91 be 00 	lds	r24, 0x00BE	; 0x8000be <IO_cmdData_AVR>
+ f04:	80 ff       	sbrs	r24, 0
+ f06:	04 c0       	rjmp	.+8      	; 0xf10 <IOControls+0x10>
+	{
+		PORTC |= (1<<5);
+ f08:	85 b3       	in	r24, 0x15	; 21
+ f0a:	80 62       	ori	r24, 0x20	; 32
+ f0c:	85 bb       	out	0x15, r24	; 21
+ f0e:	03 c0       	rjmp	.+6      	; 0xf16 <IOControls+0x16>
+	}
+	else
+	{
+		PORTC &= ~(1<<5);
+ f10:	85 b3       	in	r24, 0x15	; 21
+ f12:	8f 7d       	andi	r24, 0xDF	; 223
+ f14:	85 bb       	out	0x15, r24	; 21
+	}
+	
+	if(memcmp(InputIO_Data->Bytes,&prevIO_Status.Bytes,2) != 0)
+ f16:	42 e0       	ldi	r20, 0x02	; 2
+ f18:	50 e0       	ldi	r21, 0x00	; 0
+ f1a:	6c eb       	ldi	r22, 0xBC	; 188
+ f1c:	70 e0       	ldi	r23, 0x00	; 0
+ f1e:	8e eb       	ldi	r24, 0xBE	; 190
+ f20:	90 e0       	ldi	r25, 0x00	; 0
+ f22:	2f d0       	rcall	.+94     	; 0xf82 <memcmp>
+ f24:	89 2b       	or	r24, r25
+ f26:	69 f4       	brne	.+26     	; 0xf42 <IOControls+0x42>
+ f28:	08 95       	ret
+	{
+		for(UBYTE i=0;i<DataLen;i++)
+		{
+			IO_StatusData->Bytes[i] = InputIO_Data->Bytes[i];
+ f2a:	28 2f       	mov	r18, r24
+ f2c:	30 e0       	ldi	r19, 0x00	; 0
+ f2e:	f9 01       	movw	r30, r18
+ f30:	e2 54       	subi	r30, 0x42	; 66
+ f32:	ff 4f       	sbci	r31, 0xFF	; 255
+ f34:	90 81       	ld	r25, Z
+ f36:	f9 01       	movw	r30, r18
+ f38:	ef 53       	subi	r30, 0x3F	; 63
+ f3a:	ff 4f       	sbci	r31, 0xFF	; 255
+ f3c:	90 83       	st	Z, r25
+		PORTC &= ~(1<<5);
+	}
+	
+	if(memcmp(InputIO_Data->Bytes,&prevIO_Status.Bytes,2) != 0)
+	{
+		for(UBYTE i=0;i<DataLen;i++)
+ f3e:	8f 5f       	subi	r24, 0xFF	; 255
+ f40:	01 c0       	rjmp	.+2      	; 0xf44 <IOControls+0x44>
+ f42:	80 e0       	ldi	r24, 0x00	; 0
+ f44:	82 30       	cpi	r24, 0x02	; 2
+ f46:	88 f3       	brcs	.-30     	; 0xf2a <IOControls+0x2a>
+			IO_StatusData->Bytes[i] = InputIO_Data->Bytes[i];
+		}
+		
+		UBYTE *Buff = ComIf_GetShadowBuffer_STM32_AVR_IO_Status();
+		
+		memcpy(Buff,IO_StatusData->Bytes,2);
+ f48:	80 91 c1 00 	lds	r24, 0x00C1	; 0x8000c1 <AVR_IO_Status>
+ f4c:	90 91 c2 00 	lds	r25, 0x00C2	; 0x8000c2 <AVR_IO_Status+0x1>
+ f50:	90 93 8e 01 	sts	0x018E, r25	; 0x80018e <ComIf_ShadowBuffer_STM32_AVR_IO_Status+0x1>
+ f54:	80 93 8d 01 	sts	0x018D, r24	; 0x80018d <ComIf_ShadowBuffer_STM32_AVR_IO_Status>
+		
+		ComIf_TransmitFromBuffer_STM32_AVR_IO_Status();	
+ f58:	22 e0       	ldi	r18, 0x02	; 2
+ f5a:	4d e8       	ldi	r20, 0x8D	; 141
+ f5c:	51 e0       	ldi	r21, 0x01	; 1
+ f5e:	61 e0       	ldi	r22, 0x01	; 1
+ f60:	80 e0       	ldi	r24, 0x00	; 0
+ f62:	d0 dd       	rcall	.-1120   	; 0xb04 <ComIf_Transmit>
+		
+		prevIO_Status = *InputIO_Data;
+ f64:	80 91 be 00 	lds	r24, 0x00BE	; 0x8000be <IO_cmdData_AVR>
+ f68:	90 91 bf 00 	lds	r25, 0x00BF	; 0x8000bf <IO_cmdData_AVR+0x1>
+ f6c:	90 93 bd 00 	sts	0x00BD, r25	; 0x8000bd <prevIO_Status+0x1>
+ f70:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <prevIO_Status>
+		
+		//Send_Message(0,"Machine Ready");
+		
+		Send_ADC_Datas();
+ f74:	b5 df       	rcall	.-150    	; 0xee0 <Send_ADC_Datas>
+ f76:	08 95       	ret
+
+00000f78 <main>:
+	}
+}
+
+int main(void)
+{
+	sei();
+ f78:	78 94       	sei
+	Avr_Init();
+ f7a:	a0 df       	rcall	.-192    	; 0xebc <Avr_Init>
+	Atmega32DriverInit();
+ f7c:	af df       	rcall	.-162    	; 0xedc <Atmega32DriverInit>
+	
+	while(1)
+	{
+		IOControls();
+ f7e:	c0 df       	rcall	.-128    	; 0xf00 <IOControls>
+ f80:	fe cf       	rjmp	.-4      	; 0xf7e <main+0x6>
+
+00000f82 <memcmp>:
+ f82:	fb 01       	movw	r30, r22
+ f84:	dc 01       	movw	r26, r24
+ f86:	04 c0       	rjmp	.+8      	; 0xf90 <memcmp+0xe>
+ f88:	8d 91       	ld	r24, X+
+ f8a:	01 90       	ld	r0, Z+
+ f8c:	80 19       	sub	r24, r0
+ f8e:	21 f4       	brne	.+8      	; 0xf98 <memcmp+0x16>
+ f90:	41 50       	subi	r20, 0x01	; 1
+ f92:	50 40       	sbci	r21, 0x00	; 0
+ f94:	c8 f7       	brcc	.-14     	; 0xf88 <memcmp+0x6>
+ f96:	88 1b       	sub	r24, r24
+ f98:	99 0b       	sbc	r25, r25
+ f9a:	08 95       	ret
+
+00000f9c <_exit>:
+ f9c:	f8 94       	cli
+
+00000f9e <__stop_program>:
+ f9e:	ff cf       	rjmp	.-2      	; 0xf9e <__stop_program>

@@ -1,0 +1,755 @@
+Archive member included to satisfy reference by file (symbol)
+
+d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+                              D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o (exit)
+d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+                              aze/Gen/ComIf_Config.o (__do_copy_data)
+d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+                              aze/base/Atmega_Drivers/src/uart.o (__do_clear_bss)
+d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(memcmp.o)
+                              main.o (memcmp)
+
+Allocating common symbols
+Common symbol       size              file
+
+ComIf_RxMessageBuffer_STM32_Stored_MobNums
+                    0x4f              aze/Gen/ComIf_Config.o
+IO_cmdData_AVR      0x2               aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ComIf_ShadowBuffer_STM32_AVR_Call
+                    0x1               aze/Gen/ComIf_Config.o
+ComIf_RxMessageBuffer_STM32_IO_cmdData_AVR
+                    0x3               aze/Gen/ComIf_Config.o
+AVR_Calls           0x1               aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ComIf_ShadowBuffer_STM32_AVR_Message
+                    0x33              aze/Gen/ComIf_Config.o
+AVR_IO_Status       0x2               aze/base/ComIf_Msgs/Comif_RxMsgs.o
+AVR_Message         0x33              aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ComIf_RxMessageBuffer_STM32_DTMF_Command_Data
+                    0x3               aze/Gen/ComIf_Config.o
+ComIf_ShadowBuffer_STM32_ADC_Values_AVR
+                    0x6               aze/Gen/ComIf_Config.o
+ADCDatas            0x6               aze/base/ComIf_Msgs/Comif_RxMsgs.o
+DTMFCommandData     0x2               aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ComIf_ShadowBuffer_STM32_AVR_IO_Status
+                    0x2               aze/Gen/ComIf_Config.o
+ComIfChannelTxBuffer_STM32
+                    0x64              aze/Gen/ComIf_Config.o
+
+Discarded input sections
+
+ .data          0x00000000        0x0 D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+ .bss           0x00000000        0x0 D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+ .text          0x00000000        0x0 aze/Application/MessageHandling.o
+ .data          0x00000000        0x0 aze/Application/MessageHandling.o
+ .bss           0x00000000        0x0 aze/Application/MessageHandling.o
+ .debug_line    0x00000000        0x0 aze/Application/MessageHandling.o
+ .debug_str     0x00000000      0x112 aze/Application/MessageHandling.o
+ .comment       0x00000000       0x31 aze/Application/MessageHandling.o
+ .text          0x00000000        0x0 aze/base/Atmega_Drivers/src/uart.o
+ .data          0x00000000        0x0 aze/base/Atmega_Drivers/src/uart.o
+ .bss           0x00000000        0x0 aze/base/Atmega_Drivers/src/uart.o
+ .text.uart_rx  0x00000000        0x8 aze/base/Atmega_Drivers/src/uart.o
+ .text.uart_string
+                0x00000000       0x18 aze/base/Atmega_Drivers/src/uart.o
+ .text          0x00000000        0x0 aze/base/ComIf/src/ComIf.o
+ .data          0x00000000        0x0 aze/base/ComIf/src/ComIf.o
+ .bss           0x00000000        0x0 aze/base/ComIf/src/ComIf.o
+ .text.ComIf_GetTxMsgHandle
+                0x00000000       0x38 aze/base/ComIf/src/ComIf.o
+ .text.ComIf_GetRxMsgHandle
+                0x00000000       0x48 aze/base/ComIf/src/ComIf.o
+ .text          0x00000000        0x0 aze/base/ComIf/src/ComIf_CalcChecksum.o
+ .data          0x00000000        0x0 aze/base/ComIf/src/ComIf_CalcChecksum.o
+ .bss           0x00000000        0x0 aze/base/ComIf/src/ComIf_CalcChecksum.o
+ .text          0x00000000        0x0 aze/base/ComIf/src/ComIf_RxIndication.o
+ .data          0x00000000        0x0 aze/base/ComIf/src/ComIf_RxIndication.o
+ .bss           0x00000000        0x0 aze/base/ComIf/src/ComIf_RxIndication.o
+ .text.ComIf_RxIndication_ASCIIString
+                0x00000000       0x60 aze/base/ComIf/src/ComIf_RxIndication.o
+ .text          0x00000000        0x0 aze/base/ComIf/src/ComIf_RxRequest.o
+ .data          0x00000000        0x0 aze/base/ComIf/src/ComIf_RxRequest.o
+ .bss           0x00000000        0x0 aze/base/ComIf/src/ComIf_RxRequest.o
+ .text.ComIf_Rx_Request
+                0x00000000       0x76 aze/base/ComIf/src/ComIf_RxRequest.o
+ .text.ComIf_Rx_CancelRequest
+                0x00000000       0x76 aze/base/ComIf/src/ComIf_RxRequest.o
+ .text.ComIf_RxMainFunction
+                0x00000000        0x2 aze/base/ComIf/src/ComIf_RxRequest.o
+ .debug_info    0x00000000      0x5e1 aze/base/ComIf/src/ComIf_RxRequest.o
+ .debug_abbrev  0x00000000      0x19d aze/base/ComIf/src/ComIf_RxRequest.o
+ .debug_loc     0x00000000      0x1ce aze/base/ComIf/src/ComIf_RxRequest.o
+ .debug_aranges
+                0x00000000       0x30 aze/base/ComIf/src/ComIf_RxRequest.o
+ .debug_ranges  0x00000000       0x20 aze/base/ComIf/src/ComIf_RxRequest.o
+ .debug_line    0x00000000      0x12b aze/base/ComIf/src/ComIf_RxRequest.o
+ .debug_str     0x00000000      0x5d9 aze/base/ComIf/src/ComIf_RxRequest.o
+ .comment       0x00000000       0x31 aze/base/ComIf/src/ComIf_RxRequest.o
+ .debug_frame   0x00000000       0x44 aze/base/ComIf/src/ComIf_RxRequest.o
+ .text          0x00000000        0x0 aze/base/ComIf/src/ComIf_Transmit.o
+ .data          0x00000000        0x0 aze/base/ComIf/src/ComIf_Transmit.o
+ .bss           0x00000000        0x0 aze/base/ComIf/src/ComIf_Transmit.o
+ .text.ComIf_TransmissionAborted
+                0x00000000       0x66 aze/base/ComIf/src/ComIf_Transmit.o
+ .text.ComIf_TxMainFunction
+                0x00000000        0x2 aze/base/ComIf/src/ComIf_Transmit.o
+ .text          0x00000000        0x0 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .data          0x00000000        0x0 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .bss           0x00000000        0x0 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .text.ComIf_GetTxShadowBuffer
+                0x00000000       0x4e aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .text.ComIf_Transmit_ShadowBuffer
+                0x00000000       0x28 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .text          0x00000000        0x0 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ .data          0x00000000        0x0 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ .bss           0x00000000        0x0 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ .text          0x00000000        0x0 aze/Gen/ComIf_Config.o
+ .data          0x00000000        0x0 aze/Gen/ComIf_Config.o
+ .bss           0x00000000        0x0 aze/Gen/ComIf_Config.o
+ .text          0x00000000        0x0 main.o
+ .data          0x00000000        0x0 main.o
+ .bss           0x00000000        0x0 main.o
+ .text.Call_Request
+                0x00000000       0x24 main.o
+ .text.Send_Message
+                0x00000000       0x3e main.o
+ .text          0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .data          0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .bss           0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .text.libgcc.mul
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .text.libgcc.div
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .text.libgcc   0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .text          0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+ .data          0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+ .bss           0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc.mul
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc.div
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+ .text          0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+ .data          0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc.mul
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+ .text          0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(memcmp.o)
+ .data          0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(memcmp.o)
+ .bss           0x00000000        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(memcmp.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00002000         xr
+data             0x00800060         0x00000400         rw !x
+eeprom           0x00810000         0x00000200         rw !x
+fuse             0x00820000         0x00000002         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+user_signatures  0x00850000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+LOAD aze/Application/MessageHandling.o
+LOAD aze/base/Atmega_Drivers/src/uart.o
+LOAD aze/base/ComIf/src/ComIf.o
+LOAD aze/base/ComIf/src/ComIf_CalcChecksum.o
+LOAD aze/base/ComIf/src/ComIf_RxIndication.o
+LOAD aze/base/ComIf/src/ComIf_RxRequest.o
+LOAD aze/base/ComIf/src/ComIf_Transmit.o
+LOAD aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+LOAD aze/base/ComIf_Msgs/Comif_RxMsgs.o
+LOAD aze/Gen/ComIf_Config.o
+LOAD main.o
+START GROUP
+LOAD d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libm.a
+END GROUP
+START GROUP
+LOAD d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a
+LOAD d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libm.a
+LOAD d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a
+LOAD D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4\libatmega8.a
+END GROUP
+                0x00000000                __TEXT_REGION_ORIGIN__ = DEFINED (__TEXT_REGION_ORIGIN__)?__TEXT_REGION_ORIGIN__:0x0
+                [0x00800060]                __DATA_REGION_ORIGIN__ = DEFINED (__DATA_REGION_ORIGIN__)?__DATA_REGION_ORIGIN__:0x800060
+                [0x00002000]                __TEXT_REGION_LENGTH__ = DEFINED (__TEXT_REGION_LENGTH__)?__TEXT_REGION_LENGTH__:0x2000
+                [0x00000400]                __DATA_REGION_LENGTH__ = DEFINED (__DATA_REGION_LENGTH__)?__DATA_REGION_LENGTH__:0xffa0
+                [0x00000200]                __EEPROM_REGION_LENGTH__ = DEFINED (__EEPROM_REGION_LENGTH__)?__EEPROM_REGION_LENGTH__:0x10000
+                [0x00000002]                __FUSE_REGION_LENGTH__ = DEFINED (__FUSE_REGION_LENGTH__)?__FUSE_REGION_LENGTH__:0x400
+                0x00000400                __LOCK_REGION_LENGTH__ = DEFINED (__LOCK_REGION_LENGTH__)?__LOCK_REGION_LENGTH__:0x400
+                0x00000400                __SIGNATURE_REGION_LENGTH__ = DEFINED (__SIGNATURE_REGION_LENGTH__)?__SIGNATURE_REGION_LENGTH__:0x400
+                0x00000400                __USER_SIGNATURE_REGION_LENGTH__ = DEFINED (__USER_SIGNATURE_REGION_LENGTH__)?__USER_SIGNATURE_REGION_LENGTH__:0x400
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0xfa0
+ *(.vectors)
+ .vectors       0x00000000       0x26 D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+                0x00000000                __vector_default
+                0x00000000                __vectors
+ *(.vectors)
+ *(.progmem.gcc*)
+                0x00000026                . = ALIGN (0x2)
+                0x00000026                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000026        0x0 linker stubs
+ *(.trampolines*)
+                0x00000026                __trampolines_end = .
+ *libprintf_flt.a:*(.progmem.data)
+ *libc.a:*(.progmem.data)
+ *(.progmem*)
+                0x00000026                . = ALIGN (0x2)
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000026                __ctors_start = .
+ *(.ctors)
+                0x00000026                __ctors_end = .
+                0x00000026                __dtors_start = .
+ *(.dtors)
+                0x00000026                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000026        0x0 D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+                0x00000026                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000026        0xc D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000032       0x16 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
+                0x00000032                __do_copy_data
+ .init4         0x00000048       0x10 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
+                0x00000048                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000058        0x4 D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+ *(.init9)
+ *(.text)
+ .text          0x0000005c        0x2 D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+                0x0000005c                __vector_1
+                0x0000005c                __vector_12
+                0x0000005c                __bad_interrupt
+                0x0000005c                __vector_6
+                0x0000005c                __vector_3
+                0x0000005c                __vector_13
+                0x0000005c                __vector_17
+                0x0000005c                __vector_7
+                0x0000005c                __vector_5
+                0x0000005c                __vector_4
+                0x0000005c                __vector_9
+                0x0000005c                __vector_2
+                0x0000005c                __vector_15
+                0x0000005c                __vector_8
+                0x0000005c                __vector_14
+                0x0000005c                __vector_10
+                0x0000005c                __vector_16
+                0x0000005c                __vector_18
+                0x0000005e                . = ALIGN (0x2)
+ *(.text.*)
+ .text.uart_init
+                0x0000005e       0x1e aze/base/Atmega_Drivers/src/uart.o
+                0x0000005e                uart_init
+ .text.uart_tx  0x0000007c        0xa aze/base/Atmega_Drivers/src/uart.o
+                0x0000007c                uart_tx
+ .text.__vector_11
+                0x00000086       0x48 aze/base/Atmega_Drivers/src/uart.o
+                0x00000086                __vector_11
+ .text.ComIf_ErrorNotify
+                0x000000ce       0x22 aze/base/ComIf/src/ComIf.o
+                0x000000ce                ComIf_ErrorNotify
+ .text.ComIf_CalcChecksum
+                0x000000f0       0x40 aze/base/ComIf/src/ComIf_CalcChecksum.o
+                0x000000f0                ComIf_CalcChecksum
+ .text.ComIf_GetChecksumMaskValue
+                0x00000130       0x26 aze/base/ComIf/src/ComIf_CalcChecksum.o
+                0x00000130                ComIf_GetChecksumMaskValue
+ .text.ComIf_GetHandle
+                0x00000156       0x32 aze/base/ComIf/src/ComIf_RxIndication.o
+ .text.ComIf_ResetRxInfo
+                0x00000188       0x66 aze/base/ComIf/src/ComIf_RxIndication.o
+ .text.ComIf_StoreDataByte
+                0x000001ee       0x80 aze/base/ComIf/src/ComIf_RxIndication.o
+ .text.ComIf_RxIndication
+                0x0000026e      0x432 aze/base/ComIf/src/ComIf_RxIndication.o
+                0x0000026e                ComIf_RxIndication
+ .text.ComIf_EncodeFromShadowToChannelBuffer
+                0x000006a0      0x464 aze/base/ComIf/src/ComIf_Transmit.o
+                0x000006a0                ComIf_EncodeFromShadowToChannelBuffer
+ .text.ComIf_Transmit
+                0x00000b04      0x160 aze/base/ComIf/src/ComIf_Transmit.o
+                0x00000b04                ComIf_Transmit
+ .text.ComIf_TxConfirmation
+                0x00000c64       0x7e aze/base/ComIf/src/ComIf_Transmit.o
+                0x00000c64                ComIf_TxConfirmation
+ .text.ComIf_UpdateTxShadowBuffer
+                0x00000ce2       0xee aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+                0x00000ce2                ComIf_UpdateTxShadowBuffer
+ .text.STM32_ComIf_ErrorNotification
+                0x00000dd0        0x2 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+                0x00000dd0                STM32_ComIf_ErrorNotification
+ .text.STM32_Transmit
+                0x00000dd2       0x76 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+                0x00000dd2                STM32_Transmit
+ .text.IO_cmdData_AVRRxcbk
+                0x00000e48       0x24 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+                0x00000e48                IO_cmdData_AVRRxcbk
+ .text.DTMF_Command_DataRxCbk
+                0x00000e6c       0x24 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+                0x00000e6c                DTMF_Command_DataRxCbk
+ .text.Stored_MobNumsRxCbk
+                0x00000e90       0x24 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+                0x00000e90                Stored_MobNumsRxCbk
+ .text.ComIf_RxIndication_STM32
+                0x00000eb4        0x8 aze/Gen/ComIf_Config.o
+                0x00000eb4                ComIf_RxIndication_STM32
+ .text.Avr_Init
+                0x00000ebc       0x20 main.o
+                0x00000ebc                Avr_Init
+ .text.Atmega32DriverInit
+                0x00000edc        0x4 main.o
+                0x00000edc                Atmega32DriverInit
+ .text.Send_ADC_Datas
+                0x00000ee0       0x20 main.o
+                0x00000ee0                Send_ADC_Datas
+ .text.IOControls
+                0x00000f00       0x78 main.o
+                0x00000f00                IOControls
+ .text.main     0x00000f78        0xa main.o
+                0x00000f78                main
+ .text.avr-libc
+                0x00000f82       0x1a d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(memcmp.o)
+                0x00000f82                memcmp
+                0x00000f9c                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x00000f9c        0x0 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+                0x00000f9c                _exit
+                0x00000f9c                exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x00000f9c        0x4 d:/softwares/atmel_studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ *(.fini0)
+                0x00000fa0                _etext = .
+
+.data           0x00800060       0x5a load address 0x00000fa0
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ *(.data*)
+ .data.ComIf_ChannelConfig
+                0x00800060       0x13 aze/Gen/ComIf_Config.o
+                0x00800060                ComIf_ChannelConfig
+ .data.ComIfRxMsgCfg_STM32
+                0x00800073       0x1b aze/Gen/ComIf_Config.o
+                0x00800073                ComIfRxMsgCfg_STM32
+ .data.ComIfTxMsgCfg_STM32
+                0x0080008e       0x2c aze/Gen/ComIf_Config.o
+                0x0080008e                ComIfTxMsgCfg_STM32
+ *(.gnu.linkonce.d*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.r*)
+                0x008000ba                . = ALIGN (0x2)
+                0x008000ba                _edata = .
+                0x008000ba                PROVIDE (__data_end, .)
+
+.bss            0x008000ba      0x139
+                0x008000ba                PROVIDE (__bss_start, .)
+ *(.bss)
+ *(.bss*)
+ .bss.IsUartCommunicationOkay
+                0x008000ba        0x1 aze/base/Atmega_Drivers/src/uart.o
+                0x008000ba                IsUartCommunicationOkay
+ .bss.IsUartBusBusy
+                0x008000bb        0x1 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+                0x008000bb                IsUartBusBusy
+ .bss.prevIO_Status
+                0x008000bc        0x2 main.o
+                0x008000bc                prevIO_Status
+ *(COMMON)
+ COMMON         0x008000be       0x40 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+                0x008000be                IO_cmdData_AVR
+                0x008000c0                AVR_Calls
+                0x008000c1                AVR_IO_Status
+                0x008000c3                AVR_Message
+                0x008000f6                ADCDatas
+                0x008000fc                DTMFCommandData
+ COMMON         0x008000fe       0xf5 aze/Gen/ComIf_Config.o
+                0x008000fe                ComIf_RxMessageBuffer_STM32_Stored_MobNums
+                0x0080014d                ComIf_ShadowBuffer_STM32_AVR_Call
+                0x0080014e                ComIf_RxMessageBuffer_STM32_IO_cmdData_AVR
+                0x00800151                ComIf_ShadowBuffer_STM32_AVR_Message
+                0x00800184                ComIf_RxMessageBuffer_STM32_DTMF_Command_Data
+                0x00800187                ComIf_ShadowBuffer_STM32_ADC_Values_AVR
+                0x0080018d                ComIf_ShadowBuffer_STM32_AVR_IO_Status
+                0x0080018f                ComIfChannelTxBuffer_STM32
+                0x008001f3                PROVIDE (__bss_end, .)
+                0x00000fa0                __data_load_start = LOADADDR (.data)
+                0x00000ffa                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x008001f3        0x0
+                [!provide]                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                [!provide]                PROVIDE (__noinit_end, .)
+                0x008001f3                _end = .
+                [!provide]                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.user_signatures
+ *(.user_signatures*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x30
+ *(.comment)
+ .comment       0x00000000       0x30 aze/base/Atmega_Drivers/src/uart.o
+                                 0x31 (size before relaxing)
+ .comment       0x00000030       0x31 aze/base/ComIf/src/ComIf.o
+ .comment       0x00000030       0x31 aze/base/ComIf/src/ComIf_CalcChecksum.o
+ .comment       0x00000030       0x31 aze/base/ComIf/src/ComIf_RxIndication.o
+ .comment       0x00000030       0x31 aze/base/ComIf/src/ComIf_Transmit.o
+ .comment       0x00000030       0x31 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .comment       0x00000030       0x31 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ .comment       0x00000030       0x31 aze/Gen/ComIf_Config.o
+ .comment       0x00000030       0x31 main.o
+
+.note.gnu.avr.deviceinfo
+                0x00000000       0x3c
+ .note.gnu.avr.deviceinfo
+                0x00000000       0x3c D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x1f8
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x40 aze/base/Atmega_Drivers/src/uart.o
+ .debug_aranges
+                0x00000040       0x30 aze/base/ComIf/src/ComIf.o
+ .debug_aranges
+                0x00000070       0x28 aze/base/ComIf/src/ComIf_CalcChecksum.o
+ .debug_aranges
+                0x00000098       0x40 aze/base/ComIf/src/ComIf_RxIndication.o
+ .debug_aranges
+                0x000000d8       0x40 aze/base/ComIf/src/ComIf_Transmit.o
+ .debug_aranges
+                0x00000118       0x30 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .debug_aranges
+                0x00000148       0x40 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ .debug_aranges
+                0x00000188       0x20 aze/Gen/ComIf_Config.o
+ .debug_aranges
+                0x000001a8       0x50 main.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0x3fdd
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x48c D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+ .debug_info    0x0000048c      0x186 aze/base/Atmega_Drivers/src/uart.o
+ .debug_info    0x00000612      0x648 aze/base/ComIf/src/ComIf.o
+ .debug_info    0x00000c5a      0x121 aze/base/ComIf/src/ComIf_CalcChecksum.o
+ .debug_info    0x00000d7b      0xa8f aze/base/ComIf/src/ComIf_RxIndication.o
+ .debug_info    0x0000180a      0xd9b aze/base/ComIf/src/ComIf_Transmit.o
+ .debug_info    0x000025a5      0x6a4 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .debug_info    0x00002c49      0x6ae aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ .debug_info    0x000032f7      0x66a aze/Gen/ComIf_Config.o
+ .debug_info    0x00003961      0x67c main.o
+
+.debug_abbrev   0x00000000     0x154c
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x44e D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+ .debug_abbrev  0x0000044e      0x112 aze/base/Atmega_Drivers/src/uart.o
+ .debug_abbrev  0x00000560      0x1c3 aze/base/ComIf/src/ComIf.o
+ .debug_abbrev  0x00000723       0xb4 aze/base/ComIf/src/ComIf_CalcChecksum.o
+ .debug_abbrev  0x000007d7      0x29c aze/base/ComIf/src/ComIf_RxIndication.o
+ .debug_abbrev  0x00000a73      0x35a aze/base/ComIf/src/ComIf_Transmit.o
+ .debug_abbrev  0x00000dcd      0x205 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .debug_abbrev  0x00000fd2      0x1d2 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ .debug_abbrev  0x000011a4      0x18d aze/Gen/ComIf_Config.o
+ .debug_abbrev  0x00001331      0x21b main.o
+
+.debug_line     0x00000000     0x14f6
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x00000000      0x10a D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+ .debug_line    0x0000010a      0x1b1 aze/base/Atmega_Drivers/src/uart.o
+ .debug_line    0x000002bb      0x13b aze/base/ComIf/src/ComIf.o
+ .debug_line    0x000003f6       0xea aze/base/ComIf/src/ComIf_CalcChecksum.o
+ .debug_line    0x000004e0      0x378 aze/base/ComIf/src/ComIf_RxIndication.o
+ .debug_line    0x00000858      0x540 aze/base/ComIf/src/ComIf_Transmit.o
+ .debug_line    0x00000d98      0x1b1 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .debug_line    0x00000f49      0x244 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ .debug_line    0x0000118d       0xa7 aze/Gen/ComIf_Config.o
+ .debug_line    0x00001234      0x2c2 main.o
+
+.debug_frame    0x00000000      0x508
+ *(.debug_frame)
+ .debug_frame   0x00000000       0xb8 aze/base/Atmega_Drivers/src/uart.o
+ .debug_frame   0x000000b8       0x50 aze/base/ComIf/src/ComIf.o
+ .debug_frame   0x00000108       0x40 aze/base/ComIf/src/ComIf_CalcChecksum.o
+ .debug_frame   0x00000148       0xe8 aze/base/ComIf/src/ComIf_RxIndication.o
+ .debug_frame   0x00000230      0x130 aze/base/ComIf/src/ComIf_Transmit.o
+ .debug_frame   0x00000360       0x78 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .debug_frame   0x000003d8       0x88 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ .debug_frame   0x00000460       0x24 aze/Gen/ComIf_Config.o
+ .debug_frame   0x00000484       0x84 main.o
+
+.debug_str      0x00000000      0xebf
+ *(.debug_str)
+ .debug_str     0x00000000      0x17a D:/softwares/Atmel_Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega8/avr4/crtatmega8.o
+ .debug_str     0x0000017a      0x1da aze/base/Atmega_Drivers/src/uart.o
+                                0x20e (size before relaxing)
+ .debug_str     0x00000354      0x394 aze/base/ComIf/src/ComIf.o
+                                0x5d5 (size before relaxing)
+ .debug_str     0x000006e8       0x59 aze/base/ComIf/src/ComIf_CalcChecksum.o
+                                0x1ff (size before relaxing)
+ .debug_str     0x00000741       0xdc aze/base/ComIf/src/ComIf_RxIndication.o
+                                0x69e (size before relaxing)
+ .debug_str     0x0000081d      0x1b9 aze/base/ComIf/src/ComIf_Transmit.o
+                                0x782 (size before relaxing)
+ .debug_str     0x000009d6       0x68 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+                                0x5fc (size before relaxing)
+ .debug_str     0x00000a3e      0x255 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+                                0x4b1 (size before relaxing)
+ .debug_str     0x00000c93      0x177 aze/Gen/ComIf_Config.o
+                                0x6e9 (size before relaxing)
+ .debug_str     0x00000e0a       0xb5 main.o
+                                0x49d (size before relaxing)
+
+.debug_loc      0x00000000     0x22f2
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x154 aze/base/Atmega_Drivers/src/uart.o
+ .debug_loc     0x00000154      0x1f5 aze/base/ComIf/src/ComIf.o
+ .debug_loc     0x00000349      0x121 aze/base/ComIf/src/ComIf_CalcChecksum.o
+ .debug_loc     0x0000046a      0x7de aze/base/ComIf/src/ComIf_RxIndication.o
+ .debug_loc     0x00000c48      0xe7f aze/base/ComIf/src/ComIf_Transmit.o
+ .debug_loc     0x00001ac7      0x497 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .debug_loc     0x00001f5e      0x283 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ .debug_loc     0x000021e1       0x2c aze/Gen/ComIf_Config.o
+ .debug_loc     0x0000220d       0xe5 main.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x00000000      0x318
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x30 aze/base/Atmega_Drivers/src/uart.o
+ .debug_ranges  0x00000030       0x80 aze/base/ComIf/src/ComIf.o
+ .debug_ranges  0x000000b0       0x18 aze/base/ComIf/src/ComIf_CalcChecksum.o
+ .debug_ranges  0x000000c8       0x60 aze/base/ComIf/src/ComIf_RxIndication.o
+ .debug_ranges  0x00000128       0x90 aze/base/ComIf/src/ComIf_Transmit.o
+ .debug_ranges  0x000001b8       0x50 aze/base/ComIf/src/ComIf_TxShadowBuffer.o
+ .debug_ranges  0x00000208       0x90 aze/base/ComIf_Msgs/Comif_RxMsgs.o
+ .debug_ranges  0x00000298       0x10 aze/Gen/ComIf_Config.o
+ .debug_ranges  0x000002a8       0x70 main.o
+
+.debug_macro
+ *(.debug_macro)
+OUTPUT(Cosmic(Atmega32).elf elf32-avr)
+LOAD linker stubs

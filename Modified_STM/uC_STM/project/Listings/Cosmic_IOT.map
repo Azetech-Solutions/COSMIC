@@ -1,0 +1,1130 @@
+Component: Arm Compiler for Embedded 6.18 Tool: armlink [5e4cc100]
+
+==============================================================================
+
+Section Cross References
+
+    comif.o(.text.ComIf_GetTxMsgHandle) refers to comif_config.o(.data.ComIf_ChannelConfig) for ComIf_ChannelConfig
+    comif.o(.ARM.exidx.text.ComIf_GetTxMsgHandle) refers to comif.o(.text.ComIf_GetTxMsgHandle) for [Anonymous Symbol]
+    comif.o(.text.ComIf_GetRxMsgHandle) refers to comif_config.o(.data.ComIf_ChannelConfig) for ComIf_ChannelConfig
+    comif.o(.ARM.exidx.text.ComIf_GetRxMsgHandle) refers to comif.o(.text.ComIf_GetRxMsgHandle) for [Anonymous Symbol]
+    comif.o(.ARM.exidx.text.ComIf_ErrorNotify) refers to comif.o(.text.ComIf_ErrorNotify) for [Anonymous Symbol]
+    comif_calcchecksum.o(.ARM.exidx.text.ComIf_CalcChecksum) refers to comif_calcchecksum.o(.text.ComIf_CalcChecksum) for [Anonymous Symbol]
+    comif_calcchecksum.o(.ARM.exidx.text.ComIf_GetChecksumMaskValue) refers to comif_calcchecksum.o(.text.ComIf_GetChecksumMaskValue) for [Anonymous Symbol]
+    comif_rxrequest.o(.text.ComIf_Rx_Request) refers to comif_config.o(.data.ComIf_ChannelConfig) for ComIf_ChannelConfig
+    comif_rxrequest.o(.ARM.exidx.text.ComIf_Rx_Request) refers to comif_rxrequest.o(.text.ComIf_Rx_Request) for [Anonymous Symbol]
+    comif_rxrequest.o(.text.ComIf_Rx_CancelRequest) refers to comif_config.o(.data.ComIf_ChannelConfig) for ComIf_ChannelConfig
+    comif_rxrequest.o(.ARM.exidx.text.ComIf_Rx_CancelRequest) refers to comif_rxrequest.o(.text.ComIf_Rx_CancelRequest) for [Anonymous Symbol]
+    comif_rxrequest.o(.ARM.exidx.text.ComIf_RxMainFunction) refers to comif_rxrequest.o(.text.ComIf_RxMainFunction) for [Anonymous Symbol]
+    comif_rxindication.o(.text.ComIf_RxIndication) refers to comif.o(.text.ComIf_ErrorNotify) for ComIf_ErrorNotify
+    comif_rxindication.o(.text.ComIf_RxIndication) refers to comif_calcchecksum.o(.text.ComIf_GetChecksumMaskValue) for ComIf_GetChecksumMaskValue
+    comif_rxindication.o(.text.ComIf_RxIndication) refers to comif_calcchecksum.o(.text.ComIf_CalcChecksum) for ComIf_CalcChecksum
+    comif_rxindication.o(.text.ComIf_RxIndication) refers to comif_rxindication.o(.text.ComIf_StoreDataByte) for ComIf_StoreDataByte
+    comif_rxindication.o(.text.ComIf_RxIndication) refers to comif_config.o(.data.ComIf_ChannelConfig) for ComIf_ChannelConfig
+    comif_rxindication.o(.ARM.exidx.text.ComIf_RxIndication) refers to comif_rxindication.o(.text.ComIf_RxIndication) for [Anonymous Symbol]
+    comif_rxindication.o(.text.ComIf_StoreDataByte) refers to comif.o(.text.ComIf_ErrorNotify) for ComIf_ErrorNotify
+    comif_rxindication.o(.ARM.exidx.text.ComIf_StoreDataByte) refers to comif_rxindication.o(.text.ComIf_StoreDataByte) for [Anonymous Symbol]
+    comif_rxindication.o(.text.ComIf_RxIndication_ASCIIString) refers to comif_rxindication.o(.text.ComIf_RxIndication) for ComIf_RxIndication
+    comif_rxindication.o(.ARM.exidx.text.ComIf_RxIndication_ASCIIString) refers to comif_rxindication.o(.text.ComIf_RxIndication_ASCIIString) for [Anonymous Symbol]
+    comif_transmit.o(.text.ComIf_EncodeFromShadowToChannelBuffer) refers to comif_calcchecksum.o(.text.ComIf_GetChecksumMaskValue) for ComIf_GetChecksumMaskValue
+    comif_transmit.o(.text.ComIf_EncodeFromShadowToChannelBuffer) refers to comif.o(.text.ComIf_ErrorNotify) for ComIf_ErrorNotify
+    comif_transmit.o(.text.ComIf_EncodeFromShadowToChannelBuffer) refers to comif_config.o(.data.ComIf_ChannelConfig) for ComIf_ChannelConfig
+    comif_transmit.o(.ARM.exidx.text.ComIf_EncodeFromShadowToChannelBuffer) refers to comif_transmit.o(.text.ComIf_EncodeFromShadowToChannelBuffer) for [Anonymous Symbol]
+    comif_transmit.o(.text.ComIf_Transmit) refers to comif_txshadowbuffer.o(.text.ComIf_UpdateTxShadowBuffer) for ComIf_UpdateTxShadowBuffer
+    comif_transmit.o(.text.ComIf_Transmit) refers to comif.o(.text.ComIf_ErrorNotify) for ComIf_ErrorNotify
+    comif_transmit.o(.text.ComIf_Transmit) refers to comif_transmit.o(.text.ComIf_EncodeFromShadowToChannelBuffer) for ComIf_EncodeFromShadowToChannelBuffer
+    comif_transmit.o(.text.ComIf_Transmit) refers to comif_config.o(.data.ComIf_ChannelConfig) for ComIf_ChannelConfig
+    comif_transmit.o(.ARM.exidx.text.ComIf_Transmit) refers to comif_transmit.o(.text.ComIf_Transmit) for [Anonymous Symbol]
+    comif_transmit.o(.text.ComIf_TxConfirmation) refers to comif_config.o(.data.ComIf_ChannelConfig) for ComIf_ChannelConfig
+    comif_transmit.o(.ARM.exidx.text.ComIf_TxConfirmation) refers to comif_transmit.o(.text.ComIf_TxConfirmation) for [Anonymous Symbol]
+    comif_transmit.o(.text.ComIf_TransmissionAborted) refers to comif_config.o(.data.ComIf_ChannelConfig) for ComIf_ChannelConfig
+    comif_transmit.o(.ARM.exidx.text.ComIf_TransmissionAborted) refers to comif_transmit.o(.text.ComIf_TransmissionAborted) for [Anonymous Symbol]
+    comif_transmit.o(.ARM.exidx.text.ComIf_TxMainFunction) refers to comif_transmit.o(.text.ComIf_TxMainFunction) for [Anonymous Symbol]
+    comif_txshadowbuffer.o(.text.ComIf_GetTxShadowBuffer) refers to comif_config.o(.data.ComIf_ChannelConfig) for ComIf_ChannelConfig
+    comif_txshadowbuffer.o(.ARM.exidx.text.ComIf_GetTxShadowBuffer) refers to comif_txshadowbuffer.o(.text.ComIf_GetTxShadowBuffer) for [Anonymous Symbol]
+    comif_txshadowbuffer.o(.text.ComIf_UpdateTxShadowBuffer) refers to comif_config.o(.data.ComIf_ChannelConfig) for ComIf_ChannelConfig
+    comif_txshadowbuffer.o(.ARM.exidx.text.ComIf_UpdateTxShadowBuffer) refers to comif_txshadowbuffer.o(.text.ComIf_UpdateTxShadowBuffer) for [Anonymous Symbol]
+    comif_txshadowbuffer.o(.text.ComIf_Transmit_ShadowBuffer) refers to comif_transmit.o(.text.ComIf_Transmit) for ComIf_Transmit
+    comif_txshadowbuffer.o(.text.ComIf_Transmit_ShadowBuffer) refers to comif_config.o(.data.ComIf_ChannelConfig) for ComIf_ChannelConfig
+    comif_txshadowbuffer.o(.ARM.exidx.text.ComIf_Transmit_ShadowBuffer) refers to comif_txshadowbuffer.o(.text.ComIf_Transmit_ShadowBuffer) for [Anonymous Symbol]
+    buffer.o(.text.Buffer_Create) refers to buffer.o(.bss.Buffers) for Buffers
+    buffer.o(.ARM.exidx.text.Buffer_Create) refers to buffer.o(.text.Buffer_Create) for [Anonymous Symbol]
+    buffer.o(.text.Buffer_GetBuffer) refers to buffer.o(.bss.Buffers) for Buffers
+    buffer.o(.ARM.exidx.text.Buffer_GetBuffer) refers to buffer.o(.text.Buffer_GetBuffer) for [Anonymous Symbol]
+    buffer.o(.text.Buffer_EnQueue) refers to buffer.o(.bss.Buffers) for Buffers
+    buffer.o(.ARM.exidx.text.Buffer_EnQueue) refers to buffer.o(.text.Buffer_EnQueue) for [Anonymous Symbol]
+    buffer.o(.text.Buffer_DeQueue) refers to buffer.o(.bss.Buffers) for Buffers
+    buffer.o(.ARM.exidx.text.Buffer_DeQueue) refers to buffer.o(.text.Buffer_DeQueue) for [Anonymous Symbol]
+    buffer.o(.text.Buffer_Length) refers to buffer.o(.bss.Buffers) for Buffers
+    buffer.o(.ARM.exidx.text.Buffer_Length) refers to buffer.o(.text.Buffer_Length) for [Anonymous Symbol]
+    buffer.o(.text.Buffer_Clear) refers to buffer.o(.bss.Buffers) for Buffers
+    buffer.o(.ARM.exidx.text.Buffer_Clear) refers to buffer.o(.text.Buffer_Clear) for [Anonymous Symbol]
+    stringhelper.o(.text.StringHelper_GetPointerAfter) refers to strlen.o(.text) for strlen
+    stringhelper.o(.text.StringHelper_GetPointerAfter) refers to strstr.o(.text) for strstr
+    stringhelper.o(.ARM.exidx.text.StringHelper_GetPointerAfter) refers to stringhelper.o(.text.StringHelper_GetPointerAfter) for [Anonymous Symbol]
+    stringhelper.o(.text.StringHelper_removeChar) refers to strlen.o(.text) for strlen
+    stringhelper.o(.ARM.exidx.text.StringHelper_removeChar) refers to stringhelper.o(.text.StringHelper_removeChar) for [Anonymous Symbol]
+    stringhelper.o(.text.StringHelper_SplitAndGet) refers to stringhelper.o(.bss.StringHelper_Buffer) for StringHelper_Buffer
+    stringhelper.o(.ARM.exidx.text.StringHelper_SplitAndGet) refers to stringhelper.o(.text.StringHelper_SplitAndGet) for [Anonymous Symbol]
+    stringhelper.o(.text.StringHelper_NumberToString) refers to aeabi_sdivfast.o(.text_divfast) for __aeabi_uidiv
+    stringhelper.o(.text.StringHelper_NumberToString) refers to rt_memmove.o(.text) for __aeabi_memmove
+    stringhelper.o(.text.StringHelper_NumberToString) refers to stringhelper.o(.bss.StringHelper_NumberString_Buffer) for StringHelper_NumberString_Buffer
+    stringhelper.o(.ARM.exidx.text.StringHelper_NumberToString) refers to stringhelper.o(.text.StringHelper_NumberToString) for [Anonymous Symbol]
+    stringhelper.o(.text.StringHelper_SplitAndGet_Number) refers to atoi.o(.text) for atoi
+    stringhelper.o(.text.StringHelper_SplitAndGet_Number) refers to rt_memclr.o(.text) for __aeabi_memclr4
+    stringhelper.o(.text.StringHelper_SplitAndGet_Number) refers to stringhelper.o(.bss.StringHelper_Buffer) for StringHelper_Buffer
+    stringhelper.o(.ARM.exidx.text.StringHelper_SplitAndGet_Number) refers to stringhelper.o(.text.StringHelper_SplitAndGet_Number) for [Anonymous Symbol]
+    stringhelper.o(.text.StringHelper_startsWith) refers to strlen.o(.text) for strlen
+    stringhelper.o(.text.StringHelper_startsWith) refers to memcmp.o(.text) for memcmp
+    stringhelper.o(.ARM.exidx.text.StringHelper_startsWith) refers to stringhelper.o(.text.StringHelper_startsWith) for [Anonymous Symbol]
+    stringhelper.o(.text.StringSearch) refers to strstr.o(.text) for strstr
+    stringhelper.o(.ARM.exidx.text.StringSearch) refers to stringhelper.o(.text.StringSearch) for [Anonymous Symbol]
+    simcom.o(.text.DTMFStateMachine) refers to mqtt_application.o(.text.updateSendData) for updateSendData
+    simcom.o(.text.DTMFStateMachine) refers to flash_eeprom.o(.text.EepromFlashMmeoryCopy) for EepromFlashMmeoryCopy
+    simcom.o(.text.DTMFStateMachine) refers to flash_eeprom.o(.text.EEPROMmain) for EEPROMmain
+    simcom.o(.text.DTMFStateMachine) refers to flash_eeprom.o(.text.EEPROMErasePage) for EEPROMErasePage
+    simcom.o(.text.DTMFStateMachine) refers to flash_eeprom.o(.text.FlashDataRead) for FlashDataRead
+    simcom.o(.text.DTMFStateMachine) refers to flash_eeprom.o(.text.EepromDeleteWrite) for EepromDeleteWrite
+    simcom.o(.text.DTMFStateMachine) refers to simcom.o(.bss.DtmfState) for DtmfState
+    simcom.o(.text.DTMFStateMachine) refers to simcom.o(.bss.EEPROMWriteAdress) for EEPROMWriteAdress
+    simcom.o(.text.DTMFStateMachine) refers to simcom_state.o(.data.SIMCOM_State) for SIMCOM_State
+    simcom.o(.text.DTMFStateMachine) refers to flash_eeprom.o(.bss.Data) for Data
+    simcom.o(.text.DTMFStateMachine) refers to simcom.o(.data.BufferLength) for BufferLength
+    simcom.o(.text.DTMFStateMachine) refers to simcom.o(.bss.DTMFBuffer) for DTMFBuffer
+    simcom.o(.text.DTMFStateMachine) refers to simcom.o(.bss.UpdatedNumber) for UpdatedNumber
+    simcom.o(.text.DTMFStateMachine) refers to message_app.o(.bss.DtmfMessageHandlerState) for DtmfMessageHandlerState
+    simcom.o(.text.DTMFStateMachine) refers to simcom.o(.bss.DTMFMessageFlag) for DTMFMessageFlag
+    simcom.o(.ARM.exidx.text.DTMFStateMachine) refers to simcom.o(.text.DTMFStateMachine) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_Init) refers to rt_memclr.o(.text) for __aeabi_memclr4
+    simcom.o(.text.SIMCOM_Init) refers to buffer.o(.text.Buffer_Create) for Buffer_Create
+    simcom.o(.text.SIMCOM_Init) refers to simcom.o(.bss.SIMCOM_CurrentJob) for SIMCOM_CurrentJob
+    simcom.o(.text.SIMCOM_Init) refers to simcom.o(.rodata.str1.1) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_Init) refers to simcom.o(.bss.SIMCOM_ComState) for SIMCOM_ComState
+    simcom.o(.text.SIMCOM_Init) refers to simcom.o(.bss.SIMCOM_ReceptionIgnoreCommandCount) for SIMCOM_ReceptionIgnoreCommandCount
+    simcom.o(.text.SIMCOM_Init) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom.o(.text.SIMCOM_Init) refers to simcom.o(.bss.SIMCOM_ResponseLength) for SIMCOM_ResponseLength
+    simcom.o(.text.SIMCOM_Init) refers to buffer_config.o(.bss.BufferArray_SIMCOM) for BufferArray_SIMCOM
+    simcom.o(.ARM.exidx.text.SIMCOM_Init) refers to simcom.o(.text.SIMCOM_Init) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom.o(.text.SIMCOM_Callback) for SIMCOM_Callback
+    simcom.o(.text.SIMCOM_MainFunction) refers to rt_memclr.o(.text) for __aeabi_memclr4
+    simcom.o(.text.SIMCOM_MainFunction) refers to buffer.o(.text.Buffer_Length) for Buffer_Length
+    simcom.o(.text.SIMCOM_MainFunction) refers to buffer.o(.text.Buffer_DeQueue) for Buffer_DeQueue
+    simcom.o(.text.SIMCOM_MainFunction) refers to mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) for COSMIC_SIMCOM_Error_Callback
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom_state.o(.text.SIMCOM_StateMachine) for SIMCOM_StateMachine
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom_clock.o(.text.SIMCOM_Clock_MainFunction) for SIMCOM_Clock_MainFunction
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) for SIMCOM_SSL_CONFIG_MainFunction
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom_mqtt.o(.text.MQTT_StateMachine) for MQTT_StateMachine
+    simcom.o(.text.SIMCOM_MainFunction) refers to mqtt_application.o(.text.MQTT_AppMain) for MQTT_AppMain
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) for MQTT_Publish_StateMachine
+    simcom.o(.text.SIMCOM_MainFunction) refers to message_app.o(.text.DtmfMessageCallFunc) for DtmfMessageCallFunc
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom_message.o(.text.MessageControl) for MessageControl
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom.o(.bss.SIMCOM_ComState) for SIMCOM_ComState
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom.o(.bss.SIMCOM_CurrentJob) for SIMCOM_CurrentJob
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom.o(.rodata.str1.1) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom.o(.bss.SIMCOM_ReceptionIgnoreCommandCount) for SIMCOM_ReceptionIgnoreCommandCount
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom.o(.data.SIMCOM_IncompleteCounter) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom.o(.bss.SIMCOM_ResponseLength) for SIMCOM_ResponseLength
+    simcom.o(.text.SIMCOM_MainFunction) refers to simcom.o(.data.SIMCOM_Aliveness_Counter) for [Anonymous Symbol]
+    simcom.o(.ARM.exidx.text.SIMCOM_MainFunction) refers to simcom.o(.text.SIMCOM_MainFunction) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_Callback) refers to stringhelper.o(.text.StringHelper_startsWith) for StringHelper_startsWith
+    simcom.o(.text.SIMCOM_Callback) refers to stringhelper.o(.text.StringHelper_GetPointerAfter) for StringHelper_GetPointerAfter
+    simcom.o(.text.SIMCOM_Callback) refers to simcom.o(.text.DTMFStateMachine) for DTMFStateMachine
+    simcom.o(.text.SIMCOM_Callback) refers to mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) for COSMIC_SIMCOM_Error_Callback
+    simcom.o(.text.SIMCOM_Callback) refers to memcmp.o(.text) for memcmp
+    simcom.o(.text.SIMCOM_Callback) refers to simcom.o(.text.SIMCOM_GetCSV_Number_fromBuffer) for SIMCOM_GetCSV_Number_fromBuffer
+    simcom.o(.text.SIMCOM_Callback) refers to flash_eeprom.o(.text.FlashDataRead) for FlashDataRead
+    simcom.o(.text.SIMCOM_Callback) refers to mqtt_application.o(.text.COSMIC_Generic_SIMCOM_Callback) for COSMIC_Generic_SIMCOM_Callback
+    simcom.o(.text.SIMCOM_Callback) refers to simcom.o(.bss.SIMCOM_CurrentJob) for SIMCOM_CurrentJob
+    simcom.o(.text.SIMCOM_Callback) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom.o(.text.SIMCOM_Callback) refers to mqtt_application.o(.data.SimcomWorkingMode) for SimcomWorkingMode
+    simcom.o(.text.SIMCOM_Callback) refers to simcom_state.o(.data.SIMCOM_State) for SIMCOM_State
+    simcom.o(.text.SIMCOM_Callback) refers to simcom.o(.bss.SIMCOM_ResponseLength) for SIMCOM_ResponseLength
+    simcom.o(.text.SIMCOM_Callback) refers to simcom.o(.rodata.str1.1) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_Callback) refers to simcom_mqtt.o(.data.MQTT_State) for MQTT_State
+    simcom.o(.text.SIMCOM_Callback) refers to simcom.o(.bss.PublishStatus) for PublishStatus
+    simcom.o(.text.SIMCOM_Callback) refers to simcom_mqtt_publish.o(.data.Publish_State) for Publish_State
+    simcom.o(.text.SIMCOM_Callback) refers to simcom.o(.bss.DTMFBuffer) for DTMFBuffer
+    simcom.o(.text.SIMCOM_Callback) refers to flash_eeprom.o(.bss.readD) for readD
+    simcom.o(.text.SIMCOM_Callback) refers to simcom.o(.bss.DtmfState) for DtmfState
+    simcom.o(.ARM.exidx.text.SIMCOM_Callback) refers to simcom.o(.text.SIMCOM_Callback) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_Schedule_Job) refers to rt_memclr.o(.text) for __aeabi_memclr4
+    simcom.o(.text.SIMCOM_Schedule_Job) refers to uart_driver.o(.text.UART2_SIM_Send_Data) for UART2_SIM_Send_Data
+    simcom.o(.text.SIMCOM_Schedule_Job) refers to simcom.o(.bss.SIMCOM_ComState) for SIMCOM_ComState
+    simcom.o(.text.SIMCOM_Schedule_Job) refers to simcom.o(.bss.SIMCOM_CurrentJob) for SIMCOM_CurrentJob
+    simcom.o(.text.SIMCOM_Schedule_Job) refers to simcom.o(.data.SIMCOM_IncompleteCounter) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_Schedule_Job) refers to simcom.o(.data.SIMCOM_Aliveness_Counter) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_Schedule_Job) refers to simcom.o(.bss.SIMCOM_ReceptionIgnoreCommandCount) for SIMCOM_ReceptionIgnoreCommandCount
+    simcom.o(.text.SIMCOM_Schedule_Job) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom.o(.text.SIMCOM_Schedule_Job) refers to simcom.o(.bss.SIMCOM_ResponseLength) for SIMCOM_ResponseLength
+    simcom.o(.ARM.exidx.text.SIMCOM_Schedule_Job) refers to simcom.o(.text.SIMCOM_Schedule_Job) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_RxMessageCallBack) refers to buffer.o(.text.Buffer_GetBuffer) for Buffer_GetBuffer
+    simcom.o(.text.SIMCOM_RxMessageCallBack) refers to memcmp.o(.text) for memcmp
+    simcom.o(.text.SIMCOM_RxMessageCallBack) refers to buffer.o(.text.Buffer_Clear) for Buffer_Clear
+    simcom.o(.text.SIMCOM_RxMessageCallBack) refers to stringhelper.o(.text.StringHelper_startsWith) for StringHelper_startsWith
+    simcom.o(.text.SIMCOM_RxMessageCallBack) refers to rt_memcpy.o(.text) for __aeabi_memcpy
+    simcom.o(.text.SIMCOM_RxMessageCallBack) refers to rt_memclr.o(.text) for __aeabi_memclr
+    simcom.o(.text.SIMCOM_RxMessageCallBack) refers to simcom.o(.bss.Rx_Response_State) for Rx_Response_State
+    simcom.o(.text.SIMCOM_RxMessageCallBack) refers to simcom.o(.bss.PREVPUBLISHSTATE) for PREVPUBLISHSTATE
+    simcom.o(.text.SIMCOM_RxMessageCallBack) refers to simcom_mqtt_publish.o(.data.Publish_State) for Publish_State
+    simcom.o(.text.SIMCOM_RxMessageCallBack) refers to simcom.o(.bss.TOPIC1_SubscribeMsg) for TOPIC1_SubscribeMsg
+    simcom.o(.text.SIMCOM_RxMessageCallBack) refers to mqtt_application.o(.bss.MQTTApp_State) for MQTTApp_State
+    simcom.o(.ARM.exidx.text.SIMCOM_RxMessageCallBack) refers to simcom.o(.text.SIMCOM_RxMessageCallBack) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_Data_Read) refers to buffer.o(.text.Buffer_EnQueue) for Buffer_EnQueue
+    simcom.o(.text.SIMCOM_Data_Read) refers to simcom.o(.text.SIMCOM_RxMessageCallBack) for SIMCOM_RxMessageCallBack
+    simcom.o(.text.SIMCOM_Data_Read) refers to buffer.o(.text.Buffer_Length) for Buffer_Length
+    simcom.o(.text.SIMCOM_Data_Read) refers to simcom.o(.bss.SIMCOM_Data_Read.prevData) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_Data_Read) refers to simcom.o(.bss.SIMCOM_ComState) for SIMCOM_ComState
+    simcom.o(.text.SIMCOM_Data_Read) refers to simcom.o(.bss.SIMCOM_ReceptionIgnoreCommandCount) for SIMCOM_ReceptionIgnoreCommandCount
+    simcom.o(.ARM.exidx.text.SIMCOM_Data_Read) refers to simcom.o(.text.SIMCOM_Data_Read) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_IgnoreCRLFs) refers to simcom.o(.bss.SIMCOM_ComState) for SIMCOM_ComState
+    simcom.o(.text.SIMCOM_IgnoreCRLFs) refers to simcom.o(.bss.SIMCOM_ReceptionIgnoreCommandCount) for SIMCOM_ReceptionIgnoreCommandCount
+    simcom.o(.text.SIMCOM_IgnoreCRLFs) refers to simcom.o(.bss.SIMCOM_CurrentJob) for SIMCOM_CurrentJob
+    simcom.o(.text.SIMCOM_IgnoreCRLFs) refers to simcom.o(.data.SIMCOM_IncompleteCounter) for [Anonymous Symbol]
+    simcom.o(.ARM.exidx.text.SIMCOM_IgnoreCRLFs) refers to simcom.o(.text.SIMCOM_IgnoreCRLFs) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_GetCSV_Number_fromBuffer) refers to stringhelper.o(.text.StringHelper_GetPointerAfter) for StringHelper_GetPointerAfter
+    simcom.o(.text.SIMCOM_GetCSV_Number_fromBuffer) refers to stringhelper.o(.text.StringHelper_SplitAndGet) for StringHelper_SplitAndGet
+    simcom.o(.text.SIMCOM_GetCSV_Number_fromBuffer) refers to strcpy.o(.text) for strcpy
+    simcom.o(.text.SIMCOM_GetCSV_Number_fromBuffer) refers to rt_memclr.o(.text) for __aeabi_memclr
+    simcom.o(.text.SIMCOM_GetCSV_Number_fromBuffer) refers to atoi.o(.text) for atoi
+    simcom.o(.text.SIMCOM_GetCSV_Number_fromBuffer) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom.o(.text.SIMCOM_GetCSV_Number_fromBuffer) refers to stringhelper.o(.bss.StringHelper_Buffer) for StringHelper_Buffer
+    simcom.o(.ARM.exidx.text.SIMCOM_GetCSV_Number_fromBuffer) refers to simcom.o(.text.SIMCOM_GetCSV_Number_fromBuffer) for [Anonymous Symbol]
+    simcom.o(.text.SIMCOM_Number_fromBuffer) refers to stringhelper.o(.text.StringHelper_GetPointerAfter) for StringHelper_GetPointerAfter
+    simcom.o(.text.SIMCOM_Number_fromBuffer) refers to atoi.o(.text) for atoi
+    simcom.o(.text.SIMCOM_Number_fromBuffer) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom.o(.ARM.exidx.text.SIMCOM_Number_fromBuffer) refers to simcom.o(.text.SIMCOM_Number_fromBuffer) for [Anonymous Symbol]
+    simcom.o(.ARM.exidx.text.StringToUlong) refers to simcom.o(.text.StringToUlong) for [Anonymous Symbol]
+    simcom_clock.o(.text.SIMCOM_Clock_MainFunction) refers to simcom.o(.text.SIMCOM_Schedule_Job) for SIMCOM_Schedule_Job
+    simcom_clock.o(.text.SIMCOM_Clock_MainFunction) refers to simcom_clock.o(.text.SIMCOM_Clock_ParseDateTime_InResponse) for SIMCOM_Clock_ParseDateTime_InResponse
+    simcom_clock.o(.text.SIMCOM_Clock_MainFunction) refers to mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) for COSMIC_SIMCOM_Error_Callback
+    simcom_clock.o(.text.SIMCOM_Clock_MainFunction) refers to simcom_clock.o(.bss.RunClock) for [Anonymous Symbol]
+    simcom_clock.o(.text.SIMCOM_Clock_MainFunction) refers to simcom_clock.o(.bss.SIMCOM_ClockSecondCounter) for [Anonymous Symbol]
+    simcom_clock.o(.text.SIMCOM_Clock_MainFunction) refers to simcom_clock.o(.bss.SIMCOM_DateTime) for SIMCOM_DateTime
+    simcom_clock.o(.text.SIMCOM_Clock_MainFunction) refers to simcom_clock.o(.bss.SIMCOM_Clock_State) for SIMCOM_Clock_State
+    simcom_clock.o(.text.SIMCOM_Clock_MainFunction) refers to simcom_clock.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_clock.o(.text.SIMCOM_Clock_MainFunction) refers to simcom_clock.o(.data.SIMCOM_ClockSyncCount) for [Anonymous Symbol]
+    simcom_clock.o(.text.SIMCOM_Clock_MainFunction) refers to simcom_state.o(.data.SIMCOM_State) for SIMCOM_State
+    simcom_clock.o(.text.SIMCOM_Clock_MainFunction) refers to simcom_clock.o(.rodata.str1.1) for [Anonymous Symbol]
+    simcom_clock.o(.text.SIMCOM_Clock_MainFunction) refers to simcom_clock.o(.text.SIMCOM_Clock_Job_Callback) for SIMCOM_Clock_Job_Callback
+    simcom_clock.o(.ARM.exidx.text.SIMCOM_Clock_MainFunction) refers to simcom_clock.o(.text.SIMCOM_Clock_MainFunction) for [Anonymous Symbol]
+    simcom_clock.o(.text.SIMCOM_Clock_Job_Callback) refers to simcom_clock.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_clock.o(.ARM.exidx.text.SIMCOM_Clock_Job_Callback) refers to simcom_clock.o(.text.SIMCOM_Clock_Job_Callback) for [Anonymous Symbol]
+    simcom_clock.o(.text.SIMCOM_Clock_ParseDateTime_InResponse) refers to stringhelper.o(.text.StringHelper_GetPointerAfter) for StringHelper_GetPointerAfter
+    simcom_clock.o(.text.SIMCOM_Clock_ParseDateTime_InResponse) refers to stringhelper.o(.text.StringHelper_removeChar) for StringHelper_removeChar
+    simcom_clock.o(.text.SIMCOM_Clock_ParseDateTime_InResponse) refers to stringhelper.o(.text.StringHelper_SplitAndGet) for StringHelper_SplitAndGet
+    simcom_clock.o(.text.SIMCOM_Clock_ParseDateTime_InResponse) refers to strcpy.o(.text) for strcpy
+    simcom_clock.o(.text.SIMCOM_Clock_ParseDateTime_InResponse) refers to rt_memclr.o(.text) for __aeabi_memclr
+    simcom_clock.o(.text.SIMCOM_Clock_ParseDateTime_InResponse) refers to stringhelper.o(.text.StringHelper_SplitAndGet_Number) for StringHelper_SplitAndGet_Number
+    simcom_clock.o(.text.SIMCOM_Clock_ParseDateTime_InResponse) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom_clock.o(.text.SIMCOM_Clock_ParseDateTime_InResponse) refers to stringhelper.o(.bss.StringHelper_Buffer) for StringHelper_Buffer
+    simcom_clock.o(.text.SIMCOM_Clock_ParseDateTime_InResponse) refers to simcom_clock.o(.bss.SIMCOM_DateTime) for SIMCOM_DateTime
+    simcom_clock.o(.ARM.exidx.text.SIMCOM_Clock_ParseDateTime_InResponse) refers to simcom_clock.o(.text.SIMCOM_Clock_ParseDateTime_InResponse) for [Anonymous Symbol]
+    simcom_state.o(.text) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.text) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.text) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.text.APN_Selection) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.text.APN_Selection) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.text.APN_Selection) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.text.APN_Selection) refers to atoi.o(.text) for atoi
+    simcom_state.o(.text.APN_Selection) refers to noretval__2sprintf.o(.text) for __2sprintf
+    simcom_state.o(.text.APN_Selection) refers to simcom_state.o(.bss.APN_name) for APN_name
+    simcom_state.o(.ARM.exidx.text.APN_Selection) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.ARM.exidx.text.APN_Selection) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.ARM.exidx.text.APN_Selection) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.ARM.exidx.text.APN_Selection) refers to simcom_state.o(.text.APN_Selection) for [Anonymous Symbol]
+    simcom_state.o(.text.SIMCOM_StateMachine) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.text.SIMCOM_StateMachine) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.text.SIMCOM_StateMachine) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to simcom.o(.text.SIMCOM_Schedule_Job) for SIMCOM_Schedule_Job
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) for COSMIC_SIMCOM_Error_Callback
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to strcmpv6m.o(.text) for strcmp
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to simcom.o(.text.SIMCOM_GetCSV_Number_fromBuffer) for SIMCOM_GetCSV_Number_fromBuffer
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to stringhelper.o(.text.StringHelper_GetPointerAfter) for StringHelper_GetPointerAfter
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to memcmp.o(.text) for memcmp
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to stringhelper.o(.text.StringHelper_startsWith) for StringHelper_startsWith
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to simcom_state.o(.text.APN_Selection) for APN_Selection
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to simcom_state.o(.data.SIMCOM_State) for SIMCOM_State
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to simcom_state.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to simcom.o(.bss.SIMCOM_ResponseLength) for SIMCOM_ResponseLength
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to simcom_state.o(.rodata.str1.1) for [Anonymous Symbol]
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to simcom_state.o(.text.SIMCOM_StateMachine_Callback) for SIMCOM_StateMachine_Callback
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to simcom_state.o(.bss.APN_name) for APN_name
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to simcom_state.o(.bss.DTMFCount) for DTMFCount
+    simcom_state.o(.text.SIMCOM_StateMachine) refers to simcom_state.o(.data.SIMCOM_SM_Retry_Count) for [Anonymous Symbol]
+    simcom_state.o(.ARM.exidx.text.SIMCOM_StateMachine) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.ARM.exidx.text.SIMCOM_StateMachine) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.ARM.exidx.text.SIMCOM_StateMachine) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.ARM.exidx.text.SIMCOM_StateMachine) refers to simcom_state.o(.text.SIMCOM_StateMachine) for [Anonymous Symbol]
+    simcom_state.o(.text.SIMCOM_StateMachine_Callback) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.text.SIMCOM_StateMachine_Callback) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.text.SIMCOM_StateMachine_Callback) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.text.SIMCOM_StateMachine_Callback) refers to simcom_state.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_state.o(.ARM.exidx.text.SIMCOM_StateMachine_Callback) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.ARM.exidx.text.SIMCOM_StateMachine_Callback) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.ARM.exidx.text.SIMCOM_StateMachine_Callback) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.ARM.exidx.text.SIMCOM_StateMachine_Callback) refers to simcom_state.o(.text.SIMCOM_StateMachine_Callback) for [Anonymous Symbol]
+    simcom_state.o(.data.SIMCOM_State) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.data.SIMCOM_State) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.data.SIMCOM_State) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.bss.DTMFCount) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.bss.DTMFCount) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.bss.DTMFCount) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.data.SIMCOMRESETWAITCOUNT) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.data.SIMCOMRESETWAITCOUNT) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.data.SIMCOMRESETWAITCOUNT) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.bss.APN_name) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.bss.APN_name) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.bss.APN_name) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.bss.SIMCOM_Job_Result) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.bss.SIMCOM_Job_Result) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.bss.SIMCOM_Job_Result) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.rodata.str1.1) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.rodata.str1.1) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.rodata.str1.1) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_state.o(.data.SIMCOM_SM_Retry_Count) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_state.o(.data.SIMCOM_SM_Retry_Count) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_state.o(.data.SIMCOM_SM_Retry_Count) refers (Special) to _printf_str.o(.text) for _printf_str
+    sysos.o(.text.PRC_SYS_INIT) refers to sysos_processes.o(.text.FUN_SYS_Internal_Init) for FUN_SYS_Internal_Init
+    sysos.o(.ARM.exidx.text.PRC_SYS_INIT) refers to sysos.o(.text.PRC_SYS_INIT) for [Anonymous Symbol]
+    sysos.o(.text.FUN_SYS_Evaluate_Tasks_x1) refers to sysos_processes.o(.text.FUN_SYS_Internal_Evaluate_Tasks_x1) for FUN_SYS_Internal_Evaluate_Tasks_x1
+    sysos.o(.text.FUN_SYS_Evaluate_Tasks_x1) refers to sysos_processes.o(.bss.SysOS_Ctrl) for SysOS_Ctrl
+    sysos.o(.ARM.exidx.text.FUN_SYS_Evaluate_Tasks_x1) refers to sysos.o(.text.FUN_SYS_Evaluate_Tasks_x1) for [Anonymous Symbol]
+    sysos.o(.text.FUN_SYS_Execute_Tasks) refers to sysos_processes.o(.text.FUN_SYS_Internal_Execute_Tasks) for FUN_SYS_Internal_Execute_Tasks
+    sysos.o(.text.FUN_SYS_Execute_Tasks) refers to sysos_processes.o(.bss.SysOS_Ctrl) for SysOS_Ctrl
+    sysos.o(.ARM.exidx.text.FUN_SYS_Execute_Tasks) refers to sysos.o(.text.FUN_SYS_Execute_Tasks) for [Anonymous Symbol]
+    sysos.o(.text.FUN_SYS_Timer_x1) refers to sysos_processes.o(.text.FUN_SYS_Internal_Evaluate_Tasks_x1) for FUN_SYS_Internal_Evaluate_Tasks_x1
+    sysos.o(.text.FUN_SYS_Timer_x1) refers to sysos_processes.o(.bss.SysOS_Ctrl) for SysOS_Ctrl
+    sysos.o(.ARM.exidx.text.FUN_SYS_Timer_x1) refers to sysos.o(.text.FUN_SYS_Timer_x1) for [Anonymous Symbol]
+    sysos.o(.text.SysOs_Main) refers to sysos_processes.o(.text.FUN_SYS_Internal_Init) for FUN_SYS_Internal_Init
+    sysos.o(.text.SysOs_Main) refers to sysos_processes.o(.text.FUN_SYS_Internal_Execute_Tasks) for FUN_SYS_Internal_Execute_Tasks
+    sysos.o(.text.SysOs_Main) refers to sysos.o(.bss.g_Fatal_Error_B) for g_Fatal_Error_B
+    sysos.o(.text.SysOs_Main) refers to sysos_processes.o(.bss.SysOS_Ctrl) for SysOS_Ctrl
+    sysos.o(.ARM.exidx.text.SysOs_Main) refers to sysos.o(.text.SysOs_Main) for [Anonymous Symbol]
+    simcom_message.o(.text) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.text) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.text) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.text.AddDoubleQts) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.text.AddDoubleQts) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.text.AddDoubleQts) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.ARM.exidx.text.AddDoubleQts) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.ARM.exidx.text.AddDoubleQts) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.ARM.exidx.text.AddDoubleQts) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.ARM.exidx.text.AddDoubleQts) refers to simcom_message.o(.text.AddDoubleQts) for [Anonymous Symbol]
+    simcom_message.o(.text.SendMessage) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.text.SendMessage) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.text.SendMessage) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.text.SendMessage) refers to strlen.o(.text) for strlen
+    simcom_message.o(.text.SendMessage) refers to rt_memcpy.o(.text) for __aeabi_memcpy
+    simcom_message.o(.text.SendMessage) refers to simcom_message.o(.bss.StoreMSGs) for StoreMSGs
+    simcom_message.o(.text.SendMessage) refers to simcom_message.o(.bss.SendMSG_State) for SendMSG_State
+    simcom_message.o(.ARM.exidx.text.SendMessage) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.ARM.exidx.text.SendMessage) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.ARM.exidx.text.SendMessage) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.ARM.exidx.text.SendMessage) refers to simcom_message.o(.text.SendMessage) for [Anonymous Symbol]
+    simcom_message.o(.text.MessageControl) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.text.MessageControl) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.text.MessageControl) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.text.MessageControl) refers to noretval__2sprintf.o(.text) for __2sprintf
+    simcom_message.o(.text.MessageControl) refers to simcom.o(.text.SIMCOM_Schedule_Job) for SIMCOM_Schedule_Job
+    simcom_message.o(.text.MessageControl) refers to strcmpv6m.o(.text) for strcmp
+    simcom_message.o(.text.MessageControl) refers to strlen.o(.text) for strlen
+    simcom_message.o(.text.MessageControl) refers to rt_memclr.o(.text) for __aeabi_memclr
+    simcom_message.o(.text.MessageControl) refers to stringhelper.o(.text.StringHelper_startsWith) for StringHelper_startsWith
+    simcom_message.o(.text.MessageControl) refers to mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) for COSMIC_SIMCOM_Error_Callback
+    simcom_message.o(.text.MessageControl) refers to simcom_message.o(.bss.SendMSG_State) for SendMSG_State
+    simcom_message.o(.text.MessageControl) refers to simcom_message.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_message.o(.text.MessageControl) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom_message.o(.text.MessageControl) refers to simcom_message.o(.data.MobNumber) for MobNumber
+    simcom_message.o(.text.MessageControl) refers to simcom_message.o(.text.SendMSG_CallBack) for SendMSG_CallBack
+    simcom_message.o(.text.MessageControl) refers to simcom.o(.bss.SIMCOM_ResponseLength) for SIMCOM_ResponseLength
+    simcom_message.o(.text.MessageControl) refers to message_app.o(.bss.DtmfMessageHandlerState) for DtmfMessageHandlerState
+    simcom_message.o(.text.MessageControl) refers to simcom_state.o(.data.SIMCOM_State) for SIMCOM_State
+    simcom_message.o(.text.MessageControl) refers to simcom.o(.bss.DTMFMessageFlag) for DTMFMessageFlag
+    simcom_message.o(.text.MessageControl) refers to message_app.o(.bss.MsgUpdationCompleteFlag) for MsgUpdationCompleteFlag
+    simcom_message.o(.text.MessageControl) refers to message_app.o(.data.strCheck) for strCheck
+    simcom_message.o(.text.MessageControl) refers to simcom_message.o(.bss.StoreMSGs) for StoreMSGs
+    simcom_message.o(.text.MessageControl) refers to simcom_message.o(.data.SendMSG_Retry_Count) for [Anonymous Symbol]
+    simcom_message.o(.ARM.exidx.text.MessageControl) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.ARM.exidx.text.MessageControl) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.ARM.exidx.text.MessageControl) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.ARM.exidx.text.MessageControl) refers to simcom_message.o(.text.MessageControl) for [Anonymous Symbol]
+    simcom_message.o(.text.SendMSG_CallBack) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.text.SendMSG_CallBack) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.text.SendMSG_CallBack) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.text.SendMSG_CallBack) refers to simcom_message.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_message.o(.ARM.exidx.text.SendMSG_CallBack) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.ARM.exidx.text.SendMSG_CallBack) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.ARM.exidx.text.SendMSG_CallBack) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.ARM.exidx.text.SendMSG_CallBack) refers to simcom_message.o(.text.SendMSG_CallBack) for [Anonymous Symbol]
+    simcom_message.o(.bss.SendMSG_State) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.bss.SendMSG_State) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.bss.SendMSG_State) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.data.MobNumber) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.data.MobNumber) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.data.MobNumber) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.bss.StoreMSGs) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.bss.StoreMSGs) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.bss.StoreMSGs) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.bss.SIMCOM_Job_Result) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.bss.SIMCOM_Job_Result) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.bss.SIMCOM_Job_Result) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_message.o(.data.SendMSG_Retry_Count) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_message.o(.data.SendMSG_Retry_Count) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_message.o(.data.SendMSG_Retry_Count) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom.o(.text.SIMCOM_Schedule_Job) for SIMCOM_Schedule_Job
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) for COSMIC_SIMCOM_Error_Callback
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to strcmpv6m.o(.text) for strcmp
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom.o(.text.SIMCOM_GetCSV_Number_fromBuffer) for SIMCOM_GetCSV_Number_fromBuffer
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to stringhelper.o(.text.StringHelper_startsWith) for StringHelper_startsWith
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom_mqtt.o(.data.MQTT_State) for MQTT_State
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom_mqtt_ssl.o(.data.C_MQTT_SSL_Config_State) for C_MQTT_SSL_Config_State
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to mqtt_application.o(.bss.MQTTConnectionCheckStatus) for MQTTConnectionCheckStatus
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom_mqtt.o(.data.MQTT_ConnectionCheckCounter) for MQTT_ConnectionCheckCounter
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to mqtt_application.o(.data.SimcomWorkingMode) for SimcomWorkingMode
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to mqtt_application.o(.bss.MQTTApp_State) for MQTTApp_State
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom_mqtt.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom_mqtt_publish.o(.data.Publish_State) for Publish_State
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom_mqtt.o(.text.MQTT_CALLBACK) for MQTT_CALLBACK
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom.o(.bss.SIMCOM_ResponseLength) for SIMCOM_ResponseLength
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom_mqtt.o(.rodata.str1.1) for [Anonymous Symbol]
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom_mqtt.o(.data.statechangecount) for statechangecount
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom.o(.bss.SIMCOM_ComState) for SIMCOM_ComState
+    simcom_mqtt.o(.text.MQTT_StateMachine) refers to simcom_mqtt.o(.data.MQTT_Retry_Count) for [Anonymous Symbol]
+    simcom_mqtt.o(.ARM.exidx.text.MQTT_StateMachine) refers to simcom_mqtt.o(.text.MQTT_StateMachine) for [Anonymous Symbol]
+    simcom_mqtt.o(.text.MQTT_CALLBACK) refers to simcom_mqtt.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_mqtt.o(.ARM.exidx.text.MQTT_CALLBACK) refers to simcom_mqtt.o(.text.MQTT_CALLBACK) for [Anonymous Symbol]
+    simcom_mqtt_publish.o(.text) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_mqtt_publish.o(.text) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    simcom_mqtt_publish.o(.text) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to noretval__2sprintf.o(.text) for __2sprintf
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to simcom.o(.text.SIMCOM_Schedule_Job) for SIMCOM_Schedule_Job
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to strlen.o(.text) for strlen
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to strcmpv6m.o(.text) for strcmp
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) for COSMIC_SIMCOM_Error_Callback
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to simcom_mqtt_publish.o(.data.Publish_State) for Publish_State
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to simcom_mqtt.o(.data.MQTT_State) for MQTT_State
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to simcom_mqtt.o(.data.statechangecount) for statechangecount
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to simcom_mqtt_publish.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to simcom_mqtt_publish.o(.text.MQTT_Publish_CallBack) for MQTT_Publish_CallBack
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to simcom.o(.bss.SIMCOM_ResponseLength) for SIMCOM_ResponseLength
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to simcom_mqtt_publish.o(.rodata.str1.1) for [Anonymous Symbol]
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to simcom_mqtt_publish.o(.bss.PublishPayload) for PublishPayload
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to mqtt_application.o(.bss.MQTTApp_State) for MQTTApp_State
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to simcom.o(.bss.PREVPUBLISHSTATE) for PREVPUBLISHSTATE
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to simcom_mqtt_publish.o(.data.MQTT_Publish_Retry_Count) for [Anonymous Symbol]
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to mqtt_application.o(.bss.MachineInitFlag) for MachineInitFlag
+    simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) refers to message_app.o(.bss.DtmfMessageHandlerState) for DtmfMessageHandlerState
+    simcom_mqtt_publish.o(.ARM.exidx.text.MQTT_Publish_StateMachine) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_mqtt_publish.o(.ARM.exidx.text.MQTT_Publish_StateMachine) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    simcom_mqtt_publish.o(.ARM.exidx.text.MQTT_Publish_StateMachine) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    simcom_mqtt_publish.o(.ARM.exidx.text.MQTT_Publish_StateMachine) refers to simcom_mqtt_publish.o(.text.MQTT_Publish_StateMachine) for [Anonymous Symbol]
+    simcom_mqtt_publish.o(.text.MQTT_Publish_CallBack) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_mqtt_publish.o(.text.MQTT_Publish_CallBack) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    simcom_mqtt_publish.o(.text.MQTT_Publish_CallBack) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    simcom_mqtt_publish.o(.text.MQTT_Publish_CallBack) refers to simcom_mqtt_publish.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_mqtt_publish.o(.ARM.exidx.text.MQTT_Publish_CallBack) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_mqtt_publish.o(.ARM.exidx.text.MQTT_Publish_CallBack) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    simcom_mqtt_publish.o(.ARM.exidx.text.MQTT_Publish_CallBack) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    simcom_mqtt_publish.o(.ARM.exidx.text.MQTT_Publish_CallBack) refers to simcom_mqtt_publish.o(.text.MQTT_Publish_CallBack) for [Anonymous Symbol]
+    simcom_mqtt_publish.o(.data.Publish_State) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_mqtt_publish.o(.data.Publish_State) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    simcom_mqtt_publish.o(.data.Publish_State) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    simcom_mqtt_publish.o(.bss.SIMCOM_Job_Result) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_mqtt_publish.o(.bss.SIMCOM_Job_Result) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    simcom_mqtt_publish.o(.bss.SIMCOM_Job_Result) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    simcom_mqtt_publish.o(.bss.PublishPayload) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_mqtt_publish.o(.bss.PublishPayload) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    simcom_mqtt_publish.o(.bss.PublishPayload) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    simcom_mqtt_publish.o(.data.MQTT_Publish_Retry_Count) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_mqtt_publish.o(.data.MQTT_Publish_Retry_Count) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    simcom_mqtt_publish.o(.data.MQTT_Publish_Retry_Count) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    simcom_mqtt_publish.o(.rodata.str1.1) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_mqtt_publish.o(.rodata.str1.1) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    simcom_mqtt_publish.o(.rodata.str1.1) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) refers to simcom.o(.text.SIMCOM_Schedule_Job) for SIMCOM_Schedule_Job
+    simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) refers to mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) for COSMIC_SIMCOM_Error_Callback
+    simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) refers to strcmpv6m.o(.text) for strcmp
+    simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) refers to simcom_clock.o(.bss.SIMCOM_Clock_State) for SIMCOM_Clock_State
+    simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) refers to simcom_mqtt_ssl.o(.data.C_MQTT_SSL_Config_State) for C_MQTT_SSL_Config_State
+    simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) refers to simcom_mqtt_ssl.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) refers to simcom.o(.bss.SIMCOM_ResponseLength) for SIMCOM_ResponseLength
+    simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) refers to simcom_mqtt_ssl.o(.rodata.str1.1) for [Anonymous Symbol]
+    simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) refers to simcom_mqtt_ssl.o(.text.SIMCOM_SSL_Configration_Callback) for SIMCOM_SSL_Configration_Callback
+    simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) refers to simcom_mqtt_ssl.o(.data.SIMCOM_SSL_Config_Retry_Count) for [Anonymous Symbol]
+    simcom_mqtt_ssl.o(.ARM.exidx.text.SIMCOM_SSL_CONFIG_MainFunction) refers to simcom_mqtt_ssl.o(.text.SIMCOM_SSL_CONFIG_MainFunction) for [Anonymous Symbol]
+    simcom_mqtt_ssl.o(.text.SIMCOM_SSL_Configration_Callback) refers to simcom_mqtt_ssl.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_mqtt_ssl.o(.ARM.exidx.text.SIMCOM_SSL_Configration_Callback) refers to simcom_mqtt_ssl.o(.text.SIMCOM_SSL_Configration_Callback) for [Anonymous Symbol]
+    simcom_calls.o(.text) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_calls.o(.text) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_calls.o(.text) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_calls.o(.text.SIMCOM_Calls_Callback) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_calls.o(.text.SIMCOM_Calls_Callback) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_calls.o(.text.SIMCOM_Calls_Callback) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_calls.o(.text.SIMCOM_Calls_Callback) refers to simcom_calls.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_Callback) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_Callback) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_Callback) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_Callback) refers to simcom_calls.o(.text.SIMCOM_Calls_Callback) for [Anonymous Symbol]
+    simcom_calls.o(.text.SIMCOM_Calls_Dial) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_calls.o(.text.SIMCOM_Calls_Dial) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_calls.o(.text.SIMCOM_Calls_Dial) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_calls.o(.text.SIMCOM_Calls_Dial) refers to strlen.o(.text) for strlen
+    simcom_calls.o(.text.SIMCOM_Calls_Dial) refers to noretval__2sprintf.o(.text) for __2sprintf
+    simcom_calls.o(.text.SIMCOM_Calls_Dial) refers to simcom_calls.o(.bss.DialNumer) for DialNumer
+    simcom_calls.o(.text.SIMCOM_Calls_Dial) refers to simcom_calls.o(.bss.SIMCOM_Dial_Request) for SIMCOM_Dial_Request
+    simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_Dial) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_Dial) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_Dial) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_Dial) refers to simcom_calls.o(.text.SIMCOM_Calls_Dial) for [Anonymous Symbol]
+    simcom_calls.o(.text.SIMCOM_Calls_MainFunction) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_calls.o(.text.SIMCOM_Calls_MainFunction) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_calls.o(.text.SIMCOM_Calls_MainFunction) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_calls.o(.text.SIMCOM_Calls_MainFunction) refers to simcom.o(.text.SIMCOM_Schedule_Job) for SIMCOM_Schedule_Job
+    simcom_calls.o(.text.SIMCOM_Calls_MainFunction) refers to strcmpv6m.o(.text) for strcmp
+    simcom_calls.o(.text.SIMCOM_Calls_MainFunction) refers to simcom_calls.o(.bss.SIMCOM_Dial_Request) for SIMCOM_Dial_Request
+    simcom_calls.o(.text.SIMCOM_Calls_MainFunction) refers to simcom_calls.o(.bss.SIMCOM_Job_Result) for [Anonymous Symbol]
+    simcom_calls.o(.text.SIMCOM_Calls_MainFunction) refers to simcom_calls.o(.text.SIMCOM_Calls_Callback) for SIMCOM_Calls_Callback
+    simcom_calls.o(.text.SIMCOM_Calls_MainFunction) refers to simcom.o(.bss.SIMCOM_ResponseLength) for SIMCOM_ResponseLength
+    simcom_calls.o(.text.SIMCOM_Calls_MainFunction) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    simcom_calls.o(.text.SIMCOM_Calls_MainFunction) refers to simcom_calls.o(.bss.DialNumer) for DialNumer
+    simcom_calls.o(.text.SIMCOM_Calls_MainFunction) refers to simcom_calls.o(.bss.WaitForCallTimoutCounter) for WaitForCallTimoutCounter
+    simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_MainFunction) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_MainFunction) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_MainFunction) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_MainFunction) refers to simcom_calls.o(.text.SIMCOM_Calls_MainFunction) for [Anonymous Symbol]
+    simcom_calls.o(.bss.SIMCOM_Dial_Request) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_calls.o(.bss.SIMCOM_Dial_Request) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_calls.o(.bss.SIMCOM_Dial_Request) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_calls.o(.bss.WaitForCallTimoutCounter) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_calls.o(.bss.WaitForCallTimoutCounter) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_calls.o(.bss.WaitForCallTimoutCounter) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_calls.o(.bss.SIMCOM_Job_Result) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_calls.o(.bss.SIMCOM_Job_Result) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_calls.o(.bss.SIMCOM_Job_Result) refers (Special) to _printf_str.o(.text) for _printf_str
+    simcom_calls.o(.bss.DialNumer) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    simcom_calls.o(.bss.DialNumer) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    simcom_calls.o(.bss.DialNumer) refers (Special) to _printf_str.o(.text) for _printf_str
+    avrstatusmessagehandling.o(.text.AVR_IO_StatusRxCbk) refers to avrstatusmessagehandling.o(.bss.AvrStatusData) for AvrStatusData
+    avrstatusmessagehandling.o(.text.AVR_IO_StatusRxCbk) refers to mqtt_application.o(.bss.MQTTApp_State) for MQTTApp_State
+    avrstatusmessagehandling.o(.ARM.exidx.text.AVR_IO_StatusRxCbk) refers to avrstatusmessagehandling.o(.text.AVR_IO_StatusRxCbk) for [Anonymous Symbol]
+    avrstatusmessagehandling.o(.ARM.exidx.text.ADC_RxCbk) refers to avrstatusmessagehandling.o(.text.ADC_RxCbk) for [Anonymous Symbol]
+    avrstatusmessagehandling.o(.text.AvrStatusHandleFunc) refers to buffer.o(.text.Buffer_Length) for Buffer_Length
+    avrstatusmessagehandling.o(.text.AvrStatusHandleFunc) refers to buffer.o(.text.Buffer_DeQueue) for Buffer_DeQueue
+    avrstatusmessagehandling.o(.text.AvrStatusHandleFunc) refers to comif_config.o(.text.ComIf_RxIndication_AVR) for ComIf_RxIndication_AVR
+    avrstatusmessagehandling.o(.ARM.exidx.text.AvrStatusHandleFunc) refers to avrstatusmessagehandling.o(.text.AvrStatusHandleFunc) for [Anonymous Symbol]
+    mqtt_application.o(.text.AVR_Transmit) refers to uart_driver.o(.text.SIM_Send_Data) for SIM_Send_Data
+    mqtt_application.o(.text.AVR_Transmit) refers to aeabi_memset.o(.text) for __aeabi_memset
+    mqtt_application.o(.text.AVR_Transmit) refers to comif_transmit.o(.text.ComIf_TxConfirmation) for ComIf_TxConfirmation
+    mqtt_application.o(.ARM.exidx.text.AVR_Transmit) refers to mqtt_application.o(.text.AVR_Transmit) for [Anonymous Symbol]
+    mqtt_application.o(.text.updateSendData) refers to comif_transmit.o(.text.ComIf_Transmit) for ComIf_Transmit
+    mqtt_application.o(.text.updateSendData) refers to mqtt_application.o(.bss.AvrCmdData) for AvrCmdData
+    mqtt_application.o(.text.updateSendData) refers to comif_config.o(.bss.ComIf_ShadowBuffer_AVR_IO_cmdData_AVR) for ComIf_ShadowBuffer_AVR_IO_cmdData_AVR
+    mqtt_application.o(.ARM.exidx.text.updateSendData) refers to mqtt_application.o(.text.updateSendData) for [Anonymous Symbol]
+    mqtt_application.o(.text.IO_cmdData_CloudRxCbk) refers to rt_memcpy.o(.text) for __aeabi_memcpy
+    mqtt_application.o(.text.IO_cmdData_CloudRxCbk) refers to comif_transmit.o(.text.ComIf_Transmit) for ComIf_Transmit
+    mqtt_application.o(.text.IO_cmdData_CloudRxCbk) refers to comif_config.o(.bss.ComIf_ShadowBuffer_AVR_IO_cmdData_AVR) for ComIf_ShadowBuffer_AVR_IO_cmdData_AVR
+    mqtt_application.o(.text.IO_cmdData_CloudRxCbk) refers to mqtt_application.o(.bss.AvrCmdData) for AvrCmdData
+    mqtt_application.o(.ARM.exidx.text.IO_cmdData_CloudRxCbk) refers to mqtt_application.o(.text.IO_cmdData_CloudRxCbk) for [Anonymous Symbol]
+    mqtt_application.o(.text.Cloud_Transmit) refers to rt_memcpy.o(.text) for __aeabi_memcpy
+    mqtt_application.o(.text.Cloud_Transmit) refers to comif_transmit.o(.text.ComIf_TxConfirmation) for ComIf_TxConfirmation
+    mqtt_application.o(.text.Cloud_Transmit) refers to mqtt_application.o(.bss.MQTTApp_State) for MQTTApp_State
+    mqtt_application.o(.text.Cloud_Transmit) refers to simcom_mqtt_publish.o(.bss.PublishPayload) for PublishPayload
+    mqtt_application.o(.ARM.exidx.text.Cloud_Transmit) refers to mqtt_application.o(.text.Cloud_Transmit) for [Anonymous Symbol]
+    mqtt_application.o(.text.RequestLastStatus) refers to comif_transmit.o(.text.ComIf_Transmit) for ComIf_Transmit
+    mqtt_application.o(.text.RequestLastStatus) refers to comif_config.o(.bss.ComIf_ShadowBuffer_Cloud_IO_Status_Cloud) for ComIf_ShadowBuffer_Cloud_IO_Status_Cloud
+    mqtt_application.o(.text.RequestLastStatus) refers to avrstatusmessagehandling.o(.bss.AvrStatusData) for AvrStatusData
+    mqtt_application.o(.ARM.exidx.text.RequestLastStatus) refers to mqtt_application.o(.text.RequestLastStatus) for [Anonymous Symbol]
+    mqtt_application.o(.text.CloudInit) refers to comif_transmit.o(.text.ComIf_Transmit) for ComIf_Transmit
+    mqtt_application.o(.text.CloudInit) refers to comif_config.o(.bss.ComIf_ShadowBuffer_Cloud_Cloud_Init) for ComIf_ShadowBuffer_Cloud_Cloud_Init
+    mqtt_application.o(.ARM.exidx.text.CloudInit) refers to mqtt_application.o(.text.CloudInit) for [Anonymous Symbol]
+    mqtt_application.o(.text.MQTT_AppMain) refers to comif_transmit.o(.text.ComIf_Transmit) for ComIf_Transmit
+    mqtt_application.o(.text.MQTT_AppMain) refers to strlen.o(.text) for strlen
+    mqtt_application.o(.text.MQTT_AppMain) refers to comif_config.o(.text.ComIf_RxIndication_Cloud) for ComIf_RxIndication_Cloud
+    mqtt_application.o(.text.MQTT_AppMain) refers to rt_memclr.o(.text) for __aeabi_memclr
+    mqtt_application.o(.text.MQTT_AppMain) refers to simcom_mqtt.o(.data.MQTT_State) for MQTT_State
+    mqtt_application.o(.text.MQTT_AppMain) refers to mqtt_application.o(.bss.MQTTApp_State) for MQTTApp_State
+    mqtt_application.o(.text.MQTT_AppMain) refers to simcom_mqtt_publish.o(.data.Publish_State) for Publish_State
+    mqtt_application.o(.text.MQTT_AppMain) refers to avrstatusmessagehandling.o(.bss.AvrStatusData) for AvrStatusData
+    mqtt_application.o(.text.MQTT_AppMain) refers to comif_config.o(.bss.ComIf_ShadowBuffer_Cloud_IO_Status_Cloud) for ComIf_ShadowBuffer_Cloud_IO_Status_Cloud
+    mqtt_application.o(.text.MQTT_AppMain) refers to simcom.o(.bss.TOPIC1_SubscribeMsg) for TOPIC1_SubscribeMsg
+    mqtt_application.o(.text.MQTT_AppMain) refers to comif_config.o(.bss.ComIf_ShadowBuffer_Cloud_Cloud_Init) for ComIf_ShadowBuffer_Cloud_Cloud_Init
+    mqtt_application.o(.text.MQTT_AppMain) refers to mqtt_application.o(.bss.MachineInitFlag) for MachineInitFlag
+    mqtt_application.o(.text.MQTT_AppMain) refers to mqtt_application.o(.bss.MQTTConnectionCheckStatus) for MQTTConnectionCheckStatus
+    mqtt_application.o(.text.MQTT_AppMain) refers to mqtt_application.o(.bss.prevCloudStatusData) for prevCloudStatusData
+    mqtt_application.o(.ARM.exidx.text.MQTT_AppMain) refers to mqtt_application.o(.text.MQTT_AppMain) for [Anonymous Symbol]
+    mqtt_application.o(.ARM.exidx.text.Cloud_ComIf_ErrorNotification) refers to mqtt_application.o(.text.Cloud_ComIf_ErrorNotification) for [Anonymous Symbol]
+    mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) refers to simcom_mqtt_ssl.o(.data.C_MQTT_SSL_Config_State) for C_MQTT_SSL_Config_State
+    mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) refers to simcom_state.o(.data.SIMCOM_State) for SIMCOM_State
+    mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) refers to simcom_mqtt.o(.data.MQTT_State) for MQTT_State
+    mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) refers to mqtt_application.o(.bss.MQTTApp_State) for MQTTApp_State
+    mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) refers to simcom_mqtt_publish.o(.data.Publish_State) for Publish_State
+    mqtt_application.o(.ARM.exidx.text.COSMIC_SIMCOM_Error_Callback) refers to mqtt_application.o(.text.COSMIC_SIMCOM_Error_Callback) for [Anonymous Symbol]
+    mqtt_application.o(.text.COSMIC_Generic_SIMCOM_Callback) refers to rt_memclr.o(.text) for __aeabi_memclr
+    mqtt_application.o(.text.COSMIC_Generic_SIMCOM_Callback) refers to simcom.o(.bss.SIMCOM_ResponseBuffer) for SIMCOM_ResponseBuffer
+    mqtt_application.o(.text.COSMIC_Generic_SIMCOM_Callback) refers to simcom.o(.bss.SIMCOM_ResponseLength) for SIMCOM_ResponseLength
+    mqtt_application.o(.ARM.exidx.text.COSMIC_Generic_SIMCOM_Callback) refers to mqtt_application.o(.text.COSMIC_Generic_SIMCOM_Callback) for [Anonymous Symbol]
+    cs_iot.o(.ARM.exidx.text.DTMFCallMessageCbk) refers to cs_iot.o(.text.DTMFCallMessageCbk) for [Anonymous Symbol]
+    cs_iot.o(.ARM.exidx.text.DTMFMessageRxCbk) refers to cs_iot.o(.text.DTMFMessageRxCbk) for [Anonymous Symbol]
+    message_app.o(.text) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    message_app.o(.text) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    message_app.o(.text) refers (Special) to _printf_str.o(.text) for _printf_str
+    message_app.o(.text.DtmfMessageCallFunc) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    message_app.o(.text.DtmfMessageCallFunc) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    message_app.o(.text.DtmfMessageCallFunc) refers (Special) to _printf_str.o(.text) for _printf_str
+    message_app.o(.text.DtmfMessageCallFunc) refers to strlen.o(.text) for strlen
+    message_app.o(.text.DtmfMessageCallFunc) refers to simcom_message.o(.text.SendMessage) for SendMessage
+    message_app.o(.text.DtmfMessageCallFunc) refers to rt_memcpy.o(.text) for __aeabi_memcpy
+    message_app.o(.text.DtmfMessageCallFunc) refers to noretval__2sprintf.o(.text) for __2sprintf
+    message_app.o(.text.DtmfMessageCallFunc) refers to flash_eeprom.o(.text.FlashDataRead) for FlashDataRead
+    message_app.o(.text.DtmfMessageCallFunc) refers to rt_memclr.o(.text) for __aeabi_memclr4
+    message_app.o(.text.DtmfMessageCallFunc) refers to message_app.o(.bss.DtmfMessageHandlerState) for DtmfMessageHandlerState
+    message_app.o(.text.DtmfMessageCallFunc) refers to message_app.o(.data.EEPROMAdressByte) for EEPROMAdressByte
+    message_app.o(.text.DtmfMessageCallFunc) refers to simcom_message.o(.data.MobNumber) for MobNumber
+    message_app.o(.text.DtmfMessageCallFunc) refers to flash_eeprom.o(.bss.readD) for readD
+    message_app.o(.text.DtmfMessageCallFunc) refers to message_app.o(.bss.MsgUpdationCompleteFlag) for MsgUpdationCompleteFlag
+    message_app.o(.text.DtmfMessageCallFunc) refers to message_app.o(.data.strCheck) for strCheck
+    message_app.o(.text.DtmfMessageCallFunc) refers to simcom_message.o(.bss.SendMSG_State) for SendMSG_State
+    message_app.o(.text.DtmfMessageCallFunc) refers to simcom.o(.bss.DTMFBuffer) for DTMFBuffer
+    message_app.o(.text.DtmfMessageCallFunc) refers to flash_eeprom.o(.bss.AdressCpy) for AdressCpy
+    message_app.o(.text.DtmfMessageCallFunc) refers to simcom.o(.bss.UpdatedNumber) for UpdatedNumber
+    message_app.o(.text.DtmfMessageCallFunc) refers to message_app.o(.bss.CurrentMotorStatus) for CurrentMotorStatus
+    message_app.o(.ARM.exidx.text.DtmfMessageCallFunc) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    message_app.o(.ARM.exidx.text.DtmfMessageCallFunc) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    message_app.o(.ARM.exidx.text.DtmfMessageCallFunc) refers (Special) to _printf_str.o(.text) for _printf_str
+    message_app.o(.ARM.exidx.text.DtmfMessageCallFunc) refers to message_app.o(.text.DtmfMessageCallFunc) for [Anonymous Symbol]
+    message_app.o(.bss.MsgUpdationCompleteFlag) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    message_app.o(.bss.MsgUpdationCompleteFlag) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    message_app.o(.bss.MsgUpdationCompleteFlag) refers (Special) to _printf_str.o(.text) for _printf_str
+    message_app.o(.data.EEPROMAdressByte) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    message_app.o(.data.EEPROMAdressByte) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    message_app.o(.data.EEPROMAdressByte) refers (Special) to _printf_str.o(.text) for _printf_str
+    message_app.o(.bss.PreviousMotorStatus) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    message_app.o(.bss.PreviousMotorStatus) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    message_app.o(.bss.PreviousMotorStatus) refers (Special) to _printf_str.o(.text) for _printf_str
+    message_app.o(.bss.CurrentMotorStatus) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    message_app.o(.bss.CurrentMotorStatus) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    message_app.o(.bss.CurrentMotorStatus) refers (Special) to _printf_str.o(.text) for _printf_str
+    message_app.o(.data.strCheck) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    message_app.o(.data.strCheck) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    message_app.o(.data.strCheck) refers (Special) to _printf_str.o(.text) for _printf_str
+    message_app.o(.bss.DtmfMessageHandlerState) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    message_app.o(.bss.DtmfMessageHandlerState) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    message_app.o(.bss.DtmfMessageHandlerState) refers (Special) to _printf_str.o(.text) for _printf_str
+    buffer_config.o(.text.Buffer_Init) refers to buffer.o(.text.Buffer_Create) for Buffer_Create
+    buffer_config.o(.text.Buffer_Init) refers to buffer_config.o(.bss.BufferArray_AvrStatus) for BufferArray_AvrStatus
+    buffer_config.o(.text.Buffer_Init) refers to buffer_config.o(.bss.BufferArray_SIMCOM) for BufferArray_SIMCOM
+    buffer_config.o(.ARM.exidx.text.Buffer_Init) refers to buffer_config.o(.text.Buffer_Init) for [Anonymous Symbol]
+    comif_config.o(.text.ComIf_RxIndication_Cloud) refers to comif_rxindication.o(.text.ComIf_RxIndication_ASCIIString) for ComIf_RxIndication_ASCIIString
+    comif_config.o(.ARM.exidx.text.ComIf_RxIndication_Cloud) refers to comif_config.o(.text.ComIf_RxIndication_Cloud) for [Anonymous Symbol]
+    comif_config.o(.text.ComIf_RxIndication_AVR) refers to comif_rxindication.o(.text.ComIf_RxIndication) for ComIf_RxIndication
+    comif_config.o(.ARM.exidx.text.ComIf_RxIndication_AVR) refers to comif_config.o(.text.ComIf_RxIndication_AVR) for [Anonymous Symbol]
+    comif_config.o(.data.ComIfTxMsgCfg_Cloud) refers to comif_config.o(.bss.ComIf_ShadowBuffer_Cloud_IO_Status_Cloud) for ComIf_ShadowBuffer_Cloud_IO_Status_Cloud
+    comif_config.o(.data.ComIfTxMsgCfg_Cloud) refers to comif_config.o(.bss.ComIf_ShadowBuffer_Cloud_ADC_Values_Cloud) for ComIf_ShadowBuffer_Cloud_ADC_Values_Cloud
+    comif_config.o(.data.ComIfTxMsgCfg_Cloud) refers to comif_config.o(.bss.ComIf_ShadowBuffer_Cloud_Cloud_Init) for ComIf_ShadowBuffer_Cloud_Cloud_Init
+    comif_config.o(.data.ComIfRxMsgCfg_Cloud) refers to comif_config.o(.bss.ComIf_RxMessageBuffer_Cloud_IO_cmdData_Cloud) for ComIf_RxMessageBuffer_Cloud_IO_cmdData_Cloud
+    comif_config.o(.data.ComIfRxMsgCfg_Cloud) refers to mqtt_application.o(.text.IO_cmdData_CloudRxCbk) for IO_cmdData_CloudRxCbk
+    comif_config.o(.data.ComIfTxMsgCfg_AVR) refers to comif_config.o(.bss.ComIf_ShadowBuffer_AVR_IO_cmdData_AVR) for ComIf_ShadowBuffer_AVR_IO_cmdData_AVR
+    comif_config.o(.data.ComIfTxMsgCfg_AVR) refers to comif_config.o(.bss.ComIf_ShadowBuffer_AVR_DTMFCommandData) for ComIf_ShadowBuffer_AVR_DTMFCommandData
+    comif_config.o(.data.ComIfTxMsgCfg_AVR) refers to comif_config.o(.bss.ComIf_ShadowBuffer_AVR_Stored_MobNums) for ComIf_ShadowBuffer_AVR_Stored_MobNums
+    comif_config.o(.data.ComIfRxMsgCfg_AVR) refers to comif_config.o(.bss.ComIf_RxMessageBuffer_AVR_AVR_IO_Status) for ComIf_RxMessageBuffer_AVR_AVR_IO_Status
+    comif_config.o(.data.ComIfRxMsgCfg_AVR) refers to avrstatusmessagehandling.o(.text.AVR_IO_StatusRxCbk) for AVR_IO_StatusRxCbk
+    comif_config.o(.data.ComIfRxMsgCfg_AVR) refers to comif_config.o(.bss.ComIf_RxMessageBuffer_AVR_ADC_Values_AVR) for ComIf_RxMessageBuffer_AVR_ADC_Values_AVR
+    comif_config.o(.data.ComIfRxMsgCfg_AVR) refers to avrstatusmessagehandling.o(.text.ADC_RxCbk) for ADC_RxCbk
+    comif_config.o(.data.ComIfRxMsgCfg_AVR) refers to comif_config.o(.bss.ComIf_RxMessageBuffer_AVR_AVR_TextMessage) for ComIf_RxMessageBuffer_AVR_AVR_TextMessage
+    comif_config.o(.data.ComIfRxMsgCfg_AVR) refers to comif_config.o(.bss.ComIf_RxMessageBuffer_AVR_AVR_Call) for ComIf_RxMessageBuffer_AVR_AVR_Call
+    comif_config.o(.data.ComIf_ChannelConfig) refers to mqtt_application.o(.text.Cloud_Transmit) for Cloud_Transmit
+    comif_config.o(.data.ComIf_ChannelConfig) refers to mqtt_application.o(.text.Cloud_ComIf_ErrorNotification) for Cloud_ComIf_ErrorNotification
+    comif_config.o(.data.ComIf_ChannelConfig) refers to comif_config.o(.bss.ComIfChannelTxBuffer_Cloud) for ComIfChannelTxBuffer_Cloud
+    comif_config.o(.data.ComIf_ChannelConfig) refers to comif_config.o(.data.ComIfTxMsgCfg_Cloud) for ComIfTxMsgCfg_Cloud
+    comif_config.o(.data.ComIf_ChannelConfig) refers to comif_config.o(.data.ComIfRxMsgCfg_Cloud) for ComIfRxMsgCfg_Cloud
+    comif_config.o(.data.ComIf_ChannelConfig) refers to mqtt_application.o(.text.AVR_Transmit) for AVR_Transmit
+    comif_config.o(.data.ComIf_ChannelConfig) refers to comif_config.o(.bss.ComIfChannelTxBuffer_AVR) for ComIfChannelTxBuffer_AVR
+    comif_config.o(.data.ComIf_ChannelConfig) refers to comif_config.o(.data.ComIfTxMsgCfg_AVR) for ComIfTxMsgCfg_AVR
+    comif_config.o(.data.ComIf_ChannelConfig) refers to comif_config.o(.data.ComIfRxMsgCfg_AVR) for ComIfRxMsgCfg_AVR
+    sysos_processes.o(.text.PRC_SYSOS_TASK_INIT) refers to pll_driver.o(.text.PLLInit) for PLLInit
+    sysos_processes.o(.text.PRC_SYSOS_TASK_INIT) refers to buffer_config.o(.text.Buffer_Init) for Buffer_Init
+    sysos_processes.o(.text.PRC_SYSOS_TASK_INIT) refers to main.o(.text.GPIO_init) for GPIO_init
+    sysos_processes.o(.text.PRC_SYSOS_TASK_INIT) refers to uart_driver.o(.text.USART2_Init) for USART2_Init
+    sysos_processes.o(.text.PRC_SYSOS_TASK_INIT) refers to uart_driver.o(.text.USART_Init) for USART_Init
+    sysos_processes.o(.text.PRC_SYSOS_TASK_INIT) refers to systick_interrupt.o(.text.SystickTimerInit) for SystickTimerInit
+    sysos_processes.o(.text.PRC_SYSOS_TASK_INIT) refers to simcom.o(.text.SIMCOM_Init) for SIMCOM_Init
+    sysos_processes.o(.ARM.exidx.text.PRC_SYSOS_TASK_INIT) refers to sysos_processes.o(.text.PRC_SYSOS_TASK_INIT) for [Anonymous Symbol]
+    sysos_processes.o(.text.PRC_SYSOS_TASK_X100) refers to simcom.o(.text.SIMCOM_MainFunction) for SIMCOM_MainFunction
+    sysos_processes.o(.text.PRC_SYSOS_TASK_X100) refers to avrstatusmessagehandling.o(.text.AvrStatusHandleFunc) for AvrStatusHandleFunc
+    sysos_processes.o(.text.PRC_SYSOS_TASK_X100) refers to main.o(.text.Sysos_check) for Sysos_check
+    sysos_processes.o(.ARM.exidx.text.PRC_SYSOS_TASK_X100) refers to sysos_processes.o(.text.PRC_SYSOS_TASK_X100) for [Anonymous Symbol]
+    sysos_processes.o(.text.FUN_SYS_Internal_Init) refers to pll_driver.o(.text.PLLInit) for PLLInit
+    sysos_processes.o(.text.FUN_SYS_Internal_Init) refers to buffer_config.o(.text.Buffer_Init) for Buffer_Init
+    sysos_processes.o(.text.FUN_SYS_Internal_Init) refers to main.o(.text.GPIO_init) for GPIO_init
+    sysos_processes.o(.text.FUN_SYS_Internal_Init) refers to uart_driver.o(.text.USART2_Init) for USART2_Init
+    sysos_processes.o(.text.FUN_SYS_Internal_Init) refers to uart_driver.o(.text.USART_Init) for USART_Init
+    sysos_processes.o(.text.FUN_SYS_Internal_Init) refers to systick_interrupt.o(.text.SystickTimerInit) for SystickTimerInit
+    sysos_processes.o(.text.FUN_SYS_Internal_Init) refers to simcom.o(.text.SIMCOM_Init) for SIMCOM_Init
+    sysos_processes.o(.text.FUN_SYS_Internal_Init) refers to sysos_processes.o(.bss.SysOS_Ctrl) for SysOS_Ctrl
+    sysos_processes.o(.ARM.exidx.text.FUN_SYS_Internal_Init) refers to sysos_processes.o(.text.FUN_SYS_Internal_Init) for [Anonymous Symbol]
+    sysos_processes.o(.ARM.exidx.text.FUN_SYS_Internal_Evaluate_Tasks_x1) refers to sysos_processes.o(.text.FUN_SYS_Internal_Evaluate_Tasks_x1) for [Anonymous Symbol]
+    sysos_processes.o(.text.FUN_SYS_Internal_Execute_Tasks) refers to simcom.o(.text.SIMCOM_MainFunction) for SIMCOM_MainFunction
+    sysos_processes.o(.text.FUN_SYS_Internal_Execute_Tasks) refers to avrstatusmessagehandling.o(.text.AvrStatusHandleFunc) for AvrStatusHandleFunc
+    sysos_processes.o(.text.FUN_SYS_Internal_Execute_Tasks) refers to main.o(.text.Sysos_check) for Sysos_check
+    sysos_processes.o(.ARM.exidx.text.FUN_SYS_Internal_Execute_Tasks) refers to sysos_processes.o(.text.FUN_SYS_Internal_Execute_Tasks) for [Anonymous Symbol]
+    main.o(.text.main) refers to sysos.o(.text.SysOs_Main) for SysOs_Main
+    main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
+    main.o(.text.GPIO_init) refers to gpio_driver.o(.text.GPIO_WritePin) for GPIO_WritePin
+    main.o(.text.GPIO_init) refers to gpio_driver.o(.text.GPIO_Config) for GPIO_Config
+    main.o(.ARM.exidx.text.GPIO_init) refers to main.o(.text.GPIO_init) for [Anonymous Symbol]
+    main.o(.text.Sysos_check) refers to gpio_driver.o(.text.GPIO_TogglePin) for GPIO_TogglePin
+    main.o(.ARM.exidx.text.Sysos_check) refers to main.o(.text.Sysos_check) for [Anonymous Symbol]
+    gpio_driver.o(.ARM.exidx.text.GPIO_Config) refers to gpio_driver.o(.text.GPIO_Config) for [Anonymous Symbol]
+    gpio_driver.o(.ARM.exidx.text.GPIO_DeInit) refers to gpio_driver.o(.text.GPIO_DeInit) for [Anonymous Symbol]
+    gpio_driver.o(.ARM.exidx.text.GPIO_ReadPin) refers to gpio_driver.o(.text.GPIO_ReadPin) for [Anonymous Symbol]
+    gpio_driver.o(.ARM.exidx.text.GPIO_WritePin) refers to gpio_driver.o(.text.GPIO_WritePin) for [Anonymous Symbol]
+    gpio_driver.o(.ARM.exidx.text.GPIO_TogglePin) refers to gpio_driver.o(.text.GPIO_TogglePin) for [Anonymous Symbol]
+    gpio_driver.o(.ARM.exidx.text.GPIO_LockPin) refers to gpio_driver.o(.text.GPIO_LockPin) for [Anonymous Symbol]
+    flash_eeprom.o(.ARM.exidx.text.FLASH_Unlock) refers to flash_eeprom.o(.text.FLASH_Unlock) for [Anonymous Symbol]
+    flash_eeprom.o(.ARM.exidx.text.Flash_Erase) refers to flash_eeprom.o(.text.Flash_Erase) for [Anonymous Symbol]
+    flash_eeprom.o(.ARM.exidx.text.FLASH_Lock) refers to flash_eeprom.o(.text.FLASH_Lock) for [Anonymous Symbol]
+    flash_eeprom.o(.ARM.exidx.text.EEPROMmain) refers to flash_eeprom.o(.text.EEPROMmain) for [Anonymous Symbol]
+    flash_eeprom.o(.ARM.exidx.text.EEPROMErasePage) refers to flash_eeprom.o(.text.EEPROMErasePage) for [Anonymous Symbol]
+    flash_eeprom.o(.text.FlashDataRead) refers to flash_eeprom.o(.bss.readD) for readD
+    flash_eeprom.o(.ARM.exidx.text.FlashDataRead) refers to flash_eeprom.o(.text.FlashDataRead) for [Anonymous Symbol]
+    flash_eeprom.o(.text.EepromFlashMmeoryCopy) refers to flash_eeprom.o(.bss.AdressCpy) for AdressCpy
+    flash_eeprom.o(.text.EepromFlashMmeoryCopy) refers to flash_eeprom.o(.rodata.cst16) for [Anonymous Symbol]
+    flash_eeprom.o(.text.EepromFlashMmeoryCopy) refers to flash_eeprom.o(.bss.readD) for readD
+    flash_eeprom.o(.ARM.exidx.text.EepromFlashMmeoryCopy) refers to flash_eeprom.o(.text.EepromFlashMmeoryCopy) for [Anonymous Symbol]
+    flash_eeprom.o(.text.EepromDeleteWrite) refers to flash_eeprom.o(.bss.AdressCpy) for AdressCpy
+    flash_eeprom.o(.ARM.exidx.text.EepromDeleteWrite) refers to flash_eeprom.o(.text.EepromDeleteWrite) for [Anonymous Symbol]
+    pll_driver.o(.text.PLLInit) refers to system_stm32g0xx.o(.text.SystemCoreClockUpdate) for SystemCoreClockUpdate
+    pll_driver.o(.ARM.exidx.text.PLLInit) refers to pll_driver.o(.text.PLLInit) for [Anonymous Symbol]
+    uart_driver.o(.text.GPIOBPORTUART1) refers to gpio_driver.o(.text.GPIO_WritePin) for GPIO_WritePin
+    uart_driver.o(.text.GPIOBPORTUART1) refers to gpio_driver.o(.text.GPIO_Config) for GPIO_Config
+    uart_driver.o(.ARM.exidx.text.GPIOBPORTUART1) refers to uart_driver.o(.text.GPIOBPORTUART1) for [Anonymous Symbol]
+    uart_driver.o(.text.USART_Init) refers to gpio_driver.o(.text.GPIO_WritePin) for GPIO_WritePin
+    uart_driver.o(.text.USART_Init) refers to gpio_driver.o(.text.GPIO_Config) for GPIO_Config
+    uart_driver.o(.ARM.exidx.text.USART_Init) refers to uart_driver.o(.text.USART_Init) for [Anonymous Symbol]
+    uart_driver.o(.text.USART1_IRQHandler) refers to buffer.o(.text.Buffer_EnQueue) for Buffer_EnQueue
+    uart_driver.o(.ARM.exidx.text.USART1_IRQHandler) refers to uart_driver.o(.text.USART1_IRQHandler) for [Anonymous Symbol]
+    uart_driver.o(.ARM.exidx.text.SIM_Send_Data) refers to uart_driver.o(.text.SIM_Send_Data) for [Anonymous Symbol]
+    uart_driver.o(.text.USART2_Pin_Init) refers to gpio_driver.o(.text.GPIO_WritePin) for GPIO_WritePin
+    uart_driver.o(.text.USART2_Pin_Init) refers to gpio_driver.o(.text.GPIO_Config) for GPIO_Config
+    uart_driver.o(.ARM.exidx.text.USART2_Pin_Init) refers to uart_driver.o(.text.USART2_Pin_Init) for [Anonymous Symbol]
+    uart_driver.o(.text.USART2_Init) refers to gpio_driver.o(.text.GPIO_WritePin) for GPIO_WritePin
+    uart_driver.o(.text.USART2_Init) refers to gpio_driver.o(.text.GPIO_Config) for GPIO_Config
+    uart_driver.o(.ARM.exidx.text.USART2_Init) refers to uart_driver.o(.text.USART2_Init) for [Anonymous Symbol]
+    uart_driver.o(.ARM.exidx.text.UART2_SIM_Send_Data) refers to uart_driver.o(.text.UART2_SIM_Send_Data) for [Anonymous Symbol]
+    uart_driver.o(.text.USART2_IRQHandler) refers to simcom.o(.text.SIMCOM_Data_Read) for SIMCOM_Data_Read
+    uart_driver.o(.ARM.exidx.text.USART2_IRQHandler) refers to uart_driver.o(.text.USART2_IRQHandler) for [Anonymous Symbol]
+    uart_driver.o(.ARM.exidx.text.USART_String) refers to uart_driver.o(.text.USART_String) for [Anonymous Symbol]
+    uart_driver.o(.ARM.exidx.text.USART1_String) refers to uart_driver.o(.text.USART1_String) for [Anonymous Symbol]
+    systick_interrupt.o(.text.SysTick_Handler) refers to sysos.o(.text.FUN_SYS_Timer_x1) for FUN_SYS_Timer_x1
+    systick_interrupt.o(.ARM.exidx.text.SysTick_Handler) refers to systick_interrupt.o(.text.SysTick_Handler) for [Anonymous Symbol]
+    systick_interrupt.o(.text.SystickTimerInit) refers to system_stm32g0xx.o(.text.SystemCoreClockUpdate) for SystemCoreClockUpdate
+    systick_interrupt.o(.text.SystickTimerInit) refers to aeabi_sdivfast.o(.text_divfast) for __aeabi_uidiv
+    systick_interrupt.o(.text.SystickTimerInit) refers to system_stm32g0xx.o(.data.SystemCoreClock) for SystemCoreClock
+    systick_interrupt.o(.ARM.exidx.text.SystickTimerInit) refers to systick_interrupt.o(.text.SystickTimerInit) for [Anonymous Symbol]
+    startup_stm32g030xx.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_stm32g030xx.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_stm32g030xx.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_stm32g030xx.o(RESET) refers to startup_stm32g030xx.o(STACK) for __initial_sp
+    startup_stm32g030xx.o(RESET) refers to startup_stm32g030xx.o(.text) for Reset_Handler
+    startup_stm32g030xx.o(RESET) refers to systick_interrupt.o(.text.SysTick_Handler) for SysTick_Handler
+    startup_stm32g030xx.o(RESET) refers to uart_driver.o(.text.USART1_IRQHandler) for USART1_IRQHandler
+    startup_stm32g030xx.o(RESET) refers to uart_driver.o(.text.USART2_IRQHandler) for USART2_IRQHandler
+    startup_stm32g030xx.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_stm32g030xx.o(.text) refers to system_stm32g0xx.o(.text.SystemInit) for SystemInit
+    startup_stm32g030xx.o(.text) refers to __main.o(!!!main) for __main
+    startup_stm32g030xx.o(.text) refers to startup_stm32g030xx.o(HEAP) for Heap_Mem
+    startup_stm32g030xx.o(.text) refers to startup_stm32g030xx.o(STACK) for Stack_Mem
+    system_stm32g0xx.o(.ARM.exidx.text.SystemInit) refers to system_stm32g0xx.o(.text.SystemInit) for [Anonymous Symbol]
+    system_stm32g0xx.o(.text.SystemCoreClockUpdate) refers to aeabi_sdivfast.o(.text_divfast) for __aeabi_uidiv
+    system_stm32g0xx.o(.text.SystemCoreClockUpdate) refers to system_stm32g0xx.o(.data.SystemCoreClock) for SystemCoreClock
+    system_stm32g0xx.o(.text.SystemCoreClockUpdate) refers to system_stm32g0xx.o(.rodata.AHBPrescTable) for AHBPrescTable
+    system_stm32g0xx.o(.ARM.exidx.text.SystemCoreClockUpdate) refers to system_stm32g0xx.o(.text.SystemCoreClockUpdate) for [Anonymous Symbol]
+    __2sprintf.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
+    __2sprintf.o(.text) refers to _sputc.o(.text) for _sputc
+    noretval__2sprintf.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
+    noretval__2sprintf.o(.text) refers to _sputc.o(.text) for _sputc
+    __printf.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    _printf_str.o(.text) refers (Special) to _printf_char.o(.text) for _printf_cs_common
+    _printf_dec.o(.text) refers to rtudiv10.o(.text) for __rt_udiv10
+    _printf_dec.o(.text) refers to _printf_intcommon.o(.text) for _printf_int_common
+    __printf_flags.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags.o(.text) refers to __printf_flags.o(.constdata) for .constdata
+    __printf_ss.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags_ss.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags_ss.o(.text) refers to __printf_flags_ss.o(.constdata) for .constdata
+    __printf_wp.o(.text) refers to __printf_wp.o(i._is_digit) for _is_digit
+    __printf_wp.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags_wp.o(.text) refers to __printf_wp.o(i._is_digit) for _is_digit
+    __printf_flags_wp.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags_wp.o(.text) refers to __printf_flags_wp.o(.constdata) for .constdata
+    __printf_ss_wp.o(.text) refers to __printf_wp.o(i._is_digit) for _is_digit
+    __printf_ss_wp.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags_ss_wp.o(.text) refers to __printf_wp.o(i._is_digit) for _is_digit
+    __printf_flags_ss_wp.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags_ss_wp.o(.text) refers to __printf_flags_ss_wp.o(.constdata) for .constdata
+    _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) refers (Weak) to _printf_char.o(.text) for _printf_string
+    _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) refers (Weak) to _printf_dec.o(.text) for _printf_int_dec
+    _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) refers (Special) to _printf_percent_end.o(.ARM.Collect$$_printf_percent$$00000017) for _printf_percent_end
+    atoi.o(.text) refers to rt_errno_addr_intlibspace.o(.text) for __aeabi_errno_addr
+    atoi.o(.text) refers to strtol.o(.text) for strtol
+    rt_memcpy.o(.text) refers to rt_memcpy.o(.emb_text) for __aeabi_memcpy4
+    rt_memmove.o(.text) refers to rt_memcpy.o(.emb_text) for __aeabi_memcpy4
+    rt_memmove.o(.text) refers to rt_memcpy.o(.text) for __aeabi_memcpy
+    aeabi_memset.o(.text) refers to rt_memclr.o(.text) for _memset
+    __main.o(!!!main) refers to __rtentry.o(.ARM.Collect$$rtentry$$00000000) for __rt_entry
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for __rt_entry_li
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for __rt_entry_main
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000C) for __rt_entry_postli_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000009) for __rt_entry_postsh_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000002) for __rt_entry_presh_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for __rt_entry_sh
+    aeabi_idiv0_sigfpe.o(.text) refers to rt_div0.o(.text) for __rt_div0
+    rt_errno_addr.o(.text) refers to rt_errno_addr.o(.bss) for __aeabi_errno_addr_data
+    rt_errno_addr_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    _printf_char_common.o(.text) refers to __printf.o(.text) for __printf
+    _printf_char.o(.text) refers (Weak) to _printf_str.o(.text) for _printf_str
+    strtol.o(.text) refers to rt_ctype_table.o(.text) for __rt_ctype_table
+    strtol.o(.text) refers to _strtoul.o(.text) for _strtoul
+    strtol.o(.text) refers to rt_errno_addr_intlibspace.o(.text) for __aeabi_errno_addr
+    libspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    __rtentry2.o(.ARM.Collect$$rtentry$$00000008) refers to boardinit2.o(.text) for _platform_post_stackheap_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) refers to libinit.o(.ARM.Collect$$libinit$$00000000) for __rt_lib_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) refers to boardinit3.o(.text) for _platform_post_lib_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to main.o(.text.main) for main
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to exit.o(.text) for exit
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000001) for .ARM.Collect$$rtentry$$00000001
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000008) for .ARM.Collect$$rtentry$$00000008
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for .ARM.Collect$$rtentry$$0000000A
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) for .ARM.Collect$$rtentry$$0000000B
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for .ARM.Collect$$rtentry$$0000000D
+    __rtentry4.o(.ARM.Collect$$rtentry$$00000004) refers to sys_stackheap_outer.o(.text) for __user_setup_stackheap
+    __rtentry4.o(.ARM.exidx) refers to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for .ARM.Collect$$rtentry$$00000004
+    rt_ctype_table.o(.text) refers to rt_locale_intlibspace.o(.text) for __rt_locale
+    rt_ctype_table.o(.text) refers to lc_ctype_c.o(locale$$code) for _get_lc_ctype
+    rt_div0.o(.text) refers to defsig_fpe_outer.o(.text) for __rt_SIGFPE
+    _strtoul.o(.text) refers to _chval.o(.text) for _chval
+    _strtoul.o(.text) refers to rt_errno_addr_intlibspace.o(.text) for __aeabi_errno_addr
+    sys_stackheap_outer.o(.text) refers to libspace.o(.text) for __user_perproc_libspace
+    sys_stackheap_outer.o(.text) refers to startup_stm32g030xx.o(.text) for __user_initial_stackheap
+    sys_stackheap_outer.o(__vectab_stack_and_reset_area) refers to tempstk.o(.text) for __temporary_stack_top
+    sys_stackheap_outer.o(__vectab_stack_and_reset_area) refers to __main.o(!!!main) for __main
+    rt_locale.o(.text) refers to rt_locale.o(.bss) for __rt_locale_data
+    rt_locale_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    lc_ctype_c.o(locale$$data) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000014) for __rt_lib_init_lc_ctype_2
+    lc_ctype_c.o(locale$$code) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000014) for __rt_lib_init_lc_ctype_2
+    lc_ctype_c.o(locale$$code) refers to strcmpv6m.o(.text) for strcmp
+    lc_ctype_c.o(locale$$code) refers to lc_ctype_c.o(locale$$data) for __lcctype_c_name
+    exit.o(.text) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for __rt_exit
+    defsig_fpe_outer.o(.text) refers to defsig_fpe_inner.o(.text) for __rt_SIGFPE_inner
+    defsig_fpe_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_fpe_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000030) for __rt_lib_init_alloca_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002E) for __rt_lib_init_argv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001D) for __rt_lib_init_atexit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000023) for __rt_lib_init_clock_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000034) for __rt_lib_init_cpp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000032) for __rt_lib_init_exceptions_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000002) for __rt_lib_init_fp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000021) for __rt_lib_init_fp_trap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000025) for __rt_lib_init_getenv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000C) for __rt_lib_init_heap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000013) for __rt_lib_init_lc_collate_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000015) for __rt_lib_init_lc_ctype_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000017) for __rt_lib_init_lc_monetary_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000019) for __rt_lib_init_lc_numeric_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001B) for __rt_lib_init_lc_time_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000006) for __rt_lib_init_preinit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000010) for __rt_lib_init_rand_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000004) for __rt_lib_init_relocate_pie_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000035) for __rt_lib_init_return
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001F) for __rt_lib_init_signal_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000027) for __rt_lib_init_stdio_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000E) for __rt_lib_init_user_alloc_1
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for .ARM.Collect$$rtexit$$00000000
+    rt_raise.o(.text) refers to __raise.o(.text) for __raise
+    rt_raise.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_exit.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_fpe_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    libinit2.o(.ARM.Collect$$libinit$$00000011) refers (Weak) to rt_locale_intlibspace.o(.text) for __rt_locale
+    libinit2.o(.ARM.Collect$$libinit$$00000012) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$00000014) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$00000014) refers (Weak) to lc_ctype_c.o(locale$$code) for _get_lc_ctype
+    libinit2.o(.ARM.Collect$$libinit$$00000016) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$00000018) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$0000001A) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$00000028) refers to argv_veneer.o(.text) for __ARM_argv_veneer
+    libinit2.o(.ARM.Collect$$libinit$$00000029) refers to argv_veneer.o(.text) for __ARM_argv_veneer
+    sys_exit.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_exit.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_exit_hlt.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_exit_hlt.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    rtexit2.o(.ARM.Collect$$rtexit$$00000003) refers to libshutdown.o(.ARM.Collect$$libshutdown$$00000000) for __rt_lib_shutdown
+    rtexit2.o(.ARM.Collect$$rtexit$$00000004) refers to sys_exit.o(.text) for _sys_exit
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000001) for .ARM.Collect$$rtexit$$00000001
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for .ARM.Collect$$rtexit$$00000003
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for .ARM.Collect$$rtexit$$00000004
+    __raise.o(.text) refers to defsig.o(CL$$defsig) for __default_signal_handler
+    defsig_general.o(.text) refers to sys_wrch.o(.text) for _ttywrch
+    sys_wrch.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_wrch.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_wrch_hlt.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_wrch_hlt.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    defsig.o(CL$$defsig) refers to defsig_fpe_inner.o(.text) for __rt_SIGFPE_inner
+    defsig.o(CL$$defsig) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    _get_argv_nomalloc.o(.text) refers (Special) to hrguard.o(.text) for __heap_region$guard
+    _get_argv_nomalloc.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    _get_argv_nomalloc.o(.text) refers to sys_command.o(.text) for _sys_command_string
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000002) for __rt_lib_shutdown_cpp_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000007) for __rt_lib_shutdown_fp_trap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F) for __rt_lib_shutdown_heap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000010) for __rt_lib_shutdown_return
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A) for __rt_lib_shutdown_signal_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000004) for __rt_lib_shutdown_stdio_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C) for __rt_lib_shutdown_user_alloc_1
+    sys_command.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_command.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_command_hlt.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_command_hlt.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    defsig_abrt_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtred_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtmem_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtmem_outer.o(.text) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_rtmem_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_rtmem_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    defsig_stak_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_pvfn_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_cppl_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_segv_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_other.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing comif.o(.text), (0 bytes).
+    Removing comif.o(.text.ComIf_GetTxMsgHandle), (52 bytes).
+    Removing comif.o(.ARM.exidx.text.ComIf_GetTxMsgHandle), (8 bytes).
+    Removing comif.o(.text.ComIf_GetRxMsgHandle), (52 bytes).
+    Removing comif.o(.ARM.exidx.text.ComIf_GetRxMsgHandle), (8 bytes).
+    Removing comif.o(.ARM.exidx.text.ComIf_ErrorNotify), (8 bytes).
+    Removing comif_calcchecksum.o(.text), (0 bytes).
+    Removing comif_calcchecksum.o(.ARM.exidx.text.ComIf_CalcChecksum), (8 bytes).
+    Removing comif_calcchecksum.o(.ARM.exidx.text.ComIf_GetChecksumMaskValue), (8 bytes).
+    Removing comif_rxrequest.o(.text), (0 bytes).
+    Removing comif_rxrequest.o(.text.ComIf_Rx_Request), (56 bytes).
+    Removing comif_rxrequest.o(.ARM.exidx.text.ComIf_Rx_Request), (8 bytes).
+    Removing comif_rxrequest.o(.text.ComIf_Rx_CancelRequest), (56 bytes).
+    Removing comif_rxrequest.o(.ARM.exidx.text.ComIf_Rx_CancelRequest), (8 bytes).
+    Removing comif_rxrequest.o(.text.ComIf_RxMainFunction), (2 bytes).
+    Removing comif_rxrequest.o(.ARM.exidx.text.ComIf_RxMainFunction), (8 bytes).
+    Removing comif_rxindication.o(.text), (0 bytes).
+    Removing comif_rxindication.o(.ARM.exidx.text.ComIf_RxIndication), (8 bytes).
+    Removing comif_rxindication.o(.ARM.exidx.text.ComIf_StoreDataByte), (8 bytes).
+    Removing comif_rxindication.o(.ARM.exidx.text.ComIf_RxIndication_ASCIIString), (8 bytes).
+    Removing comif_transmit.o(.text), (0 bytes).
+    Removing comif_transmit.o(.ARM.exidx.text.ComIf_EncodeFromShadowToChannelBuffer), (8 bytes).
+    Removing comif_transmit.o(.ARM.exidx.text.ComIf_Transmit), (8 bytes).
+    Removing comif_transmit.o(.ARM.exidx.text.ComIf_TxConfirmation), (8 bytes).
+    Removing comif_transmit.o(.text.ComIf_TransmissionAborted), (68 bytes).
+    Removing comif_transmit.o(.ARM.exidx.text.ComIf_TransmissionAborted), (8 bytes).
+    Removing comif_transmit.o(.text.ComIf_TxMainFunction), (2 bytes).
+    Removing comif_transmit.o(.ARM.exidx.text.ComIf_TxMainFunction), (8 bytes).
+    Removing comif_txshadowbuffer.o(.text), (0 bytes).
+    Removing comif_txshadowbuffer.o(.text.ComIf_GetTxShadowBuffer), (44 bytes).
+    Removing comif_txshadowbuffer.o(.ARM.exidx.text.ComIf_GetTxShadowBuffer), (8 bytes).
+    Removing comif_txshadowbuffer.o(.ARM.exidx.text.ComIf_UpdateTxShadowBuffer), (8 bytes).
+    Removing comif_txshadowbuffer.o(.text.ComIf_Transmit_ShadowBuffer), (56 bytes).
+    Removing comif_txshadowbuffer.o(.ARM.exidx.text.ComIf_Transmit_ShadowBuffer), (8 bytes).
+    Removing buffer.o(.text), (0 bytes).
+    Removing buffer.o(.ARM.exidx.text.Buffer_Create), (8 bytes).
+    Removing buffer.o(.ARM.exidx.text.Buffer_GetBuffer), (8 bytes).
+    Removing buffer.o(.ARM.exidx.text.Buffer_EnQueue), (8 bytes).
+    Removing buffer.o(.ARM.exidx.text.Buffer_DeQueue), (8 bytes).
+    Removing buffer.o(.ARM.exidx.text.Buffer_Length), (8 bytes).
+    Removing buffer.o(.ARM.exidx.text.Buffer_Clear), (8 bytes).
+    Removing stringhelper.o(.text), (0 bytes).
+    Removing stringhelper.o(.ARM.exidx.text.StringHelper_GetPointerAfter), (8 bytes).
+    Removing stringhelper.o(.ARM.exidx.text.StringHelper_removeChar), (8 bytes).
+    Removing stringhelper.o(.ARM.exidx.text.StringHelper_SplitAndGet), (8 bytes).
+    Removing stringhelper.o(.text.StringHelper_NumberToString), (80 bytes).
+    Removing stringhelper.o(.ARM.exidx.text.StringHelper_NumberToString), (8 bytes).
+    Removing stringhelper.o(.ARM.exidx.text.StringHelper_SplitAndGet_Number), (8 bytes).
+    Removing stringhelper.o(.ARM.exidx.text.StringHelper_startsWith), (8 bytes).
+    Removing stringhelper.o(.text.StringSearch), (8 bytes).
+    Removing stringhelper.o(.ARM.exidx.text.StringSearch), (8 bytes).
+    Removing stringhelper.o(.bss.StringHelper_NumberString_Buffer), (12 bytes).
+    Removing simcom.o(.text), (0 bytes).
+    Removing simcom.o(.ARM.exidx.text.DTMFStateMachine), (8 bytes).
+    Removing simcom.o(.ARM.exidx.text.SIMCOM_Init), (8 bytes).
+    Removing simcom.o(.ARM.exidx.text.SIMCOM_MainFunction), (8 bytes).
+    Removing simcom.o(.ARM.exidx.text.SIMCOM_Callback), (8 bytes).
+    Removing simcom.o(.ARM.exidx.text.SIMCOM_Schedule_Job), (8 bytes).
+    Removing simcom.o(.ARM.exidx.text.SIMCOM_RxMessageCallBack), (8 bytes).
+    Removing simcom.o(.ARM.exidx.text.SIMCOM_Data_Read), (8 bytes).
+    Removing simcom.o(.text.SIMCOM_IgnoreCRLFs), (40 bytes).
+    Removing simcom.o(.ARM.exidx.text.SIMCOM_IgnoreCRLFs), (8 bytes).
+    Removing simcom.o(.ARM.exidx.text.SIMCOM_GetCSV_Number_fromBuffer), (8 bytes).
+    Removing simcom.o(.text.SIMCOM_Number_fromBuffer), (32 bytes).
+    Removing simcom.o(.ARM.exidx.text.SIMCOM_Number_fromBuffer), (8 bytes).
+    Removing simcom.o(.text.StringToUlong), (30 bytes).
+    Removing simcom.o(.ARM.exidx.text.StringToUlong), (8 bytes).
+    Removing simcom.o(.bss.NumberLength), (1 bytes).
+    Removing simcom.o(.bss.DTMFStoreNumber), (13 bytes).
+    Removing simcom_clock.o(.text), (0 bytes).
+    Removing simcom_clock.o(.ARM.exidx.text.SIMCOM_Clock_MainFunction), (8 bytes).
+    Removing simcom_clock.o(.ARM.exidx.text.SIMCOM_Clock_Job_Callback), (8 bytes).
+    Removing simcom_clock.o(.ARM.exidx.text.SIMCOM_Clock_ParseDateTime_InResponse), (8 bytes).
+    Removing simcom_state.o(.text), (0 bytes).
+    Removing simcom_state.o(.ARM.exidx.text.APN_Selection), (8 bytes).
+    Removing simcom_state.o(.ARM.exidx.text.SIMCOM_StateMachine), (8 bytes).
+    Removing simcom_state.o(.ARM.exidx.text.SIMCOM_StateMachine_Callback), (8 bytes).
+    Removing simcom_state.o(.data.SIMCOMRESETWAITCOUNT), (1 bytes).
+    Removing sysos.o(.text), (0 bytes).
+    Removing sysos.o(.text.PRC_SYS_INIT), (8 bytes).
+    Removing sysos.o(.ARM.exidx.text.PRC_SYS_INIT), (8 bytes).
+    Removing sysos.o(.text.FUN_SYS_Evaluate_Tasks_x1), (28 bytes).
+    Removing sysos.o(.ARM.exidx.text.FUN_SYS_Evaluate_Tasks_x1), (8 bytes).
+    Removing sysos.o(.text.FUN_SYS_Execute_Tasks), (28 bytes).
+    Removing sysos.o(.ARM.exidx.text.FUN_SYS_Execute_Tasks), (8 bytes).
+    Removing sysos.o(.ARM.exidx.text.FUN_SYS_Timer_x1), (8 bytes).
+    Removing sysos.o(.ARM.exidx.text.SysOs_Main), (8 bytes).
+    Removing simcom_message.o(.text), (0 bytes).
+    Removing simcom_message.o(.text.AddDoubleQts), (2 bytes).
+    Removing simcom_message.o(.ARM.exidx.text.AddDoubleQts), (8 bytes).
+    Removing simcom_message.o(.ARM.exidx.text.SendMessage), (8 bytes).
+    Removing simcom_message.o(.ARM.exidx.text.MessageControl), (8 bytes).
+    Removing simcom_message.o(.ARM.exidx.text.SendMSG_CallBack), (8 bytes).
+    Removing simcom_mqtt.o(.text), (0 bytes).
+    Removing simcom_mqtt.o(.ARM.exidx.text.MQTT_StateMachine), (8 bytes).
+    Removing simcom_mqtt.o(.ARM.exidx.text.MQTT_CALLBACK), (8 bytes).
+    Removing simcom_mqtt_publish.o(.text), (0 bytes).
+    Removing simcom_mqtt_publish.o(.ARM.exidx.text.MQTT_Publish_StateMachine), (8 bytes).
+    Removing simcom_mqtt_publish.o(.ARM.exidx.text.MQTT_Publish_CallBack), (8 bytes).
+    Removing simcom_mqtt_ssl.o(.text), (0 bytes).
+    Removing simcom_mqtt_ssl.o(.ARM.exidx.text.SIMCOM_SSL_CONFIG_MainFunction), (8 bytes).
+    Removing simcom_mqtt_ssl.o(.ARM.exidx.text.SIMCOM_SSL_Configration_Callback), (8 bytes).
+    Removing simcom_calls.o(.text), (0 bytes).
+    Removing simcom_calls.o(.text.SIMCOM_Calls_Callback), (12 bytes).
+    Removing simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_Callback), (8 bytes).
+    Removing simcom_calls.o(.text.SIMCOM_Calls_Dial), (56 bytes).
+    Removing simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_Dial), (8 bytes).
+    Removing simcom_calls.o(.text.SIMCOM_Calls_MainFunction), (216 bytes).
+    Removing simcom_calls.o(.ARM.exidx.text.SIMCOM_Calls_MainFunction), (8 bytes).
+    Removing simcom_calls.o(.bss.SIMCOM_Dial_Request), (1 bytes).
+    Removing simcom_calls.o(.bss.WaitForCallTimoutCounter), (4 bytes).
+    Removing simcom_calls.o(.bss.SIMCOM_Job_Result), (1 bytes).
+    Removing simcom_calls.o(.bss.DialNumer), (20 bytes).
+    Removing avrstatusmessagehandling.o(.text), (0 bytes).
+    Removing avrstatusmessagehandling.o(.ARM.exidx.text.AVR_IO_StatusRxCbk), (8 bytes).
+    Removing avrstatusmessagehandling.o(.ARM.exidx.text.ADC_RxCbk), (8 bytes).
+    Removing avrstatusmessagehandling.o(.ARM.exidx.text.AvrStatusHandleFunc), (8 bytes).
+    Removing avrstatusmessagehandling.o(.bss.avrstatus), (2 bytes).
+    Removing avrstatusmessagehandling.o(.bss.AvrRxHanlerType1), (4 bytes).
+    Removing mqtt_application.o(.text), (0 bytes).
+    Removing mqtt_application.o(.ARM.exidx.text.AVR_Transmit), (8 bytes).
+    Removing mqtt_application.o(.ARM.exidx.text.updateSendData), (8 bytes).
+    Removing mqtt_application.o(.ARM.exidx.text.IO_cmdData_CloudRxCbk), (8 bytes).
+    Removing mqtt_application.o(.ARM.exidx.text.Cloud_Transmit), (8 bytes).
+    Removing mqtt_application.o(.text.RequestLastStatus), (40 bytes).
+    Removing mqtt_application.o(.ARM.exidx.text.RequestLastStatus), (8 bytes).
+    Removing mqtt_application.o(.text.CloudInit), (28 bytes).
+    Removing mqtt_application.o(.ARM.exidx.text.CloudInit), (8 bytes).
+    Removing mqtt_application.o(.ARM.exidx.text.MQTT_AppMain), (8 bytes).
+    Removing mqtt_application.o(.ARM.exidx.text.Cloud_ComIf_ErrorNotification), (8 bytes).
+    Removing mqtt_application.o(.ARM.exidx.text.COSMIC_SIMCOM_Error_Callback), (8 bytes).
+    Removing mqtt_application.o(.ARM.exidx.text.COSMIC_Generic_SIMCOM_Callback), (8 bytes).
+    Removing mqtt_application.o(.bss.Current_IOStatus), (1 bytes).
+    Removing mqtt_application.o(.bss.Previous_IOStatus), (1 bytes).
+    Removing mqtt_application.o(.bss.prevAvrStatusData), (2 bytes).
+    Removing cs_iot.o(.text), (0 bytes).
+    Removing cs_iot.o(.text.DTMFCallMessageCbk), (2 bytes).
+    Removing cs_iot.o(.ARM.exidx.text.DTMFCallMessageCbk), (8 bytes).
+    Removing cs_iot.o(.text.DTMFMessageRxCbk), (2 bytes).
+    Removing cs_iot.o(.ARM.exidx.text.DTMFMessageRxCbk), (8 bytes).
+    Removing cs_iot.o(.bss.DTMFCommandData), (2 bytes).
+    Removing message_app.o(.text), (0 bytes).
+    Removing message_app.o(.ARM.exidx.text.DtmfMessageCallFunc), (8 bytes).
+    Removing message_app.o(.bss.PreviousMotorStatus), (1 bytes).
+    Removing avr.o(.text), (0 bytes).
+    Removing buffer_config.o(.text), (0 bytes).
+    Removing buffer_config.o(.ARM.exidx.text.Buffer_Init), (8 bytes).
+    Removing comif_config.o(.text), (0 bytes).
+    Removing comif_config.o(.ARM.exidx.text.ComIf_RxIndication_Cloud), (8 bytes).
+    Removing comif_config.o(.ARM.exidx.text.ComIf_RxIndication_AVR), (8 bytes).
+    Removing sysos_processes.o(.text), (0 bytes).
+    Removing sysos_processes.o(.text.PRC_SYSOS_TASK_INIT), (32 bytes).
+    Removing sysos_processes.o(.ARM.exidx.text.PRC_SYSOS_TASK_INIT), (8 bytes).
+    Removing sysos_processes.o(.text.PRC_SYSOS_TASK_X100), (16 bytes).
+    Removing sysos_processes.o(.ARM.exidx.text.PRC_SYSOS_TASK_X100), (8 bytes).
+    Removing sysos_processes.o(.ARM.exidx.text.FUN_SYS_Internal_Init), (8 bytes).
+    Removing sysos_processes.o(.ARM.exidx.text.FUN_SYS_Internal_Evaluate_Tasks_x1), (8 bytes).
+    Removing sysos_processes.o(.ARM.exidx.text.FUN_SYS_Internal_Execute_Tasks), (8 bytes).
+    Removing main.o(.text), (0 bytes).
+    Removing main.o(.ARM.exidx.text.main), (8 bytes).
+    Removing main.o(.ARM.exidx.text.GPIO_init), (8 bytes).
+    Removing main.o(.ARM.exidx.text.Sysos_check), (8 bytes).
+    Removing main.o(.ARM.use_no_argv), (4 bytes).
+    Removing gpio_driver.o(.text), (0 bytes).
+    Removing gpio_driver.o(.ARM.exidx.text.GPIO_Config), (8 bytes).
+    Removing gpio_driver.o(.text.GPIO_DeInit), (280 bytes).
+    Removing gpio_driver.o(.ARM.exidx.text.GPIO_DeInit), (8 bytes).
+    Removing gpio_driver.o(.text.GPIO_ReadPin), (10 bytes).
+    Removing gpio_driver.o(.ARM.exidx.text.GPIO_ReadPin), (8 bytes).
+    Removing gpio_driver.o(.ARM.exidx.text.GPIO_WritePin), (8 bytes).
+    Removing gpio_driver.o(.ARM.exidx.text.GPIO_TogglePin), (8 bytes).
+    Removing gpio_driver.o(.text.GPIO_LockPin), (40 bytes).
+    Removing gpio_driver.o(.ARM.exidx.text.GPIO_LockPin), (8 bytes).
+    Removing flash_eeprom.o(.text), (0 bytes).
+    Removing flash_eeprom.o(.text.FLASH_Unlock), (36 bytes).
+    Removing flash_eeprom.o(.ARM.exidx.text.FLASH_Unlock), (8 bytes).
+    Removing flash_eeprom.o(.text.Flash_Erase), (76 bytes).
+    Removing flash_eeprom.o(.ARM.exidx.text.Flash_Erase), (8 bytes).
+    Removing flash_eeprom.o(.text.FLASH_Lock), (20 bytes).
+    Removing flash_eeprom.o(.ARM.exidx.text.FLASH_Lock), (8 bytes).
+    Removing flash_eeprom.o(.ARM.exidx.text.EEPROMmain), (8 bytes).
+    Removing flash_eeprom.o(.ARM.exidx.text.EEPROMErasePage), (8 bytes).
+    Removing flash_eeprom.o(.ARM.exidx.text.FlashDataRead), (8 bytes).
+    Removing flash_eeprom.o(.ARM.exidx.text.EepromFlashMmeoryCopy), (8 bytes).
+    Removing flash_eeprom.o(.ARM.exidx.text.EepromDeleteWrite), (8 bytes).
+    Removing flash_eeprom.o(.bss.NumberData), (1 bytes).
+    Removing pll_driver.o(.text), (0 bytes).
+    Removing pll_driver.o(.ARM.exidx.text.PLLInit), (8 bytes).
+    Removing uart_driver.o(.text), (0 bytes).
+    Removing uart_driver.o(.text.GPIOBPORTUART1), (72 bytes).
+    Removing uart_driver.o(.ARM.exidx.text.GPIOBPORTUART1), (8 bytes).
+    Removing uart_driver.o(.ARM.exidx.text.USART_Init), (8 bytes).
+    Removing uart_driver.o(.ARM.exidx.text.USART1_IRQHandler), (8 bytes).
+    Removing uart_driver.o(.ARM.exidx.text.SIM_Send_Data), (8 bytes).
+    Removing uart_driver.o(.text.USART2_Pin_Init), (68 bytes).
+    Removing uart_driver.o(.ARM.exidx.text.USART2_Pin_Init), (8 bytes).
+    Removing uart_driver.o(.ARM.exidx.text.USART2_Init), (8 bytes).
+    Removing uart_driver.o(.ARM.exidx.text.UART2_SIM_Send_Data), (8 bytes).
+    Removing uart_driver.o(.ARM.exidx.text.USART2_IRQHandler), (8 bytes).
+    Removing uart_driver.o(.text.USART_String), (52 bytes).
+    Removing uart_driver.o(.ARM.exidx.text.USART_String), (8 bytes).
+    Removing uart_driver.o(.text.USART1_String), (32 bytes).
+    Removing uart_driver.o(.ARM.exidx.text.USART1_String), (8 bytes).
+    Removing systick_interrupt.o(.text), (0 bytes).
+    Removing systick_interrupt.o(.ARM.exidx.text.SysTick_Handler), (8 bytes).
+    Removing systick_interrupt.o(.ARM.exidx.text.SystickTimerInit), (8 bytes).
+    Removing system_stm32g0xx.o(.text), (0 bytes).
+    Removing system_stm32g0xx.o(.ARM.exidx.text.SystemInit), (8 bytes).
+    Removing system_stm32g0xx.o(.ARM.exidx.text.SystemCoreClockUpdate), (8 bytes).
+    Removing system_stm32g0xx.o(.rodata.APBPrescTable), (32 bytes).
+
+210 unused section(s) (total 2821 bytes) removed from the image.

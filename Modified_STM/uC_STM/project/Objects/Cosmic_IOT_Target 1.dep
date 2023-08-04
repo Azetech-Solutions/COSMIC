@@ -1,0 +1,514 @@
+Dependencies for Project 'Cosmic_IOT', Target 'Target 1': (DO NOT MODIFY !)
+CompilerVersion: 6180000::V6.18::ARMCLANG
+F (..\base\ComIf\src\ComIf.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/comif.o -MD)
+I (..\base\ComIf\api\ComIf.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\base\ComIf\api\ComIf_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\ComIf_Config.h)(0x64CD0E7E)
+F (..\base\ComIf\src\ComIf_CalcChecksum.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/comif_calcchecksum.o -MD)
+I (..\base\ComIf\api\ComIf.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\base\ComIf\api\ComIf_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\ComIf_Config.h)(0x64CD0E7E)
+F (..\base\ComIf\src\ComIf_RxRequest.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/comif_rxrequest.o -MD)
+I (..\base\ComIf\api\ComIf.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\base\ComIf\api\ComIf_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\ComIf_Config.h)(0x64CD0E7E)
+F (..\base\ComIf\src\ComIf_RxIndication.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/comif_rxindication.o -MD)
+I (..\base\ComIf\api\ComIf.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\base\ComIf\api\ComIf_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\ComIf_Config.h)(0x64CD0E7E)
+F (..\base\ComIf\src\ComIf_Transmit.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/comif_transmit.o -MD)
+I (..\base\ComIf\api\ComIf.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\base\ComIf\api\ComIf_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\ComIf_Config.h)(0x64CD0E7E)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Gen\..\STM32_Driver\GPIO_Driver.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+F (..\base\ComIf\src\ComIf_TxShadowBuffer.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/comif_txshadowbuffer.o -MD)
+I (..\base\ComIf\api\ComIf.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\base\ComIf\api\ComIf_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\ComIf_Config.h)(0x64CD0E7E)
+F (..\base\Helpers\Buffer\src\Buffer.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/buffer.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+F (..\base\Helpers\String\src\StringHelper.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/stringhelper.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+F (..\base\SIMCOM\src\SIMCOM.c)(0x64CD0108)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/simcom.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_MQTT_Publish.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_MQTT.h)(0x64CCAF63)
+I (..\Gen\..\Cosmic_App\MQTT_Application.h)(0x64CD0108)
+I (..\Cosmic_App\..\base\SIMCOM\api\SIMCOM_MQTT_Publish.h)(0x64CCAF63)
+I (..\Cosmic_App\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\Gen\..\STM32_Driver\GPIO_Driver.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x625283FE)
+I (..\Gen\..\Gen\ComIf_Config.h)(0x64CD0E7E)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\base\ComIf\api\ComIf_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\..\STM32_Driver\UART_Driver.h)(0x64CCAF63)
+I (..\Gen\..\base\Flash\api\Flash_EEPROM.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Message.h)(0x64CCAF63)
+I (..\Gen\..\Cosmic_App\Message_App.h)(0x64CCAF63)
+I (..\Gen\..\Cosmic_App\CS_Iot.h)(0x64CD0108)
+F (..\base\SIMCOM\src\SIMCOM_Clock.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/simcom_clock.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+I (..\Gen\..\STM32_Driver\GPIO_Driver.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+F (..\base\SIMCOM\src\SIMCOM_State.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/simcom_state.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+I (..\Gen\..\STM32_Driver\GPIO_Driver.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_MQTT_SSL.h)(0x64CCAF63)
+I (..\Gen\..\STM32_Driver\UART_Driver.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x625283FE)
+F (..\base\SysOS\src\SysOS.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/sysos.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\SysOS.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\base\SysOS\api\SysOS_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\SysOs_Config.h)(0x64CD0E7E)
+F (..\base\SIMCOM\src\SIMCOM_Message.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/simcom_message.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Message.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x625283FE)
+I (..\Gen\..\base\Flash\api\Flash_EEPROM.h)(0x64CCAF63)
+I (..\Gen\..\Cosmic_App\Message_App.h)(0x64CCAF63)
+I (..\Cosmic_App\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+F (..\base\SIMCOM\src\SIMCOM_MQTT.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/simcom_mqtt.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_MQTT.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_MQTT_Publish.h)(0x64CCAF63)
+I (..\Gen\..\STM32_Driver\GPIO_Driver.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+I (..\Gen\..\Cosmic_App\MQTT_Application.h)(0x64CD0108)
+I (..\Cosmic_App\..\base\SIMCOM\api\SIMCOM_MQTT_Publish.h)(0x64CCAF63)
+I (..\Cosmic_App\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_MQTT_SSL.h)(0x64CCAF63)
+F (..\base\SIMCOM\src\SIMCOM_MQTT_Publish.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/simcom_mqtt_publish.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_MQTT_SSL.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_MQTT.h)(0x64CCAF63)
+I (..\Gen\..\STM32_Driver\GPIO_Driver.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_MQTT_Publish.h)(0x64CCAF63)
+I (..\Gen\..\Cosmic_App\MQTT_Application.h)(0x64CD0108)
+I (..\Cosmic_App\..\base\SIMCOM\api\SIMCOM_MQTT_Publish.h)(0x64CCAF63)
+I (..\Cosmic_App\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\Gen\..\Gen\ComIf_Config.h)(0x64CD0E7E)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\base\ComIf\api\ComIf_Config_Elements.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x625283FE)
+I (..\Gen\..\STM32_Driver\UART_Driver.h)(0x64CCAF63)
+I (..\Gen\..\Cosmic_App\Message_App.h)(0x64CCAF63)
+F (..\base\SIMCOM\src\SIMCOM_MQTT_SSL.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/simcom_mqtt_ssl.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_MQTT_SSL.h)(0x64CCAF63)
+I (..\Gen\..\STM32_Driver\UART_Driver.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+F (..\base\SIMCOM\src\SIMCOM_Calls.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/simcom_calls.o -MD)
+I (..\base\SIMCOM\api\SIMCOM_Calls.h)(0x64CCAF63)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x625283FE)
+F (..\Cosmic_App\AvrStatusMessageHandling.c)(0x64CD0108)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/avrstatusmessagehandling.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Cosmic_App\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\Cosmic_App\..\base\ComIf\api\ComIf.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\base\ComIf\api\ComIf_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\ComIf_Config.h)(0x64CD0E7E)
+I (..\Cosmic_App\..\Gen\ComIf_Config.h)(0x64CD0E7E)
+I (..\Cosmic_App\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\Cosmic_App\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+I (..\Cosmic_App\..\STM32_Driver\UART_Driver.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+I (..\Cosmic_App\..\Cosmic_App\MQTT_Application.h)(0x64CD0108)
+I (..\Cosmic_App\..\base\SIMCOM\api\SIMCOM_MQTT_Publish.h)(0x64CCAF63)
+I (..\Cosmic_App\..\Cosmic_App\Message_App.h)(0x64CCAF63)
+F (..\Cosmic_App\MQTT_Application.c)(0x64CD0108)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/mqtt_application.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Cosmic_App\..\base\ComIf\api\ComIf.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\base\ComIf\api\ComIf_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\ComIf_Config.h)(0x64CD0E7E)
+I (..\Cosmic_App\..\Gen\ComIf_Config.h)(0x64CD0E7E)
+I (..\Cosmic_App\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+I (..\Cosmic_App\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (..\Cosmic_App\..\base\SIMCOM\api\SIMCOM_MQTT.h)(0x64CCAF63)
+I (..\Cosmic_App\..\base\SIMCOM\api\SIMCOM_MQTT_SSL.h)(0x64CCAF63)
+I (..\Cosmic_App\..\Cosmic_App\MQTT_Application.h)(0x64CD0108)
+I (..\Cosmic_App\..\base\SIMCOM\api\SIMCOM_MQTT_Publish.h)(0x64CCAF63)
+I (..\Cosmic_App\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x625283FE)
+I (..\Cosmic_App\..\STM32_Driver\GPIO_Driver.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+I (..\Cosmic_App\..\STM32_Driver\UART_Driver.h)(0x64CCAF63)
+I (..\Cosmic_App\..\Cosmic_App\Message_App.h)(0x64CCAF63)
+I (..\Cosmic_App\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+F (..\Cosmic_App\CS_Iot.c)(0x64CD0F2F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/cs_iot.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (..\Cosmic_App\..\base\ComIf\api\ComIf.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\base\ComIf\api\ComIf_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\ComIf_Config.h)(0x64CD0E7E)
+I (..\Cosmic_App\..\Cosmic_App\CS_Iot.h)(0x64CD0108)
+I (..\Cosmic_App\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\Cosmic_App\..\Gen\ComIf_Config.h)(0x64CD0E7E)
+I (..\Cosmic_App\..\STM32_Driver\UART_Driver.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+F (..\Cosmic_App\Message_App.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/message_app.o -MD)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (..\Cosmic_App\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\Cosmic_App\..\Cosmic_App\Message_App.h)(0x64CCAF63)
+I (..\Cosmic_App\..\base\Flash\api\Flash_EEPROM.h)(0x64CCAF63)
+I (..\Cosmic_App\..\base\SIMCOM\api\SIMCOM_Message.h)(0x64CCAF63)
+I (..\Cosmic_App\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+F (..\Cosmic_App\AVR.c)(0x64CD1052)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/avr.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Cosmic_App\..\Cosmic_App\AVR.h)(0x64CCAF63)
+F (..\Gen\Buffer_Config.c)(0x64CD0E7E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/buffer_config.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+F (..\Gen\ComIf_Config.c)(0x64CD0E7E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/comif_config.o -MD)
+I (..\base\ComIf\api\ComIf.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\base\ComIf\api\ComIf_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\ComIf_Config.h)(0x64CD0E7E)
+F (..\Gen\SysOs_Processes.c)(0x64CD0E7E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/sysos_processes.o -MD)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\SysOS.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (..\base\SysOS\api\SysOS_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\SysOs_Config.h)(0x64CD0E7E)
+F (.\main.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/main.o -MD)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\project\..\base\SysOS\api\SysOS.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\base\SysOS\api\SysOS_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\SysOs_Config.h)(0x64CD0E7E)
+I (..\project\..\STM32_Driver\UART_Driver.h)(0x64CCAF63)
+I (..\project\..\STM32_Driver\GPIO_Driver.h)(0x64CCAF63)
+I (..\project\..\base\Flash\api\Flash_EEPROM.h)(0x64CCAF63)
+F (..\STM32_Driver\GPIO_Driver.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/gpio_driver.o -MD)
+I (..\STM32_Driver\GPIO_Driver.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+F (..\base\Flash\src\Flash_EEPROM.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/flash_eeprom.o -MD)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x625283FE)
+I (..\Gen\..\STM32_Driver\UART_Driver.h)(0x64CCAF63)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\Gen\..\base\Flash\api\Flash_EEPROM.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Message.h)(0x64CCAF63)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+F (..\STM32_Driver\PLL_Driver.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/pll_driver.o -MD)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+F (..\STM32_Driver\UART_Driver.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/uart_driver.o -MD)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\STM32_Driver\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\STM32_Driver\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\Gen\SIMCOM_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\Gen\..\base\Helpers\Buffer\api\Buffer.h)(0x64CCAF63)
+I (..\Gen\..\Gen\Buffer_Config.h)(0x64CD0E7E)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM.h)(0x64CCAF63)
+I (..\Gen\..\base\Helpers\String\api\StringHelper.h)(0x64CCAF63)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625283FE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625283FE)
+I (..\Gen\..\base\SIMCOM\api\SIMCOM_Clock.h)(0x64CCAF63)
+I (..\STM32_Driver\..\STM32_Driver\UART_Driver.h)(0x64CCAF63)
+I (..\STM32_Driver\..\STM32_Driver\GPIO_Driver.h)(0x64CCAF63)
+F (..\STM32_Driver\Systick_Interrupt.c)(0x64CCAF63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/systick_interrupt.o -MD)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
+I (..\Gen\Includes.h)(0x64CD0E7E)
+I (..\STM32_Driver\..\STM32_Driver\GPIO_Driver.h)(0x64CCAF63)
+I (..\STM32_Driver\..\base\SysOS\api\SysOS.h)(0x64CCAF63)
+I (..\base\SysOS\api\Platform_Types.h)(0x64CCAF63)
+I (..\base\SysOS\api\SysOS_Config_Elements.h)(0x64CCAF63)
+I (..\Gen\SysOs_Config.h)(0x64CD0E7E)
+F (RTE/Device/STM32G030F6Px/startup_stm32g030xx.s)(0x60D18CB4)(--target=arm-arm-none-eabi -mcpu=cortex-m0plus -masm=auto -c-gdwarf-4-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 537" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"STM32G030xx SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o ./objects/startup_stm32g030xx.o)
+F (RTE/Device/STM32G030F6Px/system_stm32g0xx.c)(0x60D18CB4)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Gen -I ../base/ComIf/src -I ../base/Flash/src -I ../base/Helpers/Buffer/src -I ../base/Helpers/String/src -I ../base/SIMCOM/src -I ../base/SysOS/src -I ../Cosmic_App/MQTT -I ../Cosmic_App/MQTT/src -I ../project -I ../STM32_Driver -I ../base/ComIf/api -I ../base/Flash/api -I ../base/Helpers/Buffer/api -I ../base/Helpers/String/api -I ../base/SIMCOM/api -I ../base/SysOS/api -I ../Cosmic_App/MQTT/api-I./RTE/_Target_1-IC:/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil_v5/ARM/PACK/Keil/STM32G0xx_DFP/1.4.0/Drivers/CMSIS/Device/ST/STM32G0xx/Include-D__UVISION_VERSION="537" -D_RTE_ -DSTM32G030xx -D_RTE_-o ./objects/system_stm32g0xx.o -MD)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g0xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\stm32g030xx.h)(0x60D18CB4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm0plus.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x62528400)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F6E06)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G0xx\Include\system_stm32g0xx.h)(0x60D18CB4)
