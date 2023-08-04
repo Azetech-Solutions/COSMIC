@@ -98,13 +98,13 @@ ComIfTxMessageConfig ComIfTxMsgCfg_Cloud[3] = {
 };
 
 extern void IO_cmdData_CloudRxCbk(UBYTE Length, UBYTE *Data);
-UBYTE ComIf_RxMessageBuffer_Cloud_IO_cmdData_Cloud[9];
+UBYTE ComIf_RxMessageBuffer_Cloud_IO_cmdData_Cloud[3];
 
 ComIfRxMessageConfig ComIfRxMsgCfg_Cloud[1] = {
 	{
 		/* IO_cmdData_Cloud */
 		/* ID */      0xCD,
-		/* Length */  8,
+		/* Length */  2,
 		/* CHKLEN */  1,
 		/* RxFlags */ {
 						0, // ReceptionStarted

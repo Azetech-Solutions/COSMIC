@@ -13,6 +13,7 @@
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
+
 void UART2_SIM_Send_Data(unsigned char Data);
 
 extern UBYTE DTMFBuffer[15];
@@ -23,7 +24,7 @@ extern void updateSendData(UBYTE Data[]);
 
 extern void RequestLastStatus(UBYTE sts[]);
 
-AvrCmdData_ST AvrStat;
+AvrCmdStatusData_ST AvrStatusData;
 
 UBYTE avrstatus[2];
 
@@ -41,35 +42,38 @@ void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)
 {
 	for(UBYTE i=0;i<Length;i++)
 	{
-		AvrStat.Data_Bytes[i] = *Data;
+		AvrStatusData.Data_Bytes[i] = *Data;
 		Data++;
 	}
-	if(AvrStat.SW16 == 1)
-	{
-		SIMCOM_State = DialMobileNumber;
-	}
-	else
-	{
-		CurrentMotorStatus = AvrStat.SW1;
-		
-		if(PreviousMotorStatus != CurrentMotorStatus)
-		{
-			if(SimcomWorkingMode == MQTTMode)
-			{
-				RequestLastStatus(AvrStat.Data_Bytes);
-				MQTTApp_State = MQTTApp_Publish_IO_state;			
-			}
-			else
-			{
-				DtmfMessageHandlerState = UpdateMotorStatusMsg;
-			}
-		}
-		else
-		{
-			SIMCOM_State = SIMCOMCancelCall;
-		}
-		PreviousMotorStatus = CurrentMotorStatus;		
-	}
+	
+	MQTTApp_State = MQTTAppCheckLedStatus;
+	
+//	if(AvrStatusData.SW16 == 1)
+//	{
+//		SIMCOM_State = DialMobileNumber;
+//	}
+//	else
+//	{
+//		CurrentMotorStatus = AvrStatusData.SW1;
+//		
+//		if(PreviousMotorStatus != CurrentMotorStatus)
+//		{
+//			if(SimcomWorkingMode == MQTTMode)
+//			{
+//				RequestLastStatus(AvrStatusData.Data_Bytes);
+//				MQTTApp_State = MQTTApp_Publish_IO_state;			
+//			}
+//			else
+//			{
+//				DtmfMessageHandlerState = UpdateMotorStatusMsg;
+//			}
+//		}
+//		else
+//		{
+//			SIMCOM_State = SIMCOMCancelCall;
+//		}
+//		PreviousMotorStatus = CurrentMotorStatus;		
+//	}
 }
 
 void ADC_RxCbk(UBYTE Length, UBYTE *Data)

@@ -480,14 +480,14 @@
               <FilePath>..\Cosmic_App\AvrStatusMessageHandling.c</FilePath>
             </File>
             <File>
-              <FileName>CS_Iot.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Cosmic_App\CS_Iot.c</FilePath>
-            </File>
-            <File>
               <FileName>MQTT_Application.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Cosmic_App\MQTT_Application.c</FilePath>
+            </File>
+            <File>
+              <FileName>CS_Iot.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Cosmic_App\CS_Iot.c</FilePath>
             </File>
             <File>
               <FileName>Message_App.c</FileName>

@@ -161,7 +161,7 @@
 /* Constants for the Rx message IO_cmdData_Cloud on Cloud channel */
 
 #define ComIf_GetIndex_Cloud_IO_cmdData_Cloud()                   (0u)
-#define ComIf_GetLength_Cloud_IO_cmdData_Cloud()                  (8u)
+#define ComIf_GetLength_Cloud_IO_cmdData_Cloud()                  (2u)
 #define ComIf_GetBuffer_Cloud_IO_cmdData_Cloud()                  ((UBYTE *)ComIf_RxMessageBuffer_Cloud_IO_cmdData_Cloud)
 #define ComIf_GetRxFlags_Cloud_IO_cmdData_Cloud()                 (ComIfRxMsgCfg_Cloud[0].RxFlags)
 #define ComIf_IsNewMessageReceived_Cloud_IO_cmdData_Cloud()       ((ComIfRxMsgCfg_Cloud[0].RxFlags.NewMessageReceived == TRUE) && (ComIfRxMsgCfg_Cloud[0].RxFlags.ReceptionStarted == FALSE))

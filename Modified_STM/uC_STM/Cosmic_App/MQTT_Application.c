@@ -32,15 +32,15 @@
 /*****************************************/
 extern UBYTE DTMFMessageFlag;
 extern void USART1_String(const char* data);
-
+extern AvrCmdStatusData_ST AvrStatusData;
 //StatusData_ST StatusData;
-AvrCmdData_ST AvrCmdData;
+AvrCmdStatusData_ST AvrCmdData;
 MQTTApp_States MQTTApp_State = MQTTApp_Init;
 
 UBYTE Current_IOStatus = 0;
 UBYTE Previous_IOStatus = 0;
 BOOL MQTTConnectionCheckStatus = FALSE;
-StatusData_ST StatusData;
+
 
 /***************************************************/
 /* Function Definitions                            */
@@ -62,9 +62,9 @@ UBYTE MachineInitFlag = FALSE;
 
 SimcomWorkingMode_ST SimcomWorkingMode = MQTTMode;
 
-AvrCmdData_ST prevAvrStatusData;
+AvrCmdStatusData_ST prevAvrStatusData;
 
-AvrCmdData_ST prevCloudCmdData;
+AvrCmdStatusData_ST prevCloudStatusData;
 
 UBYTE AVR_Transmit(UWORD Length, void * Data)
 {
@@ -84,15 +84,14 @@ UBYTE AVR_Transmit(UWORD Length, void * Data)
 
 void updateSendData(UBYTE Data[])
 {
-	AvrCmdData_ST *AvrCmd = &AvrCmdData;
 	
-	AvrCmd->Data_Bytes[0] = Data[0];
+	AvrCmdData.Data_Bytes[0] = Data[0];
 	
-	AvrCmd->Data_Bytes[1] = Data[1];
+	AvrCmdData.Data_Bytes[1] = Data[1];
 	
 	UBYTE *PubMsg = ComIf_GetShadowBuffer_AVR_IO_cmdData_AVR();
 	
-	memcpy(PubMsg,AvrCmd->Data_Bytes,2);
+	memcpy(PubMsg,AvrCmdData.Data_Bytes,2);
 	
 	ComIf_TransmitFromBuffer_AVR_IO_cmdData_AVR();
 	
@@ -104,6 +103,7 @@ void IO_cmdData_CloudRxCbk(UBYTE Length, UBYTE *Data)
 	for(i = 0; i<Length ;i++)
 	{
 		StatusData[i] = *Data;
+		Data++;
 	}
 	updateSendData(StatusData);
 }
@@ -113,7 +113,6 @@ void IO_cmdData_CloudRxCbk(UBYTE Length, UBYTE *Data)
 UBYTE Cloud_Transmit(UWORD Length, void * Data)
 {	
 	UBYTE retval = COMIF_EC_NO_ERROR;
-	
 
 	char *PtrData = (char *)Data;
 	
@@ -138,7 +137,7 @@ UBYTE Cloud_Transmit(UWORD Length, void * Data)
 
 void RequestLastStatus(UBYTE sts[])
 {
-	StatusData_ST *CurrentStatus = &StatusData;
+	AvrCmdStatusData_ST *CurrentStatus = &AvrStatusData;
 	
 	CurrentStatus->Data_Bytes[0] = sts[0];
 	
@@ -173,19 +172,29 @@ void MQTT_AppMain()
 			{
 				//this part is to update the current status of the led changed based on the inputs from the application  
 				MQTTConnectionCheckStatus = TRUE;	
-				
-				GPIOA->ODR & (1<<0) ? (Current_IOStatus &= ~(1<<0)): (Current_IOStatus |= (1<<0));
-				
-				GPIOA->ODR & (1<<1) ? (Current_IOStatus &= ~(1<<1)) : (Current_IOStatus |= (1<<1));
 	
 				//if previous status data & new status data both are same then no need to update the current status,
 				//if the status data varies,then update the current status
-				if (Current_IOStatus != Previous_IOStatus)
+			}				
+			break;
+			
+			
+			case MQTTAppCheckLedStatus:
+			{
+				
+				MQTTConnectionCheckStatus = FALSE;
+				
+				if((prevCloudStatusData.Data_Bytes[0] == AvrStatusData.Data_Bytes[0]) && (prevCloudStatusData.Data_Bytes[1] == AvrStatusData.Data_Bytes[1]))
 				{
-						Previous_IOStatus = Current_IOStatus;
+					MQTTApp_State = MQTTApp_Idle;
+				}
+				else
+				{
 					MQTTApp_State = MQTTApp_Publish_IO_state;
 				}
-
+				prevCloudStatusData.Data_Bytes[0] = AvrStatusData.Data_Bytes[0];
+				prevCloudStatusData.Data_Bytes[1] = AvrStatusData.Data_Bytes[1];
+				break;
 			}
 			break;
 			
@@ -195,7 +204,6 @@ void MQTT_AppMain()
 				//that the microcontroller is ready to recieve data 
 				if(IsMQTT_Ready())
 				{
-//					UBYTE LastStatus[2] = {255,0};
 					CloudInit();
 					MQTTApp_State = MQTTApp_PublishMsgConfiguringinprocess;
 					MachineInitFlag = TRUE;
@@ -214,18 +222,14 @@ void MQTT_AppMain()
 			{	
 				//this part is to publish the command status of the 
 				
-//				UBYTE *Data  = ComIf_GetShadowBuffer_Cloud_TxCommandData();
-//				
-//				Data[0] = avrstatus[0];
-//				
-//				Data[1] = avrstatus[1];
-//				
-//				for(UBYTE i=2;i<8;i++)
-//				{
-//					Data[i] = 0;
-//				}
-
-//				ComIf_TransmitFromBuffer_Cloud_TxCommandData();
+				UBYTE *Data  = ComIf_GetShadowBuffer_Cloud_IO_Status_Cloud();
+				
+				Data[0] = AvrStatusData.Data_Bytes[0];
+				
+				Data[1] = AvrStatusData.Data_Bytes[1];
+				
+				ComIf_TransmitFromBuffer_Cloud_IO_Status_Cloud();
+				
 				MQTTApp_State = MQTTApp_PublishMsgConfiguringinprocess;
 			}
 			break;

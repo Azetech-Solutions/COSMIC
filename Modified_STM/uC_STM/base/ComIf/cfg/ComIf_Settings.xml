@@ -39,7 +39,7 @@
           <RxMessage>
             <Name>IO_cmdData_Cloud</Name>
             <ID>205</ID>
-            <Length>8</Length>
+            <Length>2</Length>
             <RxCallback>IO_cmdData_CloudRxCbk</RxCallback>
             <ChecksumLength>1</ChecksumLength>
           </RxMessage>

@@ -24,6 +24,8 @@
 #include FLASH_EEPROM_H
 #include SIMCOM_MESSAGE_H
 #include MESSAGE_APP_H
+#include CS_IOT_H 
+
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
@@ -46,9 +48,16 @@ extern void MessageControl(void);
 
 extern void EEPROMErasePage(uint32_t page);
 
-uint32_t EEPROMWriteAdress;
+typedef enum DtmfNumberAlterStatus{
+	Idle = 0,
+	ChooseTaskToAlter,
+	AddNumberToStore,
+	ChooseAdressToAlterNumber,
+	WaitforPageErase,
+	DeleteExcistingNumber
+}DtmfNumberAlterStatus_En;
 
-//UBYTE pageEraseCount = 0;
+uint32_t EEPROMWriteAdress;
 
 UBYTE DTMFMessageFlag = FALSE;
 
@@ -84,20 +93,9 @@ UBYTE PublishStatus = 0;
 
 char UpdatedNumber[13];
 
-//UBYTE ReadyforDtmfCmd = FALSE;
-
 Rx_Response_EN Rx_Response_State = I_MQTT_Rx_Response_Idle;
 
 void DTMFStateMachine(char DTMFMessage);
-
-typedef enum DtmfNumberAlterStatus{
-	Idle = 0,
-	ChooseTaskToAlter,
-	AddNumberToStore,
-	ChooseAdressToAlterNumber,
-	WaitforPageErase,
-	DeleteExcistingNumber
-}DtmfNumberAlterStatus_En;
 
 char DTMFStoreNumber[13];
 UBYTE BufferLength = 3;
@@ -283,7 +281,7 @@ void DTMFStateMachine(char DTMFMessage)
 {
 	switch(DtmfState)
 	{
-		AvrCmdData_ST StatusData;		
+		AvrCmdStatusData_ST StatusData;		
 		case Idle:
 			SIMCOM_State = SIMCOM_SM_Ready;
 			if(DTMFMessage == '1')
@@ -671,7 +669,7 @@ void SIMCOM_RxMessageCallBack()
 		break;
 		case I_MQTT_Rx_Storedata:
 		{ 
-			if ((Buff->BufferPtr != NULL) && (Buff != NULL) &&  (Buff->Length == 26))
+			if ((Buff->BufferPtr != NULL) && (Buff != NULL) &&  (Buff->Length == 14))
 			{				
 				if (StringHelper_startsWith("7;",(char*)Buff->BufferPtr))
 				{
