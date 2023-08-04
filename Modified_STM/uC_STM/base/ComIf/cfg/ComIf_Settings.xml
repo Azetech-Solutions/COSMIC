@@ -61,6 +61,20 @@
             <ChecksumLength>1</ChecksumLength>
             <EnableAggregation>False</EnableAggregation>
           </TxMessage>
+          <TxMessage>
+            <Name>DTMFCommandData</Name>
+            <ID>220</ID>
+            <Length>2</Length>
+            <ChecksumLength>1</ChecksumLength>
+            <EnableAggregation>False</EnableAggregation>
+          </TxMessage>
+          <TxMessage>
+            <Name>Stored_MobNums</Name>
+            <ID>192</ID>
+            <Length>78</Length>
+            <ChecksumLength>1</ChecksumLength>
+            <EnableAggregation>False</EnableAggregation>
+          </TxMessage>
         </TxMessages>
         <RxMessages>
           <RxMessage>
@@ -77,45 +91,18 @@
             <RxCallback>ADC_RxCbk</RxCallback>
             <ChecksumLength>1</ChecksumLength>
           </RxMessage>
-        </RxMessages>
-      </Channel>
-      <Channel>
-        <Name>DTMF</Name>
-        <TransmitFunction>DTMF_Transmit</TransmitFunction>
-        <DataTransferMethod>Bytes</DataTransferMethod>
-        <TransmitBufferSize>64</TransmitBufferSize>
-        <EnableDynamicDataLength>True</EnableDynamicDataLength>
-        <MaxDynamicDataLength>64</MaxDynamicDataLength>
-        <EnableAggregation>False</EnableAggregation>
-        <TxMessages>
-          <TxMessage>
-            <Name>DTMFCommandData</Name>
-            <ID>220</ID>
-            <Length>2</Length>
-            <ChecksumLength>1</ChecksumLength>
-            <EnableAggregation>False</EnableAggregation>
-          </TxMessage>
-          <TxMessage>
-            <Name>MN_Data_Message</Name>
-            <ID>192</ID>
-            <Length>78</Length>
-            <ChecksumLength>1</ChecksumLength>
-            <EnableAggregation>False</EnableAggregation>
-          </TxMessage>
-        </TxMessages>
-        <RxMessages>
           <RxMessage>
-            <Name>AVR_Message</Name>
+            <Name>AVR_TextMessage</Name>
             <ID>81</ID>
             <Length>51</Length>
-            <RxCallback>DTMFMessageRxCbk</RxCallback>
+            <RxCallback>TextMessageRxCbk</RxCallback>
             <ChecksumLength>1</ChecksumLength>
           </RxMessage>
           <RxMessage>
             <Name>AVR_Call</Name>
             <ID>202</ID>
             <Length>1</Length>
-            <RxCallback>DTMFCallMessageCbk</RxCallback>
+            <RxCallback>AVR_CallRequestRxCbk</RxCallback>
             <ChecksumLength>1</ChecksumLength>
           </RxMessage>
         </RxMessages>

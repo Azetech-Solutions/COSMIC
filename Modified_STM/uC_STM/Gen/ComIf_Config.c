@@ -128,8 +128,10 @@ extern UBYTE AVR_Transmit(UWORD Length, void * Data);
 UBYTE ComIfChannelTxBuffer_AVR[100];
 
 UBYTE ComIf_ShadowBuffer_AVR_IO_cmdData_AVR[2];
+UBYTE ComIf_ShadowBuffer_AVR_DTMFCommandData[2];
+UBYTE ComIf_ShadowBuffer_AVR_Stored_MobNums[78];
 
-ComIfTxMessageConfig ComIfTxMsgCfg_AVR[1] = {
+ComIfTxMessageConfig ComIfTxMsgCfg_AVR[3] = {
 	{
 		/* IO_cmdData_AVR */
 		/* ID */        0xCD,
@@ -149,14 +151,56 @@ ComIfTxMessageConfig ComIfTxMsgCfg_AVR[1] = {
 		/* TxConfCbk */ NULL,
 		/* TxCbk */     NULL
 	},
+	{
+		/* DTMFCommandData */
+		/* ID */        0xDC,
+		/* Length */    2,
+	#ifdef COMIF_DYNAMIC_DATA_LENGTH_ENABLED
+		/* DynLength */ 0,
+	#endif
+		/* CHKLEN */    1,
+		/* Tx Flags */  {
+							0, // EnableAggregation
+							0, // Force Transmit
+							0, // PendingForTransmission
+							0, // AggregatedInBuffer
+							0  // PendingForConfirmation
+						},
+		/* Buffer */    ComIf_ShadowBuffer_AVR_DTMFCommandData,
+		/* TxConfCbk */ NULL,
+		/* TxCbk */     NULL
+	},
+	{
+		/* Stored_MobNums */
+		/* ID */        0xC0,
+		/* Length */    78,
+	#ifdef COMIF_DYNAMIC_DATA_LENGTH_ENABLED
+		/* DynLength */ 0,
+	#endif
+		/* CHKLEN */    1,
+		/* Tx Flags */  {
+							0, // EnableAggregation
+							0, // Force Transmit
+							0, // PendingForTransmission
+							0, // AggregatedInBuffer
+							0  // PendingForConfirmation
+						},
+		/* Buffer */    ComIf_ShadowBuffer_AVR_Stored_MobNums,
+		/* TxConfCbk */ NULL,
+		/* TxCbk */     NULL
+	},
 };
 
 extern void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data);
 UBYTE ComIf_RxMessageBuffer_AVR_AVR_IO_Status[3];
 extern void ADC_RxCbk(UBYTE Length, UBYTE *Data);
 UBYTE ComIf_RxMessageBuffer_AVR_ADC_Values_AVR[7];
+extern void TextMessageRxCbk(UBYTE Length, UBYTE *Data);
+UBYTE ComIf_RxMessageBuffer_AVR_AVR_TextMessage[52];
+extern void AVR_CallRequestRxCbk(UBYTE Length, UBYTE *Data);
+UBYTE ComIf_RxMessageBuffer_AVR_AVR_Call[2];
 
-ComIfRxMessageConfig ComIfRxMsgCfg_AVR[2] = {
+ComIfRxMessageConfig ComIfRxMsgCfg_AVR[4] = {
 	{
 		/* AVR_IO_Status */
 		/* ID */      0x5D,
@@ -189,68 +233,8 @@ ComIfRxMessageConfig ComIfRxMsgCfg_AVR[2] = {
 		/* Buffer */  ComIf_RxMessageBuffer_AVR_ADC_Values_AVR,
 		/* RxCbk */   &ADC_RxCbk
 	},
-};
-
-/* -------------------------------------------------- */
-/* For DTMF Channel */
-/* -------------------------------------------------- */
-
-extern UBYTE DTMF_Transmit(UWORD Length, void * Data);
-
-UBYTE ComIfChannelTxBuffer_DTMF[64];
-
-UBYTE ComIf_ShadowBuffer_DTMF_DTMFCommandData[2];
-UBYTE ComIf_ShadowBuffer_DTMF_MN_Data_Message[78];
-
-ComIfTxMessageConfig ComIfTxMsgCfg_DTMF[2] = {
 	{
-		/* DTMFCommandData */
-		/* ID */        0xDC,
-		/* Length */    2,
-	#ifdef COMIF_DYNAMIC_DATA_LENGTH_ENABLED
-		/* DynLength */ 0,
-	#endif
-		/* CHKLEN */    1,
-		/* Tx Flags */  {
-							0, // EnableAggregation
-							0, // Force Transmit
-							0, // PendingForTransmission
-							0, // AggregatedInBuffer
-							0  // PendingForConfirmation
-						},
-		/* Buffer */    ComIf_ShadowBuffer_DTMF_DTMFCommandData,
-		/* TxConfCbk */ NULL,
-		/* TxCbk */     NULL
-	},
-	{
-		/* MN_Data_Message */
-		/* ID */        0xC0,
-		/* Length */    78,
-	#ifdef COMIF_DYNAMIC_DATA_LENGTH_ENABLED
-		/* DynLength */ 0,
-	#endif
-		/* CHKLEN */    1,
-		/* Tx Flags */  {
-							0, // EnableAggregation
-							0, // Force Transmit
-							0, // PendingForTransmission
-							0, // AggregatedInBuffer
-							0  // PendingForConfirmation
-						},
-		/* Buffer */    ComIf_ShadowBuffer_DTMF_MN_Data_Message,
-		/* TxConfCbk */ NULL,
-		/* TxCbk */     NULL
-	},
-};
-
-extern void DTMFMessageRxCbk(UBYTE Length, UBYTE *Data);
-UBYTE ComIf_RxMessageBuffer_DTMF_AVR_Message[52];
-extern void DTMFCallMessageCbk(UBYTE Length, UBYTE *Data);
-UBYTE ComIf_RxMessageBuffer_DTMF_AVR_Call[2];
-
-ComIfRxMessageConfig ComIfRxMsgCfg_DTMF[2] = {
-	{
-		/* AVR_Message */
+		/* AVR_TextMessage */
 		/* ID */      0x51,
 		/* Length */  51,
 		/* CHKLEN */  1,
@@ -262,8 +246,8 @@ ComIfRxMessageConfig ComIfRxMsgCfg_DTMF[2] = {
 						0  // RxRequestPlaced
 					  },
 		/* RxngIdx */ 0,
-		/* Buffer */  ComIf_RxMessageBuffer_DTMF_AVR_Message,
-		/* RxCbk */   &DTMFMessageRxCbk
+		/* Buffer */  ComIf_RxMessageBuffer_AVR_AVR_TextMessage,
+		/* RxCbk */   &TextMessageRxCbk
 	},
 	{
 		/* AVR_Call */
@@ -278,8 +262,8 @@ ComIfRxMessageConfig ComIfRxMsgCfg_DTMF[2] = {
 						0  // RxRequestPlaced
 					  },
 		/* RxngIdx */ 0,
-		/* Buffer */  ComIf_RxMessageBuffer_DTMF_AVR_Call,
-		/* RxCbk */   &DTMFCallMessageCbk
+		/* Buffer */  ComIf_RxMessageBuffer_AVR_AVR_Call,
+		/* RxCbk */   &AVR_CallRequestRxCbk
 	},
 };
 
@@ -340,9 +324,9 @@ ComIf_ChannelConfigType ComIf_ChannelConfig[C_ComIfChannel_TOTAL] =
 #endif
     	/* Data Transfer Method */          COMIF_DATA_TXFR_METHOD_BYTES,
 		/* Tx Message Config Pointer */     ComIfTxMsgCfg_AVR,
-		/* Total Number of Tx Messages */   1,
+		/* Total Number of Tx Messages */   3,
 		/* Rx Message Config Pointer */     ComIfRxMsgCfg_AVR,
-		/* Total Number of Rx Messages */   2,
+		/* Total Number of Rx Messages */   4,
 		/* Index of Receiving Message */    P_COMIF_INVALID_HANDLE,
 		/* Length of Receiving Message */   0,
 		/* Channel Specific Flags */
@@ -364,45 +348,6 @@ ComIf_ChannelConfigType ComIf_ChannelConfig[C_ComIfChannel_TOTAL] =
 	#endif
 #endif
     },
-    {	                                    /* For DTMF ComIf Channel */
-    	/* Transmit Function */             &DTMF_Transmit,
-		/* Error Notification Function */   NULL,
-#ifdef COMIF_RX_REQUEST_ENABLED
-		/* Rx Request Function */           NULL,
-		/* Rx Timeout Time */               0,
-		/* Rx Timeout Time Counter */       0,
-#endif
-    	/* Transmit Buffer */               ComIfChannelTxBuffer_DTMF,
-    	/* Transmit Buffer Length */        64,
-#ifdef COMIF_DYNAMIC_DATA_LENGTH_ENABLED
-		/* Dynamic Max Data Length */       64,
-#endif
-    	/* Data Transfer Method */          COMIF_DATA_TXFR_METHOD_BYTES,
-		/* Tx Message Config Pointer */     ComIfTxMsgCfg_DTMF,
-		/* Total Number of Tx Messages */   2,
-		/* Rx Message Config Pointer */     ComIfRxMsgCfg_DTMF,
-		/* Total Number of Rx Messages */   2,
-		/* Index of Receiving Message */    P_COMIF_INVALID_HANDLE,
-		/* Length of Receiving Message */   0,
-		/* Channel Specific Flags */
-		{
-			0,  // IsReceiving
-			0,  // Delimit
-			0,  // DLCVerified
-			0,  // IsRxRequestEnabled
-			0,  // IsTransmitting
-			0,  // IsAggregationEnabled
-			0,  // HasAggregatedMsgs
-		},
-
-#ifdef COMIF_TX_AGGREGATION_ENABLED
-	#ifdef TX_AGGREGATION_ENABLED_DTMF
-        /* Tx Aggregation Control */        &(ComIf_TxAggCtrl_DTMF)
-	#else
-        /* Tx Aggregation Control */        NULL
-	#endif
-#endif
-    },
 };
 
 /***************************************************/
@@ -418,10 +363,5 @@ UBYTE ComIf_RxIndication_Cloud(char * DataString, UWORD Length)
 UBYTE ComIf_RxIndication_AVR(UBYTE DataByte)
 {
 	return ComIf_RxIndication(((UBYTE)C_ComIfChannel_AVR), DataByte);
-}
-
-UBYTE ComIf_RxIndication_DTMF(UBYTE DataByte)
-{
-	return ComIf_RxIndication(((UBYTE)C_ComIfChannel_DTMF), DataByte);
 }
 
