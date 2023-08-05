@@ -51,6 +51,12 @@
         <ProcessGroupRef>PRC_X100</ProcessGroupRef>
         <Enabled>True</Enabled>
       </Process>
+      <Process>
+        <Name>EepromFlashMmeoryCopy</Name>
+        <Index>7</Index>
+        <ProcessGroupRef>STM32_Init</ProcessGroupRef>
+        <Enabled>True</Enabled>
+      </Process>
     </Processes>
   </Config>
   <General>

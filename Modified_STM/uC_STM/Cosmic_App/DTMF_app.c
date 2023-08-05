@@ -45,7 +45,6 @@ void DTMFStateMachine(char DTMFMessage)
 //	{
 //		AvrCmdStatusData_ST StatusData;		
 //		case Idle:
-//			SIMCOM_State = SIMCOM_SM_Ready;
 //			if(DTMFMessage == '1')
 //			{
 //				StatusData.SW1 = 1;
