@@ -6,7 +6,8 @@
 #include COMIF_H
 #include UART_DRIVER_H
 #include SIMCOM_CALLS_H
-#include FLASH_EEPROM_H
+#include EEPROMWRAPPER_H
+
 /**********************************************************/
 /* Macro Definitions                                      */
 /**********************************************************/

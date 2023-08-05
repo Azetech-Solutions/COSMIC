@@ -21,7 +21,7 @@
 #include COMIF_CONFIG_H
 #include GPIO_DRIVER_H
 #include UART_DRIVER_H
-#include FLASH_EEPROM_H
+#include EEPROMWRAPPER_H
 #include SIMCOM_MESSAGE_H
 #include MESSAGE_APP_H
 #include CS_IOT_H 
@@ -45,6 +45,8 @@ extern void SIM_Send_Data(unsigned char Data);
 extern void EEPROMmain(uint32_t Address, uint64_t Data);
 
 extern void MessageControl(void);
+
+extern void SIMCOM_Calls_MainFunction(void);
 
 extern void EEPROMErasePage(uint32_t page);
 
@@ -423,14 +425,15 @@ void SIMCOM_MainFunction(void)
 
 	/* Call the Main Functions of the SIMCOM Sub Modules */
 
-	SIMCOM_StateMachine();
-	SIMCOM_Clock_MainFunction();
-	SIMCOM_SSL_CONFIG_MainFunction();
-	MQTT_StateMachine();
-	MQTT_AppMain();
-	MQTT_Publish_StateMachine();
-	DtmfMessageCallFunc();
-	MessageControl();
+//	SIMCOM_StateMachine();
+//	SIMCOM_Clock_MainFunction();
+//	SIMCOM_SSL_CONFIG_MainFunction();
+//	MQTT_StateMachine();
+//	MQTT_AppMain();
+//	MQTT_Publish_StateMachine();
+//	DtmfMessageCallFunc();
+//	MessageControl();
+	SIMCOM_Calls_MainFunction();
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

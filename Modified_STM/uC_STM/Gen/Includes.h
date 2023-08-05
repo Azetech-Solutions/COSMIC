@@ -12,6 +12,7 @@
 
 #define COMIF_H   "..\base\ComIf\api\ComIf.h"
 #define COMIF_CONFIG_ELEMENTS_H   "..\base\ComIf\api\ComIf_Config_Elements.h"
+#define EEPROMWRAPPER_H   "..\base\EepromWrapper\api\EepromWrapper.h"
 #define FLASH_EEPROM_H   "..\base\Flash\api\Flash_EEPROM.h"
 #define BUFFER_H   "..\base\Helpers\Buffer\api\Buffer.h"
 #define STRINGHELPER_H   "..\base\Helpers\String\api\StringHelper.h"

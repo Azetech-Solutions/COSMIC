@@ -40,7 +40,7 @@ extern void SystickTimerInit(void);
 extern void PLLInit(void);
 extern void AvrStatusHandleFunc(void);
 extern void Sysos_check(void);
-extern void MakeCall();
+
 /* Define the Process calls for the Tasks */
 
 /* Definition for the task Init */
@@ -61,7 +61,6 @@ void PRC_SYSOS_TASK_X100(void)
 		SIMCOM_MainFunction();
 		AvrStatusHandleFunc();
 		Sysos_check();
-		MakeCall();
 }
 
 

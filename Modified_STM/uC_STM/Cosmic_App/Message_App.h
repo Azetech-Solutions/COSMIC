@@ -11,12 +11,19 @@ typedef enum DtmfMessageHandler{
 	MachineInit,
 	SendNumberMessage,
 	SendMotorStatus,
+	AWSCmdStatusUpdate,
 	NumberUpdateMessage,
 	UpdateMotorStatusMsg,
+	SendMultipleMessage,
+	SendSingleMessage,
+	EmergencyMessage,
+	SendOwnerMessage,
 	TextMessageProcessing
 }DtmfMessageHandler_En;
 
-	
+#define OWNER1 "+917200033312"
+
+#define OWNER2 "+917558023123"
 
 extern DtmfMessageHandler_En DtmfMessageHandlerState;
 

@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\Gen;..\base\ComIf\src;..\base\Flash\src;..\base\Helpers\Buffer\src;..\base\Helpers\String\src;..\base\SIMCOM\src;..\base\SysOS\src;..\Cosmic_App\MQTT;..\Cosmic_App\MQTT\src;..\project;..\STM32_Driver;..\base\ComIf\api;..\base\Flash\api;..\base\Helpers\Buffer\api;..\base\Helpers\String\api;..\base\SIMCOM\api;..\base\SysOS\api;..\Cosmic_App\MQTT\api</IncludePath>
+              <IncludePath>..\Gen;..\base\ComIf\src;..\base\Flash\src;..\base\Helpers\Buffer\src;..\base\Helpers\String\src;..\base\SIMCOM\src;..\base\SysOS\src;..\Cosmic_App\MQTT;..\Cosmic_App\MQTT\src;..\project;..\STM32_Driver;..\base\ComIf\api;..\base\Flash\api;..\base\Helpers\Buffer\api;..\base\Helpers\String\api;..\base\SIMCOM\api;..\base\SysOS\api;..\Cosmic_App\MQTT\api;..\base\EepromWrapper\src;..\base\EepromWrapper\api</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -503,6 +503,11 @@
               <FileName>AVR.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Cosmic_App\AVR.c</FilePath>
+            </File>
+            <File>
+              <FileName>EepromWrapper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\base\EepromWrapper\src\EepromWrapper.c</FilePath>
             </File>
           </Files>
         </Group>

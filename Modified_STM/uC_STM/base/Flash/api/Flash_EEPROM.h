@@ -4,24 +4,19 @@
 
 #include<stdint.h>
 
-
-typedef union
-{
-	struct
-	{
-		char MobNo[13];
-		uint8_t WriteIndicator;
-	};
-	uint64_t byte[2];
-}St;
-
 #define number1 0x08007000
 #define number2 0x08007010
 #define number3 0x08007020
 #define number4 0x08007030
 
-extern St Data;
-extern St readD;
-extern St AdressCpy[4];
+extern void EEPROMErasePage(uint32_t page);
+
+extern void EEPROMmain(uint32_t Address, uint64_t Data);
+
+extern void Flash_Erase(uint32_t PGN);
+
+extern void FLASH_Unlock(void);
+
+extern void FLASH_Lock(void);
 
 #endif  /* _FLASH_H_ */

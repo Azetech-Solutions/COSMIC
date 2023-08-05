@@ -37,4 +37,4 @@ typedef enum
 /**********************************************************/
 /* Function Declaration                                   */
 /**********************************************************/
-extern BOOL SIMCOM_Calls_Dial(const char * Number);
+extern BOOL SIMCOM_Calls_Dial(char * Number);

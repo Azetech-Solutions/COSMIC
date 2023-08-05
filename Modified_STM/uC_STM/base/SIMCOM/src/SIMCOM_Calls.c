@@ -8,12 +8,15 @@
 /*****************************************/
 
 SIMCOM_Dial_Request_EN SIMCOM_Dial_Request = SMC_Idle;
+
 static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE SIMCOM_SM_Calls_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT;
 
 char DialNumer[20];
+
 ULONG WaitForCallTimoutCounter = 0;
+
 /*****************************************/
 /* Static Function Definitions           */
 /*****************************************/
@@ -93,7 +96,7 @@ void SIMCOM_Calls_Callback(SIMCOM_Job_Result_EN result)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*                    SIMCOM Calls Dial to Number                 */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-BOOL SIMCOM_Calls_Dial(const char * Number)
+BOOL SIMCOM_Calls_Dial(char * Number)
 {
 	BOOL retval = FALSE;
 
