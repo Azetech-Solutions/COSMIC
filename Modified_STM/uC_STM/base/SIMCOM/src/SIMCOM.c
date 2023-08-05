@@ -425,14 +425,14 @@ void SIMCOM_MainFunction(void)
 
 	/* Call the Main Functions of the SIMCOM Sub Modules */
 
-//	SIMCOM_StateMachine();
-//	SIMCOM_Clock_MainFunction();
-//	SIMCOM_SSL_CONFIG_MainFunction();
-//	MQTT_StateMachine();
-//	MQTT_AppMain();
-//	MQTT_Publish_StateMachine();
-//	DtmfMessageCallFunc();
-//	MessageControl();
+	SIMCOM_StateMachine();
+	SIMCOM_Clock_MainFunction();
+	SIMCOM_SSL_CONFIG_MainFunction();
+	MQTT_StateMachine();
+	MQTT_AppMain();
+	MQTT_Publish_StateMachine();
+	DtmfMessageCallFunc();
+	MessageControl();
 	SIMCOM_Calls_MainFunction();
 }
 

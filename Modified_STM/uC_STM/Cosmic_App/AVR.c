@@ -29,7 +29,6 @@ AVR_Call_ST AVR_Calls;
 /* Function Declaration                                   */
 /**********************************************************/
 
-
 UBYTE AVR_Transmit(UWORD Length, void * Data)
 {
 	UBYTE retval = COMIF_EC_GENERIC_ERROR;
@@ -69,16 +68,6 @@ UBYTE AVR_Transmit(UWORD Length, void * Data)
 	return retval;
 }
 
-void MakeCall()
-{
-	AVR_Call_ST *CallRequest = &AVR_Calls;
-	
-	if(CallRequest->Call == TRUE)
-	{
-		SIMCOM_Calls_Dial(AdressCpy[CallRequest->Call_MN_Index].MobNo);
-		CallRequest->Call = FALSE;
-	}
-}
 
 void AVR_CallRequestRxCbk(UBYTE Length, UBYTE *Data)
 {
@@ -87,6 +76,13 @@ void AVR_CallRequestRxCbk(UBYTE Length, UBYTE *Data)
 	if(Length == ComIf_GetLength_AVR_AVR_Call())
 	{
 			Buff->Byte = *Data;
+	}
+	
+	if(Buff->Call == TRUE)
+	{
+		SIMCOM_Calls_Dial(&AdressCpy[Buff->Call_MN_Index].MobNo[3]);
+		
+		Buff->Call = FALSE;
 	}
 }
 
@@ -107,8 +103,3 @@ void ADC_RxCbk(UBYTE Length, UBYTE *Data)
 {
 	
 }
-
-//void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)
-//{
-//	
-//}

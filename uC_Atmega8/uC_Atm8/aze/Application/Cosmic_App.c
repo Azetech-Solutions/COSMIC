@@ -7,6 +7,9 @@
 /**********************************************************/
 /* Header Inclusions                                      */
 /**********************************************************/
+#include "Includes.h"
+#include <avr/io.h>
+#include PLATFORM_TYPES_H
 #include TR_MSGS_H
 #include COMIF_H
 #include <stdio.h>
@@ -23,13 +26,15 @@
 /* Function Declaration                                   */
 /**********************************************************/
 
-
+AVR_IO_Control_ST prevIO_Status={0};
 
 void Call_Request(BOOL RequestType,UBYTE MN_Index)
 {
 	AVR_Call_ST *Buff = &AVR_Calls;
 	
 	UBYTE *Data = ComIf_GetShadowBuffer_STM32_AVR_Call();
+	
+	Buff->Res = 0;
 	
 	Buff->Call = RequestType;
 	

@@ -9,4 +9,6 @@ typedef enum DtmfNumberAlterStatus{
 	DeleteExcistingNumber
 }DtmfNumberAlterStatus_En;
 
-DtmfNumberAlterStatus_En DtmfState = Idle;
+extern DtmfNumberAlterStatus_En DtmfState;
+
+extern UBYTE CheckReadyForDtmf();

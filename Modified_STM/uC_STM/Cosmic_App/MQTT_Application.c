@@ -244,7 +244,6 @@ void Cloud_ComIf_ErrorNotification(ULONG Debug0, ULONG Debug1)
 	
 }
 
-
 void COSMIC_SIMCOM_Error_Callback()
 {
 	SIMCOM_State = SIMCOM_SM_Reset;

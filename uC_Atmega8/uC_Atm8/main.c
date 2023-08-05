@@ -10,8 +10,10 @@
 #include <avr/io.h>
 #include <avr/wdt.h>
 #include <avr/interrupt.h>
+#include <util/delay.h>
 #include "Includes.h"
 #include UART_H
+#include COSMIC_APP_H
 
 /**********************************************************/
 /* Macro Definitions                                      */
@@ -24,7 +26,7 @@
 /**********************************************************/
 /* Global Variable Declarations                           */
 /**********************************************************/
-AVR_IO_Control_ST prevIO_Status={0};
+
 /**********************************************************/
 /* Inline Function Definitions                            */
 /**********************************************************/
@@ -61,6 +63,14 @@ int main(void)
 	}
 }
 
-
+// CALL CHECK
+// int main(void)
+// {
+// 	sei();
+// 	Avr_Init();
+// 	Atmega32DriverInit();
+// 	_delay_ms(20000);
+// 	Call_Request(1,0);
+// }
 
 

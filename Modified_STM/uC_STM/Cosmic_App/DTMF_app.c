@@ -12,6 +12,7 @@
 #include MQTT_APPLICATION_H
 #include SIMCOM_CALLS_H
 
+DtmfNumberAlterStatus_En DtmfState = Idle;
 
 char DTMFStoreNumber[13];
 
@@ -174,4 +175,11 @@ void DTMFStateMachine(char DTMFMessage)
 //		default :
 //			break;
 //	}
+}
+
+
+
+UBYTE CheckReadyForDtmf()
+{	
+	return MachineInitFlag == FALSE;
 }

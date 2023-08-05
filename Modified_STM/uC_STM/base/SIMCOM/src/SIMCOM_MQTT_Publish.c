@@ -292,8 +292,7 @@ void MQTT_Publish_StateMachine(void)
 				if(MachineInitFlag == TRUE)
 				{
 						MachineInitFlag = FALSE;
-						DtmfMessageHandlerState = MachineInit;
-//				DebugStringRow1("READY        ");					
+						DtmfMessageHandlerState = MachineInit;			
 				}
 			}
 			break;

@@ -2,6 +2,8 @@
 #include "Includes.h"
 #include SIMCOM_H
 #include "stdio.h"
+#include DTMF_APP_H
+#include UART_DRIVER_H
 
 /*****************************************/
 /* Global Variables                      */
@@ -58,16 +60,13 @@ void SIMCOM_Calls_Callback(SIMCOM_Job_Result_EN result)
 		}
 		break;
 
-	#if (S_SIMCOM_CALLS_DIAL_TO_NUMBER == ON)
 		case SMC_DialNumber:
 		{
 			switch(result)
 			{
 				case SIMCOM_Job_Completed:
 				{
-					// Success
-					// Debug_SendString(SIMCOM_GetCurrentJobResponse());
-
+					
 				}
 				break;
 
@@ -88,8 +87,6 @@ void SIMCOM_Calls_Callback(SIMCOM_Job_Result_EN result)
 			}
 		}
 		break;
-	#endif /* (S_SIMCOM_CALLS_DIAL_TO_NUMBER == ON) */
-
 	}
 }
 
@@ -103,14 +100,15 @@ BOOL SIMCOM_Calls_Dial(char * Number)
 	/* Sanity Checks */
 	if(SIMCOM_Calls_IsValidNumber(Number)) // Example +917200033312 / 7200033312
 	{
-		char Command[20];
-		
-		sprintf(DialNumer,"ATD=%s;",Number);
-		DialNumer[18] = '\0';
 
-		SIMCOM_Dial_Request = SMC_DialNumber;
 		
 	}
+	char Command[20];
+//	SIM_Send_Data('k');
+	sprintf(DialNumer,"ATD%s;",Number);
+	DialNumer[15] = '\0';
+//		SIMCOM_Dial_Request = WaitForUpdateCallResponse;
+	SIMCOM_Dial_Request = SMC_DialNumber;
 
 	return retval;
 }
@@ -132,7 +130,14 @@ void SIMCOM_Calls_MainFunction(void)
 		}
 		break;
 
-	#if (S_SIMCOM_CALLS_DIAL_TO_NUMBER == ON)
+		case WaitForUpdateCallResponse:
+		{
+			if(CheckReadyForDtmf())
+			{
+				SIMCOM_Dial_Request = SMC_DialNumber;
+			}
+		}
+		break;
 		case SMC_DialNumber:
 		{
 						// First Ensure the SIMCOM Module is Connected
@@ -140,7 +145,7 @@ void SIMCOM_Calls_MainFunction(void)
 			{
 				// Send AT Command and wait for response
 				if(SIMCOM_Schedule_Job(DialNumer, SIMCOM_DEFAULT_TIMEOUT, SIMCOM_Calls_Callback) == TRUE)
-				{	
+				{
 					// Set it to Scheduled only when the SIMCOM Module Accepted it
 					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
 				}
@@ -155,7 +160,7 @@ void SIMCOM_Calls_MainFunction(void)
 					// Check if the response is OK or not.
 					if(SIMCOM_IsResponseOK())
 					{
-						SIMCOM_Dial_Request = SMC_Idle;
+						SIMCOM_Dial_Request = SMC_WaitForCallResponses;
 					}
 					else
 					{
@@ -237,15 +242,15 @@ void SIMCOM_Calls_MainFunction(void)
 			if(WaitForCallTimoutCounter == 250)
 			{
 				WaitForCallTimoutCounter = 0;
-				SIMCOM_Dial_Request = SMC_Idle;
+				SIMCOM_Dial_Request = SMC_DisConnectCalls;
 			}
 		}
 		break;
 		default:
 		{
-			break;
+			
 		}
-	#endif /* (S_SIMCOM_CALLS_DIAL_TO_NUMBER == ON) */
+		break;
 		
 		if(RetryInNextCycle == TRUE)
 		{

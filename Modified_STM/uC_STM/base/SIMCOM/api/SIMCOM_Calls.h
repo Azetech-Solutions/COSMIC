@@ -14,6 +14,7 @@
 typedef enum
 {
 	SMC_Idle = 0,
+	WaitForUpdateCallResponse,
 	SMC_DialNumber,
 	SMC_AttendCalls,
 	SMC_DisConnectCalls,
