@@ -46,7 +46,7 @@ void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)
 		Data++;
 	}
 	
-	MQTTApp_State = MQTTAppCheckLedStatus;
+	MQTTApp_State = MQTTApp_CheckIOStatus;
 	
 //	if(AvrStatusData.SW16 == 1)
 //	{
@@ -74,11 +74,6 @@ void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)
 //		}
 //		PreviousMotorStatus = CurrentMotorStatus;		
 //	}
-}
-
-void ADC_RxCbk(UBYTE Length, UBYTE *Data)
-{
-	
 }
 
 void 	AvrStatusHandleFunc()

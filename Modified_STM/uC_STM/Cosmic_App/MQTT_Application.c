@@ -66,21 +66,6 @@ AvrCmdStatusData_ST prevAvrStatusData;
 
 AvrCmdStatusData_ST prevCloudStatusData;
 
-UBYTE AVR_Transmit(UWORD Length, void * Data)
-{
-	UBYTE retval = COMIF_EC_NO_ERROR;
-	
-	for(UBYTE i = 0;i < Length; i++)
-	{
-		SIM_Send_Data(((*(UBYTE*)Data++)));
-	}
-	
-	memset(Data,'0',Length);
-	
-	ComIf_TxConfirmation(C_ComIfChannel_AVR);
-	
-	return retval;
-}
 
 void updateSendData(UBYTE Data[])
 {
@@ -179,7 +164,7 @@ void MQTT_AppMain()
 			break;
 			
 			
-			case MQTTAppCheckLedStatus:
+			case MQTTApp_CheckIOStatus:
 			{
 				
 				MQTTConnectionCheckStatus = FALSE;

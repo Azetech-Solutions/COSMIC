@@ -13,6 +13,34 @@
 #include PLATFORM_TYPES_H
 
 
+typedef union _AVR_IOs_
+{
+	struct  
+	{
+		UBYTE IO1:1;
+		UBYTE IO2:1;
+		UBYTE IO3:1;
+		UBYTE IO4:1;
+		UBYTE IO5:1;
+		UBYTE IO6:1;
+		UBYTE IO7:1;
+		UBYTE IO8:1;
+		//Byte 1
+		UBYTE IO9:1;
+		UBYTE IO10:1;
+		UBYTE IO11:1;
+		UBYTE IO12:1;
+		UBYTE IO13:1;
+		UBYTE IO14:1;
+		UBYTE IO15:1;
+		UBYTE IO16:1;
+	};
+	
+	UBYTE Bytes[2];
+	
+}AVR_IO_Control_ST;
+
+
 typedef union _ADC_Data_
 {
 	struct
@@ -88,5 +116,14 @@ typedef union _To_StroreTheMobileNumbers_
 	UBYTE Bytes[79];
 	
 }MobileNumbers_ST;
+
+
+extern AVR_IO_Control_ST IO_cmdData_AVR;
+extern AVR_IO_Control_ST AVR_IO_Status;
+
+extern ADC_Data_ST ADCDatas;
+extern DTMF_Command_Data_ST DTMFCommandData;
+extern AVR_Message_ST AVR_Message;
+extern AVR_Call_ST AVR_Calls;
 
 #endif /* AVR_H_ */

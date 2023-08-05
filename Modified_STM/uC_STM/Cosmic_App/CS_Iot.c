@@ -15,9 +15,6 @@
 
 
 
-DTMF_Command_Data_ST DTMFCommandData;
-
-
 
 //UBYTE DTMF_Transmit(UWORD Length, void * Data)
 //{

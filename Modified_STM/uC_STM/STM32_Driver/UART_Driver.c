@@ -22,6 +22,9 @@ void USART_String(const char* data);
 /***************************************************/
 /* Function Definitions                            */
 /***************************************************/
+BOOL IsUartCommunicationOkay = FALSE;
+
+
 void GPIOBPORTUART1()
 {
 	GPIO_InitTypeDef PB;
@@ -67,6 +70,8 @@ void USART_Init(void)
 	USART1->CR1 |= USART_CR1_UE;
 	/*USART1 Interrupt Enable*/
 	NVIC_EnableIRQ(USART1_IRQn);
+	
+	IsUartCommunicationOkay = TRUE;
 }
 
 void USART1_IRQHandler()
@@ -141,6 +146,21 @@ void UART2_SIM_Send_Data(unsigned char Data)
 		GPIOA->ODR &= ~(1<<1);
 	}
 	USART2->TDR = Data;
+}
+
+unsigned char UART2_TransmitByte(unsigned char Data)
+{
+	unsigned char retval = 0;
+	
+	while(!(USART2->ISR & (1<<7)))
+	{
+		GPIOA->ODR &= ~(1<<1);
+	}
+	retval = 1;
+	
+	USART2->TDR = Data;
+	
+	return retval;
 }
 
 void USART2_IRQHandler()

@@ -20,7 +20,7 @@ typedef enum
 {
 	MQTTApp_Init=0,
 	MQTTApp_Idle,
-	MQTTAppCheckLedStatus,
+	MQTTApp_CheckIOStatus,
 	MQTTApp_waitForResponse,
 	MQTTApp_ComifRxindication,
 	MQTTApp_SubMessageHandling,
@@ -75,6 +75,7 @@ typedef union
 		//Byte 16
 	};
 	UBYTE Data_Bytes[2];
+	
 }AvrCmdStatusData_ST;
 
 extern SimcomWorkingMode_ST SimcomWorkingMode;
