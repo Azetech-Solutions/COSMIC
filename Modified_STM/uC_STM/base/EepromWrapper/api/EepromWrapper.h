@@ -14,13 +14,13 @@ typedef union
 		uint8_t WriteIndicator;
 	};
 	uint64_t byte[2];
-}St;
+}Mobile_Numbers_ST;
 
-extern St Data;
+extern Mobile_Numbers_ST Data;
 
-extern St readD;
+extern Mobile_Numbers_ST readD;
 
-extern St AdressCpy[4];
+extern Mobile_Numbers_ST StoredMNs[4];
 
 extern void EEPROMErasePage(uint32_t page);
 

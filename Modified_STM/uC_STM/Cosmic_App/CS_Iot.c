@@ -25,12 +25,11 @@
 //	for(UBYTE i=0;i < Length; i++)
 //	{
 //		SIM_Send_Data(((*(UBYTE*)Data++)));
-//		
 //	}
 //	
 //	memset(Data,'0',Length);
 //	
-//	ComIf_TxConfirmation(C_ComIfChannel_DTMF);
+//	ComIf_TxConfirmation(C_ComIfChannel_AVR);
 //	
 //	return retval;
 //}

@@ -139,7 +139,7 @@ void CloudInit()
 {
 	UBYTE *PubMsg = ComIf_GetShadowBuffer_Cloud_Cloud_Init();
 	
-	 UBYTE val[2] = {255,0};
+	UBYTE val[2] = {255,0};
 	
 	memcpy(PubMsg,val,2);
 	

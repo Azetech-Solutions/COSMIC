@@ -152,13 +152,11 @@ unsigned char UART2_TransmitByte(unsigned char Data)
 {
 	unsigned char retval = 0;
 	
-	while(!(USART2->ISR & (1<<7)))
-	{
-		GPIOA->ODR &= ~(1<<1);
-	}
+	while(!(USART1->ISR & (1<<7)));
+	
 	retval = 1;
 	
-	USART2->TDR = Data;
+	USART1->TDR = Data;
 	
 	return retval;
 }

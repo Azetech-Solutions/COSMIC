@@ -425,14 +425,14 @@
               <FilePath>..\base\Helpers\String\src\StringHelper.c</FilePath>
             </File>
             <File>
-              <FileName>SIMCOM.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\base\SIMCOM\src\SIMCOM.c</FilePath>
-            </File>
-            <File>
               <FileName>SIMCOM_Clock.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\base\SIMCOM\src\SIMCOM_Clock.c</FilePath>
+            </File>
+            <File>
+              <FileName>SIMCOM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\base\SIMCOM\src\SIMCOM.c</FilePath>
             </File>
             <File>
               <FileName>SIMCOM_State.c</FileName>
@@ -455,6 +455,11 @@
               <FilePath>..\base\SIMCOM\src\SIMCOM_MQTT.c</FilePath>
             </File>
             <File>
+              <FileName>SIMCOM_Calls.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\base\SIMCOM\src\SIMCOM_Calls.c</FilePath>
+            </File>
+            <File>
               <FileName>SIMCOM_MQTT_Publish.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\base\SIMCOM\src\SIMCOM_MQTT_Publish.c</FilePath>
@@ -463,11 +468,6 @@
               <FileName>SIMCOM_MQTT_SSL.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\base\SIMCOM\src\SIMCOM_MQTT_SSL.c</FilePath>
-            </File>
-            <File>
-              <FileName>SIMCOM_Calls.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\base\SIMCOM\src\SIMCOM_Calls.c</FilePath>
             </File>
           </Files>
         </Group>

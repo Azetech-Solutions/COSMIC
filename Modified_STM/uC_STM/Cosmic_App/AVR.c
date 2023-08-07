@@ -7,7 +7,7 @@
 #include UART_DRIVER_H
 #include SIMCOM_CALLS_H
 #include EEPROMWRAPPER_H
-
+#include MESSAGE_APP_H
 /**********************************************************/
 /* Macro Definitions                                      */
 /**********************************************************/
@@ -80,7 +80,7 @@ void AVR_CallRequestRxCbk(UBYTE Length, UBYTE *Data)
 	
 	if(Buff->Call == TRUE)
 	{
-		SIMCOM_Calls_Dial(&AdressCpy[Buff->Call_MN_Index].MobNo[3]);
+		SIMCOM_Calls_Dial(&StoredMNs[Buff->Call_MN_Index].MobNo[3]);
 		
 		Buff->Call = FALSE;
 	}
@@ -96,6 +96,8 @@ void TextMessageRxCbk(UBYTE Length, UBYTE *Data)
 		{
 			Msg->Bytes[i] = *(Data++);
 		}
+		
+		IsSendMessageFlag = TRUE;
 	}
 }
 

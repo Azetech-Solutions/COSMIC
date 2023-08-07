@@ -12,6 +12,7 @@
 #include STRINGHELPER_H
 #include GPIO_DRIVER_H
 #include SIMCOM_MQTT_SSL_H
+#include SIMCOM_CALLS_H
 #include UART_DRIVER_H
 #include <stdio.h>
 
@@ -801,7 +802,7 @@ void SIMCOM_StateMachine(void)
 			if(DTMFCount == 250)
 			{
 				DTMFCount = 0;
-				SIMCOM_State = SIMCOMCancelCall;	
+				SIMCOM_Dial_Request = SMC_DisConnectCalls;	
 			}
 		}
 		break;

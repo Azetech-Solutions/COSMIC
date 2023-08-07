@@ -14,7 +14,7 @@
 #include "Includes.h"
 #include UART_H
 #include COSMIC_APP_H
-
+#include TR_MSGS_H
 /**********************************************************/
 /* Macro Definitions                                      */
 /**********************************************************/
@@ -60,6 +60,13 @@ int main(void)
 	while(1)
 	{
 		IOControls();
+		
+		if(DTMFCommandData.DTMF_Data == 49)
+		{
+			Send_Message(0,"Hello Azetech");
+			DTMFCommandData.DTMF_Data = 0;
+		}
+		
 	}
 }
 

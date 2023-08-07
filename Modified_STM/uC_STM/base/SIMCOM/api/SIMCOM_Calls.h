@@ -39,3 +39,6 @@ typedef enum
 /* Function Declaration                                   */
 /**********************************************************/
 extern BOOL SIMCOM_Calls_Dial(char * Number);
+
+
+extern SIMCOM_Dial_Request_EN SIMCOM_Dial_Request;

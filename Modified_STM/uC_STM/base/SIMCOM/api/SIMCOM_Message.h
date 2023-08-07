@@ -1,7 +1,8 @@
 /**********************************************************/
 /* Header Inclusions                                      */
 /**********************************************************/
-
+#include "Includes.h"
+#include PLATFORM_TYPES_H
 /**********************************************************/
 /* Macro Definitions                                      */
 /**********************************************************/
@@ -21,7 +22,7 @@ typedef enum
 }SendMSG_EN;
 
 extern SendMSG_EN SendMSG_State;
-
+extern void Send_TextMessage(char* str,UBYTE Index);
 extern void SendMessage(const char* str);
 
 /**********************************************************/

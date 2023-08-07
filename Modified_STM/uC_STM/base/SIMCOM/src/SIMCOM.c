@@ -25,6 +25,8 @@
 #include SIMCOM_MESSAGE_H
 #include MESSAGE_APP_H
 #include CS_IOT_H 
+#include SIMCOM_CALLS_H
+#include DTMF_APP_H
 
 /*****************************************/
 /* Global Variables                      */
@@ -49,15 +51,6 @@ extern void MessageControl(void);
 extern void SIMCOM_Calls_MainFunction(void);
 
 extern void EEPROMErasePage(uint32_t page);
-
-typedef enum DtmfNumberAlterStatus{
-	Idle = 0,
-	ChooseTaskToAlter,
-	AddNumberToStore,
-	ChooseAdressToAlterNumber,
-	WaitforPageErase,
-	DeleteExcistingNumber
-}DtmfNumberAlterStatus_En;
 
 char TOPIC1_SubscribeMsg[26];
 
@@ -86,13 +79,7 @@ UBYTE SIMCOM_ReceptionIgnoreCommandCount = 0;
 
 UBYTE PublishStatus = 0;
 
-//UBYTE ReadyforDtmfCmd = FALSE;
-
 Rx_Response_EN Rx_Response_State = I_MQTT_Rx_Response_Idle;
-
-extern void DTMFStateMachine(char DTMFMessage);
-
-//extern DtmfNumberAlterStatus_En DtmfState;
 
 /*****************************************/
 /* Static Function Definitions           */
@@ -124,10 +111,9 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 		if(IsSIMCOM_ResponseStartsWith("+RXDTMF"))
 		{
 			SimcomWorkingMode = DTMFMode;
-			char DTMF;
 			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+RXDTMF: ");
-			DTMF = *RXStr;
-			DTMFStateMachine(DTMF);
+			DTMF_Data = *RXStr;
+			DtmfState = UpdateDTMFSendMessage;
 		}
 		else if(IsSIMCOM_ResponseStartsWith("*ATREADY"))
 		{
@@ -232,6 +218,7 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 					uint64_t CheckAdress = 0x08007000;
 					for(UBYTE i = 0;i < 4; i++)
 					{
+						MNID = i;
 						if(FlashDataRead(CheckAdress) == 1)
 						{
 							BuffDiff = memcmp(DTMFBuffer,readD.MobNo,13);
@@ -249,11 +236,11 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				}
 				if(BuffDiff == 0)
 				{
-					SIMCOM_State = SIMCOMAttendCall;
+					SIMCOM_Dial_Request = SMC_AttendCalls;
 				}
 				else
 				{
-					SIMCOM_State = SIMCOMCancelCall;
+					SIMCOM_Dial_Request = SMC_DisConnectCalls;
 				}
 			}
 		}
@@ -433,7 +420,9 @@ void SIMCOM_MainFunction(void)
 	MQTT_Publish_StateMachine();
 	DtmfMessageCallFunc();
 	MessageControl();
+	Send_TextMsgMain();
 	SIMCOM_Calls_MainFunction();
+	DTMFStateMachine();
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -678,17 +667,4 @@ ULONG SIMCOM_Number_fromBuffer(const char * ResponseHead)
 
 	return retval;
 }
-
-uint64_t StringToUlong(UBYTE str[])
-{
-	uint64_t Data = 0;
-	UBYTE i;
-	for(i = 0; i<8; i++)
-	{
-		Data = Data | (str[i] << 8*i);
-	}
-	return Data;
-}
-
-
 

@@ -70,7 +70,7 @@ void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)
 //		}
 //		else
 //		{
-//			SIMCOM_State = SIMCOMCancelCall;
+//			SIMCOM_Dial_Request = SMC_DisConnectCalls;
 //		}
 //		PreviousMotorStatus = CurrentMotorStatus;		
 //	}

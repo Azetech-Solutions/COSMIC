@@ -2,6 +2,7 @@
 #include "Includes.h" // Will have all definitions of the Project Headers
 #include PLATFORM_TYPES_H // For Data Types
 #include SIMCOM_H
+#include COMIF_H
 #include COMIF_CONFIG_H
 #include GPIO_DRIVER_H
 #include UART_DRIVER_H
@@ -11,12 +12,17 @@
 #include DTMF_APP_H
 #include MQTT_APPLICATION_H
 #include SIMCOM_CALLS_H
+#include AVR_H
 
 DtmfNumberAlterStatus_En DtmfState = Idle;
 
 char DTMFStoreNumber[13];
 
 UBYTE BufferLength = 3;
+
+volatile UBYTE MNID;
+
+volatile char DTMF_Data;
 
 char UpdatedNumber[13];
 
@@ -40,7 +46,12 @@ uint32_t EEPROMWriteAdress;
 
 UBYTE DTMFMessageFlag = FALSE;
 
-void DTMFStateMachine(char DTMFMessage)
+DTMF_Command_Data_ST DTMF_Command_Data;
+
+
+void DTMFMessageUpdation();
+
+void DTMFStateMachine()
 {
 //	switch(DtmfState)
 //	{
@@ -175,8 +186,47 @@ void DTMFStateMachine(char DTMFMessage)
 //		default :
 //			break;
 //	}
+
+	switch(DtmfState)
+	{
+		case Idle:
+		{
+			
+		}
+		break;
+		case UpdateDTMFSendMessage:
+		{
+			DTMFMessageUpdation();
+			DtmfState = Idle;
+			
+		}			
+		break;
+		case SendDTMFMessage:
+		{
+			
+		}
+		break;
+		default:
+		{
+			
+		}
+		break;
+	}
 }
 
+
+void DTMFMessageUpdation()
+{
+	DTMF_Command_Data.Bytes[0] = MNID+48;
+	
+	DTMF_Command_Data.Bytes[1] = DTMF_Data;
+	
+	UBYTE *PubMsg = ComIf_GetShadowBuffer_AVR_DTMFCommandData();
+	
+	memcpy(PubMsg,DTMF_Command_Data.Bytes,2);
+	
+	ComIf_TransmitFromBuffer_AVR_DTMFCommandData();	
+}
 
 
 UBYTE CheckReadyForDtmf()

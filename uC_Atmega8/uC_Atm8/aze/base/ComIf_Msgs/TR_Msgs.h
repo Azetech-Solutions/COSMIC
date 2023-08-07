@@ -99,6 +99,7 @@ typedef union _Messages_
 {
 	struct
 	{
+		UBYTE Msg_Length;
 		UBYTE Msg_MN_Index;
 		UBYTE Message[50];
 	};

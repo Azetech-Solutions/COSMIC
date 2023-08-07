@@ -29,3 +29,6 @@ extern DtmfMessageHandler_En DtmfMessageHandlerState;
 
 extern void DtmfMessageCallFunc();
 
+extern BOOL IsSendMessageFlag;
+
+extern void Send_TextMsgMain();

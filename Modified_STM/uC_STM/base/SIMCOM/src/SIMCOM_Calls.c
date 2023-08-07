@@ -132,7 +132,7 @@ void SIMCOM_Calls_MainFunction(void)
 
 		case WaitForUpdateCallResponse:
 		{
-			if(CheckReadyForDtmf())
+			if(1)
 			{
 				SIMCOM_Dial_Request = SMC_DialNumber;
 			}

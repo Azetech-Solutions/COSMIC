@@ -2,6 +2,8 @@
 
 typedef enum DtmfNumberAlterStatus{
 	Idle = 0,
+	UpdateDTMFSendMessage,
+	SendDTMFMessage,
 	ChooseTaskToAlter,
 	AddNumberToStore,
 	ChooseAdressToAlterNumber,
@@ -11,4 +13,8 @@ typedef enum DtmfNumberAlterStatus{
 
 extern DtmfNumberAlterStatus_En DtmfState;
 
-extern UBYTE CheckReadyForDtmf();
+extern void DTMFStateMachine();
+
+extern volatile UBYTE MNID; 
+
+extern volatile char DTMF_Data;

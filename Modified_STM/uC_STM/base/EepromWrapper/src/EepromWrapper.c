@@ -6,9 +6,9 @@
 
 
 
-St Data;
-St readD;
-St AdressCpy[4];
+Mobile_Numbers_ST Data;
+Mobile_Numbers_ST readD;
+Mobile_Numbers_ST StoredMNs[4];
 UBYTE NumberData = 0;
 
 
@@ -45,7 +45,7 @@ void EepromFlashMmeoryCopy()
 		dummyRead = FlashDataRead(NumberArray[i]);
 		if(dummyRead == 1)
 		{
-			 AdressCpy[i] = readD;
+			 StoredMNs[i] = readD;
 		}
 	}
 }
@@ -61,9 +61,9 @@ void EepromDeleteWrite(uint32_t number,UBYTE WrtInd[])
 			EEPROMWriteAdress = EEPROMWriteAdress+16;
 			continue;
 		}
-		EEPROMmain(EEPROMWriteAdress,AdressCpy[i].byte[0]);
+		EEPROMmain(EEPROMWriteAdress,StoredMNs[i].byte[0]);
 		EEPROMWriteAdress = EEPROMWriteAdress+8;
-		EEPROMmain(EEPROMWriteAdress,AdressCpy[i].byte[1]);
+		EEPROMmain(EEPROMWriteAdress,StoredMNs[i].byte[1]);
 		EEPROMWriteAdress = EEPROMWriteAdress+8;
 	}
 }			

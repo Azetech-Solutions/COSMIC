@@ -9,6 +9,9 @@
 #include "string.h"
 #include FLASH_EEPROM_H
 #include MESSAGE_APP_H
+#include EEPROMWRAPPER_H
+#include SIMCOM_CALLS_H
+
 /**********************************************************/
 /* Macro Definitions                                      */
 /**********************************************************/
@@ -33,8 +36,9 @@ static UBYTE SendMSG_Retry_Count = 50;
 
 void SendMessage(const char* str);
 
+
 char StoreMSGs[100];
-char MobNumber[13]="+918124922783";
+char MobNumber[13];
 //char MobNumber[13];
 extern UBYTE MsgUpdationCompleteFlag;
 extern void SIM_Send_Data(unsigned char Data);
@@ -67,6 +71,21 @@ void AddDoubleQts(char *dest,const char *str)
 {
 	
 }
+
+void Send_TextMessage(char* str,UBYTE Index)
+{
+	UBYTE Len = strlen(str);
+	str[Len] = CARRIAGE_RETURN;
+	str[Len+1] = MSGLASTWORD;
+	str[Len+2] = '\0';
+	
+	Mobile_Numbers_ST *MN = &StoredMNs[Index];
+	memcpy(StoreMSGs,str,strlen(str));
+	DtmfMessageHandlerState = SendMultipleMessage;
+	memcpy(MobNumber,&MN->MobNo[3],10);
+}
+
+
 
 
 void SendMessage(const char* str)
@@ -114,7 +133,7 @@ void MessageControl(void)
 						SendMSG_State = MSG_Idle; // Move to next state
 						if(DtmfMessageHandlerState == SendNumberMessage || DtmfMessageHandlerState == NumberUpdateMessage)
 						{
-							SIMCOM_State = SIMCOMCancelCall;
+							SIMCOM_Dial_Request = SMC_DisConnectCalls;
 							DtmfMessageHandlerState = IdleState;
 						}
 						if(DTMFMessageFlag == TRUE)
@@ -122,7 +141,7 @@ void MessageControl(void)
 							if(MsgUpdationCompleteFlag == TRUE)
 							{
 								MsgUpdationCompleteFlag = FALSE;
-								SIMCOM_State = SIMCOMCancelCall;
+								SIMCOM_Dial_Request = SMC_DisConnectCalls;
 								DTMFMessageFlag = FALSE;
 								UBYTE len = strlen(strCheck);
 								memset(strCheck,'\0',len);
@@ -263,9 +282,9 @@ void MessageControl(void)
 		default:
 		{
 			// Do Nothing, The state machine has been completed
-					break;
+					
 		}
-
+		break;
 	}
 
 	if(RetryInNextCycle == TRUE)
