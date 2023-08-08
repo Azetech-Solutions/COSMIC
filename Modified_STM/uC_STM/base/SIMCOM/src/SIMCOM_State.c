@@ -40,8 +40,8 @@ static UBYTE SIMCOM_SM_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT;
 #define JIO     "\"jionet\""
 #define BSNL    "\"bsnlnet\""
 
-extern void DebugStringRow1(unsigned char *data);
-extern void DebugStringRow2(unsigned char *data);
+//extern void DebugStringRow1(unsigned char *data);
+//extern void DebugStringRow2(unsigned char *data);
 
 /*****************************************/
 /* Static Function Definitions           */

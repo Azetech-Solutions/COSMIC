@@ -88,6 +88,8 @@ extern MQTTApp_States MQTTApp_State;
 
 extern char TOPIC1_SubscribeMsg[26];
 
+extern AvrCmdStatusData_ST AvrStatusData;
+
 extern void MQTT_AppMain();
 
 extern UBYTE Cloud_Transmit(UWORD Length, void * Data);

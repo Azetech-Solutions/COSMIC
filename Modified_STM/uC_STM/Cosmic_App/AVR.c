@@ -8,6 +8,8 @@
 #include SIMCOM_CALLS_H
 #include EEPROMWRAPPER_H
 #include MESSAGE_APP_H
+#include MQTT_APPLICATION_H
+
 /**********************************************************/
 /* Macro Definitions                                      */
 /**********************************************************/
@@ -25,6 +27,14 @@ ADC_Data_ST ADCDatas;
 DTMF_Command_Data_ST DTMFCommandData;
 AVR_Message_ST AVR_Message;
 AVR_Call_ST AVR_Calls;
+
+AvrCmdStatusData_ST AvrStatusData;
+
+UBYTE avrstatus[2];
+
+typedef UBYTE (*AvrRxHanler)(UBYTE);
+
+AvrRxHanler AvrRxHanlerType1;
 /**********************************************************/
 /* Function Declaration                                   */
 /**********************************************************/
@@ -105,3 +115,35 @@ void ADC_RxCbk(UBYTE Length, UBYTE *Data)
 {
 	
 }
+
+/***************************************************/
+/* Function Definitions                            */
+/***************************************************/
+
+
+
+void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)
+{
+	for(UBYTE i=0;i<Length;i++)
+	{
+		AvrStatusData.Data_Bytes[i] = *Data;
+		Data++;
+	}
+	
+	MQTTApp_State = MQTTApp_CheckIOStatus;
+	
+}
+
+void 	AvrStatusHandleFunc()
+{
+	while(!AvrStatus_IsBufferEmpty())
+	{
+		UBYTE data = 0;
+		
+		if(AvrStatus_Buffer_DeQueue(&data))
+		{
+			ComIf_RxIndication_AVR(data);
+		}
+	}
+}
+	

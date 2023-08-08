@@ -30,8 +30,6 @@ static UBYTE SIMCOM_SSL_Config_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUN
 
 void USART1_String(const char* data);
 
-extern void SIM_Send_Data(unsigned char Data);
-
 static void SIMCOM_SSL_Configration_Callback(SIMCOM_Job_Result_EN result)
 {
 	// This function will be called by the SIMCOM handler upon successful reception of the response

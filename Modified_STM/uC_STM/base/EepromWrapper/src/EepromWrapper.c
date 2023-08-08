@@ -3,9 +3,6 @@
 #include FLASH_EEPROM_H
 #include EEPROMWRAPPER_H
 
-
-
-
 Mobile_Numbers_ST Data;
 Mobile_Numbers_ST readD;
 Mobile_Numbers_ST StoredMNs[4];

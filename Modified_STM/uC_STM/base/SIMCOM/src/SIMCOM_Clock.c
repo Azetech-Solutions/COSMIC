@@ -10,6 +10,7 @@
 #include "Includes.h"
 #include SIMCOM_H
 #include GPIO_DRIVER_H
+#include UART_DRIVER_H
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
@@ -29,8 +30,6 @@ static BOOL RunClock = FALSE;
 /*****************************************/
 /* Static Function Definitions           */
 /*****************************************/
-
-extern void SIM_Send_Data(unsigned char Data);
 
 static void SIMCOM_Clock_ParseDateTime_InResponse()
 {

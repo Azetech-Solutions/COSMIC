@@ -24,7 +24,6 @@
 #include EEPROMWRAPPER_H
 #include SIMCOM_MESSAGE_H
 #include MESSAGE_APP_H
-#include CS_IOT_H 
 #include SIMCOM_CALLS_H
 #include DTMF_APP_H
 
@@ -32,33 +31,11 @@
 /* Global Variables                      */
 /*****************************************/
 
-extern void EepromDeleteWrite(uint32_t number,UBYTE WrtInd[]);
-
-extern void updateSendData(UBYTE Data[]);
-
-extern void DTMFMesaageHanldeFunc(char DtmfCmd);
-
-extern UBYTE FlashDataRead(uint32_t Address);
-
-extern void EepromFlashMmeoryCopy();
-
-extern void SIM_Send_Data(unsigned char Data);
-
-extern void EEPROMmain(uint32_t Address, uint64_t Data);
-
-extern void MessageControl(void);
-
-extern void SIMCOM_Calls_MainFunction(void);
-
-extern void EEPROMErasePage(uint32_t page);
-
 char TOPIC1_SubscribeMsg[26];
 
 BOOL PREVPUBLISHSTATE = FALSE;
 
 UBYTE DTMFBuffer[15];
-
-
 
 SIMCOM_ComState_EN SIMCOM_ComState = SIMCOM_Idle;
 
@@ -115,14 +92,14 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 			DTMF_Data = *RXStr;
 			DtmfState = UpdateDTMFSendMessage;
 		}
-		else if(IsSIMCOM_ResponseStartsWith("*ATREADY"))
-		{
-			//do nothing
-		}
-		else if(IsSIMCOM_ResponseStartsWith("SMS DONE"))
-		{
-			//wait for pb done response
-		}
+//		else if(IsSIMCOM_ResponseStartsWith("*ATREADY"))
+//		{
+//			//do nothing
+//		}
+//		else if(IsSIMCOM_ResponseStartsWith("SMS DONE"))
+//		{
+//			//wait for pb done response
+//		}
 		else if(IsSIMCOM_ResponseStartsWith("PB DONE"))
 		{
 			SIMCOM_ERROR_CALLBACK();

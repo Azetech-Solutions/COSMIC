@@ -26,22 +26,6 @@ volatile char DTMF_Data;
 
 char UpdatedNumber[13];
 
-extern void EepromDeleteWrite(uint32_t number,UBYTE WrtInd[]);
-
-extern void EEPROMmain(uint32_t Address, uint64_t Data);
-
-extern void EEPROMErasePage(uint32_t page);
-
-extern UBYTE DTMFBuffer[15];
-
-extern void EepromFlashMmeoryCopy();
-
-extern void updateSendData(UBYTE Data[]);
-
-extern void DTMFMesaageHanldeFunc(char DtmfCmd);
-
-extern UBYTE FlashDataRead(uint32_t Address);
-
 uint32_t EEPROMWriteAdress;
 
 UBYTE DTMFMessageFlag = FALSE;
@@ -232,4 +216,15 @@ void DTMFMessageUpdation()
 UBYTE CheckReadyForDtmf()
 {	
 	return MachineInitFlag == FALSE;
+}
+
+
+void DTMFCallMessageCbk(UBYTE Length, UBYTE *Data)
+{
+	
+}
+
+void DTMFMessageRxCbk(UBYTE Length, UBYTE *Data)
+{
+	
 }

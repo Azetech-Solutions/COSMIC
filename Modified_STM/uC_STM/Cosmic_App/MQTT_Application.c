@@ -27,13 +27,13 @@
 #include UART_DRIVER_H
 #include MESSAGE_APP_H
 #include BUFFER_CONFIG_H
+#include AVR_H
+#include MQTT_APPLICATION_H
+
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
-extern UBYTE DTMFMessageFlag;
-extern void USART1_String(const char* data);
-extern AvrCmdStatusData_ST AvrStatusData;
-//StatusData_ST StatusData;
+
 AvrCmdStatusData_ST AvrCmdData;
 MQTTApp_States MQTTApp_State = MQTTApp_Init;
 
@@ -48,14 +48,6 @@ BOOL MQTTConnectionCheckStatus = FALSE;
 
 void IO_cmdData_CloudRxCbk(UBYTE Length, UBYTE *Data);
 
-extern UBYTE avrstatus[2];
-
-extern UBYTE ComIf_RxIndication_Avr(UBYTE DataByte);
-
-extern UBYTE AvrTransmitFunc(UWORD Length, void * Data);
-
-extern void SIM_Send_Data(unsigned char Data);
-
 void CloudInit();
 
 UBYTE MachineInitFlag = FALSE;
@@ -65,7 +57,6 @@ SimcomWorkingMode_ST SimcomWorkingMode = MQTTMode;
 AvrCmdStatusData_ST prevAvrStatusData;
 
 AvrCmdStatusData_ST prevCloudStatusData;
-
 
 void updateSendData(UBYTE Data[])
 {

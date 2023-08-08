@@ -25,15 +25,13 @@
 /* Global Variables                      */
 /*****************************************/
 
-MQTT_Publish_state_EN Publish_State = MQTT_PublishTopic_Config;;
+MQTT_Publish_state_EN Publish_State = MQTT_Publish_Idle;
 
 static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE MQTT_Publish_Retry_Count = 50;
 
 char PublishPayload[28];
-
-extern void  ComIf_TxConfirmation(UBYTE ChannelIndex);
 
 /*****************************************/
 /* Static Function Definitions           */
