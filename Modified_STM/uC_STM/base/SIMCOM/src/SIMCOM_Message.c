@@ -1,6 +1,7 @@
-/**********************************************************/
-/* Header Inclusions                                      */
-/**********************************************************/
+/***************************************************/
+/* Header Inclusions                               */
+/***************************************************/
+
 #include "Includes.h"
 #include SIMCOM_MESSAGE_H
 #include SIMCOM_H
@@ -11,6 +12,7 @@
 #include MESSAGE_APP_H
 #include EEPROMWRAPPER_H
 #include SIMCOM_CALLS_H
+#include DTMF_APP_H
 
 /**********************************************************/
 /* Macro Definitions                                      */
@@ -24,26 +26,25 @@
 /**********************************************************/
 /* Global Variable Declarations                           */
 /**********************************************************/
+
 SendMSG_EN SendMSG_State = MSG_Idle;
 
-void updateNumbertoSendMsg(char MessageString[],UBYTE NumberIndex);
+char StoreMSGs[100];
 
-//SendMSG_EN SendMSG_State = MSG_SelectMobNum;
+char MobNumber[13];
 
 static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE SendMSG_Retry_Count = 50;
 
+
+/***************************************************/
+/* Function Declarations                           */
+/***************************************************/
+
 void SendMessage(const char* str);
 
-
-char StoreMSGs[100];
-char MobNumber[13];
-//char MobNumber[13];
-extern UBYTE MsgUpdationCompleteFlag;
-extern void SIM_Send_Data(unsigned char Data);
-extern char strCheck[100];
-extern UBYTE DTMFMessageFlag;
+void updateNumbertoSendMsg(char MessageString[],UBYTE NumberIndex);
 
 /**********************************************************/
 /* Inline Function Definitions                            */
@@ -54,6 +55,7 @@ extern UBYTE DTMFMessageFlag;
 /* Static Function Definitions           */
 /*****************************************/
 
+
 static void SendMSG_CallBack(SIMCOM_Job_Result_EN result)
 {
 	// This function will be called by the SIMCOM handler upon successful reception of the response
@@ -63,9 +65,9 @@ static void SendMSG_CallBack(SIMCOM_Job_Result_EN result)
 }
 
 
-/**********************************************************/
-/* Function Declaration                                   */
-/**********************************************************/
+/***************************************************/
+/* Function Definitions                            */
+/***************************************************/
 
 void AddDoubleQts(char *dest,const char *str)
 {

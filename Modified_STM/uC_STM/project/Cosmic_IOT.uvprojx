@@ -475,14 +475,14 @@
           <GroupName>Cosmic_App</GroupName>
           <Files>
             <File>
-              <FileName>MQTT_Application.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Cosmic_App\MQTT_Application.c</FilePath>
-            </File>
-            <File>
               <FileName>Message_App.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Cosmic_App\Message_App.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTT_Application.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Cosmic_App\MQTT_Application.c</FilePath>
             </File>
             <File>
               <FileName>DTMF_app.c</FileName>

@@ -1,13 +1,24 @@
+/***************************************************/
+/* Header Inclusions                               */
+/***************************************************/
+
 #include "SIMCOM_Calls.h"
 #include "Includes.h"
 #include SIMCOM_H
 #include "stdio.h"
 #include DTMF_APP_H
 #include UART_DRIVER_H
+#include MESSAGE_APP_H
+
+/**********************************************************/
+/* Type Definitions                                       */
+/**********************************************************/
 
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
+
+SIMCOM_Dial_Request_EN SIMCOMCallsStateBeforeExecution = SMC_Idle;
 
 SIMCOM_Dial_Request_EN SIMCOM_Dial_Request = SMC_Idle;
 
@@ -15,9 +26,15 @@ static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE SIMCOM_SM_Calls_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT;
 
+
+
 char DialNumer[20];
 
 ULONG WaitForCallTimoutCounter = 0;
+
+/***************************************************/
+/* Function Declarations                           */
+/***************************************************/
 
 /*****************************************/
 /* Static Function Definitions           */
@@ -50,44 +67,7 @@ void SIMCOM_Calls_Callback(SIMCOM_Job_Result_EN result)
 {
 	// This function will be called by the SIMCOM handler upon successful reception of the response
 	// Check for the last requested command and then check the result
-
-	switch(SIMCOM_Dial_Request)
-	{
-		default:
-		case SMC_Idle:
-		{
-			// If nothing was requested, then possibly the SIMCOM might have received something that is relevant for the Calls feature
-		}
-		break;
-
-		case SMC_DialNumber:
-		{
-			switch(result)
-			{
-				case SIMCOM_Job_Completed:
-				{
-					
-				}
-				break;
-
-				case SIMCOM_Job_InProgress:
-				{
-					// Wait
-				}
-				break;
-
-				default:
-				case SIMCOM_Job_Idle:
-				case SIMCOM_Job_Timeout:
-				case SIMCOM_Job_Incomplete:
-				{
-					// Error
-				}
-				break;
-			}
-		}
-		break;
-	}
+		SIMCOM_Job_Result = result;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -104,7 +84,6 @@ BOOL SIMCOM_Calls_Dial(char * Number)
 		
 	}
 	char Command[20];
-//	SIM_Send_Data('k');
 	sprintf(DialNumer,"ATD%s;",Number);
 	DialNumer[15] = '\0';
 //		SIMCOM_Dial_Request = WaitForUpdateCallResponse;
@@ -118,7 +97,7 @@ BOOL SIMCOM_Calls_Dial(char * Number)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 void SIMCOM_Calls_MainFunction(void)
 {
-	SIMCOM_State_EN SIMCOM_State_Before_Execution = SIMCOM_SM_Reset;
+	SIMCOM_Dial_Request_EN SIMCOM_CallState_Before_Execution = SIMCOM_Dial_Request;
 	
 	BOOL RetryInNextCycle = FALSE;
 	
@@ -201,6 +180,7 @@ void SIMCOM_Calls_MainFunction(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
 					SIMCOM_Dial_Request = SMC_WaitForCallResponses;
+					SIMCOM_Job_Result = SIMCOM_Job_Idle;
 				}
 				else
 				{
@@ -248,10 +228,10 @@ void SIMCOM_Calls_MainFunction(void)
 		break;
 		default:
 		{
-			
+					break;
 		}
-		break;
-		
+
+	}
 		if(RetryInNextCycle == TRUE)
 		{
 			// If Retry is allowed
@@ -273,6 +253,12 @@ void SIMCOM_Calls_MainFunction(void)
 			// If in any of the state, the Job is aborted, then move to the Error State
 			SIMCOM_ERROR_CALLBACK();
 		}
-	}
+		
+		if(SIMCOM_CallState_Before_Execution != SIMCOM_Dial_Request)
+		{
+			SIMCOM_Job_Result = SIMCOM_Job_Idle;
+			
+			SIMCOM_SM_Calls_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT;
+		}
 }
 

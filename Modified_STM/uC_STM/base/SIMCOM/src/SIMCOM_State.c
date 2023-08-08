@@ -16,11 +16,20 @@
 #include UART_DRIVER_H
 #include <stdio.h>
 
+/**********************************************************/
+/* Macro Definitions                                      */
+/**********************************************************/
+
+//Operator names for different networks
+#define AIRTEL  "\"airtelgprs.com\""
+#define VI      "\"internet\""
+#define JIO     "\"jionet\""
+#define BSNL    "\"bsnlnet\""
+
+
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
-
-void APN_Selection(char *checkstring);
 
 SIMCOM_State_EN SIMCOM_State = SIMCOM_SM_Reset;
 
@@ -34,14 +43,11 @@ static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE SIMCOM_SM_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT;
 
-//Operator names for different networks
-#define AIRTEL  "\"airtelgprs.com\""
-#define VI      "\"internet\""
-#define JIO     "\"jionet\""
-#define BSNL    "\"bsnlnet\""
+/***************************************************/
+/* Function Declarations                           */
+/***************************************************/
 
-//extern void DebugStringRow1(unsigned char *data);
-//extern void DebugStringRow2(unsigned char *data);
+void APN_Selection(char *checkstring);
 
 /*****************************************/
 /* Static Function Definitions           */

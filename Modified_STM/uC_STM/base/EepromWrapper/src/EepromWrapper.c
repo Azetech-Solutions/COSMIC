@@ -1,33 +1,42 @@
+/***************************************************/
+/* Header Inclusions                               */
+/***************************************************/
+
 #include "Includes.h"
 #include PLATFORM_TYPES_H
 #include FLASH_EEPROM_H
 #include EEPROMWRAPPER_H
+#include DTMF_APP_H
+
+/**********************************************************/
+/* Macro Definitions                                      */
+/**********************************************************/
+
+/*****************************************/
+/* Global Variables                      */
+/*****************************************/
 
 Mobile_Numbers_ST Data;
 Mobile_Numbers_ST readD;
 Mobile_Numbers_ST StoredMNs[4];
 UBYTE NumberData = 0;
 
+/***************************************************/
+/* Function Declarations                           */
+/***************************************************/
+
+
+/***************************************************/
+/* Function Definitions                            */
+/***************************************************/
+
 
 UBYTE FlashDataRead(uint32_t Address)
 {
 	readD.byte[0] = *(uint64_t *)Address;
-//	SIM_Send_Data(readD.MobNo[0]);
-//	SIM_Send_Data(readD.MobNo[1]);
-//	SIM_Send_Data(readD.MobNo[2]);
-//	SIM_Send_Data(readD.MobNo[3]);
-//	SIM_Send_Data(readD.MobNo[4]);
-//	SIM_Send_Data(readD.MobNo[5]);
-//	SIM_Send_Data(readD.MobNo[6]);
-//	SIM_Send_Data(readD.MobNo[7]);
 	
 	readD.byte[1] = *(uint64_t *)(Address + 8U);
-//	SIM_Send_Data(readD.MobNo[8]);
-//	SIM_Send_Data(readD.MobNo[9]);
-//	SIM_Send_Data(readD.MobNo[10]);
-//	SIM_Send_Data(readD.MobNo[11]);
-//	SIM_Send_Data(readD.MobNo[12]);
-//	SIM_Send_Data(readD.WriteIndicator);
+	
 	return (UBYTE)readD.WriteIndicator;
 }
 
@@ -72,3 +81,5 @@ void EEPROMErasePage(uint32_t page)
 	Flash_Erase(14);
 	FLASH_Lock();
 }
+
+

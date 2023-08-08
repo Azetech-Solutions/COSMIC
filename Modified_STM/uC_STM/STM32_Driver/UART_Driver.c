@@ -19,6 +19,7 @@ void USART2_Pin_Init(void);
 void USART2_Init(void);
 void UART2_SIM_Send_Data(unsigned char Data);
 void USART_String(const char* data);
+
 /***************************************************/
 /* Function Definitions                            */
 /***************************************************/

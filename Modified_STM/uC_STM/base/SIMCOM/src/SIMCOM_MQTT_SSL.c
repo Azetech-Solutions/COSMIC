@@ -13,6 +13,7 @@
 #include SIMCOM_MQTT_SSL_H
 #include STRINGHELPER_H
 #include UART_DRIVER_H
+
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/

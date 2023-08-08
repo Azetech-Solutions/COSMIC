@@ -1,6 +1,7 @@
 /***************************************************/
 /* Header Inclusions                               */
 /***************************************************/
+
 #include "Includes.h"
 #include AVR_H
 #include COMIF_H
@@ -16,28 +17,46 @@
 
 
 /**********************************************************/
-/* Global Variable Declarations                           */
+/* Type Definitions                                       */
 /**********************************************************/
+
+typedef UBYTE (*AvrRxHanler)(UBYTE);
+
+/*****************************************/
+/* Global Variables                      */
+/*****************************************/
+
 BOOL IsUartBusBusy = FALSE;
 
 AVR_IO_Control_ST IO_cmdData_AVR;
+
 AVR_IO_Control_ST AVR_IO_Status;
 
 ADC_Data_ST ADCDatas;
+
 DTMF_Command_Data_ST DTMFCommandData;
+
 AVR_Message_ST AVR_Message;
+
 AVR_Call_ST AVR_Calls;
 
 AvrCmdStatusData_ST AvrStatusData;
 
 UBYTE avrstatus[2];
 
-typedef UBYTE (*AvrRxHanler)(UBYTE);
-
 AvrRxHanler AvrRxHanlerType1;
-/**********************************************************/
-/* Function Declaration                                   */
-/**********************************************************/
+
+/***************************************************/
+/* Function Declarations                           */
+/***************************************************/
+
+/*****************************************/
+/* Static Function Definitions           */
+/*****************************************/
+
+/***************************************************/
+/* Function Definitions                            */
+/***************************************************/
 
 UBYTE AVR_Transmit(UWORD Length, void * Data)
 {
@@ -115,12 +134,6 @@ void ADC_RxCbk(UBYTE Length, UBYTE *Data)
 {
 	
 }
-
-/***************************************************/
-/* Function Definitions                            */
-/***************************************************/
-
-
 
 void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)
 {

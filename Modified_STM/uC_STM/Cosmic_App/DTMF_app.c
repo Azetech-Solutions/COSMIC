@@ -1,3 +1,7 @@
+/***************************************************/
+/* Header Inclusions                               */
+/***************************************************/
+
 #include "stm32g0xx.h"                  // Device header
 #include "Includes.h" // Will have all definitions of the Project Headers
 #include PLATFORM_TYPES_H // For Data Types
@@ -14,6 +18,10 @@
 #include SIMCOM_CALLS_H
 #include AVR_H
 
+/*****************************************/
+/* Global Variables                      */
+/*****************************************/
+
 DtmfNumberAlterStatus_En DtmfState = Idle;
 
 char DTMFStoreNumber[13];
@@ -28,12 +36,22 @@ char UpdatedNumber[13];
 
 uint32_t EEPROMWriteAdress;
 
+uint32_t EEPROMMnNoAdress[6] = {0x08007000,0x08007010,0x08007030,0x08007040,0x08007050};
+
 UBYTE DTMFMessageFlag = FALSE;
 
 DTMF_Command_Data_ST DTMF_Command_Data;
 
+/***************************************************/
+/* Function Declarations                           */
+/***************************************************/
+
 
 void DTMFMessageUpdation();
+
+/***************************************************/
+/* Function Definitions                            */
+/***************************************************/
 
 void DTMFStateMachine()
 {

@@ -7,6 +7,7 @@
 /***************************************************/
 /* Header Inclusions                               */
 /***************************************************/
+
 #include "Includes.h"
 #include "stm32g0xx.h"                  // Device header
 #include SIMCOM_H
@@ -21,9 +22,18 @@
 #include UART_DRIVER_H
 #include MESSAGE_APP_H
 
+/**********************************************************/
+/* Macro Definitions                                      */
+/**********************************************************/
+
+/**********************************************************/
+/* Type Definitions                                       */
+/**********************************************************/
+
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
+
 
 MQTT_Publish_state_EN Publish_State = MQTT_Publish_Idle;
 
@@ -32,6 +42,10 @@ static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 static UBYTE MQTT_Publish_Retry_Count = 50;
 
 char PublishPayload[28];
+
+/***************************************************/
+/* Function Declarations                           */
+/***************************************************/
 
 /*****************************************/
 /* Static Function Definitions           */
@@ -44,9 +58,10 @@ static void MQTT_Publish_CallBack(SIMCOM_Job_Result_EN result)
 	// This will be read in the Main function, so simply set the value
 	SIMCOM_Job_Result = result;
 }
-/*****************************************/
-/* Function Definitions                  */
-/*****************************************/
+
+/***************************************************/
+/* Function Definitions                            */
+/***************************************************/
 
 
 void MQTT_Publish_StateMachine(void)

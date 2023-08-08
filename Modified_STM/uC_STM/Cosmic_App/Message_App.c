@@ -1,6 +1,7 @@
 /***************************************************/
 /* Header Inclusions                               */
 /***************************************************/
+
 #include "stm32g0xx.h"                  // Device header
 #include "Includes.h"
 #include <stdio.h>
@@ -17,15 +18,33 @@
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
+
 BOOL IsSendMessageFlag = FALSE;
 
 UBYTE CurrentMotorStatus = 0;
+
 UBYTE MsgUpdationCompleteFlag = FALSE;
+
 uint32_t EEPROMAdressByte = 0x08007000;
+
 UBYTE PreviousMotorStatus = 0;
+
 char strCheck[100] = "Machine Ready";
+
 DtmfMessageHandler_En DtmfMessageHandlerState = IdleState;
+
 UBYTE OwnerMessageCount = 0;
+
+
+/***************************************************/
+/* Function Declarations                           */
+/***************************************************/
+
+/***************************************************/
+/* Function Definitions                            */
+/***************************************************/
+
+
 void DtmfMessageCallFunc()
 {
 		switch(DtmfMessageHandlerState)
@@ -244,3 +263,4 @@ void Send_TextMsgMain()
 		IsSendMessageFlag = FALSE;
 	}
 }
+

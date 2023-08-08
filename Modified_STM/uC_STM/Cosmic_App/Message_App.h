@@ -29,6 +29,12 @@ extern DtmfMessageHandler_En DtmfMessageHandlerState;
 
 extern void DtmfMessageCallFunc();
 
+extern uint32_t EEPROMMnNoAdress[6];
+
 extern BOOL IsSendMessageFlag;
 
 extern void Send_TextMsgMain();
+
+extern char strCheck[100];
+
+extern UBYTE MsgUpdationCompleteFlag;

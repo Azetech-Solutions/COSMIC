@@ -35,20 +35,14 @@
 /*****************************************/
 
 AvrCmdStatusData_ST AvrCmdData;
+
 MQTTApp_States MQTTApp_State = MQTTApp_Init;
 
 UBYTE Current_IOStatus = 0;
+
 UBYTE Previous_IOStatus = 0;
+
 BOOL MQTTConnectionCheckStatus = FALSE;
-
-
-/***************************************************/
-/* Function Definitions                            */
-/***************************************************/
-
-void IO_cmdData_CloudRxCbk(UBYTE Length, UBYTE *Data);
-
-void CloudInit();
 
 UBYTE MachineInitFlag = FALSE;
 
@@ -57,6 +51,18 @@ SimcomWorkingMode_ST SimcomWorkingMode = MQTTMode;
 AvrCmdStatusData_ST prevAvrStatusData;
 
 AvrCmdStatusData_ST prevCloudStatusData;
+
+/***************************************************/
+/* Function Declarations                           */
+/***************************************************/
+
+void IO_cmdData_CloudRxCbk(UBYTE Length, UBYTE *Data);
+
+void CloudInit();
+
+/***************************************************/
+/* Function Definitions                            */
+/***************************************************/
 
 void updateSendData(UBYTE Data[])
 {
@@ -250,3 +256,34 @@ void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 	/* This function will be called for an un-scheduled job. So check for the response and clear the buffer */
 	SIMCOM_ClearResponseBuffer();
 }
+
+
+
+
+/***************************************************/
+/* Header Inclusions                               */
+/***************************************************/
+
+/**********************************************************/
+/* Macro Definitions                                      */
+/**********************************************************/
+
+/**********************************************************/
+/* Type Definitions                                       */
+/**********************************************************/
+
+/*****************************************/
+/* Global Variables                      */
+/*****************************************/
+
+/***************************************************/
+/* Function Declarations                           */
+/***************************************************/
+
+/*****************************************/
+/* Static Function Definitions           */
+/*****************************************/
+
+/***************************************************/
+/* Function Definitions                            */
+/***************************************************/

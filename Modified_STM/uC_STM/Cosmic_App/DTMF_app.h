@@ -18,3 +18,5 @@ extern void DTMFStateMachine();
 extern volatile UBYTE MNID; 
 
 extern volatile char DTMF_Data;
+
+extern UBYTE DTMFMessageFlag;

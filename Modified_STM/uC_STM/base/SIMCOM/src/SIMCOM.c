@@ -4,9 +4,10 @@
  *  Created on: 08-Mar-2021
  *      Author: Hari
  */
-/**********************************************************/
-/* Header Inclusions                                      */
-/**********************************************************/
+/***************************************************/
+/* Header Inclusions                               */
+/***************************************************/
+
 #include "Includes.h" // Will have all definitions of the Project Headers
 #include <stdint.h>
 #include SIMCOM_MQTT_PUBLISH_H
@@ -27,6 +28,15 @@
 #include SIMCOM_CALLS_H
 #include DTMF_APP_H
 
+
+/**********************************************************/
+/* Macro Definitions                                      */
+/**********************************************************/
+
+/**********************************************************/
+/* Type Definitions                                       */
+/**********************************************************/
+
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
@@ -43,7 +53,6 @@ SIMCOM_JobType SIMCOM_CurrentJob;
 
 UBYTE NumberLength = 0;
 
-
 char SIMCOM_ResponseBuffer[BUFFER_MAX_SIZE];
 
 BufferLengthType SIMCOM_ResponseLength = 0;
@@ -57,6 +66,10 @@ UBYTE SIMCOM_ReceptionIgnoreCommandCount = 0;
 UBYTE PublishStatus = 0;
 
 Rx_Response_EN Rx_Response_State = I_MQTT_Rx_Response_Idle;
+
+/***************************************************/
+/* Function Declarations                           */
+/***************************************************/
 
 /*****************************************/
 /* Static Function Definitions           */
@@ -92,14 +105,6 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 			DTMF_Data = *RXStr;
 			DtmfState = UpdateDTMFSendMessage;
 		}
-//		else if(IsSIMCOM_ResponseStartsWith("*ATREADY"))
-//		{
-//			//do nothing
-//		}
-//		else if(IsSIMCOM_ResponseStartsWith("SMS DONE"))
-//		{
-//			//wait for pb done response
-//		}
 		else if(IsSIMCOM_ResponseStartsWith("PB DONE"))
 		{
 			SIMCOM_ERROR_CALLBACK();
@@ -176,9 +181,61 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				SIMCOM_ERROR_CALLBACK();
 			}
 		}
+//		else if(IsSIMCOM_ResponseStartsWith("+CLCC:"))
+//		{
+//			UBYTE DtmfStatusFlag = FlashDataRead(0x08007000)||FlashDataRead(0x08007010)||FlashDataRead(0x08007020)||FlashDataRead(0x08007030);
+//			UBYTE CallStatus;
+//			UBYTE BufferLength = 0,i;
+//			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+CLCC:");
+//			if(RXStr[5] == '4')
+//			{
+//				for(i = 12;i<=24; i++)
+//				{
+//					DTMFBuffer[BufferLength] = RXStr[i];
+//					BufferLength++;
+//				}
+//				UBYTE BuffDiff;
+//				if(DtmfStatusFlag == 1)
+//				{
+//					uint64_t CheckAdress = 0x08007000;
+//					for(UBYTE i = 0;i < 4; i++)
+//					{
+//						MNID = i;
+//						if(FlashDataRead(CheckAdress) == 1)
+//						{
+//							BuffDiff = memcmp(DTMFBuffer,readD.MobNo,13);
+//							if(BuffDiff == 0)
+//							{
+//								break;
+//							}
+//						}
+//						CheckAdress = CheckAdress+16;
+//					}
+//				}
+//				else
+//				{
+//					BuffDiff = memcmp(DTMFBuffer,"+918124922783",13);
+//				}
+//				if(BuffDiff == 0)
+//				{
+//					SIMCOM_Dial_Request = SMC_AttendCalls;
+//				}
+//				else
+//				{
+//					SIMCOM_Dial_Request = SMC_DisConnectCalls;
+//				}
+//			}
+//		}
 		else if(IsSIMCOM_ResponseStartsWith("+CLCC:"))
 		{
-			UBYTE DtmfStatusFlag = FlashDataRead(0x08007000)||FlashDataRead(0x08007010)||FlashDataRead(0x08007020)||FlashDataRead(0x08007030);
+			UBYTE DtmfStatusFlag = FALSE;
+			for(UBYTE i = 0;i < 6;i++)
+			{
+				if(FlashDataRead(EEPROMMnNoAdress[i]))
+				{
+					DtmfStatusFlag = TRUE;
+				}
+			}
 			UBYTE CallStatus;
 			UBYTE BufferLength = 0,i;
 			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+CLCC:");
@@ -190,13 +247,12 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 					BufferLength++;
 				}
 				UBYTE BuffDiff;
-				if(DtmfStatusFlag == 1)
+				if(DtmfStatusFlag == TRUE)
 				{
-					uint64_t CheckAdress = 0x08007000;
-					for(UBYTE i = 0;i < 4; i++)
+					for(UBYTE i = 0;i < 6; i++)
 					{
 						MNID = i;
-						if(FlashDataRead(CheckAdress) == 1)
+						if(FlashDataRead(EEPROMMnNoAdress[i]) == 1)
 						{
 							BuffDiff = memcmp(DTMFBuffer,readD.MobNo,13);
 							if(BuffDiff == 0)
@@ -204,7 +260,6 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 								break;
 							}
 						}
-						CheckAdress = CheckAdress+16;
 					}
 				}
 				else
