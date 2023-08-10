@@ -118,17 +118,6 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 			SIMCOM_State = SIMCOM_SM_Init;
 		}
 		
-		else if(SIMCOM_IsResponseOK())
-		{
-			if(SIMCOM_State == SimcomWaitforCallHangResponse)
-			{
-				SIMCOM_State = SIMCOM_SM_Ready;
-			}
-			if(SIMCOM_State == SimcomWaitforCallAttendResponse)
-			{
-				SIMCOM_State = DTMFWaitState;
-			}
-		}
 		else if(IsSIMCOM_ResponseStartsWith("+CMQTTCONNECT: "))
 		{
 			ULONG ConnectResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTCONNECT:", 1);

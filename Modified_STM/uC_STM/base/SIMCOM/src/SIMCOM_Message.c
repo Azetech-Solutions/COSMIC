@@ -133,12 +133,7 @@ void MessageControl(void)
 					// Check if the response is OK or not.
 					if(SIMCOM_IsResponseOK())
 					{
-						SendMSG_State = MSG_Idle; // Move to next state
-						if(DtmfMessageHandlerState == SendNumberMessage || DtmfMessageHandlerState == NumberUpdateMessage)
-						{
-							SIMCOM_Dial_Request = SMC_DisConnectCalls;
-							DtmfMessageHandlerState = IdleState;
-						}
+						SendMSG_State = MSG_Idle;
 						memset(StoreMSGs,'\0',100);
 					}
 					else

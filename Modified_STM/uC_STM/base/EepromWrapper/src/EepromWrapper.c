@@ -44,9 +44,9 @@ UBYTE FlashDataRead(uint32_t Address)
 
 void EepromFlashMmeoryCopy()
 {
-	uint32_t NumberArray[4] = {0x08007000,0x08007010,0x08007020,0x08007030};
+	uint32_t NumberArray[6] = {0x08007000,0x08007010,0x08007020,0x08007030,0x08007040,0x08007050};
 	UBYTE dummyRead;
-	for(UBYTE i =0;i<4; i++)
+	for(UBYTE i =0;i<6; i++)
 	{
 		dummyRead = FlashDataRead(NumberArray[i]);
 		if(dummyRead == 1)
@@ -60,7 +60,7 @@ void EepromDeleteWrite(uint32_t number,UBYTE WrtInd[])
 {
 	EEPROMErasePage(14);
 	uint32_t EEPROMWriteAdress = 0x08007000;
-	for(UBYTE i=0;i<4;i++)
+	for(UBYTE i=0;i<6;i++)
 	{
 		if((EEPROMWriteAdress == number) || (WrtInd[i] != 1))
 		{

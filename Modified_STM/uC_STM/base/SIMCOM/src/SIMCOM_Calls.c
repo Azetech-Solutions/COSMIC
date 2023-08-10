@@ -179,8 +179,8 @@ void SIMCOM_Calls_MainFunction(void)
 				// Cyclic part for the response
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
-					SIMCOM_Dial_Request = SMC_WaitForCallResponses;
 					SIMCOM_Job_Result = SIMCOM_Job_Idle;
+					SIMCOM_Dial_Request = SMC_Idle;
 				}
 				else
 				{

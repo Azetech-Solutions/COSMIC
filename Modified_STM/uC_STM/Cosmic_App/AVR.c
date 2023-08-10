@@ -46,6 +46,8 @@ UBYTE avrstatus[2];
 
 AvrRxHanler AvrRxHanlerType1;
 
+MobileNumbers_ST MobileNumberData;
+
 /***************************************************/
 /* Function Declarations                           */
 /***************************************************/
@@ -160,3 +162,16 @@ void 	AvrStatusHandleFunc()
 	}
 }
 	
+void UpdateEEPROMNumbers()
+{
+	MobileNumberData.DTMF_MN_Index = 0;
+	
+	for(UBYTE i = 0;i< 6;i++ )
+	{
+		for(UBYTE j =0;j<13;j++)
+		{
+			MobileNumberData.StoredMNs[i].MobileNumber[j] = StoredMNs[i].MobNo[j];
+		}
+	}
+}
+

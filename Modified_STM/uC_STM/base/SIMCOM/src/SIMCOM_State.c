@@ -550,33 +550,6 @@ void SIMCOM_StateMachine(void)
 		}
 		break;
 		
-		case SIMCOMAttendCall:
-		{
-			// First Ensure the SIMCOM Module is Connected
-			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
-			{
-				// Send AT+CRESET Command and wait for response
-				if(SIMCOM_Schedule_Job("ATA", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
-				{
-					// Set it to Scheduled only when the SIMCOM Module Accepted it
-					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
-				}
-			}
-			else
-			{
-				// Cyclic part for the response
-				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
-				{
-					SIMCOM_State = DTMFWaitState;
-				}
-				else
-				{
-					// Do Nothing. Wait
-				}
-			}
-		}
-		break;
-		
 		case SimcomWaitforCallHangResponse:
 		{
 			break;

@@ -160,8 +160,8 @@ void DTMFStateMachine()
 					EEPROMWriteAdress = EEPROMWriteAdress+8;
 					EEPROMmain(EEPROMWriteAdress,Data.byte[1]);
 					EepromFlashMmeoryCopy();
+					DtmfState = NumberUpdationCompleted;
 				}
-				DtmfState = NumberUpdationCompleted;
 				DTMFMessageFlag = TRUE;
 			}	
 			break;		
