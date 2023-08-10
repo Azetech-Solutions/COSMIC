@@ -22,6 +22,8 @@ typedef enum
 
 extern SendMSG_EN SendMSG_State;
 
+extern void MessageControl(void);
+
 extern void SendMessage(const char* str);
 
 /**********************************************************/

@@ -103,7 +103,7 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 			SimcomWorkingMode = DTMFMode;
 			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+RXDTMF: ");
 			DTMF_Data = *RXStr;
-			DtmfState = UpdateDTMFSendMessage;
+			DTMFMessageFlag = TRUE;
 		}
 		else if(IsSIMCOM_ResponseStartsWith("PB DONE"))
 		{

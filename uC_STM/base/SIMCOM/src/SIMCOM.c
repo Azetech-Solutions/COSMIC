@@ -21,25 +21,12 @@
 #include FLASH_EEPROM_H
 #include SIMCOM_MESSAGE_H
 #include MESSAGE_APP_H
+#include DTMF_APP_H
 
 
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
-
-extern void EepromDeleteWrite(uint32_t number,UBYTE WrtInd[]);
-
-extern void updateSendData(UBYTE Data[]);
-
-extern void DTMFMesaageHanldeFunc(char DtmfCmd);
-
-extern UBYTE FlashDataRead(uint32_t Address);
-
-extern void EepromFlashMmeoryCopy();
-
-extern void SIM_Send_Data(unsigned char Data);
-
-extern void EEPROMmain(uint32_t Address, uint64_t Data);
 
 char TOPIC1_SubscribeMsg[26];
 
@@ -47,18 +34,11 @@ BOOL PREVPUBLISHSTATE = FALSE;
 
 UBYTE DTMFBuffer[15];
 
-extern void MessageControl(void);
-
-extern void EEPROMErasePage(uint32_t page);
-
 SIMCOM_ComState_EN SIMCOM_ComState = SIMCOM_Idle;
 
 SIMCOM_JobType SIMCOM_CurrentJob;
 
 UBYTE NumberLength = 0;
-
-
-
 
 char SIMCOM_ResponseBuffer[BUFFER_MAX_SIZE];
 
@@ -72,13 +52,9 @@ UBYTE SIMCOM_ReceptionIgnoreCommandCount = 0;
 
 UBYTE PublishStatus = 0;
 
-//UBYTE ReadyforDtmfCmd = FALSE;
-
 Rx_Response_EN Rx_Response_State = I_MQTT_Rx_Response_Idle;
 
-extern void DTMFStateMachine(char DTMFMessage);
-
-//extern DtmfNumberAlterStatus_En DtmfState;
+//extern void DTMFStateMachine(char DTMFMessage);
 
 /*****************************************/
 /* Static Function Definitions           */

@@ -138,22 +138,6 @@ void MessageControl(void)
 							SIMCOM_Dial_Request = SMC_DisConnectCalls;
 							DtmfMessageHandlerState = IdleState;
 						}
-						if(DTMFMessageFlag == TRUE)
-						{
-							if(MsgUpdationCompleteFlag == TRUE)
-							{
-								MsgUpdationCompleteFlag = FALSE;
-								SIMCOM_Dial_Request = SMC_DisConnectCalls;
-								DTMFMessageFlag = FALSE;
-								UBYTE len = strlen(strCheck);
-								memset(strCheck,'\0',len);
-							}
-							else
-							{
-								DtmfMessageHandlerState = SendMotorStatus;
-								SendMSG_State = MSG_Idle;
-							}
-						}
 						memset(StoreMSGs,'\0',100);
 					}
 					else
@@ -184,7 +168,6 @@ void MessageControl(void)
 			{
 				char SetMobileNumber[26];
 				char StoreDoubleQtedNum[16];
-//				AddDoubleQts(&StoreDoubleQtedNum[0],MobNumber);
 				sprintf(SetMobileNumber,"AT+CMGS=\"%s\"",MobNumber);
 				SetMobileNumber[23] = '\0';
 				// Send AT Command and wait for response	
@@ -196,7 +179,6 @@ void MessageControl(void)
 			}
 			else
 			{
-//				UART2_SIM_Send_Data('Y');
 				// Cyclic part for the response
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
@@ -262,7 +244,7 @@ void MessageControl(void)
 					{
 						// If the returned value is ERROR or something else, then act accordingly
 						// TODO: Later
-						RetryInNextCycle = TRUE;
+						SendMSG_State = MSG_Idle;
 					}
 				}
 				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )

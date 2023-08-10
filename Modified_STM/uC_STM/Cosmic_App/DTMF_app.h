@@ -4,12 +4,16 @@ typedef enum DtmfNumberAlterStatus{
 	Idle = 0,
 	UpdateDTMFSendMessage,
 	SendDTMFMessage,
+	EndDTMFCall,
 	ChooseTaskToAlter,
 	AddNumberToStore,
 	ChooseAdressToAlterNumber,
 	WaitforPageErase,
-	DeleteExcistingNumber
+	DeleteExcistingNumber,
+	NumberUpdationCompleted
 }DtmfNumberAlterStatus_En;
+
+extern UBYTE DTMFBuffer[15];
 
 extern DtmfNumberAlterStatus_En DtmfState;
 

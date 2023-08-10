@@ -56,6 +56,7 @@ int main(void)
 	sei();
 	Avr_Init();
 	Atmega32DriverInit();
+	AVR_IO_Control_ST *InputIO_Data = &IO_cmdData_AVR;
 	
 	while(1)
 	{
@@ -63,10 +64,17 @@ int main(void)
 		
 		if(DTMFCommandData.DTMF_Data == 49)
 		{
-			Send_Message(0,"Hello Azetech");
+			//Send_Message(0,"Hello Azetech");
 			DTMFCommandData.DTMF_Data = 0;
+			InputIO_Data->IO1 = TRUE;
 		}
 		
+		if(DTMFCommandData.DTMF_Data == 50)
+		{
+			//Send_Message(0,"Hello Azetech");
+			DTMFCommandData.DTMF_Data = 0;
+			InputIO_Data->IO1 = FALSE;
+		}
 	}
 }
 
