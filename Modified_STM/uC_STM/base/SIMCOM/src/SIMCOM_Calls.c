@@ -63,7 +63,7 @@ static BOOL SIMCOM_Calls_IsValidNumber(const char * Number)
 /*                 SIMCOM Calls Callback Function                 */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void SIMCOM_Calls_Callback(SIMCOM_Job_Result_EN result)
+static void SIMCOM_Calls_Callback(SIMCOM_Job_Result_EN result)
 {
 	// This function will be called by the SIMCOM handler upon successful reception of the response
 	// Check for the last requested command and then check the result
@@ -206,8 +206,38 @@ void SIMCOM_Calls_MainFunction(void)
 				// Cyclic part for the response
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
+					if(IsSIMCOM_ResponseStartsWith("+CGEV: NW DEACT"))
+					{
+						if(DTMFCallOnProcess == TRUE)
+						{
+							if(DTMFNumberindex >0)
+							{
+								DTMF_Data = atoi(DTMFNumberString);
+								DTMFMessageUpdation();
+							}
+							DTMFCallOnProcess = FALSE;
+						}						
+					}
+					else if(IsSIMCOM_ResponseStartsWith("NO CARRIER"))
+					{
+							if(DTMFCallOnProcess == TRUE)
+							{
+								if(DTMFNumberindex >0)
+								{
+									DTMF_Data = atoi(DTMFNumberString);
+									DTMFMessageUpdation();
+								}
+								DTMFCallOnProcess = FALSE;
+							}
+					}
+					if(SendMbNoMsg == TRUE)
+					{
+						UpdateMobileNumbersToSend();
+						SendMbNoMsg = FALSE;
+					}
 					SIMCOM_Dial_Request = SMC_Idle;
 				}
+				
 				else
 				{
 					// Do Nothing. Wait
@@ -230,7 +260,6 @@ void SIMCOM_Calls_MainFunction(void)
 		{
 					break;
 		}
-
 	}
 		if(RetryInNextCycle == TRUE)
 		{

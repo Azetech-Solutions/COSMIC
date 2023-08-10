@@ -77,6 +77,7 @@ Rx_Response_EN Rx_Response_State = I_MQTT_Rx_Response_Idle;
 
 static void SIMCOM_Send_Command()
 {
+	
 	while(*(SIMCOM_CurrentJob.Command))
 	{
 		SIMCOM_SEND_BYTE(*(SIMCOM_CurrentJob.Command));
@@ -90,14 +91,15 @@ static void SIMCOM_Send_Command()
 
 static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 {
-	
+//	UART2_SIM_Send_Data((char)SIMCOM_CurrentJob.Callback + 48);
 	if(SIMCOM_CurrentJob.Callback != NULL_PTR)
 	{
 		SIMCOM_CurrentJob.State = JobState;
 		SIMCOM_CurrentJob.Callback(JobState);
+		
 	}
 	else
-	{ 
+	{
 		if(IsSIMCOM_ResponseStartsWith("+RXDTMF"))
 		{
 			SimcomWorkingMode = DTMFMode;
@@ -269,19 +271,44 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				if(BuffDiff == 0)
 				{
 					SIMCOM_Dial_Request = SMC_AttendCalls;
+					DTMFCallOnProcess = TRUE;
 				}
 				else
 				{
 					SIMCOM_Dial_Request = SMC_DisConnectCalls;
 				}
 			}
+			else if(RXStr[5] == '6')
+			{
+
+			}
 		}
-		else if(IsSIMCOM_ResponseStartsWith("VOICE CALL: END"))
+		else if(IsSIMCOM_ResponseStartsWith("+CGEV: NW DEACT"))
 		{
-//			DtmfState = Idle;
+				if(DTMFCallOnProcess == TRUE)
+				{
+					if(DTMFNumberindex >0)
+					{
+						DTMF_Data = atoi(DTMFNumberString);
+						DTMFMessageUpdation();
+					}
+					DTMFCallOnProcess = FALSE;
+				}
+		}
+		else if(IsSIMCOM_ResponseStartsWith("NO CARRIER"))
+		{
+				if(DTMFCallOnProcess == TRUE)
+				{
+					if(DTMFNumberindex >0)
+					{
+						DTMF_Data = atoi(DTMFNumberString);
+						DTMFMessageUpdation();
+					}
+					DTMFCallOnProcess = FALSE;
+				}
 		}
 		else
-		{
+		{  
 			// If something else is received, then give a call to the Application layer to handle
 			SIMCOM_GENERIC_CALLBACK(JobState);
 		}

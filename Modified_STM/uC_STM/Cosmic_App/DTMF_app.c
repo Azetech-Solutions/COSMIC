@@ -4,6 +4,7 @@
 
 #include "stm32g0xx.h"                  // Device header
 #include "Includes.h" // Will have all definitions of the Project Headers
+#include <stdio.h>
 #include PLATFORM_TYPES_H // For Data Types
 #include SIMCOM_H
 #include COMIF_H
@@ -31,7 +32,7 @@ UBYTE BufferLength = 3;
 
 volatile UBYTE MNID;
 
-volatile char DTMF_Data;
+char DTMF_Data;
 
 char UpdatedNumber[13];
 
@@ -43,10 +44,23 @@ UBYTE DTMFMessageFlag = FALSE;
 
 DTMF_Command_Data_ST DTMF_Command_Data;
 
+UBYTE DTMFCallOnProcess = FALSE;
+
+char DTMFNumberString[3];
+
+UBYTE DTMFNumberindex = 0;
+
+UBYTE SendMbNoMsg = FALSE;
+	
 /***************************************************/
 /* Function Declarations                           */
 /***************************************************/
 
+void updateDtmfNumber(char msg);
+
+void UpdateMobileNumbersToSend();
+
+void ClearDtmfNumberString();
 
 void DTMFMessageUpdation();
 
@@ -58,93 +72,78 @@ void DTMFStateMachine()
 {
 	if(DTMFMessageFlag == TRUE)
 	{
+		static char PrevDtmfData;
 		DTMFMessageFlag = FALSE;
 		switch(DtmfState)
-		{		
+		{
 			case Idle:
 			{
-				if(DTMF_Data == '1')
+				if(DTMF_Data == '*')
 				{
-					DTMFMessageUpdation();
-					SIMCOM_Dial_Request = SMC_DisConnectCalls;
+					DtmfState = ChooseAdressToAlterNumber;
 				}
-				else if(DTMF_Data == '2')
-				{
-					DTMFMessageUpdation();
-					SIMCOM_Dial_Request = SMC_DisConnectCalls;
-				}
-				else if(DTMF_Data == '3')
-				{
-					DTMFMessageUpdation();
-					SIMCOM_Dial_Request = SMC_DisConnectCalls;
-				}
-				else if(DTMF_Data == '4')
-				{
-					DTMFMessageUpdation();
-					SIMCOM_Dial_Request = SMC_DisConnectCalls;
-				}
-				else if(DTMF_Data == '5')
+				else if(DTMF_Data == '#')
 				{
 					DtmfState = ChooseAdressToAlterNumber;
 				}
 				else
 				{
-					SIMCOM_Dial_Request = SMC_DisConnectCalls;				
+					updateDtmfNumber(DTMF_Data);
 				}
-				break;
 			}
+			break;
 			case ChooseAdressToAlterNumber:
 			{
-				if(DTMF_Data == '1')
+				if(DTMF_Data == '0')
+				{
+					SendMbNoMsg = TRUE;
+					SIMCOM_Dial_Request = SMC_DisConnectCalls;
+					DtmfState = Idle;
+				}
+				else if(DTMF_Data == '1')
 				{
 					EEPROMWriteAdress = number1;
-					DtmfState = ChooseTaskToAlter;
 				}
 				else if(DTMF_Data == '2')
 				{
 					EEPROMWriteAdress = number2;
-					DtmfState = ChooseTaskToAlter;
 				}
 				else if(DTMF_Data == '3')
 				{
 					EEPROMWriteAdress = number3;
-					DtmfState = ChooseTaskToAlter;
 				}
 				else if(DTMF_Data == '4')
 				{
 					EEPROMWriteAdress = number4;
-					DtmfState = ChooseTaskToAlter;
+				}
+				else if(DTMF_Data == '5')
+				{
+					EEPROMWriteAdress = number5;
+				}
+				else if(DTMF_Data == '6')
+				{
+					EEPROMWriteAdress = number6;
 				}
 				else
 				{
 					SIMCOM_Dial_Request = SMC_DisConnectCalls;
 					DtmfState = Idle;
 				}
-				break;
-			}
-			case ChooseTaskToAlter:
-			{
-				for(UBYTE i=0;i<13;i++)
-				{
-					UpdatedNumber[i] = DTMFBuffer[i];
-				}
-				if(DTMF_Data == '*')
+				if(PrevDtmfData == '*' && DtmfState == ChooseAdressToAlterNumber)
 				{
 					DtmfState = AddNumberToStore;
-					DTMFMessageFlag = TRUE;
 				}
-				else if(DTMF_Data == '#')
+				else if(PrevDtmfData == '#' && DtmfState == ChooseAdressToAlterNumber)
 				{
 					DtmfState = DeleteExcistingNumber;
-					DTMFMessageFlag = TRUE;
 				}
 				else
 				{
 					SIMCOM_Dial_Request = SMC_DisConnectCalls;
 					DtmfState = Idle;
 				}
-				break;
-			}	
+			}
+			break;
 			case AddNumberToStore:
 			{
 				Data.MobNo[0] = '+';
@@ -168,9 +167,9 @@ void DTMFStateMachine()
 			break;		
 			case DeleteExcistingNumber:
 			{
-				UBYTE WrtInd[4];
+				UBYTE WrtInd[6];
 				uint32_t EEPROMAdress = 0x08007000;
-				for(UBYTE i = 0;i < 4; i++)
+				for(UBYTE i = 0;i < 6; i++)
 				{
 					WrtInd[i] = (FlashDataRead(EEPROMAdress));
 					EEPROMAdress = EEPROMAdress+16;
@@ -191,6 +190,7 @@ void DTMFStateMachine()
 			default:
 			break;
 		}
+		PrevDtmfData = DTMF_Data;
 	}
 }
 
@@ -206,6 +206,8 @@ void DTMFMessageUpdation()
 	memcpy(PubMsg,DTMF_Command_Data.Bytes,2);
 	
 	ComIf_TransmitFromBuffer_AVR_DTMFCommandData();	
+	
+	ClearDtmfNumberString();
 }
 
 
@@ -224,3 +226,33 @@ void DTMFMessageRxCbk(UBYTE Length, UBYTE *Data)
 {
 	
 }
+
+void updateDtmfNumber(char msg)
+{
+	DTMFNumberString[DTMFNumberindex] = msg;
+	DTMFNumberindex++;
+	if(DTMFNumberindex == 3)
+	{
+		SIMCOM_Dial_Request = SMC_DisConnectCalls;
+	}
+}
+
+void ClearDtmfNumberString()
+{
+	DTMFNumberindex = 0;
+	memset(DTMFNumberString,'\0',3);
+}
+
+
+void UpdateMobileNumbersToSend()
+{
+	char arr[100];
+	sprintf(arr,"N1 - %s\nN2 - %s\nN3 - %s\nN4 - %s\nN5 - %s\nN6 - %s",
+	&StoredMNs[0].MobNo[3],&StoredMNs[1].MobNo[3],
+	&StoredMNs[2].MobNo[3],&StoredMNs[3].MobNo[3],
+	&StoredMNs[4].MobNo[3],&StoredMNs[5].MobNo[3]);
+	Send_TextMessage(arr,MNID);
+}
+
+
+

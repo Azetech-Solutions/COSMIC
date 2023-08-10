@@ -18,7 +18,7 @@
 
 Mobile_Numbers_ST Data;
 Mobile_Numbers_ST readD;
-Mobile_Numbers_ST StoredMNs[4];
+Mobile_Numbers_ST StoredMNs[6];
 UBYTE NumberData = 0;
 
 /***************************************************/

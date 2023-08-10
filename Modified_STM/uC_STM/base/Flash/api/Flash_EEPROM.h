@@ -8,6 +8,8 @@
 #define number2 0x08007010
 #define number3 0x08007020
 #define number4 0x08007030
+#define number5 0x08007040
+#define number6 0x08007050
 
 extern void EEPROMErasePage(uint32_t page);
 

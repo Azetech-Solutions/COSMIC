@@ -21,6 +21,20 @@ extern void DTMFStateMachine();
 
 extern volatile UBYTE MNID; 
 
-extern volatile char DTMF_Data;
+extern char DTMF_Data;
+
+extern UBYTE DTMFNumberindex;
 
 extern UBYTE DTMFMessageFlag;
+
+extern UBYTE DTMFCallOnProcess;
+
+extern void DTMFMessageUpdation();
+
+extern void ClearDtmfNumberString();
+
+extern char DTMFNumberString[3];
+
+extern UBYTE SendMbNoMsg;
+
+extern void UpdateMobileNumbersToSend();

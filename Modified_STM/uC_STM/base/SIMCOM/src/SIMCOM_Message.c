@@ -76,6 +76,7 @@ void AddDoubleQts(char *dest,const char *str)
 
 void Send_TextMessage(char* str,UBYTE Index)
 {
+	memset(StoreMSGs,'\0',100);
 	UBYTE Len = strlen(str);
 	str[Len] = CARRIAGE_RETURN;
 	str[Len+1] = MSGLASTWORD;
@@ -128,7 +129,7 @@ void MessageControl(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
 					// Job has been completed
-
+					
 					// Check if the response is OK or not.
 					if(SIMCOM_IsResponseOK())
 					{
