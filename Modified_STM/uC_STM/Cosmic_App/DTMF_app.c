@@ -97,7 +97,6 @@ void DTMFStateMachine()
 				if(DTMF_Data == '0')
 				{
 					SendMbNoMsg = TRUE;
-					AVR_SendData('Y');
 					SIMCOM_Dial_Request = SMC_DisConnectCalls;
 					DtmfState = Idle;
 				}
