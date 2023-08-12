@@ -97,6 +97,7 @@ void DTMFStateMachine()
 				if(DTMF_Data == '0')
 				{
 					SendMbNoMsg = TRUE;
+					AVR_SendData('Y');
 					SIMCOM_Dial_Request = SMC_DisConnectCalls;
 					DtmfState = Idle;
 				}
@@ -136,6 +137,7 @@ void DTMFStateMachine()
 				else if(PrevDtmfData == '#' && DtmfState == ChooseAdressToAlterNumber)
 				{
 					DtmfState = DeleteExcistingNumber;
+					DTMFMessageFlag = TRUE;
 				}
 				else
 				{
@@ -160,9 +162,10 @@ void DTMFStateMachine()
 					EEPROMWriteAdress = EEPROMWriteAdress+8;
 					EEPROMmain(EEPROMWriteAdress,Data.byte[1]);
 					EepromFlashMmeoryCopy();
+					DTMF_Data = '*';
 					DtmfState = NumberUpdationCompleted;
+					DTMFMessageFlag = TRUE;
 				}
-				DTMFMessageFlag = TRUE;
 			}	
 			break;		
 			case DeleteExcistingNumber:
@@ -176,6 +179,7 @@ void DTMFStateMachine()
 				}
 				EepromDeleteWrite(EEPROMWriteAdress,WrtInd);
 				EepromFlashMmeoryCopy();
+				DTMF_Data = '#';
 				DtmfState = NumberUpdationCompleted;
 				DTMFMessageFlag = TRUE;
 			}
@@ -242,6 +246,7 @@ void ClearDtmfNumberString()
 	DTMFNumberindex = 0;
 	memset(DTMFNumberString,'\0',3);
 }
+
 
 
 void UpdateMobileNumbersToSend()
