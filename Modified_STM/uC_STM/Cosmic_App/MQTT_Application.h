@@ -94,4 +94,6 @@ extern void MQTT_AppMain();
 
 extern UBYTE Cloud_Transmit(UWORD Length, void * Data);
 
+extern void MQTT_Init();
+
 #endif /* MQTT_APLLICATION_H_ */

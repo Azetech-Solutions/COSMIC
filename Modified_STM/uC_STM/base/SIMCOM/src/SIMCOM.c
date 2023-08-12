@@ -91,7 +91,7 @@ static void SIMCOM_Send_Command()
 
 static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 {
-//	UART2_SIM_Send_Data((char)SIMCOM_CurrentJob.Callback + 48);
+//	UART2_AVR_SendData((char)SIMCOM_CurrentJob.Callback + 48);
 	if(SIMCOM_CurrentJob.Callback != NULL_PTR)
 	{
 		SIMCOM_CurrentJob.State = JobState;
@@ -106,18 +106,13 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+RXDTMF: ");
 			DTMF_Data = *RXStr;
 			DTMFMessageFlag = TRUE;
+			SIMCOM_Buffer_Clear();
 		}
 		else if(IsSIMCOM_ResponseStartsWith("PB DONE"))
 		{
 			SIMCOM_ERROR_CALLBACK();
 			SIMCOM_State = SIMCOM_SM_Init;
 		}
-		else if(IsSIMCOM_ResponseStartsWith("+CPIN READY"))
-		{
-			SIMCOM_ERROR_CALLBACK();
-			SIMCOM_State = SIMCOM_SM_Init;
-		}
-		
 		else if(IsSIMCOM_ResponseStartsWith("+CMQTTCONNECT: "))
 		{
 			ULONG ConnectResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTCONNECT:", 1);
@@ -134,7 +129,6 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				SIMCOM_State = SIMCOM_SM_Reset;
 			}
 		}
-		
 		else if(IsSIMCOM_ResponseStartsWith("+CMQTTPUB:"))
 		{
 			UBYTE PublishResponse1 = SIMCOM_GetCSV_Number_fromBuffer("+CMQTTPUB:", 1);
@@ -172,51 +166,6 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				SIMCOM_ERROR_CALLBACK();
 			}
 		}
-//		else if(IsSIMCOM_ResponseStartsWith("+CLCC:"))
-//		{
-//			UBYTE DtmfStatusFlag = FlashDataRead(0x08007000)||FlashDataRead(0x08007010)||FlashDataRead(0x08007020)||FlashDataRead(0x08007030);
-//			UBYTE CallStatus;
-//			UBYTE BufferLength = 0,i;
-//			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+CLCC:");
-//			if(RXStr[5] == '4')
-//			{
-//				for(i = 12;i<=24; i++)
-//				{
-//					DTMFBuffer[BufferLength] = RXStr[i];
-//					BufferLength++;
-//				}
-//				UBYTE BuffDiff;
-//				if(DtmfStatusFlag == 1)
-//				{
-//					uint64_t CheckAdress = 0x08007000;
-//					for(UBYTE i = 0;i < 4; i++)
-//					{
-//						MNID = i;
-//						if(FlashDataRead(CheckAdress) == 1)
-//						{
-//							BuffDiff = memcmp(DTMFBuffer,readD.MobNo,13);
-//							if(BuffDiff == 0)
-//							{
-//								break;
-//							}
-//						}
-//						CheckAdress = CheckAdress+16;
-//					}
-//				}
-//				else
-//				{
-//					BuffDiff = memcmp(DTMFBuffer,"+918124922783",13);
-//				}
-//				if(BuffDiff == 0)
-//				{
-//					SIMCOM_Dial_Request = SMC_AttendCalls;
-//				}
-//				else
-//				{
-//					SIMCOM_Dial_Request = SMC_DisConnectCalls;
-//				}
-//			}
-//		}
 		else if(IsSIMCOM_ResponseStartsWith("+CLCC:"))
 		{
 			UBYTE DtmfStatusFlag = FALSE;
@@ -312,6 +261,10 @@ static void SIMCOM_UpdateCurrentJobResponse()
 	for(i = 0; i < SIMCOM_ResponseLength; i++)
 	{
 		SIMCOM_ResponseBuffer[i] = SIMCOM_BUFFER_GET_BYTE();
+		if((MQTT_State == MQTT_Connect))
+		{
+			AVR_SendData(SIMCOM_ResponseBuffer[i]);
+		}
 	}
 }
 

@@ -166,7 +166,8 @@ void MQTT_AppMain()
 				
 				MQTTConnectionCheckStatus = FALSE;
 				
-				if((prevCloudStatusData.Data_Bytes[0] == AvrStatusData.Data_Bytes[0]) && (prevCloudStatusData.Data_Bytes[1] == AvrStatusData.Data_Bytes[1]))
+				if((prevCloudStatusData.Data_Bytes[0] == AvrStatusData.Data_Bytes[0]) 
+					&& (prevCloudStatusData.Data_Bytes[1] == AvrStatusData.Data_Bytes[1]))
 				{
 					MQTTApp_State = MQTTApp_Idle;
 				}
@@ -257,7 +258,14 @@ void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 	SIMCOM_ClearResponseBuffer();
 }
 
-
+void MQTT_Init()
+{
+	C_MQTT_SSL_Config_State = C_MQTT_SSL_Init;
+	MQTT_State = MQTT_START;
+//	MQTTApp_State = MQTTApp_Init;
+	MQTTApp_State = MQTTApp_CheckIOStatus;
+	Publish_State = MQTT_Publish_Idle;
+}
 
 
 /***************************************************/

@@ -14,10 +14,10 @@
 
 void GPIOBPORTUART1();
 void USART_Init(void);
-void SIM_Send_Data(unsigned char Data);
+void AVR_SendData(unsigned char Data);
 void USART2_Pin_Init(void);
 void USART2_Init(void);
-void UART2_SIM_Send_Data(unsigned char Data);
+void UART2_AVR_SendData(unsigned char Data);
 void USART_String(const char* data);
 
 /***************************************************/
@@ -85,7 +85,7 @@ void USART1_IRQHandler()
 	}
 }
 
-void SIM_Send_Data(unsigned char Data)
+void AVR_SendData(unsigned char Data)
 {
 	while(!(USART1->ISR & (1<<7)));
 	USART1->TDR = Data;
@@ -140,7 +140,7 @@ void USART2_Init(void)
 	NVIC_EnableIRQ(USART2_IRQn);
 }
 
-void UART2_SIM_Send_Data(unsigned char Data)
+void UART2_AVR_SendData(unsigned char Data)
 {
 	while(!(USART2->ISR & (1<<7)))
 	{
@@ -175,7 +175,7 @@ void USART_String(const char* data)
 {
 	while(*data)
 	{
-		UART2_SIM_Send_Data(*(data++));
+		UART2_AVR_SendData(*(data++));
 	}
 }
 
@@ -183,7 +183,7 @@ void USART1_String(const char* data)
 {
 	while(*data)
 	{
-		SIM_Send_Data(*(data++));
+		AVR_SendData(*(data++));
 	}
 }
 

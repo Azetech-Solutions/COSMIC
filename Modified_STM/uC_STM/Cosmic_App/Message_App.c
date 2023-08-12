@@ -29,7 +29,7 @@ uint32_t EEPROMAdressByte = 0x08007000;
 
 UBYTE PreviousMotorStatus = 0;
 
-char strCheck[100] = "Machine Ready";
+char strCheck[100];
 
 DtmfMessageHandler_En DtmfMessageHandlerState = IdleState;
 

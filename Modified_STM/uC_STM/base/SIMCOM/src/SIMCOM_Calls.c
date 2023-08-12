@@ -258,7 +258,7 @@ void SIMCOM_Calls_MainFunction(void)
 		break;
 		default:
 		{
-					break;
+			break;
 		}
 	}
 		if(RetryInNextCycle == TRUE)

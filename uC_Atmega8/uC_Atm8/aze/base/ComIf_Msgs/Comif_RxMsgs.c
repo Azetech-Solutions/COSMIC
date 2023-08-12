@@ -11,6 +11,7 @@
 #include COMIF_H
 #include TR_MSGS_H
 #include UART_H
+#include COSMIC_APP_H
 /**********************************************************/
 /* Macro Definitions                                      */
 /**********************************************************/
@@ -42,7 +43,9 @@ BOOL IsUartBusBusy = FALSE;
 /* Function Declaration                                   */
 /**********************************************************/
 
+void DTMFStatusHandling();
 
+UBYTE PrevDTMFData = 0;
 
 void STM32_ComIf_ErrorNotification(ULONG Debug0, ULONG Debug1)
 {
@@ -92,7 +95,9 @@ UBYTE STM32_Transmit(UWORD Length, void * Data)
 void IO_cmdData_AVRRxcbk(UBYTE Length, UBYTE *Data)
 {
 	AVR_IO_Control_ST *Buff = &IO_cmdData_AVR;
-		
+	
+	PORTC ^= (1<<4);
+	
 	if(Length == ComIf_GetLength_STM32_IO_cmdData_AVR())
 	{
 		for(UBYTE i = 0;i < Length;i++)
@@ -114,6 +119,37 @@ void DTMF_Command_DataRxCbk(UBYTE Length, UBYTE *Data)
 			Buff->Bytes[i] = *(Data++);
 		}
 	}
+	
+	PORTD ^= (1<<7);
+	//DTMFStatusHandling();
+}
+
+void DTMFStatusHandling()
+{
+		UBYTE MN = DTMFCommandData.DTMF_MN_Index;
+		if( PrevDTMFData != DTMFCommandData.DTMF_Data)
+		{
+			if(DTMFCommandData.DTMF_Data == 1)
+			{
+				//IO_cmdData_AVR.IO1 = 1;
+				PORTC |= (1<<5);
+				Send_Message(MN-48,"MOTOR ON");
+			}
+			else if(DTMFCommandData.DTMF_Data == 2)
+			{
+				//IO_cmdData_AVR.IO1 = 0;
+				PORTC &= ~(1<<5);
+				Send_Message(MN-48,"MOTOR OFF");
+			}
+			else
+			{
+				
+			}
+		}
+		PrevDTMFData = DTMFCommandData.DTMF_Data; 
+		
+/*		IOControls();*/
+		
 }
 
 void Stored_MobNumsRxCbk(UBYTE Length, UBYTE *Data)

@@ -130,6 +130,7 @@ void TextMessageRxCbk(UBYTE Length, UBYTE *Data)
 		
 		IsSendMessageFlag = TRUE;
 	}
+	AVR_SendData('J');
 }
 
 void ADC_RxCbk(UBYTE Length, UBYTE *Data)
@@ -144,9 +145,8 @@ void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)
 		AvrStatusData.Data_Bytes[i] = *Data;
 		Data++;
 	}
-	
-	MQTTApp_State = MQTTApp_CheckIOStatus;
-	
+	AVR_SendData('T');
+	MQTT_Init();
 }
 
 void 	AvrStatusHandleFunc()

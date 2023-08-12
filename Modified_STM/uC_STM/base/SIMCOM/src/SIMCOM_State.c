@@ -207,8 +207,6 @@ void SIMCOM_StateMachine(void)
 				{
 					// Job has been completed
 					char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN: ");
-							
-
 					if(strcmp(RxString, "READY") == 0)
 					{
 						char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN:READY");

@@ -67,12 +67,12 @@ void SIMCOM_SSL_CONFIG_MainFunction(void)
 //					USART1_String(arr);
 //					sprintf(arr,"%d:",Time.Minute);
 //					USART1_String(arr);
-//					SIM_Send_Data(Time.Month+48);
-//					SIM_Send_Data(':');
+//					AVR_SendData(Time.Month+48);
+//					AVR_SendData(':');
 //					sprintf(arr,"%d:",Time.Second);
 //					USART1_String(arr);
-//					SIM_Send_Data(Time.TimeZone+48);
-//					SIM_Send_Data(':');
+//					AVR_SendData(Time.TimeZone+48);
+//					AVR_SendData(':');
 //					sprintf(arr,"%d:",Time.Year);
 //					USART1_String(arr);
 					// Send AT Command and wait for response

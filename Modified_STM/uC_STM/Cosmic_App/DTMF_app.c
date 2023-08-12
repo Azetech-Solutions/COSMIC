@@ -227,7 +227,7 @@ void DTMFMessageRxCbk(UBYTE Length, UBYTE *Data)
 	
 }
 
-void updateDtmfNumber(char msg)
+void updateDtmfNumber(const char msg)
 {
 	DTMFNumberString[DTMFNumberindex] = msg;
 	DTMFNumberindex++;

@@ -42,7 +42,7 @@ void Avr_Init()
 	DDRD |= (1<<7);
 	DDRB |= (1<<5);
 	DDRD |= (1<<4);
-	DDRC |= (1<<5);
+	DDRC |= (1<<5);//Fault
 }
 
 void Atmega32DriverInit()
@@ -60,21 +60,27 @@ int main(void)
 	
 	while(1)
 	{
-		IOControls();
+		//IOControls();
+		DTMFStatusHandling();
 		
-		if(DTMFCommandData.DTMF_Data == 49)
-		{
-			//Send_Message(0,"Hello Azetech");
-			DTMFCommandData.DTMF_Data = 0;
-			InputIO_Data->IO1 = TRUE;
-		}
-		
-		if(DTMFCommandData.DTMF_Data == 50)
-		{
-			//Send_Message(0,"Hello Azetech");
-			DTMFCommandData.DTMF_Data = 0;
-			InputIO_Data->IO1 = FALSE;
-		}
+// 		if(DTMFCommandData.DTMF_Data == 1)
+// 		{
+// 			//Send_Message(0,"Hello Azetech");
+// 
+// 			DTMFCommandData.DTMF_Data = 0;
+// 			Send_Message((DTMFCommandData.DTMF_MN_Index-48),"MOTOR ON\r");
+// 			PORTC |= (1<<5);
+// 			//InputIO_Data->IO1 = TRUE;
+// 		}
+// 		
+// 		if(DTMFCommandData.DTMF_Data == 2)
+// 		{
+// 			//Send_Message(0,"Hello Azetech");
+// 			DTMFCommandData.DTMF_Data = 0;
+// 			Send_Message((DTMFCommandData.DTMF_MN_Index-48),"MOTOR OFF\r");
+// 			PORTC &= ~(1<<5);
+// 			//InputIO_Data->IO1 = FALSE;
+// 		}
 	}
 }
 

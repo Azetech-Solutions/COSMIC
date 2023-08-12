@@ -345,7 +345,7 @@ void MQTT_Publish_StateMachine(void)
 		// If changed, the Set the New Job Result as Idle for the next state to proceed further
 		SIMCOM_Job_Result = SIMCOM_Job_Idle; // Reset the Job state so that next command will be sent
 
-/*		MQTT_Publish_Retry_Count = 10; // Reset the Retry Count*/
+		MQTT_Publish_Retry_Count = 10; // Reset the Retry Count
 	}
 	
 }

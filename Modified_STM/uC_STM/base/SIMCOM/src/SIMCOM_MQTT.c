@@ -8,6 +8,9 @@
 /* Header Inclusions                               */
 /***************************************************/
 #include "Includes.h"
+#include BUFFER_H
+#include BUFFER_CONFIG_H
+#include UART_DRIVER_H
 #include SIMCOM_H
 #include SIMCOM_MQTT_H
 #include STRINGHELPER_H
@@ -272,16 +275,24 @@ void MQTT_StateMachine(void)
 						// Job has been completed
 
 						// Check if the response is OK or not.
-						if(SIMCOM_IsResponseOK())
-						{
-							MQTT_State = MQTT_WaitForConnectResponce; // Move to next state
-						}
-						else
-						{
-							// If the returned value is ERROR or something else, then act accordingly
-							// TODO: Later
-							RetryInNextCycle = TRUE;
-						}
+						
+//						if(SIMCOM_IsResponseOK())
+//						{
+//							MQTT_State = MQTT_WaitForConnectResponce; // Move to next state
+//							char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "OK");
+//							if(strcmp(RxString,"+CMQTTCONNECT: 0,19") == 0)
+//							{
+//								MQTT_State = MQTT_SubscribeTopic_Config;
+//							  AVR_SendData('S');
+//							}
+//						}
+//						else
+//						{
+//							// If the returned value is ERROR or something else, then act accordingly
+//							// TODO: Later
+//							RetryInNextCycle = TRUE;
+//						}
+						MQTT_State = MQTT_WaitForConnectResponce;
 					}
 					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
 					{
@@ -356,6 +367,7 @@ void MQTT_StateMachine(void)
 			break;
 			case MQTT_SubscribeTopic_Config:
 			{
+				SIMCOM_IgnoreCRLFs(0);
 				//configure the AT+CMQTTSUBTOPIC to enter the topic to be subscribed
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
@@ -580,9 +592,6 @@ void MQTT_StateMachine(void)
 							else
 							{
 								//else start from ssl certificate init
-								C_MQTT_SSL_Config_State = C_MQTT_SSL_Init;
-								MQTT_State = MQTT_START;
-								Publish_State = MQTT_Publish_Idle;
 							}
 							MQTT_ConnectionCheckCounter = 10000;
 

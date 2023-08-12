@@ -67,11 +67,15 @@ void Send_Message(UBYTE MobileNum_Index,char *str)
 		UBYTE *Data = ComIf_GetShadowBuffer_STM32_AVR_Message();
 		
 		Data[0] = MobileNum_Index;
-
-		for(UBYTE i=1;i<Len;i++)
+		
+		UBYTE i;
+		
+		for(i=1;i<Len;i++)
 		{
 			Data[i] = (UBYTE )*(str++);
 		}
+		
+		Data[i] = (UBYTE )*(str++);
 		
 		ComIf_TransmitFromBuffer_STM32_AVR_Message();
 	}
@@ -84,17 +88,18 @@ void IOControls()
 	
 	UBYTE DataLen = ComIf_GetLength_STM32_IO_cmdData_AVR();
 	
-	if(InputIO_Data->IO1 == TRUE)
-	{
-		PORTC |= (1<<5);
-	}
-	else
-	{
-		PORTC &= ~(1<<5);
-	}
-	
 	if(memcmp(InputIO_Data->Bytes,&prevIO_Status.Bytes,2) != 0)
 	{
+		
+		if(InputIO_Data->IO1 == TRUE)
+		{
+			PORTC |= (1<<5);
+		}
+		else
+		{
+			PORTC &= ~(1<<5);
+		}
+		
 		for(UBYTE i=0;i<DataLen;i++)
 		{
 			IO_StatusData->Bytes[i] = InputIO_Data->Bytes[i];
@@ -109,3 +114,5 @@ void IOControls()
 		prevIO_Status = *InputIO_Data;
 	}
 }
+
+

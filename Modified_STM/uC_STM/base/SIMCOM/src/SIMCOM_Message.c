@@ -8,11 +8,13 @@
 #include "stdio.h"
 #include PLATFORM_TYPES_H
 #include "string.h"
+#include UART_DRIVER_H
 #include FLASH_EEPROM_H
 #include MESSAGE_APP_H
 #include EEPROMWRAPPER_H
 #include SIMCOM_CALLS_H
 #include DTMF_APP_H
+#include AVR_H
 
 /**********************************************************/
 /* Macro Definitions                                      */
@@ -21,7 +23,7 @@
 /**********************************************************/
 /* Type Definitions                                       */
 /**********************************************************/
-
+extern void USART1_String(const char* data);
 
 /**********************************************************/
 /* Global Variable Declarations                           */
@@ -81,7 +83,6 @@ void Send_TextMessage(char* str,UBYTE Index)
 	str[Len] = CARRIAGE_RETURN;
 	str[Len+1] = MSGLASTWORD;
 	str[Len+2] = '\0';
-	
 	Mobile_Numbers_ST *MN = &StoredMNs[Index];
 	memcpy(StoreMSGs,str,strlen(str));
 	DtmfMessageHandlerState = SendMultipleMessage;
@@ -134,6 +135,7 @@ void MessageControl(void)
 					if(SIMCOM_IsResponseOK())
 					{
 						SendMSG_State = MSG_Idle;
+						
 						memset(StoreMSGs,'\0',100);
 					}
 					else
@@ -164,8 +166,11 @@ void MessageControl(void)
 			{
 				char SetMobileNumber[26];
 				char StoreDoubleQtedNum[16];
-				sprintf(SetMobileNumber,"AT+CMGS=\"%s\"",MobNumber);
-				SetMobileNumber[23] = '\0';
+				memset(SetMobileNumber,'\0',26);
+				
+				USART1_String(MobNumber);
+				snprintf(SetMobileNumber,24,"AT+CMGS=\"%s\"",MobNumber);
+				//SetMobileNumber[25] = '\0';
 				// Send AT Command and wait for response	
 				if(SIMCOM_Schedule_Job(SetMobileNumber, SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
 				{
@@ -207,7 +212,7 @@ void MessageControl(void)
 		
 		case WaitforMessageResponse:
 			// do nothing 
-			break;
+		break;
 		
 		
 		case MSG_SendMsg:
@@ -286,7 +291,7 @@ void MessageControl(void)
 	if(SIMCOM_Job_Result == SIMCOM_Job_Aborted)
 	{
 	// If in any of the state, the Job is aborted, then move to the error state
-	SIMCOM_ERROR_CALLBACK();
+		SIMCOM_ERROR_CALLBACK();
 	}
 
 		/* Check if the state changed after execution */
