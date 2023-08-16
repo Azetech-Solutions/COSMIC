@@ -196,13 +196,12 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				{
 					for(UBYTE i = 0;i < 6; i++)
 					{
-						MNID = i;
 						if(FlashDataRead(EEPROMMnNoAdress[i]) == 0)
 						{
 							BuffDiff = memcmp(DTMFBuffer,readD.MobNo,13);
-							
 							if(BuffDiff == 0)
 							{
+								MNID = i;
 								break;
 							}
 						}

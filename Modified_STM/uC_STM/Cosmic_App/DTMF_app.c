@@ -38,7 +38,7 @@ char UpdatedNumber[13];
 
 uint32_t EEPROMWriteAdress;
 
-uint32_t EEPROMMnNoAdress[6] = {0x08007000,0x08007010,0x08007030,0x08007040,0x08007050};
+uint32_t EEPROMMnNoAdress[6] = {0x08007000,0x08007010,0x08007020,0x08007030,0x08007040,0x08007050};
 
 UBYTE DTMFMessageFlag = FALSE;
 
@@ -255,6 +255,7 @@ void UpdateMobileNumbersToSend()
 	&StoredMNs[0].MobNo[3],&StoredMNs[1].MobNo[3],
 	&StoredMNs[2].MobNo[3],&StoredMNs[3].MobNo[3],
 	&StoredMNs[4].MobNo[3],&StoredMNs[5].MobNo[3]);
+	AVR_SendData(MNID);
 	Send_TextMessage(arr,MNID);
 }
 
