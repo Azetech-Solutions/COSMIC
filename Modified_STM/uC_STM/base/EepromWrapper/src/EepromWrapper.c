@@ -11,7 +11,7 @@
 /**********************************************************/
 /* Macro Definitions                                      */
 /**********************************************************/
-
+void USART1_String(const char* data);
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
@@ -46,13 +46,14 @@ void EepromFlashMmeoryCopy()
 {
 	uint32_t NumberArray[6] = {0x08007000,0x08007010,0x08007020,0x08007030,0x08007040,0x08007050};
 	
-	UBYTE dummyRead;
+	BOOL WriteIndicatorFlag;
 	
 	for(UBYTE i =0;i<6; i++)
 	{
-		dummyRead = FlashDataRead(NumberArray[i]);
-	
-		if(dummyRead == 1)
+		WriteIndicatorFlag = FlashDataRead(NumberArray[i]);
+		
+		//if the WriteIndicatorFlag is False means The buffer has a valid mobile number.
+		if(WriteIndicatorFlag == FALSE)
 		{
 			 StoredMNs[i] = readD;
 		}
