@@ -86,6 +86,7 @@ BOOL SIMCOM_Calls_Dial(char * Number)
 	char Command[20];
 	sprintf(DialNumer,"ATD%s;",Number);
 	DialNumer[15] = '\0';
+	
 //		SIMCOM_Dial_Request = WaitForUpdateCallResponse;
 	SIMCOM_Dial_Request = SMC_DialNumber;
 

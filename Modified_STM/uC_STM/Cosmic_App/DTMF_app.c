@@ -154,7 +154,7 @@ void DTMFStateMachine()
 				BufferLength++;
 				if(BufferLength == 13)
 				{
-					Data.WriteIndicator = 1;
+					Data.WriteIndicator = 0;
 					BufferLength = 3;
 					DtmfState = Idle;
 					EEPROMmain(EEPROMWriteAdress,Data.byte[0]);

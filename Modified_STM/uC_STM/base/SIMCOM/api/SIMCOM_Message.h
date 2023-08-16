@@ -26,7 +26,7 @@ extern void Send_TextMessage(char* str,UBYTE Index);
 extern void SendMessage(const char* str);
 extern void MessageControl(void);
 
-extern char MobNumber[13];
+extern char MobNumber[10];
 
 
 /**********************************************************/

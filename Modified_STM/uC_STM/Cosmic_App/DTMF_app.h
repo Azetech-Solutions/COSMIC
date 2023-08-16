@@ -1,4 +1,5 @@
-
+#ifndef __DTMF_APP_H
+#define __DTMF_APP_H
 
 typedef enum DtmfNumberAlterStatus{
 	Idle = 0,
@@ -38,3 +39,5 @@ extern char DTMFNumberString[3];
 extern UBYTE SendMbNoMsg;
 
 extern void UpdateMobileNumbersToSend();
+
+#endif /*_DTMF_APP_H*/

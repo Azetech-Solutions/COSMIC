@@ -168,33 +168,39 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 		}
 		else if(IsSIMCOM_ResponseStartsWith("+CLCC:"))
 		{
-			UBYTE DtmfStatusFlag = FALSE;
+			BOOL IsNumberAvailable = FALSE;
+			
 			for(UBYTE i = 0;i < 6;i++)
 			{
-				if(FlashDataRead(EEPROMMnNoAdress[i]))
+				if(StoredMNs[i].WriteIndicator == 0)
 				{
-					DtmfStatusFlag = TRUE;
+					IsNumberAvailable = TRUE;
 				}
 			}
-			UBYTE CallStatus;
-			UBYTE BufferLength = 0,i;
+			
 			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+CLCC:");
+					
 			if(RXStr[5] == '4')
 			{
-				for(i = 12;i<=24; i++)
+				UBYTE DTMF_Index = 0;
+				
+				for(UBYTE i = 12;i<=24; i++)
 				{
-					DTMFBuffer[BufferLength] = RXStr[i];
-					BufferLength++;
+					DTMFBuffer[DTMF_Index] = RXStr[i];
+					DTMF_Index++;
 				}
-				UBYTE BuffDiff;
-				if(DtmfStatusFlag == TRUE)
+			
+				UBYTE BuffDiff = 0;
+				
+				if(IsNumberAvailable == TRUE)
 				{
 					for(UBYTE i = 0;i < 6; i++)
 					{
 						MNID = i;
-						if(FlashDataRead(EEPROMMnNoAdress[i]) == 1)
+						if(FlashDataRead(EEPROMMnNoAdress[i]) == 0)
 						{
 							BuffDiff = memcmp(DTMFBuffer,readD.MobNo,13);
+							
 							if(BuffDiff == 0)
 							{
 								break;
@@ -204,8 +210,12 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				}
 				else
 				{
-					BuffDiff = memcmp(DTMFBuffer,"+918124922783",13);
+					BuffDiff = memcmp(DTMFBuffer,OWNER1,13);
+					AVR_SendData(BuffDiff+48);
+					AVR_SendData('O');
 				}
+				
+				
 				if(BuffDiff == 0)
 				{
 					SIMCOM_Dial_Request = SMC_AttendCalls;
@@ -261,10 +271,10 @@ static void SIMCOM_UpdateCurrentJobResponse()
 	for(i = 0; i < SIMCOM_ResponseLength; i++)
 	{
 		SIMCOM_ResponseBuffer[i] = SIMCOM_BUFFER_GET_BYTE();
-		if((MQTT_State == MQTT_Connect))
-		{
-			AVR_SendData(SIMCOM_ResponseBuffer[i]);
-		}
+//		if((MQTT_State == MQTT_Connect))
+//		{
+//			AVR_SendData(SIMCOM_ResponseBuffer[i]);
+//		}
 	}
 }
 
@@ -417,8 +427,8 @@ void SIMCOM_MainFunction(void)
 	SIMCOM_Clock_MainFunction();
 	SIMCOM_SSL_CONFIG_MainFunction();
 	MQTT_StateMachine();
-	MQTT_AppMain();
-	MQTT_Publish_StateMachine();
+//	MQTT_AppMain();
+//	MQTT_Publish_StateMachine();
 	DtmfMessageCallFunc();
 	MessageControl();
 	Send_TextMsgMain();

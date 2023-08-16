@@ -33,7 +33,7 @@ SendMSG_EN SendMSG_State = MSG_Idle;
 
 char StoreMSGs[100];
 
-char MobNumber[13];
+char MobNumber[10];
 
 static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
@@ -79,14 +79,24 @@ void AddDoubleQts(char *dest,const char *str)
 void Send_TextMessage(char* str,UBYTE Index)
 {
 	memset(StoreMSGs,'\0',100);
+	memset(MobNumber,'\0',10);
+	
 	UBYTE Len = strlen(str);
+	
 	str[Len] = CARRIAGE_RETURN;
+	
 	str[Len+1] = MSGLASTWORD;
 	str[Len+2] = '\0';
+	
 	Mobile_Numbers_ST *MN = &StoredMNs[Index];
+	
 	memcpy(StoreMSGs,str,strlen(str));
-	DtmfMessageHandlerState = SendMultipleMessage;
+	
 	memcpy(MobNumber,&MN->MobNo[3],10);
+	
+	SendMSG_State = MSG_SelectMobNum;
+	
+	//USART1_String(MobNumber);
 }
 
 
@@ -167,10 +177,8 @@ void MessageControl(void)
 				char SetMobileNumber[26];
 				char StoreDoubleQtedNum[16];
 				memset(SetMobileNumber,'\0',26);
-				
 				USART1_String(MobNumber);
-				snprintf(SetMobileNumber,24,"AT+CMGS=\"%s\"",MobNumber);
-				//SetMobileNumber[25] = '\0';
+				sprintf(SetMobileNumber,"AT+CMGS=\"%s\"",MobNumber);
 				// Send AT Command and wait for response	
 				if(SIMCOM_Schedule_Job(SetMobileNumber, SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
 				{
