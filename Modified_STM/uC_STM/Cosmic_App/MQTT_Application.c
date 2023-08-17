@@ -258,15 +258,6 @@ void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 	SIMCOM_ClearResponseBuffer();
 }
 
-void MQTT_Init()
-{
-	C_MQTT_SSL_Config_State = C_MQTT_SSL_Init;
-	MQTT_State = MQTT_START;
-//	MQTTApp_State = MQTTApp_Init;
-	MQTTApp_State = MQTTApp_CheckIOStatus;
-	Publish_State = MQTT_Publish_Idle;
-}
-
 
 /***************************************************/
 /* Header Inclusions                               */

@@ -210,8 +210,6 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 				else
 				{
 					BuffDiff = memcmp(DTMFBuffer,OWNER1,13);
-					AVR_SendData(BuffDiff+48);
-					AVR_SendData('O');
 				}
 				
 				
@@ -270,10 +268,6 @@ static void SIMCOM_UpdateCurrentJobResponse()
 	for(i = 0; i < SIMCOM_ResponseLength; i++)
 	{
 		SIMCOM_ResponseBuffer[i] = SIMCOM_BUFFER_GET_BYTE();
-//		if((MQTT_State == MQTT_Connect))
-//		{
-//			AVR_SendData(SIMCOM_ResponseBuffer[i]);
-//		}
 	}
 }
 
@@ -350,6 +344,7 @@ void SIMCOM_MainFunction(void)
 				SIMCOM_ERROR_CALLBACK(); // Report Error
 				SIMCOM_Aliveness_Counter = P_SIMCOM_ALIVENESS_ERROR_TIME; // Reload Timer
 			}
+			
 		}
 		break;
 
@@ -357,6 +352,10 @@ void SIMCOM_MainFunction(void)
 		{
 			// Do Nothing
 			SIMCOM_Callback(SIMCOM_Job_InProgress);
+//			if(MQTT_State == MQTT_SubscribeTopic_Config)
+//			{
+//				AVR_SendData('D');
+//			}
 		}
 		break;
 
@@ -364,7 +363,14 @@ void SIMCOM_MainFunction(void)
 		{
 			// If the Read is in progress for one Task Cycle, then give a callback that the SIMCOM is in Progress
 			SIMCOM_Callback(SIMCOM_Job_InProgress);
+			
+//			if(MQTT_State == MQTT_SubscribeTopic_Config)
+//			{
+//				AVR_SendData('E');
+//			}
 
+			
+			
 			if(SIMCOM_IncompleteCounter != 0)
 			{
 				SIMCOM_IncompleteCounter--;
@@ -391,6 +397,7 @@ void SIMCOM_MainFunction(void)
 				SIMCOM_CurrentJob.Timeout--;
 
 				SIMCOM_Callback(SIMCOM_Job_InProgress);
+				
 			}
 			else
 			{
@@ -410,7 +417,7 @@ void SIMCOM_MainFunction(void)
 
 			// Once the reception is completed, then give a callback to read the data
 			SIMCOM_Callback(SIMCOM_Job_Completed);
-
+			
 			SIMCOM_ResetJob();
 		}
 	}
@@ -426,8 +433,8 @@ void SIMCOM_MainFunction(void)
 	SIMCOM_Clock_MainFunction();
 	SIMCOM_SSL_CONFIG_MainFunction();
 	MQTT_StateMachine();
-//	MQTT_AppMain();
-//	MQTT_Publish_StateMachine();
+	MQTT_AppMain();
+	MQTT_Publish_StateMachine();
 	DtmfMessageCallFunc();
 	MessageControl();
 	Send_TextMsgMain();

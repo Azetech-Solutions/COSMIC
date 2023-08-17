@@ -120,16 +120,13 @@ void AVR_CallRequestRxCbk(UBYTE Length, UBYTE *Data)
 void TextMessageRxCbk(UBYTE Length, UBYTE *Data)
 {
 	AVR_Message_ST *Msg = &AVR_Message;
-	AVR_SendData('A');
 	if(Length == ComIf_GetLength_AVR_AVR_TextMessage())
 	{
 		for(UBYTE i = 0;i < Length;i++)
 		{
 			Msg->Bytes[i] = *(Data++);
 		}
-		AVR_SendData('B');
 		IsSendMessageFlag = TRUE;
-		AVR_SendData(IsSendMessageFlag);
 	}
 }
 
@@ -145,20 +142,19 @@ void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)
 		AvrStatusData.Data_Bytes[i] = *Data;
 		Data++;
 	}
-	MQTT_Init();
+	MQTTApp_State = MQTTApp_CheckIOStatus;
 }
 
 void 	AvrStatusHandleFunc()
 {
 	while(!AvrStatus_IsBufferEmpty())
 	{
-//		AVR_SendData('C');
 		UBYTE data = 0;
 		
 		if(AvrStatus_Buffer_DeQueue(&data))
 		{
 			ComIf_RxIndication_AVR(data);
-//			AVR_SendData('D');
+			
 		}
 	}
 }

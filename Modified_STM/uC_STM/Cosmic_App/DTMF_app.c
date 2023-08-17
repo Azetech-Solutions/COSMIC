@@ -255,7 +255,6 @@ void UpdateMobileNumbersToSend()
 	&StoredMNs[0].MobNo[3],&StoredMNs[1].MobNo[3],
 	&StoredMNs[2].MobNo[3],&StoredMNs[3].MobNo[3],
 	&StoredMNs[4].MobNo[3],&StoredMNs[5].MobNo[3]);
-	AVR_SendData(MNID);
 	Send_TextMessage(arr,MNID);
 }
 

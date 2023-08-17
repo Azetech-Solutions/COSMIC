@@ -100,37 +100,13 @@ void MQTT_Publish_StateMachine(void)
 							PREVPUBLISHSTATE = TRUE;
 						}
 					}
+					else if(SIMCOM_Job_Result == SIMCOM_Job_InProgress)
+					{
+						SIMCOM_ComState = SIMCOM_ReceptionCompleted;
+					}
 					else
 					{
-						// Cyclic part for the response
-						if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
-						{
-							// Job has been completed
-
-							// Check if the response is OK or not.
-							if(SIMCOM_IsResponse_Entermessage())
-							{
-								Publish_State = MQTT_PubTopic_Name_Config; // Move to next state
-								MQTTApp_State = MQTTApp_Idle;
-							}
-							else
-							{
-								// If the returned value is ERROR or something else, then act accordingly
-								// TODO: Later
-								RetryInNextCycle = TRUE;
-							}
-						}
-						else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
-						{
-							// If there is a problem in reception, retry sending the command
-							RetryInNextCycle = TRUE;
-
-							// TODO: Log Error. Possibly the GSM Module is not powered or connected
-						}
-						else
-						{
-							// Do Nothing. Wait
-						}
+						Publish_State = MQTT_PubTopic_Name_Config;
 					}
 				}
 			}
@@ -199,34 +175,27 @@ void MQTT_Publish_StateMachine(void)
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
 					}
 				}
+				else if(SIMCOM_Job_Result == SIMCOM_Job_InProgress)
+				{
+					SIMCOM_ComState = SIMCOM_ReceptionCompleted;
+				}
+				else if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+				{
+					Publish_State = MQTT_Update_PubDataforTopic;
+				}
 				else
 				{
-					// Cyclic part for the response
-					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
-					{
-						// Job has been completed
-						// Check if the response is OK or not.
-						if(SIMCOM_IsResponse_Entermessage())
-						{
-							Publish_State = MQTT_Update_PubDataforTopic; // Move to next state
-						}
-						else
-						{
-							// If the returned value is ERROR or something else, then act accordingly
-							// TODO: Later
-							RetryInNextCycle = TRUE;
-						}
-					}
+					Publish_State = MQTT_Update_PubDataforTopic;
 				}
 			}
 			break;
 				
 			case MQTT_Update_PubDataforTopic:
 			{
+				
 				// First Ensure the SIMCOM Module is Connected
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
-					GPIOA->ODR |= (1<<0);
 					// Send AT Command and wait for response
 					if(SIMCOM_Schedule_Job(PublishPayload, SIMCOM_DEFAULT_TIMEOUT, MQTT_Publish_CallBack) == TRUE)
 					{
@@ -235,7 +204,7 @@ void MQTT_Publish_StateMachine(void)
 					}
 				}
 				else
-				{						
+				{							
 					// Cyclic part for the response
 					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 					{
