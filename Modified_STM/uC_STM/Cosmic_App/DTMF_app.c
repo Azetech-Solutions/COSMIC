@@ -213,13 +213,6 @@ void DTMFMessageUpdation()
 	ClearDtmfNumberString();
 }
 
-
-UBYTE CheckReadyForDtmf()
-{	
-	return MachineInitFlag == FALSE;
-}
-
-
 void DTMFCallMessageCbk(UBYTE Length, UBYTE *Data)
 {
 	

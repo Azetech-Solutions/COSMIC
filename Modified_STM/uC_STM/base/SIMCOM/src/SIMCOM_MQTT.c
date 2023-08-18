@@ -118,6 +118,7 @@ void MQTT_StateMachine(void)
 			break;
 			case MQTT_Accquire:
 			{
+				AVR_SendData(SIMCOM_Job_Result);
 				//Accquiring a client to connect with the MQTT broker
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
@@ -157,7 +158,6 @@ void MQTT_StateMachine(void)
 					{
 						// If there is a problem in reception, retry sending the command
 						RetryInNextCycle = TRUE;
-
 						// TODO: Log Error. Possibly the GSM Module is not powered or connected
 					}
 					else
@@ -627,7 +627,7 @@ void MQTT_StateMachine(void)
 			
 			if(MQTT_State == MQTT_WaitForSubResponce)
 			{
-				MQTT_Retry_Count = 50;
+				MQTT_Retry_Count = 10;
 			}
 		}
 	}

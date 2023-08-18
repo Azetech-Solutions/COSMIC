@@ -31,9 +31,9 @@ extern void USART1_String(const char* data);
 
 SendMSG_EN SendMSG_State = MSG_Idle;
 
-char StoreMSGs[100];
+char StoreMSGs[100] = "Machine Ready\r";
 
-char MobNumber[10];
+char MobNumber[10] = "8124922783";
 
 static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
@@ -95,8 +95,6 @@ void Send_TextMessage(char* str,UBYTE Index)
 	memcpy(MobNumber,&MN->MobNo[3],10);
 	
 	SendMSG_State = TextMessageConfig;
-//	USART1_String("M:");
-//	USART1_String(MobNumber);
 }
 
 

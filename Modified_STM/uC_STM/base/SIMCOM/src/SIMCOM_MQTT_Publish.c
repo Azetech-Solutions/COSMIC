@@ -21,6 +21,7 @@
 #include "stdio.h"
 #include UART_DRIVER_H
 #include MESSAGE_APP_H
+#include SIMCOM_MESSAGE_H
 
 /**********************************************************/
 /* Macro Definitions                                      */
@@ -272,8 +273,11 @@ void MQTT_Publish_StateMachine(void)
 				Publish_State = MQTT_Publish_Idle;
 				if(MachineInitFlag == TRUE)
 				{
-						MachineInitFlag = FALSE;
-//						DtmfMessageHandlerState = MachineInit;			
+					UBYTE len = strlen(StoreMSGs);
+					StoreMSGs[len] = MSGLASTWORD;
+					StoreMSGs[len+1] = '\0';
+					SendMSG_State = TextMessageConfig;
+					MachineInitFlag = FALSE;			
 				}
 			}
 			break;
