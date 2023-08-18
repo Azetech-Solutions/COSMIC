@@ -158,8 +158,6 @@ extern void  ComIf_TxConfirmation(UBYTE ChannelIndex);
 
 extern unsigned short int MQTT_ConnectionCheckCounter;
 
-extern BOOL PREVPUBLISHSTATE;
-
 /*************************/
 /* Function Declarations */
 /*************************/

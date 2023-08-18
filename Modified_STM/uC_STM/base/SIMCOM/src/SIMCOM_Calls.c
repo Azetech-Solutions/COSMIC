@@ -207,38 +207,32 @@ void SIMCOM_Calls_MainFunction(void)
 				// Cyclic part for the response
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
-					if(IsSIMCOM_ResponseStartsWith("+CGEV: NW DEACT"))
-					{
-						if(DTMFCallOnProcess == TRUE)
-						{
-							if(DTMFNumberindex >0)
-							{
-								DTMF_Data = atoi(DTMFNumberString);
-								DTMFMessageUpdation();
-							}
-							DTMFCallOnProcess = FALSE;
-						}						
-					}
-					else if(IsSIMCOM_ResponseStartsWith("NO CARRIER"))
-					{
-							if(DTMFCallOnProcess == TRUE)
-							{
-								if(DTMFNumberindex >0)
-								{
-									DTMF_Data = atoi(DTMFNumberString);
-									DTMFMessageUpdation();
-								}
-								DTMFCallOnProcess = FALSE;
-							}
-					}
-					if(SendMbNoMsg == TRUE)
-					{
-						UpdateMobileNumbersToSend();
-						SendMbNoMsg = FALSE;
-					}
+//					if(IsSIMCOM_ResponseStartsWith("+CGEV: NW DEACT"))
+//					{
+//						if(DTMFCallOnProcess == TRUE)
+//						{
+//							if(DTMFNumberindex >0)
+//							{
+//								DTMF_Data = atoi(DTMFNumberString);
+//								DTMFMessageUpdation();
+//							}
+//							DTMFCallOnProcess = FALSE;
+//						}						
+//					}
+//					else if(IsSIMCOM_ResponseStartsWith("NO CARRIER"))
+//					{
+//							if(DTMFCallOnProcess == TRUE)
+//							{
+//								if(DTMFNumberindex >0)
+//								{
+//									DTMF_Data = atoi(DTMFNumberString);
+//									DTMFMessageUpdation();
+//								}
+//								DTMFCallOnProcess = FALSE;
+//							}
+//					}
 					SIMCOM_Dial_Request = SMC_Idle;
 				}
-				
 				else
 				{
 					// Do Nothing. Wait

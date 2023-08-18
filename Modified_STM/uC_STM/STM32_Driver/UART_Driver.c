@@ -140,6 +140,7 @@ void USART2_Init(void)
 	NVIC_EnableIRQ(USART2_IRQn);
 }
 
+
 void UART2_AVR_SendData(unsigned char Data)
 {
 	while(!(USART2->ISR & (1<<7)))

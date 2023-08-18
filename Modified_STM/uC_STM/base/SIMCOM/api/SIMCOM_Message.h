@@ -14,6 +14,7 @@ typedef enum
 {
 	MSG_Idle=0,
 	MSG_DeleteMsgs,
+	TextMessageConfig,
 	MSG_SelectMsgFormat,
 	MSG_SelectMobNum,
 	WaitforMessageResponse,

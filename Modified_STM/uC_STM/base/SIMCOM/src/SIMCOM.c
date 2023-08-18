@@ -43,8 +43,6 @@
 
 char TOPIC1_SubscribeMsg[26];
 
-BOOL PREVPUBLISHSTATE = FALSE;
-
 UBYTE DTMFBuffer[15];
 
 SIMCOM_ComState_EN SIMCOM_ComState = SIMCOM_Idle;
@@ -228,29 +226,46 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 
 			}
 		}
-		else if(IsSIMCOM_ResponseStartsWith("+CGEV: NW DEACT"))
+//		else if(IsSIMCOM_ResponseStartsWith("+CGEV: NW DEACT"))
+//		{
+//				if(DTMFCallOnProcess == TRUE)
+//				{
+//					if(DTMFNumberindex >0)
+//					{
+//						DTMF_Data = atoi(DTMFNumberString);
+//						DTMFMessageUpdation();
+//					}
+//					DTMFCallOnProcess = FALSE;
+//				}
+//		}
+//		else if(IsSIMCOM_ResponseStartsWith("NO CARRIER"))
+//		{
+//				if(DTMFCallOnProcess == TRUE)
+//				{
+//					if(DTMFNumberindex >0)
+//					{
+//						DTMF_Data = atoi(DTMFNumberString);
+//						DTMFMessageUpdation();
+//					}
+//					DTMFCallOnProcess = FALSE;
+//				}
+//		}
+		else if(IsSIMCOM_ResponseStartsWith("VOICE CALL: END"))
 		{
-				if(DTMFCallOnProcess == TRUE)
-				{
-					if(DTMFNumberindex >0)
+					if(DTMFCallOnProcess == TRUE)
 					{
-						DTMF_Data = atoi(DTMFNumberString);
-						DTMFMessageUpdation();
+						if(DTMFNumberindex >0)
+						{
+							DTMF_Data = atoi(DTMFNumberString);
+							DTMFMessageUpdation();
+						}
+						DTMFCallOnProcess = FALSE;
 					}
-					DTMFCallOnProcess = FALSE;
-				}
-		}
-		else if(IsSIMCOM_ResponseStartsWith("NO CARRIER"))
-		{
-				if(DTMFCallOnProcess == TRUE)
-				{
-					if(DTMFNumberindex >0)
+					if(SendMbNoMsg == TRUE)
 					{
-						DTMF_Data = atoi(DTMFNumberString);
-						DTMFMessageUpdation();
+						UpdateMobileNumbersToSend();
+						SendMbNoMsg = FALSE;
 					}
-					DTMFCallOnProcess = FALSE;
-				}
 		}
 		else
 		{  
@@ -495,15 +510,6 @@ void SIMCOM_RxMessageCallBack()
 	if(Buff->BufferPtr == NULL)
 	{
 		return;
-	}
-	
-	if(PREVPUBLISHSTATE == TRUE)
-	{
-		if(memcmp((char*)Buff->BufferPtr,">",1)==0)
-		{
-			Publish_State = MQTT_PubTopic_Name_Config;
-			PREVPUBLISHSTATE = FALSE;
-		}
 	}
 	
 	switch(Rx_Response_State)

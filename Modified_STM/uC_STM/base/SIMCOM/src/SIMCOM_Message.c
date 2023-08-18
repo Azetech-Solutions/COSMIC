@@ -94,7 +94,7 @@ void Send_TextMessage(char* str,UBYTE Index)
 	
 	memcpy(MobNumber,&MN->MobNo[3],10);
 	
-	SendMSG_State = MSG_SelectMobNum;
+	SendMSG_State = TextMessageConfig;
 //	USART1_String("M:");
 //	USART1_String(MobNumber);
 }
@@ -105,7 +105,7 @@ void Send_TextMessage(char* str,UBYTE Index)
 void SendMessage(const char* str)
 {
 	memcpy(StoreMSGs,str,strlen(str));
-	SendMSG_State = MSG_SelectMobNum;
+	SendMSG_State = TextMessageConfig;
 }
 
 
@@ -169,6 +169,52 @@ void MessageControl(void)
 			}
 		}
 		break;
+		case TextMessageConfig:
+		{
+			// First Ensure the SIMCOM Module is Connected
+			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+			{
+				// Send AT Command and wait for response
+					
+				if(SIMCOM_Schedule_Job("AT+CMGF=1", SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
+				{
+					// Set it to Scheduled only when the SIMCOM Module Accepted it
+					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+				}
+			}
+			else
+			{
+				// Cyclic part for the response
+				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+				{
+					// Job has been completed
+					// Check if the response is OK or not.	
+					if(SIMCOM_IsResponseOK())
+					{
+						SendMSG_State = MSG_SelectMobNum;
+					}
+					else
+					{
+						// If the returned value is ERROR or something else, then act accordingly
+						// TODO: Later
+						RetryInNextCycle = TRUE;
+					}
+				}
+				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+				{
+					// If there is a problem in reception, retry sending the command
+					RetryInNextCycle = TRUE;
+
+					// TODO: Log Error. Possibly the GSM Module is not powered or connected
+				}
+				else
+				{
+					// Do Nothing. Wait
+				}
+			}
+		}
+		break;
+		
 		case MSG_SelectMobNum:
 		{
 			// First Ensure the SIMCOM Module is Connected

@@ -97,7 +97,6 @@ void MQTT_Publish_StateMachine(void)
 						{
 							// Set it to Scheduled only when the SIMCOM Module Accepted it
 							SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
-							PREVPUBLISHSTATE = TRUE;
 						}
 					}
 					else if(SIMCOM_Job_Result == SIMCOM_Job_InProgress)

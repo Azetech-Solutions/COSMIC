@@ -19,9 +19,12 @@
 #include GPIO_DRIVER_H
 #include MQTT_APPLICATION_H
 #include SIMCOM_MQTT_SSL_H
+
 /*****************************************/
 /* Global Variables                      */
 /*****************************************/
+
+#define MQTT_SUB_TIMEOUT 100
 
 MQTT_State_EN MQTT_State = MQTT_START;
 
@@ -29,7 +32,7 @@ static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE MQTT_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT;
 
-UBYTE statechangecount = 250;
+UBYTE statechangecount = MQTT_SUB_TIMEOUT;
 
 unsigned short int MQTT_ConnectionCheckCounter = 10000;//check MQTT conection For Every 1 min
 
@@ -353,7 +356,7 @@ void MQTT_StateMachine(void)
 				else
 				{
 					MQTT_State = MQTT_SubscribeTopic_Config;
-					statechangecount = 250;
+					statechangecount = MQTT_SUB_TIMEOUT;
 				}
 			}
 			break;
@@ -476,7 +479,7 @@ void MQTT_StateMachine(void)
 				else
 				{
 					MQTT_State = MQTT_Ready;
-					statechangecount = 250;
+					statechangecount = MQTT_SUB_TIMEOUT;
 				}
 			}
 			break;

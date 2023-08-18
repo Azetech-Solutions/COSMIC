@@ -142,7 +142,7 @@ void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)
 		AvrStatusData.Data_Bytes[i] = *Data;
 		Data++;
 	}
-	MQTTApp_State = MQTTApp_CheckIOStatus;
+	MQTTApp_State = MQTTApp_Publish_IO_state;
 }
 
 void 	AvrStatusHandleFunc()
