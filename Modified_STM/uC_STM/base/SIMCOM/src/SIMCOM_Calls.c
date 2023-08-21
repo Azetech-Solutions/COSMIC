@@ -18,6 +18,10 @@
 /* Global Variables                      */
 /*****************************************/
 
+
+
+UBYTE SimcomReadyToAttendCalls = TRUE;
+
 SIMCOM_Dial_Request_EN SIMCOMCallsStateBeforeExecution = SMC_Idle;
 
 SIMCOM_Dial_Request_EN SIMCOM_Dial_Request = SMC_Idle;
@@ -26,7 +30,7 @@ static SIMCOM_Job_Result_EN SIMCOM_Job_Result = SIMCOM_Job_Idle;
 
 static UBYTE SIMCOM_SM_Calls_Retry_Count = P_SIMCOM_DEFAULT_FAILURE_RETRY_COUNT;
 
-
+UBYTE SimcomMessagesDisabled = FALSE;
 
 char DialNumer[20];
 
@@ -75,6 +79,9 @@ static void SIMCOM_Calls_Callback(SIMCOM_Job_Result_EN result)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 BOOL SIMCOM_Calls_Dial(char * Number)
 {
+	
+	
+	
 	BOOL retval = FALSE;
 
 	/* Sanity Checks */
@@ -98,6 +105,7 @@ BOOL SIMCOM_Calls_Dial(char * Number)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 void SIMCOM_Calls_MainFunction(void)
 {
+	
 	SIMCOM_Dial_Request_EN SIMCOM_CallState_Before_Execution = SIMCOM_Dial_Request;
 	
 	BOOL RetryInNextCycle = FALSE;
@@ -109,18 +117,9 @@ void SIMCOM_Calls_MainFunction(void)
 			// Do Nothing
 		}
 		break;
-
-		case WaitForUpdateCallResponse:
-		{
-			if(1)
-			{
-				SIMCOM_Dial_Request = SMC_DialNumber;
-			}
-		}
-		break;
 		case SMC_DialNumber:
 		{
-						// First Ensure the SIMCOM Module is Connected
+			// First Ensure the SIMCOM Module is Connected
 			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 			{
 				// Send AT Command and wait for response
@@ -129,6 +128,7 @@ void SIMCOM_Calls_MainFunction(void)
 					// Set it to Scheduled only when the SIMCOM Module Accepted it
 					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
 				}
+				SimcomMessagesDisabled = FALSE;
 			}
 			else
 			{
@@ -207,30 +207,14 @@ void SIMCOM_Calls_MainFunction(void)
 				// Cyclic part for the response
 				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
 				{
-//					if(IsSIMCOM_ResponseStartsWith("+CGEV: NW DEACT"))
-//					{
-//						if(DTMFCallOnProcess == TRUE)
-//						{
-//							if(DTMFNumberindex >0)
-//							{
-//								DTMF_Data = atoi(DTMFNumberString);
-//								DTMFMessageUpdation();
-//							}
-//							DTMFCallOnProcess = FALSE;
-//						}						
-//					}
-//					else if(IsSIMCOM_ResponseStartsWith("NO CARRIER"))
-//					{
-//							if(DTMFCallOnProcess == TRUE)
-//							{
-//								if(DTMFNumberindex >0)
-//								{
-//									DTMF_Data = atoi(DTMFNumberString);
-//									DTMFMessageUpdation();
-//								}
-//								DTMFCallOnProcess = FALSE;
-//							}
-//					}
+					if(SimcomMessagesDisabled == TRUE)
+					{
+						SIMCOM_Dial_Request = SMC_DisableMsgBlock;
+					}
+					else
+					{
+						SIMCOM_Dial_Request = SMC_Idle;
+					}
 					SIMCOM_Dial_Request = SMC_Idle;
 				}
 				else
@@ -248,7 +232,15 @@ void SIMCOM_Calls_MainFunction(void)
 			{
 				WaitForCallTimoutCounter = 0;
 				SIMCOM_Dial_Request = SMC_DisConnectCalls;
+				SimcomReadyToPublishMessages = TRUE;
 			}
+		}
+		break;
+		case SMC_DisableMsgBlock:
+		{
+			SimcomMessagesDisabled = FALSE;
+			SimcomReadyToPublishMessages = TRUE;
+			SIMCOM_Dial_Request = SMC_Idle;
 		}
 		break;
 		default:

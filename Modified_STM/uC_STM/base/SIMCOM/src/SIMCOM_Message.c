@@ -15,6 +15,7 @@
 #include SIMCOM_CALLS_H
 #include DTMF_APP_H
 #include AVR_H
+#include SIMCOM_MQTT_PUBLISH_H
 
 /**********************************************************/
 /* Macro Definitions                                      */
@@ -107,254 +108,253 @@ void SendMessage(const char* str)
 }
 
 
+
 void MessageControl(void)
 {
-	SendMSG_EN SendMSG_State_Before_Execution = SendMSG_State;
-
-	BOOL RetryInNextCycle = FALSE;
-	switch(SendMSG_State)
+	if(IsMQTTPublishStateIdle() && MachineInitFlag == FALSE && SimcomReadyToPublishMessages == TRUE)
 	{
+		SendMSG_EN SendMSG_State_Before_Execution = SendMSG_State;
 		
-		case MSG_Idle:
+		BOOL RetryInNextCycle = FALSE;
+		
+		switch(SendMSG_State)
 		{
 			
-		}
-		break;
-		case MSG_DeleteMsgs:
-		{
-				// First Ensure the SIMCOM Module is Connected
-			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+			case MSG_Idle:
 			{
-				// Send AT Command and wait for response
-				if(SIMCOM_Schedule_Job("AT+CMGD=1,4", SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
-				{
-					// Set it to Scheduled only when the SIMCOM Module Accepted it
-					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
-				}
+				
 			}
-			else
+			break;
+			case MSG_DeleteMsgs:
 			{
-				// Cyclic part for the response
-				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+					// First Ensure the SIMCOM Module is Connected
+				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
-					// Job has been completed
-					
-					// Check if the response is OK or not.
-					if(SIMCOM_IsResponseOK())
+					// Send AT Command and wait for response
+					if(SIMCOM_Schedule_Job("AT+CMGD=1,4", SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
 					{
-						SendMSG_State = MSG_Idle;
+						// Set it to Scheduled only when the SIMCOM Module Accepted it
+						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					}
+				}
+				else
+				{
+					// Cyclic part for the response
+					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+					{
+						// Job has been completed
 						
-						memset(StoreMSGs,'\0',100);
+						// Check if the response is OK or not.
+						if(SIMCOM_IsResponseOK())
+						{
+							SimcomReadyToAttendCalls = TRUE;
+							
+							SendMSG_State = MSG_Idle;
+							
+							memset(StoreMSGs,'\0',100);
+						}
+						else
+						{
+							// If the returned value is ERROR or something else, then act accordingly
+							// TODO: Later
+							RetryInNextCycle = TRUE;
+						}
+					}
+					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+					{
+						// If there is a problem in reception, retry sending the command
+						RetryInNextCycle = TRUE;
+
+						// TODO: Log Error. Possibly the GSM Module is not powered or connected
 					}
 					else
 					{
-						// If the returned value is ERROR or something else, then act accordingly
-						// TODO: Later
-						RetryInNextCycle = TRUE;
+						// Do Nothing. Wait
 					}
 				}
-				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+			}
+			break;
+			case TextMessageConfig:
+			{
+				// First Ensure the SIMCOM Module is Connected
+				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
-					// If there is a problem in reception, retry sending the command
-					RetryInNextCycle = TRUE;
-
-					// TODO: Log Error. Possibly the GSM Module is not powered or connected
+					
+					SimcomReadyToAttendCalls = FALSE;
+					// Send AT Command and wait for response
+						
+					if(SIMCOM_Schedule_Job("AT+CMGF=1", SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
+					{
+						// Set it to Scheduled only when the SIMCOM Module Accepted it
+						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					}
 				}
 				else
 				{
-					// Do Nothing. Wait
+					// Cyclic part for the response
+					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+					{
+						// Job has been completed
+						// Check if the response is OK or not.
+						if(SIMCOM_IsResponseOK())
+						{
+							SendMSG_State = MSG_SelectMobNum;// Move to next state
+						}
+						else
+						{
+							// If the returned value is ERROR or something else, then act accordingly
+							// TODO: Later
+							RetryInNextCycle = TRUE;
+						}
+					}
 				}
 			}
-		}
-		break;
-		case TextMessageConfig:
-		{
-			// First Ensure the SIMCOM Module is Connected
-			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+			break;
+			
+			case MSG_SelectMobNum:
 			{
-				// Send AT Command and wait for response
-					
-				if(SIMCOM_Schedule_Job("AT+CMGF=1", SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
+				// First Ensure the SIMCOM Module is Connected
+				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
-					// Set it to Scheduled only when the SIMCOM Module Accepted it
-					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					char SetMobileNumber[26];
+					char StoreDoubleQtedNum[16];
+					memset(SetMobileNumber,'\0',26);
+	//				USART1_String("S:");
+	//				USART1_String(MobNumber);
+					sprintf(SetMobileNumber,"AT+CMGS=\"%s\"",MobNumber);
+					// Send AT Command and wait for response	
+					if(SIMCOM_Schedule_Job(SetMobileNumber, SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
+					{
+						// Set it to Scheduled only when the SIMCOM Module Accepted it
+						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					}
 				}
+				else
+				{
+					// Cyclic part for the response
+					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+					{
+						// Job has been completed
+						// Check if the response is OK or not.
+						if(IsSIMCOM_ResponseStartsWith("> "))
+						{
+							SendMSG_State = MSG_SendMsg;// Move to next state
+						}
+						else
+						{
+							// If the returned value is ERROR or something else, then act accordingly
+							// TODO: Later
+							RetryInNextCycle = TRUE;
+						}
+					}
+					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+					{
+						// If there is a problem in reception, retry sending the command
+						RetryInNextCycle = TRUE;
+						// TODO: Log Error. Possibly the GSM Module is not powered or connected
+					}
+					else
+					{
+						// Do Nothing. Wait
+					}
+				}
+			}		
+			break;
+			
+			case WaitforMessageResponse:
+				// do nothing 
+			break;
+			
+			
+			case MSG_SendMsg:
+			{
+				// First Ensure the SIMCOM Module is Connected
+				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
+				{
+					// Send AT Command and wait for response
+						
+					if(SIMCOM_Schedule_Job(StoreMSGs, SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
+					{
+						// Set it to Scheduled only when the SIMCOM Module Accepted it
+						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+					}
+				}
+				else
+				{
+					// Cyclic part for the response
+					if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
+					{
+						// Job has been completed
+
+						// Check if the response is OK or not.
+						if(IsSIMCOM_ResponseStartsWith("+CMGS:"))
+						{
+	//						SendMSG_State = MSG_DeleteMsgs; // Move to next state
+							SendMSG_State = MSG_DeleteMsgs;
+						}
+						else
+						{
+							// If the returned value is ERROR or something else, then act accordingly
+							// TODO: Later
+							SendMSG_State = MSG_Idle;
+						}
+					}
+					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
+					{
+						// If there is a problem in reception, retry sending the command
+						RetryInNextCycle = TRUE;
+
+						// TODO: Log Error. Possibly the GSM Module is not powered or connected
+					}
+					else
+					{
+						// Do Nothing. Wait
+					}
+				}
+			}
+			break;
+			
+			
+			default:
+			{
+				// Do Nothing, The state machine has been completed
+						
+			}
+			break;
+		}
+
+		if(RetryInNextCycle == TRUE)
+		{
+			// If Retry is allowed
+			if(SendMSG_Retry_Count != 0)
+			{
+				SendMSG_Retry_Count--; // Decrement the Retry Count
+
+				SIMCOM_Job_Result = SIMCOM_Job_Idle; // Setting the Job to Idle will retry the Job again in next cycle.
 			}
 			else
 			{
-				// Cyclic part for the response
-				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
-				{
-					// Job has been completed
-					// Check if the response is OK or not.	
-					if(SIMCOM_IsResponseOK())
-					{
-						SendMSG_State = MSG_SelectMobNum;
-					}
-					else
-					{
-						// If the returned value is ERROR or something else, then act accordingly
-						// TODO: Later
-						RetryInNextCycle = TRUE;
-					}
-				}
-				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
-				{
-					// If there is a problem in reception, retry sending the command
-					RetryInNextCycle = TRUE;
-
-					// TODO: Log Error. Possibly the GSM Module is not powered or connected
-				}
-				else
-				{
-					// Do Nothing. Wait
-				}
+				// RETRY Mechanism expired, abort the Job and do not move the state
+				SIMCOM_Job_Result = SIMCOM_Job_Aborted;
 			}
 		}
-		break;
-		
-		case MSG_SelectMobNum:
-		{
-			// First Ensure the SIMCOM Module is Connected
-			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
-			{
-				char SetMobileNumber[26];
-				char StoreDoubleQtedNum[16];
-				memset(SetMobileNumber,'\0',26);
-//				USART1_String("S:");
-//				USART1_String(MobNumber);
-				sprintf(SetMobileNumber,"AT+CMGS=\"%s\"",MobNumber);
-				// Send AT Command and wait for response	
-				if(SIMCOM_Schedule_Job(SetMobileNumber, SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
-				{
-					// Set it to Scheduled only when the SIMCOM Module Accepted it
-					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
-				}
-			}
-			else
-			{
-				// Cyclic part for the response
-				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
-				{
-					// Job has been completed
-					// Check if the response is OK or not.
-					if(IsSIMCOM_ResponseStartsWith("> "))
-					{
-						SendMSG_State = MSG_SendMsg;// Move to next state
-					}
-					else
-					{
-						// If the returned value is ERROR or something else, then act accordingly
-						// TODO: Later
-						RetryInNextCycle = TRUE;
-					}
-				}
-				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
-				{
-					// If there is a problem in reception, retry sending the command
-					RetryInNextCycle = TRUE;
-					// TODO: Log Error. Possibly the GSM Module is not powered or connected
-				}
-				else
-				{
-					// Do Nothing. Wait
-				}
-			}
-		}		
-		break;
-		
-		case WaitforMessageResponse:
-			// do nothing 
-		break;
-		
-		
-		case MSG_SendMsg:
-		{
-			// First Ensure the SIMCOM Module is Connected
-			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
-			{
-				// Send AT Command and wait for response
-					
-				if(SIMCOM_Schedule_Job(StoreMSGs, SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)
-				{
-					// Set it to Scheduled only when the SIMCOM Module Accepted it
-					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
-				}
-			}
-			else
-			{
-				// Cyclic part for the response
-				if(SIMCOM_Job_Result == SIMCOM_Job_Completed)
-				{
-					// Job has been completed
 
-					// Check if the response is OK or not.
-					if(IsSIMCOM_ResponseStartsWith("+CMGS:"))
-					{
-//						SendMSG_State = MSG_DeleteMsgs; // Move to next state
-						SendMSG_State = MSG_DeleteMsgs;
-					}
-					else
-					{
-						// If the returned value is ERROR or something else, then act accordingly
-						// TODO: Later
-						SendMSG_State = MSG_Idle;
-					}
-				}
-				else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
-				{
-					// If there is a problem in reception, retry sending the command
-					RetryInNextCycle = TRUE;
-
-					// TODO: Log Error. Possibly the GSM Module is not powered or connected
-				}
-				else
-				{
-					// Do Nothing. Wait
-				}
-			}
-		}
-		break;
-		
-		
-		default:
+		if(SIMCOM_Job_Result == SIMCOM_Job_Aborted)
 		{
-			// Do Nothing, The state machine has been completed
-					
+		// If in any of the state, the Job is aborted, then move to the error state
+			SIMCOM_ERROR_CALLBACK();
 		}
-		break;
+
+			/* Check if the state changed after execution */
+
+		if(SendMSG_State_Before_Execution != SendMSG_State)
+		{
+			// If changed, the Set the New Job Result as Idle for the next state to proceed further
+			SIMCOM_Job_Result = SIMCOM_Job_Idle; // Reset the Job state so that next command will be sent
+
+	/*		SendMSG_Retry_Count = 10; // Reset the Retry Count*/
+		}
+		
 	}
 
-	if(RetryInNextCycle == TRUE)
-	{
-		// If Retry is allowed
-		if(SendMSG_Retry_Count != 0)
-		{
-			SendMSG_Retry_Count--; // Decrement the Retry Count
-
-			SIMCOM_Job_Result = SIMCOM_Job_Idle; // Setting the Job to Idle will retry the Job again in next cycle.
-		}
-		else
-		{
-			// RETRY Mechanism expired, abort the Job and do not move the state
-			SIMCOM_Job_Result = SIMCOM_Job_Aborted;
-		}
-	}
-
-	if(SIMCOM_Job_Result == SIMCOM_Job_Aborted)
-	{
-	// If in any of the state, the Job is aborted, then move to the error state
-		SIMCOM_ERROR_CALLBACK();
-	}
-
-		/* Check if the state changed after execution */
-
-	if(SendMSG_State_Before_Execution != SendMSG_State)
-	{
-		// If changed, the Set the New Job Result as Idle for the next state to proceed further
-		SIMCOM_Job_Result = SIMCOM_Job_Idle; // Reset the Job state so that next command will be sent
-
-/*		MQTT_Publish_Retry_Count = 10; // Reset the Retry Count*/
-	}
-	
 }

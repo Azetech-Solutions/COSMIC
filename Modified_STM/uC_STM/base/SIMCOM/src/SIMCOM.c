@@ -10,7 +10,7 @@
 
 #include "Includes.h" // Will have all definitions of the Project Headers
 #include <stdint.h>
-#include SIMCOM_MQTT_PUBLISH_H
+#include PLATFORM_TYPES_H
 #include SIMCOM_MQTT_H
 #include MQTT_APPLICATION_H
 #include GPIO_DRIVER_H
@@ -27,6 +27,7 @@
 #include MESSAGE_APP_H
 #include SIMCOM_CALLS_H
 #include DTMF_APP_H
+#include SIMCOM_MQTT_PUBLISH_H
 
 
 /**********************************************************/
@@ -52,6 +53,8 @@ SIMCOM_JobType SIMCOM_CurrentJob;
 UBYTE NumberLength = 0;
 
 char SIMCOM_ResponseBuffer[BUFFER_MAX_SIZE];
+
+UBYTE SimcomReadyToPublishMessages = TRUE;
 
 BufferLengthType SIMCOM_ResponseLength = 0;
 
@@ -166,90 +169,76 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 		}
 		else if(IsSIMCOM_ResponseStartsWith("+CLCC:"))
 		{
-			BOOL IsNumberAvailable = FALSE;
 			
-			for(UBYTE i = 0;i < 6;i++)
+			SimcomReadyToPublishMessages = FALSE;
+			
+			if(SimcomReadyToAttendCalls == TRUE)
 			{
-				if(StoredMNs[i].WriteIndicator == 0)
-				{
-					IsNumberAvailable = TRUE;
-				}
-			}
-			
-			char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+CLCC:");
-					
-			if(RXStr[5] == '4')
-			{
-				UBYTE DTMF_Index = 0;
 				
-				for(UBYTE i = 12;i<=24; i++)
-				{
-					DTMFBuffer[DTMF_Index] = RXStr[i];
-					DTMF_Index++;
-				}
+				BOOL IsNumberAvailable = FALSE;
 			
-				UBYTE BuffDiff = 0;
-				
-				if(IsNumberAvailable == TRUE)
+				for(UBYTE i = 0;i < 6;i++)
 				{
-					for(UBYTE i = 0;i < 6; i++)
+					if(StoredMNs[i].WriteIndicator == 0)
 					{
-						if(FlashDataRead(EEPROMMnNoAdress[i]) == 0)
+						IsNumberAvailable = TRUE;
+					}
+				}
+				
+				char *RXStr = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(),"+CLCC:");
+						
+				if(RXStr[5] == '4')
+				{
+					UBYTE DTMF_Index = 0;
+					
+					for(UBYTE i = 12;i<=24; i++)
+					{
+						DTMFBuffer[DTMF_Index] = RXStr[i];
+						DTMF_Index++;
+					}
+				
+					UBYTE BuffDiff = 0;
+					
+					if(IsNumberAvailable == TRUE)
+					{
+						for(UBYTE i = 0;i < 6; i++)
 						{
-							BuffDiff = memcmp(DTMFBuffer,readD.MobNo,13);
-							if(BuffDiff == 0)
+							if(FlashDataRead(EEPROMMnNoAdress[i]) == 0)
 							{
-								MNID = i;
-								break;
+								BuffDiff = memcmp(DTMFBuffer,readD.MobNo,13);
+								if(BuffDiff == 0)
+								{
+									MNID = i;
+									break;
+								}
 							}
 						}
 					}
+					else
+					{
+						BuffDiff = memcmp(DTMFBuffer,OWNER1,13);
+					}
+										
+					if(BuffDiff == 0)
+					{
+						SIMCOM_Dial_Request = SMC_AttendCalls;
+						DTMFCallOnProcess = TRUE;
+					}
+					else
+					{
+						SIMCOM_Dial_Request = SMC_DisConnectCalls;
+					}
 				}
-				else
+				else if(RXStr[5] == '6')
 				{
-					BuffDiff = memcmp(DTMFBuffer,OWNER1,13);
-				}
-				
-				
-				if(BuffDiff == 0)
-				{
-					SIMCOM_Dial_Request = SMC_AttendCalls;
-					DTMFCallOnProcess = TRUE;
-				}
-				else
-				{
-					SIMCOM_Dial_Request = SMC_DisConnectCalls;
+
 				}
 			}
-			else if(RXStr[5] == '6')
+			else
 			{
-
+				SIMCOM_Dial_Request = SMC_DisConnectCalls;
 			}
 		}
-//		else if(IsSIMCOM_ResponseStartsWith("+CGEV: NW DEACT"))
-//		{
-//				if(DTMFCallOnProcess == TRUE)
-//				{
-//					if(DTMFNumberindex >0)
-//					{
-//						DTMF_Data = atoi(DTMFNumberString);
-//						DTMFMessageUpdation();
-//					}
-//					DTMFCallOnProcess = FALSE;
-//				}
-//		}
-//		else if(IsSIMCOM_ResponseStartsWith("NO CARRIER"))
-//		{
-//				if(DTMFCallOnProcess == TRUE)
-//				{
-//					if(DTMFNumberindex >0)
-//					{
-//						DTMF_Data = atoi(DTMFNumberString);
-//						DTMFMessageUpdation();
-//					}
-//					DTMFCallOnProcess = FALSE;
-//				}
-//		}
 		else if(IsSIMCOM_ResponseStartsWith("VOICE CALL: END"))
 		{
 					if(DTMFCallOnProcess == TRUE)
@@ -266,6 +255,7 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 						UpdateMobileNumbersToSend();
 						SendMbNoMsg = FALSE;
 					}
+					SimcomReadyToPublishMessages = TRUE;
 		}
 		else
 		{  

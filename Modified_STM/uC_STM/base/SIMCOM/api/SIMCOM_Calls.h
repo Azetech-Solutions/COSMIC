@@ -18,6 +18,7 @@ typedef enum
 	SMC_DialNumber,
 	SMC_AttendCalls,
 	SMC_DisConnectCalls,
+	SMC_DisableMsgBlock,
 	SMC_WaitForCallResponses
 	
 }SIMCOM_Dial_Request_EN;
@@ -38,6 +39,9 @@ typedef enum
 /**********************************************************/
 /* Function Declaration                                   */
 /**********************************************************/
+
+extern UBYTE SimcomReadyToAttendCalls;
+
 extern BOOL SIMCOM_Calls_Dial(char * Number);
 
 extern void SIMCOM_Calls_MainFunction(void);

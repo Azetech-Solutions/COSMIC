@@ -44,7 +44,7 @@ UBYTE Previous_IOStatus = 0;
 
 BOOL MQTTConnectionCheckStatus = FALSE;
 
-UBYTE MachineInitFlag = FALSE;
+UBYTE MachineInitFlag = TRUE;
 
 SimcomWorkingMode_ST SimcomWorkingMode = MQTTMode;
 
@@ -98,7 +98,7 @@ UBYTE Cloud_Transmit(UWORD Length, void * Data)
 
 	char *PtrData = (char *)Data;
 	
-	if (!ISPublishMsgConfigured())
+	if (!ISPublishMsgIdle())
 	{
 		
 		memcpy(PublishPayload,PtrData,Length);	
@@ -189,7 +189,6 @@ void MQTT_AppMain()
 				{
 					CloudInit();
 					MQTTApp_State = MQTTApp_PublishMsgConfiguringinprocess;
-					MachineInitFlag = TRUE;
 				}
 			}
 			break;

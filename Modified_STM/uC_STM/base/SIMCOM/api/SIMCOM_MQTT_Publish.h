@@ -9,6 +9,8 @@
 #ifndef MQTT_PUBLISH_H_
 #define MQTT_PUBLISH_H_
 
+#define IsMQTTPublishStateIdle()	(Publish_State == MQTT_Publish_Idle)
+
 typedef enum
 {
 	MQTT_Publish_Idle=0,
@@ -28,6 +30,8 @@ extern MQTT_Publish_state_EN Publish_State;
 extern void MQTT_Publish_StateMachine(void);
 
 extern char PublishPayload[28];
+
+extern UBYTE MachineInitFlag;
 
 #define PUBTOPICLength 16
 

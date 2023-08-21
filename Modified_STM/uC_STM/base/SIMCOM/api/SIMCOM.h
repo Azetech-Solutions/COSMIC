@@ -247,6 +247,8 @@ extern ULONG SIMCOM_Number_fromBuffer(const char * ResponseHead);
 
 extern void SIMCOM_IgnoreCRLFs(UBYTE Count);
 
+extern UBYTE SimcomReadyToPublishMessages;
+
 extern void MQTT_StateMachine(void);
 
 extern void MQTT_SubPub_StateMachine(void);

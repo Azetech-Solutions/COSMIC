@@ -170,5 +170,14 @@ void UpdateEEPROMNumbers()
 			MobileNumberData.StoredMNs[i].MobileNumber[j] = StoredMNs[i].MobNo[j];
 		}
 	}
+	
+	UBYTE *PubMsg = ComIf_GetShadowBuffer_AVR_Stored_MobNums();
+	
+	memcpy(PubMsg,MobileNumberData.Bytes,79);
+	
+	ComIf_TransmitFromBuffer_AVR_Stored_MobNums();
+	
+	ComIf_TxConfirmation(C_ComIfChannel_AVR);
+	
 }
 

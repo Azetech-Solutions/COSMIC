@@ -41,6 +41,7 @@ extern void PLLInit(void);
 extern void AvrStatusHandleFunc(void);
 extern void Sysos_check(void);
 extern void EepromFlashMmeoryCopy(void);
+extern void UpdateEEPROMNumbers();
 
 /* Define the Process calls for the Tasks */
 
@@ -54,6 +55,7 @@ void PRC_SYSOS_TASK_INIT(void)
 		USART_Init();
 		SystickTimerInit();
 		EepromFlashMmeoryCopy();
+		UpdateEEPROMNumbers();
 		SIMCOM_Init();
 }
 

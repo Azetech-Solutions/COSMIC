@@ -14,7 +14,7 @@
 #include SIMCOM_MQTT_PUBLISH_H
 #include PLATFORM_TYPES_H
 
-#define ISPublishMsgConfigured()	(MQTTApp_State == MQTTApp_PublishMsgConfigured)
+#define ISPublishMsgIdle()	(MQTTApp_State == MQTTApp_PublishMsgConfigured)
 
 typedef enum
 {
@@ -79,8 +79,6 @@ typedef union
 }AvrCmdStatusData_ST;
 
 extern SimcomWorkingMode_ST SimcomWorkingMode;
-
-extern UBYTE MachineInitFlag;
 
 extern BOOL MQTTConnectionCheckStatus;
 

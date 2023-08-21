@@ -71,7 +71,6 @@ void MQTT_StateMachine(void)
 				MQTT_State = MQTT_Connection_Check;
 			}
 		}
-		
 		switch(MQTT_State)
 		{
 			case MQTT_START:
@@ -118,7 +117,6 @@ void MQTT_StateMachine(void)
 			break;
 			case MQTT_Accquire:
 			{
-				AVR_SendData(SIMCOM_Job_Result);
 				//Accquiring a client to connect with the MQTT broker
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
@@ -532,7 +530,7 @@ void MQTT_StateMachine(void)
 			break;
 			case MQTT_Connection_Check:
 			{
-				if ((SimcomWorkingMode == MQTTMode) && (MQTT_ConnectionCheckCounter <= 0) && (!ISPublishMsgConfigured()))
+				if ((SimcomWorkingMode == MQTTMode) && (MQTT_ConnectionCheckCounter <= 0) && (!ISPublishMsgIdle()))
 				{
 					//This part is to check whether the SIMCOM is connected to aws server
 					// in a regular interval about(10 min once) 
