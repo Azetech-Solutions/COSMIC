@@ -65,7 +65,7 @@
 /*               Macro Definitions               */
 /*************************************************/
 
-#define SIMCOM_SEND_BYTE                             UART2_AVR_SendData
+#define SIMCOM_SEND_BYTE                             SIM_Send_Data
 
 #define SIMCOM_GENERIC_CALLBACK                      COSMIC_Generic_SIMCOM_Callback
 
@@ -132,7 +132,7 @@ typedef enum
 /*          Extern Function Declarations         */
 /*************************************************/
 
-extern void UART2_AVR_SendData(UBYTE Data);
+extern void SIM_Send_Data(UBYTE Data);
 
 extern void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState);
 

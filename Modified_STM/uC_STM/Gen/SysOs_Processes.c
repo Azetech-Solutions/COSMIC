@@ -41,7 +41,7 @@ extern void PLLInit(void);
 extern void AvrStatusHandleFunc(void);
 extern void Sysos_check(void);
 extern void EepromFlashMmeoryCopy(void);
-extern void UpdateEEPROMNumbers();
+extern void UpdateEEPROMNumbers(void);
 
 /* Define the Process calls for the Tasks */
 

@@ -57,6 +57,12 @@
         <ProcessGroupRef>STM32_Init</ProcessGroupRef>
         <Enabled>True</Enabled>
       </Process>
+      <Process>
+        <Name>UpdateEEPROMNumbers</Name>
+        <Index>8</Index>
+        <ProcessGroupRef>STM32_Init</ProcessGroupRef>
+        <Enabled>True</Enabled>
+      </Process>
     </Processes>
   </Config>
   <General>

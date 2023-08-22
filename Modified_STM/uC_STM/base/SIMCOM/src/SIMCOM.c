@@ -92,7 +92,7 @@ static void SIMCOM_Send_Command()
 
 static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 {
-//	UART2_AVR_SendData((char)SIMCOM_CurrentJob.Callback + 48);
+//	SIM_Send_Data((char)SIMCOM_CurrentJob.Callback + 48);
 	if(SIMCOM_CurrentJob.Callback != NULL_PTR)
 	{
 		SIMCOM_CurrentJob.State = JobState;

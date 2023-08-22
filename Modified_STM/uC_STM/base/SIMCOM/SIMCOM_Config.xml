@@ -6,7 +6,7 @@
       <Name>SIMCOM_Functions</Name>
       <ErrorCallback>COSMIC_SIMCOM_Error_Callback</ErrorCallback>
       <GenericRxCallback>COSMIC_Generic_SIMCOM_Callback</GenericRxCallback>
-      <CustomSendByteFunction>UART2_SIM_Send_Data</CustomSendByteFunction>
+      <CustomSendByteFunction>SIM_Send_Data</CustomSendByteFunction>
     </Functions>
     <Calls>
       <Name>Calls and Dialing</Name>

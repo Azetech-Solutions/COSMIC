@@ -17,7 +17,7 @@ void USART_Init(void);
 void AVR_SendData(unsigned char Data);
 void USART2_Pin_Init(void);
 void USART2_Init(void);
-void UART2_AVR_SendData(unsigned char Data);
+void SIM_Send_Data(unsigned char Data);
 void USART_String(const char* data);
 
 /***************************************************/
@@ -141,7 +141,7 @@ void USART2_Init(void)
 }
 
 
-void UART2_AVR_SendData(unsigned char Data)
+void SIM_Send_Data(unsigned char Data)
 {
 	while(!(USART2->ISR & (1<<7)))
 	{
@@ -176,7 +176,7 @@ void USART_String(const char* data)
 {
 	while(*data)
 	{
-		UART2_AVR_SendData(*(data++));
+		SIM_Send_Data(*(data++));
 	}
 }
 
