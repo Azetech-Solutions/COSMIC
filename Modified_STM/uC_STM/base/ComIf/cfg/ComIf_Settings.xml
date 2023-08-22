@@ -30,7 +30,7 @@
           <TxMessage>
             <Name>Cloud_Init</Name>
             <ID>205</ID>
-            <Length>2</Length>
+            <Length>1</Length>
             <ChecksumLength>1</ChecksumLength>
             <EnableAggregation>False</EnableAggregation>
           </TxMessage>

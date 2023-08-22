@@ -120,6 +120,7 @@ void AVR_CallRequestRxCbk(UBYTE Length, UBYTE *Data)
 void TextMessageRxCbk(UBYTE Length, UBYTE *Data)
 {
 	AVR_Message_ST *Msg = &AVR_Message;
+	
 	if(Length == ComIf_GetLength_AVR_AVR_TextMessage())
 	{
 		for(UBYTE i = 0;i < Length;i++)
@@ -132,7 +133,14 @@ void TextMessageRxCbk(UBYTE Length, UBYTE *Data)
 
 void ADC_RxCbk(UBYTE Length, UBYTE *Data)
 {
+	for(UBYTE i =0;i<Length;i++)
+	{
+		ADCDatas.Bytes[i] = *Data;
+		
+		Data++;
+	}
 	
+	MQTTApp_State = MQTTApp_Publish_ADC_status;
 }
 
 void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)

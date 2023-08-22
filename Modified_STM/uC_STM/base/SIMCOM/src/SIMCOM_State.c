@@ -775,7 +775,7 @@ void SIMCOM_StateMachine(void)
 		
 		case DTMFWaitState:
 		{
-			DTMFCount++;
+			DTMFCount--;
 			if(DTMFCount == 250)
 			{
 				DTMFCount = 0;

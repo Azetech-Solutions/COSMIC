@@ -124,13 +124,13 @@
 /* Constants for the Tx message Cloud_Init on Cloud channel */
 
 #define ComIf_GetIndex_Cloud_Cloud_Init()                   (2u)
-#define ComIf_GetLength_Cloud_Cloud_Init()                  (2u)
+#define ComIf_GetLength_Cloud_Cloud_Init()                  (1u)
 #define ComIf_GetShadowBuffer_Cloud_Cloud_Init()            ((UBYTE *)ComIf_ShadowBuffer_Cloud_Cloud_Init)
 #define ComIf_Transmit_Cloud_Cloud_Init(x, y)               ComIf_Transmit(C_ComIfChannel_Cloud, 2, ((void *)x), y)
 #define ComIf_ForceTransmit_Cloud_Cloud_Init(x, y)          do{ComIfTxMsgCfg_Cloud[2].TxFlags.ForceTransmit = TRUE; ComIf_Transmit(C_ComIfChannel_Cloud, 2, ((void *)x), y); } while(0)
 #define ComIf_UpdateTxShadowBuffer_Cloud_Cloud_Init(x, y)   ComIf_UpdateTxShadowBuffer(C_ComIfChannel_Cloud, 2, ((void *)x), y)
-#define ComIf_TransmitFromBuffer_Cloud_Cloud_Init()         ComIf_Transmit_Cloud_Cloud_Init(ComIf_ShadowBuffer_Cloud_Cloud_Init, 2)
-#define ComIf_ForceTransmitFromBuffer_Cloud_Cloud_Init()    ComIf_ForceTransmit_Cloud_Cloud_Init(ComIf_ShadowBuffer_Cloud_Cloud_Init, 2)
+#define ComIf_TransmitFromBuffer_Cloud_Cloud_Init()         ComIf_Transmit_Cloud_Cloud_Init(ComIf_ShadowBuffer_Cloud_Cloud_Init, 1)
+#define ComIf_ForceTransmitFromBuffer_Cloud_Cloud_Init()    ComIf_ForceTransmit_Cloud_Cloud_Init(ComIf_ShadowBuffer_Cloud_Cloud_Init, 1)
 
 /* Debug Measurement Variables for Cloud_Init on Cloud */
 

@@ -79,6 +79,16 @@ void updateSendData(UBYTE Data[])
 	
 }
 
+void UpdateADCValues()
+{
+	UBYTE *PubMsg = ComIf_GetShadowBuffer_Cloud_ADC_Values_Cloud();
+
+	memcpy(PubMsg,ADCDatas.Bytes,6);
+	
+	ComIf_TransmitFromBuffer_Cloud_ADC_Values_Cloud();
+	
+}
+
 void IO_cmdData_CloudRxCbk(UBYTE Length, UBYTE *Data)
 {
 	UBYTE i,StatusData[2];
@@ -136,9 +146,9 @@ void CloudInit()
 {
 	UBYTE *PubMsg = ComIf_GetShadowBuffer_Cloud_Cloud_Init();
 	
-	UBYTE val[2] = {255,0};
+	UBYTE val[1] = {255};
 	
-	memcpy(PubMsg,val,2);
+	memcpy(PubMsg,val,1);
 	
 	ComIf_TransmitFromBuffer_Cloud_Cloud_Init();
 }
@@ -200,6 +210,15 @@ void MQTT_AppMain()
 				memset(TOPIC1_SubscribeMsg,0,strlen(TOPIC1_SubscribeMsg));
 			}
 			break;
+			
+			case MQTTApp_Publish_ADC_status:
+			{
+				UpdateADCValues();
+				
+				MQTTApp_State = MQTTApp_PublishMsgConfiguringinprocess;
+			}
+			break;
+			
 			case MQTTApp_Publish_IO_state:
 			{	
 				//this part is to publish the command status of the 
@@ -256,32 +275,3 @@ void COSMIC_Generic_SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 	/* This function will be called for an un-scheduled job. So check for the response and clear the buffer */
 	SIMCOM_ClearResponseBuffer();
 }
-
-
-/***************************************************/
-/* Header Inclusions                               */
-/***************************************************/
-
-/**********************************************************/
-/* Macro Definitions                                      */
-/**********************************************************/
-
-/**********************************************************/
-/* Type Definitions                                       */
-/**********************************************************/
-
-/*****************************************/
-/* Global Variables                      */
-/*****************************************/
-
-/***************************************************/
-/* Function Declarations                           */
-/***************************************************/
-
-/*****************************************/
-/* Static Function Definitions           */
-/*****************************************/
-
-/***************************************************/
-/* Function Definitions                            */
-/***************************************************/

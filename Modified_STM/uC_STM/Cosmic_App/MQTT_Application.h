@@ -26,6 +26,7 @@ typedef enum
 	MQTTApp_SubMessageHandling,
 	MQTTApp_ControlCommand,
 	MQTTApp_Publish_IO_state,
+	MQTTApp_Publish_ADC_status,
 	MQTTApp_PublishMsgConfiguringinprocess,
 	MQTTApp_PublishMsgConfigured
 		
@@ -87,6 +88,8 @@ extern MQTTApp_States MQTTApp_State;
 extern char TOPIC1_SubscribeMsg[26];
 
 extern AvrCmdStatusData_ST AvrStatusData;
+
+extern void UpdateADCValues();
 
 extern void MQTT_AppMain();
 

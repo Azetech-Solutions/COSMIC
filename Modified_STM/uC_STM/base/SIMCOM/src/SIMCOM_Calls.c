@@ -34,7 +34,7 @@ UBYTE SimcomMessagesDisabled = FALSE;
 
 char DialNumer[20];
 
-ULONG WaitForCallTimoutCounter = 0;
+UBYTE WaitForCallTimoutCounter = 100;
 
 /***************************************************/
 /* Function Declarations                           */
@@ -128,7 +128,7 @@ void SIMCOM_Calls_MainFunction(void)
 					// Set it to Scheduled only when the SIMCOM Module Accepted it
 					SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
 				}
-				SimcomMessagesDisabled = FALSE;
+				SimcomMessagesDisabled = TRUE;
 			}
 			else
 			{
@@ -215,7 +215,6 @@ void SIMCOM_Calls_MainFunction(void)
 					{
 						SIMCOM_Dial_Request = SMC_Idle;
 					}
-					SIMCOM_Dial_Request = SMC_Idle;
 				}
 				else
 				{
@@ -226,11 +225,10 @@ void SIMCOM_Calls_MainFunction(void)
 		break;
 		case SMC_WaitForCallResponses:
 		{
-			WaitForCallTimoutCounter++;
+			WaitForCallTimoutCounter--;
 			
-			if(WaitForCallTimoutCounter == 250)
+			if(WaitForCallTimoutCounter == 20)
 			{
-				WaitForCallTimoutCounter = 0;
 				SIMCOM_Dial_Request = SMC_DisConnectCalls;
 				SimcomReadyToPublishMessages = TRUE;
 			}
@@ -238,9 +236,15 @@ void SIMCOM_Calls_MainFunction(void)
 		break;
 		case SMC_DisableMsgBlock:
 		{
-			SimcomMessagesDisabled = FALSE;
-			SimcomReadyToPublishMessages = TRUE;
-			SIMCOM_Dial_Request = SMC_Idle;
+			WaitForCallTimoutCounter--;
+			
+			if(WaitForCallTimoutCounter == 0)
+			{
+				SimcomMessagesDisabled = FALSE;
+				SimcomReadyToPublishMessages = TRUE;
+				SIMCOM_Dial_Request = SMC_Idle;
+				WaitForCallTimoutCounter = 100;
+			}
 		}
 		break;
 		default:

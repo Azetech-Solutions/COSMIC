@@ -35,7 +35,7 @@ UBYTE ComIfChannelTxBuffer_Cloud[64];
 
 UBYTE ComIf_ShadowBuffer_Cloud_IO_Status_Cloud[2];
 UBYTE ComIf_ShadowBuffer_Cloud_ADC_Values_Cloud[6];
-UBYTE ComIf_ShadowBuffer_Cloud_Cloud_Init[2];
+UBYTE ComIf_ShadowBuffer_Cloud_Cloud_Init[1];
 
 ComIfTxMessageConfig ComIfTxMsgCfg_Cloud[3] = {
 	{
@@ -79,7 +79,7 @@ ComIfTxMessageConfig ComIfTxMsgCfg_Cloud[3] = {
 	{
 		/* Cloud_Init */
 		/* ID */        0xCD,
-		/* Length */    2,
+		/* Length */    1,
 	#ifdef COMIF_DYNAMIC_DATA_LENGTH_ENABLED
 		/* DynLength */ 0,
 	#endif
