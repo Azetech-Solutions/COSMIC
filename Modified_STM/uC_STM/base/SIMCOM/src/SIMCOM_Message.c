@@ -219,8 +219,6 @@ void MessageControl(void)
 					char SetMobileNumber[26];
 					char StoreDoubleQtedNum[16];
 					memset(SetMobileNumber,'\0',26);
-	//				USART1_String("S:");
-	//				USART1_String(MobNumber);
 					sprintf(SetMobileNumber,"AT+CMGS=\"%s\"",MobNumber);
 					// Send AT Command and wait for response	
 					if(SIMCOM_Schedule_Job(SetMobileNumber, SIMCOM_DEFAULT_TIMEOUT, SendMSG_CallBack) == TRUE)

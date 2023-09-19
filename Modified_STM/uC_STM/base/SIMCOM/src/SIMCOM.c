@@ -357,10 +357,6 @@ void SIMCOM_MainFunction(void)
 		{
 			// Do Nothing
 			SIMCOM_Callback(SIMCOM_Job_InProgress);
-//			if(MQTT_State == MQTT_SubscribeTopic_Config)
-//			{
-//				AVR_SendData('D');
-//			}
 		}
 		break;
 
@@ -368,13 +364,6 @@ void SIMCOM_MainFunction(void)
 		{
 			// If the Read is in progress for one Task Cycle, then give a callback that the SIMCOM is in Progress
 			SIMCOM_Callback(SIMCOM_Job_InProgress);
-			
-//			if(MQTT_State == MQTT_SubscribeTopic_Config)
-//			{
-//				AVR_SendData('E');
-//			}
-
-			
 			
 			if(SIMCOM_IncompleteCounter != 0)
 			{
