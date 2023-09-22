@@ -37,6 +37,20 @@ BOOL UpdateSignalToBuffer(UBYTE Index,void * Data)
             {
                 Buffer[0]= (((SBYTE)*((SBYTE*)Data)) & 0xFF);
                 Buffer[1] = Buffer[2] = Buffer[3] = 0;
+							if(Signal->Endiannes == LITTLE)
+							{
+								uint32_t b0,b1,b2,b3;
+
+								b0 = Buffer[3];
+								b1 = Buffer[2];
+								b2 = Buffer[1];
+								b3 = Buffer[0];
+								
+								Buffer[0] = b0;
+								Buffer[1] = b1;
+								Buffer[2] = b2;
+								Buffer[3] = b3; 
+							}
             }
             else
             {
@@ -50,6 +64,20 @@ BOOL UpdateSignalToBuffer(UBYTE Index,void * Data)
             {
                 Buffer[0] = (((UBYTE)*((UBYTE*)Data)) & 0xFF);
                 Buffer[1] = Buffer[2] = Buffer[3] = 0;
+							if(Signal->Endiannes == LITTLE)
+							{
+								uint32_t b0,b1,b2,b3;
+
+								b0 = Buffer[3];
+								b1 = Buffer[2];
+								b2 = Buffer[1];
+								b3 = Buffer[0];
+								
+								Buffer[0] = b0;
+								Buffer[1] = b1;
+								Buffer[2] = b2;
+								Buffer[3] = b3; 
+							}
             }
             else
             {
@@ -64,7 +92,21 @@ BOOL UpdateSignalToBuffer(UBYTE Index,void * Data)
                 Buffer[0] = (SBYTE)(((*((SWORD*)Data)) & 0xFF00) >> 8);
                 Buffer[1] = (SBYTE)((*((SWORD*)Data)) & 0x00FF);
                 Buffer[2] = Buffer[3] = 0;
-            }
+							if(Signal->Endiannes == LITTLE)
+							{
+								uint32_t b0,b1,b2,b3;
+
+								b0 = Buffer[3];
+								b1 = Buffer[2];
+								b2 = Buffer[1];
+								b3 = Buffer[0];
+								
+								Buffer[0] = b0;
+								Buffer[1] = b1;
+								Buffer[2] = b2;
+								Buffer[3] = b3; 
+							}            
+						}
             else
             {
                 retval = FALSE;//Invalid Settings or value
@@ -78,7 +120,21 @@ BOOL UpdateSignalToBuffer(UBYTE Index,void * Data)
                 Buffer[0] = (UBYTE)(((*((UWORD*)Data)) & 0xFF00) >> 8);
                 Buffer[1] = (UBYTE)((*((UWORD*)Data)) & 0x00FF);
                 Buffer[2] = Buffer[3] = 0;
-            }
+							if(Signal->Endiannes == LITTLE)
+							{
+								uint32_t b0,b1,b2,b3;
+
+								b0 = Buffer[3];
+								b1 = Buffer[2];
+								b2 = Buffer[1];
+								b3 = Buffer[0];
+								
+								Buffer[0] = b0;
+								Buffer[1] = b1;
+								Buffer[2] = b2;
+								Buffer[3] = b3; 
+							}            
+						}
             else
             {
                 retval = FALSE;//Invalid Settings or value
@@ -93,7 +149,21 @@ BOOL UpdateSignalToBuffer(UBYTE Index,void * Data)
                 Buffer[2] = (UBYTE)(((*((SLONG*)Data)) & 0xFF00) >> 8);
                 Buffer[1] = (UBYTE)(((*((SLONG*)Data)) & 0xFF0000) >> 16);
                 Buffer[0] = (UBYTE)(((*((SLONG*)Data)) & 0xFF000000) >> 24);
-            }
+							if(Signal->Endiannes == LITTLE)
+							{
+								uint32_t b0,b1,b2,b3;
+
+								b0 = Buffer[3];
+								b1 = Buffer[2];
+								b2 = Buffer[1];
+								b3 = Buffer[0];
+								
+								Buffer[0] = b0;
+								Buffer[1] = b1;
+								Buffer[2] = b2;
+								Buffer[3] = b3; 
+							}            
+						}
             else
             {
                 retval = FALSE;//Invalid Settings or value
@@ -117,6 +187,20 @@ BOOL UpdateSignalToBuffer(UBYTE Index,void * Data)
                 Buffer[1] = (UBYTE)(((*((ULONG*)Data)) & 0xFF0000) >> 16);
                 Buffer[0] = (UBYTE)(((*((ULONG*)Data)) & 0xFF000000) >> 24);
             }
+							if(Signal->Endiannes == LITTLE)
+							{
+								uint32_t b0,b1,b2,b3;
+
+								b0 = Buffer[3];
+								b1 = Buffer[2];
+								b2 = Buffer[1];
+								b3 = Buffer[0];
+								
+								Buffer[0] = b0;
+								Buffer[1] = b1;
+								Buffer[2] = b2;
+								Buffer[3] = b3; 
+							}						
         }
         break;
         default:
