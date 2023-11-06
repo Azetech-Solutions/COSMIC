@@ -64,7 +64,6 @@ void PRC_SYSOS_TASK_X100(void)
 {
 		SIMCOM_MainFunction();
 		AvrStatusHandleFunc();
-		Sysos_check();
 }
 
 

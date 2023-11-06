@@ -121,7 +121,7 @@ void MQTT_StateMachine(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
 					// Send AT Command and wait for response
-					if(SIMCOM_Schedule_Job("AT+CMQTTACCQ=0,\"cp0001\",1", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
+					if(SIMCOM_Schedule_Job("AT+CMQTTACCQ=0,\"aze0001\",1", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
@@ -364,7 +364,7 @@ void MQTT_StateMachine(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
 					// Send AT Command and wait for response
-					if(SIMCOM_Schedule_Job("AT+CMQTTSUBTOPIC=0,16,1", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
+					if(SIMCOM_Schedule_Job("AT+CMQTTSUBTOPIC=0,15,0", SIMCOM_DEFAULT_TIMEOUT, MQTT_CALLBACK) == TRUE)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;

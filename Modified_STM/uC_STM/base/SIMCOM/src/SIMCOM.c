@@ -344,7 +344,7 @@ void SIMCOM_MainFunction(void)
 			{
 				SIMCOM_Aliveness_Counter -= P_SIMCOM_TASK_CYCLE_FACTOR;
 			}
-			else
+			else 
 			{
 				SIMCOM_ERROR_CALLBACK(); // Report Error
 				SIMCOM_Aliveness_Counter = P_SIMCOM_ALIVENESS_ERROR_TIME; // Reload Timer
@@ -500,7 +500,7 @@ void SIMCOM_RxMessageCallBack()
 		break;
 		case I_MQTT_Rx_msg:
 		{
-			if(memcmp((char*)Buff->BufferPtr,"prj01/cp0001/sub",12)==0)
+			if(memcmp((char*)Buff->BufferPtr,"aze/aze0001/sub",12)==0)
 			{
 				Rx_Response_State = I_MQTT_Rx_Storedata;
 			}

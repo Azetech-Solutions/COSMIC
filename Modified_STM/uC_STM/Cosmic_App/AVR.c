@@ -26,6 +26,8 @@ typedef UBYTE (*AvrRxHanler)(UBYTE);
 /* Global Variables                      */
 /*****************************************/
 
+extern void Sysos_check(void);
+
 BOOL IsUartBusBusy = FALSE;
 
 AVR_IO_Control_ST IO_cmdData_AVR;
@@ -150,6 +152,7 @@ void AVR_IO_StatusRxCbk(UBYTE Length, UBYTE *Data)
 		AvrStatusData.Data_Bytes[i] = *Data;
 		Data++;
 	}
+	Sysos_check();
 	MQTTApp_State = MQTTApp_Publish_IO_state;
 }
 

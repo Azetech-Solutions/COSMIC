@@ -60,21 +60,6 @@ void SIMCOM_SSL_CONFIG_MainFunction(void)
 				if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 				{
 					SIMCOM_Clock_DateTime_ST Time = SIMCOM_GetDateTime();
-//					char arr[5];
-//					sprintf(arr,"%d:",Time.Day);
-//					USART1_String(arr);
-//					sprintf(arr,"%d:",Time.Hour);
-//					USART1_String(arr);
-//					sprintf(arr,"%d:",Time.Minute);
-//					USART1_String(arr);
-//					AVR_SendData(Time.Month+48);
-//					AVR_SendData(':');
-//					sprintf(arr,"%d:",Time.Second);
-//					USART1_String(arr);
-//					AVR_SendData(Time.TimeZone+48);
-//					AVR_SendData(':');
-//					sprintf(arr,"%d:",Time.Year);
-//					USART1_String(arr);
 					// Send AT Command and wait for response
 					if(SIMCOM_Schedule_Job("AT+CSSLCFG=\"sslversion\",0,4", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_SSL_Configration_Callback) == TRUE)
 					{

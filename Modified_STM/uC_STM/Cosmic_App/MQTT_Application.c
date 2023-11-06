@@ -206,7 +206,7 @@ void MQTT_AppMain()
 			case MQTTApp_ComifRxindication:
 			{
 				ComIf_RxIndication_Cloud(TOPIC1_SubscribeMsg,strlen(TOPIC1_SubscribeMsg));
-			
+				
 				memset(TOPIC1_SubscribeMsg,0,strlen(TOPIC1_SubscribeMsg));
 			}
 			break;

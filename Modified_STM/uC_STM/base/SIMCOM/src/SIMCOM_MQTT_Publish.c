@@ -95,7 +95,7 @@ void MQTT_Publish_StateMachine(void)
 							//Set topic Length by using Macro The size of the Topic is Configured in PUBTOPICLength Macro
 							char SetTopicLength[20];
 							
-							sprintf(SetTopicLength,"AT+CMQTTTOPIC=0,%d",PUBTOPICLength);
+							sprintf(SetTopicLength,"AT+CMQTTTOPIC=0,15");
 							
 							// Send AT Command and wait for response
 							SimcomReadyToAttendCalls = FALSE;

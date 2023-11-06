@@ -95,10 +95,8 @@ void USART2_Pin_Init(void)
 {
 	
 	GPIO_InitTypeDef PA;
-	
 	PORTA_CLOCK_ENABLE();
 	RCC_USART2_CLK_ENABLE();
-
 	
 	GPIO_WritePin(GPIOA, GPIO_PIN_2|GPIO_PIN_3, GPIO_PIN_RESET);
   /*Configure GPIO pins : PA2 PA3 */
@@ -126,8 +124,7 @@ void USART2_Init(void)
 		/*Oversampling 8*/
 	USART2->CR1 |= USART_CR1_OVER8;
 		/*Baud Rate Config For Baurate 115200*/
-	USART2->BRR = 0x453;	
-//		USART2->BRR = 0x1A05;
+	USART2->BRR = 0x453;
 	/* Rx & Tx Enable*/
 	USART2->CR1 |= (USART_CR1_TE | USART_CR1_RE ) ; 
 	
@@ -138,6 +135,7 @@ void USART2_Init(void)
 	USART2->CR1 |= USART_CR1_UE;
 	/*USART2 Interrupt Enable*/
 	NVIC_EnableIRQ(USART2_IRQn);
+
 }
 
 

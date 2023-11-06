@@ -98,7 +98,7 @@ void APN_Selection(char *checkstring)
 
 void SIMCOM_StateMachine(void)
 {
-	SIMCOM_State_EN SIMCOM_State_Before_Execution = SIMCOM_SM_Reset;
+	SIMCOM_State_EN SIMCOM_State_Before_Execution = SIMCOM_State;
 	
 	BOOL RetryInNextCycle = FALSE;
 
@@ -109,7 +109,6 @@ void SIMCOM_StateMachine(void)
 			// First Ensure the SIMCOM Module is Connected
 			if(SIMCOM_Job_Result == SIMCOM_Job_Idle)
 			{
-//				DebugStringRow1("INITIAZING...");
 				// Send AT Command and wait for response
 				if(SIMCOM_Schedule_Job("AT", SIMCOM_DEFAULT_TIMEOUT, SIMCOM_StateMachine_Callback) == TRUE)
 				{	
@@ -207,19 +206,8 @@ void SIMCOM_StateMachine(void)
 					char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN: ");
 					if(strcmp(RxString, "READY") == 0)
 					{
-						char * RxString = StringHelper_GetPointerAfter(SIMCOM_GetResponseBuffer(), "+CPIN:READY");
 								
-						// Check if the response is OK or not.
-						if(strcmp(RxString,"OK"))
-						{
-							SIMCOM_State = SIMCOM_SM_Check_signal_strength;
-						}
-						else
-						{
-							// If the returned value is ERROR or something else, then act accordingly
-							// TODO: Later
-							RetryInNextCycle = TRUE;
-						}
+						SIMCOM_State = SIMCOM_SM_Check_signal_strength;
 					}	
 					else
 					{
