@@ -48,6 +48,18 @@ void Call_Request(BOOL RequestType,UBYTE MN_Index)
 
 void Send_ADC_Datas()
 {
+	ADCDatas.Bytes[0] = 1;
+	
+	ADCDatas.Bytes[1] = 1;
+	
+	ADCDatas.Bytes[2] = 1;
+	
+	ADCDatas.Bytes[3] = 1;
+	
+	ADCDatas.Bytes[4] = 1;
+	
+	ADCDatas.Bytes[5] = 1;
+	
 	ADC_Data_ST *Buff = &ADCDatas;
 	
 	UBYTE *Data = ComIf_GetShadowBuffer_STM32_ADC_Values_AVR();
@@ -114,5 +126,7 @@ void IOControls()
 		prevIO_Status = *InputIO_Data;
 	}
 }
+
+
 
 

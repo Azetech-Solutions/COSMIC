@@ -159,29 +159,50 @@ UBYTE PrevAdcData[32];
 
 AvrMessageState_ST AvrMessageState = AvrIdle;
 
-void CloudRxCommandDataRxCbk(UBYTE Length, UBYTE *Data)
-{
-	UBYTE avrcmd[Length];
-	
-	for(UBYTE i=0;i<Length;i++)
-	{
-		avrcmd[i] = *Data;
-		Data++;
-	}
-	
-	if((avrcmd[0]&1) == 1)
-	{
-		PORTC |= (1<<5);
-		avrcmd[0] = 1;
-		updateSendData(1); 
-	}
-	else
-	{
-		PORTC &= ~(1<<5);
-		avrcmd[0] = 0;
-		updateSendData(0);
-	}
-}
+// void CloudRxCommandDataRxCbk(UBYTE Length, UBYTE *Data)
+// {
+// 	UBYTE avrcmd[Length];
+// 	
+// 	for(UBYTE i=0;i<Length;i++)
+// 	{
+// 		avrcmd[i] = *Data;
+// 		Data++;
+// 	}
+// 	
+// 	if((avrcmd[0]&1) == 1)
+// 	{
+// 		PORTC |= (1<<1);
+// 	}
+// 	else
+// 	{
+// 		PORTC &= ~(1<<1);
+// 	}
+// 	if((avrcmd[0]&2) == 1)
+// 	{
+// 		PORTC |= (1<<2);
+// 	}
+// 	else
+// 	{
+// 		PORTC &= ~(1<<2);
+// 	}		
+// 	if((avrcmd[0]&4) == 1)
+// 	{
+// 		PORTC |= (1<<3);
+// 	}
+// 	else
+// 	{
+// 		PORTC &= ~(1<<3);
+// 	}	
+// 	if((avrcmd[0]&8) == 1)
+// 	{
+// 		PORTC |= (1<<4);
+// 	}			
+// 	else
+// 	{
+// 		PORTC &= ~(1<<4);
+// 	}
+// 	updateSendData(avrcmd[0]);	
+// }
 
 void Cloud_ComIf_ErrorNotification(ULONG Debug0, ULONG Debug1)
 {
@@ -206,34 +227,34 @@ UBYTE Cloud_Transmit(UWORD Length, void * Data)
 	return retval;
 }
 
-void updateSendData(UBYTE Data)
-{
-	AvrStatusData_ST *AvrStatus = &AvrStatusData;
-	
-	AvrStatus->Data_Bytes[0] = Data;
-	
-	UBYTE *PubMsg = ComIf_GetShadowBuffer_Cloud_StatusData();
-	
-	memcpy(PubMsg,AvrStatus->Data_Bytes,2);
-	
-	ComIf_TransmitFromBuffer_Cloud_StatusData();
-}
+// void updateSendData(UBYTE Data)
+// {
+// 	AvrStatusData_ST *AvrStatus = &AvrStatusData;
+// 	
+// 	AvrStatus->Data_Bytes[0] = Data;
+// 	
+// 	UBYTE *PubMsg = ComIf_GetShadowBuffer_Cloud_StatusData();
+// 	
+// 	memcpy(PubMsg,AvrStatus->Data_Bytes,2);
+// 	
+// 	ComIf_TransmitFromBuffer_Cloud_StatusData();
+// }
 
-void UpdateAdcStatusData()
-{
-	AvrVoltageStatusData_ST *AvrVoltageStatusData1 = &AvrVoltageStatusData;
-	
-	for(UBYTE i = 0; i < 32; i++)
-	{
-		AvrVoltageStatusData1->Data_Bytes[i] = i;
-	}
-	
-	UBYTE *AvrVoltageStatus = ComIf_GetShadowBuffer_Cloud_AdcVoltageCarryFunc();
-	
-	memcpy(AvrVoltageStatus,AvrVoltageStatusData1->Data_Bytes,32);
-	
-	ComIf_TransmitFromBuffer_Cloud_AdcVoltageCarryFunc();
-}
+// void UpdateAdcStatusData()
+// {
+// 	AvrVoltageStatusData_ST *AvrVoltageStatusData1 = &AvrVoltageStatusData;
+// 	
+// 	for(UBYTE i = 0; i < 32; i++)
+// 	{
+// 		AvrVoltageStatusData1->Data_Bytes[i] = i;
+// 	}
+// 	
+// 	UBYTE *AvrVoltageStatus = ComIf_GetShadowBuffer_Cloud_AdcVoltageCarryFunc();
+// 	
+// 	memcpy(AvrVoltageStatus,AvrVoltageStatusData1->Data_Bytes,32);
+// 	
+// 	ComIf_TransmitFromBuffer_Cloud_AdcVoltageCarryFunc();
+// }
 
 void Adccheck()
 {

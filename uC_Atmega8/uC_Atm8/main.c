@@ -15,6 +15,8 @@
 #include UART_H
 #include COSMIC_APP_H
 #include TR_MSGS_H
+extern void CMDHandling();
+extern void msgcallHandling();
 /**********************************************************/
 /* Macro Definitions                                      */
 /**********************************************************/
@@ -35,14 +37,13 @@
 /* Function Declaration                                   */
 /**********************************************************/
 
-
 void Avr_Init()
 {
-	DDRB |= (1<<0);
-	DDRD |= (1<<7);
-	DDRB |= (1<<5);
-	DDRD |= (1<<4);
-	DDRC |= (1<<5);//Fault
+	DDRC |= (1<<0);
+	DDRC |= (1<<1);
+	DDRC |= (1<<2);
+	DDRC |= (1<<3);
+	DDRC |= (1<<4);//Fault
 }
 
 void Atmega32DriverInit()
@@ -60,26 +61,24 @@ int main(void)
 	
 	while(1)
 	{
-		//IOControls();
-		DTMFStatusHandling();
+		
+/*		IOControls();*/
 		
 // 		if(DTMFCommandData.DTMF_Data == 1)
 // 		{
 // 			//Send_Message(0,"Hello Azetech");
 // 
 // 			DTMFCommandData.DTMF_Data = 0;
-// 			Send_Message((DTMFCommandData.DTMF_MN_Index-48),"MOTOR ON\r");
-// 			PORTC |= (1<<5);
-// 			//InputIO_Data->IO1 = TRUE;
+// 			Send_Message((DTMFCommandData.DTMF_MN_Index-48),"MOTOR ON");
+// 			InputIO_Data->IO1 = TRUE;
 // 		}
 // 		
 // 		if(DTMFCommandData.DTMF_Data == 2)
 // 		{
 // 			//Send_Message(0,"Hello Azetech");
 // 			DTMFCommandData.DTMF_Data = 0;
-// 			Send_Message((DTMFCommandData.DTMF_MN_Index-48),"MOTOR OFF\r");
-// 			PORTC &= ~(1<<5);
-// 			//InputIO_Data->IO1 = FALSE;
+// 			Send_Message((DTMFCommandData.DTMF_MN_Index-48),"MOTOR OFF");
+// 			InputIO_Data->IO1 = FALSE;
 // 		}
 	}
 }
