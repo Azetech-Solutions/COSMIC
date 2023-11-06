@@ -197,8 +197,12 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 						DTMF_Index++;
 					}
 				
-					UBYTE BuffDiff = 0;
-					
+					UBYTE BuffDiff = 1;
+					if(memcmp(DTMFBuffer,OWNER1,13) == 0)
+					{
+						BuffDiff = 0;
+						goto next;
+					}
 					if(IsNumberAvailable == TRUE)
 					{
 						for(UBYTE i = 0;i < 6; i++)
@@ -214,11 +218,7 @@ static void SIMCOM_Callback(SIMCOM_Job_Result_EN JobState)
 							}
 						}
 					}
-					else
-					{
-						BuffDiff = memcmp(DTMFBuffer,OWNER1,13);
-					}
-										
+					next:
 					if(BuffDiff == 0)
 					{
 						SIMCOM_Dial_Request = SMC_AttendCalls;
