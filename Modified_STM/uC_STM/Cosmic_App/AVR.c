@@ -72,7 +72,7 @@ UBYTE AVR_Transmit(UWORD Length, void * Data)
 		{
 			for(int i=0;i<Length;i++)
 			{
-				if(UART2_TransmitByte(*((UB*)(Data++))))
+				if(AVR_TransmitByte(*((UB*)(Data++))))
 				{
 					retval = COMIF_EC_NO_ERROR;
 				}

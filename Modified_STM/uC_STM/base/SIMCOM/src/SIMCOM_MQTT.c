@@ -266,6 +266,7 @@ void MQTT_StateMachine(void)
 					{
 						// Set it to Scheduled only when the SIMCOM Module Accepted it
 						SIMCOM_Job_Result = SIMCOM_Job_Scheduled;
+						SIMCOM_ReceptionIgnoreCommandCount = 2;
 					}
 				}
 				else
@@ -276,23 +277,14 @@ void MQTT_StateMachine(void)
 						// Job has been completed
 
 						// Check if the response is OK or not.
-						if(SIMCOM_IsResponseOK())
+						if(SIMCOM_ResponseBuffer[21] == '0')
 						{
-							MQTT_State = MQTT_WaitForConnectResponce; // Move to next state
+							MQTT_State =  MQTT_SubscribeTopic_Config;// Move to next state
 						}
 						else
 						{
-							// If the returned value is ERROR or something else, then act accordingly
-							// TODO: Later
-							RetryInNextCycle = TRUE;
+							SIMCOM_ERROR_CALLBACK();
 						}
-					}
-					else if( (SIMCOM_Job_Result == SIMCOM_Job_Timeout) || (SIMCOM_Job_Result == SIMCOM_Job_Incomplete) )
-					{
-						// If there is a problem in reception, retry sending the command
-						RetryInNextCycle = TRUE;
-
-						// TODO: Log Error. Possibly the GSM Module is not powered or connected
 					}
 					else
 					{

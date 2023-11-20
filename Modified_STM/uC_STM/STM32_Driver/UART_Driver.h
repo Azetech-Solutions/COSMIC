@@ -62,6 +62,6 @@ extern unsigned char USART_Transmit_Byte(unsigned char Data);
 extern void USART_String(const char* data);
 extern void UART_main();
 extern void AVR_SendData(unsigned char Data);
-extern unsigned char UART2_TransmitByte(unsigned char Data);
+extern unsigned char AVR_TransmitByte(unsigned char Data);
 extern unsigned char IsUartCommunicationOkay ;
 #endif /*USART_H*/

@@ -148,7 +148,7 @@ void SIM_Send_Data(unsigned char Data)
 	USART2->TDR = Data;
 }
 
-unsigned char UART2_TransmitByte(unsigned char Data)
+unsigned char AVR_TransmitByte(unsigned char Data)
 {
 	unsigned char retval = 0;
 	
